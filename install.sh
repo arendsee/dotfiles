@@ -1,5 +1,6 @@
 #!/bin/bash
-cp -i bashrc $HOME/.bashrc
-cp -i bash_aliases $HOME/.bash_aliases
-cp -i vimrc $HOME/.vimrc
-cp -i gitconfig $HOME/.gitconfig
+cp -i bashrc ~/.bashrc
+cp -i bash_aliases ~/.bash_aliases
+cp -i vimrc ~/.vimrc
+cp -i gitconfig ~/.gitconfig
+source ~/.bashrc
