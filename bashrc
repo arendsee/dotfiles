@@ -29,6 +29,11 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Check for local bash aliasas
+if [ -f ~/.local_bash_aliases ]; then
+    . ~/.local_bash_aliases
+fi
+
 # enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
