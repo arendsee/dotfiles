@@ -28,7 +28,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias less='less -R'
 fi
 
-
 # cat Arabidopsis thaliana full genome sequences
 alias atfaa="cat $HOME/ohome/data/genomes/at/Arabidopsis_thaliana.protein.faa"
 alias atfna="cat $HOME/ohome/data/genomes/at/Arabidopsis_thaliana.fna"
@@ -60,10 +59,11 @@ function annihilate {
     done
 }
 
-# general opener
+# general opener (adapt as necessary)
 function sesame {
     for j in $@
-    do gnome-open $j
+    do
+        gnome-open $j
     done
 }
 
