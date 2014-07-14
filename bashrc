@@ -24,21 +24,10 @@ shopt -s checkwinsize
 
 PS1="\[\033[0;32m\]\$? \w \$ \[\033[00m\]"
 
-# Read aliases
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# Check for local bash aliasas
-if [ -f ~/.local_bash_aliases ]; then
-    . ~/.local_bash_aliases
-fi
-
 # enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-
 
 # Color fasta files
 export LS_COLORS="$LS_COLORS:*.fa=00;33:*.faa=00;33:*.fna=00;33:*.fasta=00;33:"
@@ -55,3 +44,19 @@ export LS_COLORS="$LS_COLORS:*MANIFEST=01;39:*MANIFEST.txt=01;39:*SOURCE=01;39:*
 
 # pdf and tex
 export LS_COLORS="$LS_COLORS:*.pdf=00;35:*.tex=00;36"
+
+# Read aliases
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# Check for local bash aliasas and bashrc files
+# This allows me to keep a single set of files synced across all my computers
+# AND certain settings that are uniq to one place
+if [ -f ~/.local_bash_aliases ]; then
+    . ~/.local_bash_aliases
+fi
+
+if [ -f ~/.local_bashrc ]; then
+    . ~/.local_bashrc
+fi
