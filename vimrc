@@ -40,7 +40,7 @@ noremap <leader>" bi"<esc>ea"<esc>
 nnoremap <leader>p ma{V}gq'a$
 
 " copy and paste
-vnoremap <C-c> "+yi
+" vnoremap <C-c> "+yi
 nnoremap <C-v> "*p
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
