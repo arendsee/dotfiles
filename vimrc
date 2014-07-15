@@ -39,6 +39,9 @@ noremap <leader>" bi"<esc>ea"<esc>
 " wrap paragraph
 nnoremap <leader>p ma{V}gq'a$
 
+" copy and paste
+vnoremap <C-c> "+yi
+nnoremap <C-v> "*p
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
