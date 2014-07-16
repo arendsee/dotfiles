@@ -54,6 +54,23 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 export PYBHOME=/db/pybhome
+export JAVA_HOME="/opt/java/jre1.7.0_60"
+export GITSITE="https://github.com/zbwrnz"
+export LIGHTNING='jenchang@lightning3.its.iastate.edu'
+export VIMRC="$HOME/.vimrc"
+
+# Color fasta files
+export LS_COLORS="$LS_COLORS:*.fa=00;33:*.faa=00;33:*.fna=00;33:*.fasta=00;33:"
+# Color masked fasta files
+export LS_COLORS="$LS_COLORS:*.mfa=00;33:*.mfaa=00;33:*.mfna=00;33:*.mfasta=00;33:"
+# Color csv, tsv, and tab files
+export LS_COLORS="$LS_COLORS:*.csv=38;5;106:*.tab=38;5;106:*.tsv=38;5;106:"
+# Embolden MANIFEST, SOURCE, README, and TODO files
+export LS_COLORS="$LS_COLORS:*MANIFEST=01;39:*MANIFEST.txt=01;39:*SOURCE=01;39:*SOURCE.txt=01;39:*README=01;39:*README.txt=01;39:*README.md=01;39:*INSTALL=01;39:*TODO=01;39:"
+# pdf and tex
+export LS_COLORS="$LS_COLORS:*.pdf=00;35:*.tex=00;36"
+# compressed or archived files
+export LS_COLORS="$LS_COLORS:*.gz=01;31:*.bz2=01;31:*.tar=01;31:*.zip=01;31:*.jar=01;31"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
