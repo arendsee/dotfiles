@@ -5,4 +5,4 @@ cp -i vimrc ~/.vimrc
 cp -i gitconfig ~/.gitconfig
 cp -i zshrc ~/.zshrc
 cp -i zsh_aliases ~/.zsh_aliases
-source ~/.bashrc
+cp -i trepanger.zsh-theme ~/.oh-my-zsh/themes/
