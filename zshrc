@@ -7,6 +7,9 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="trepanger"
 
+# For bash-like file expansions in variables
+setopt SH_WORD_SPLIT
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 

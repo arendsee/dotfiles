@@ -6,9 +6,9 @@ local ret_status="%(?:%{$fg[green]%}:%{$fg[red]%})"
 PROMPT='${ret_status}> %{$reset_color%}'
 
 # The right-hand prompt
-RPROMPT='%{$reset_color%} $(git_prompt_info)%{$reset_color%}$(git_prompt_status)%{$reset_color%}$(git_prompt_ahead) %{$fg[magenta]%}%~%{$reset_color%}'
+RPROMPT='%{$reset_color%} $(git_prompt_info)%{$reset_color%}$(git_prompt_status)%{$reset_color%}$(git_prompt_ahead) %{$fg[blue]%}%~%{$reset_color%}'
 
-ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[red]%}"
+ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%} ☀" # Ⓓ
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭" # ⓣ
