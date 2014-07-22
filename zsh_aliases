@@ -15,6 +15,7 @@ pbunzip2() { ls $@ | xargs -P 0 -n 1 bunzip2; }
 cds() {
     cd "$1"
     ls
+    pwd
 }
 
 rmtexjunk() {
