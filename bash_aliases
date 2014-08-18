@@ -100,3 +100,72 @@ function unjar {
         cd $current_directory
     done
 }
+
+function encrypt-dir {
+    # If the input is not a directory, directly encrypt it
+    if [ ! -d $1 ]; then
+        echo 'This command is intended for directories, but, yeah whatever'
+        gpg --cipher-algo TWOFISH -c $1
+        return 0
+    fi
+
+    # Remove trailing slash (if present) from input directory name
+    indir=`echo $1 | perl -pe 's|/$||'`
+
+    # Create tarball
+    tarfile="$indir.tar"
+    tar -cf "$tarfile" "$indir"
+
+    # If archiving fails, shred tarball and die
+    if [ $? -ne 0 ]; then
+        echo "Archiving fail, shredding tar file"
+        shed -zuf "$tarfile" 
+        return 1
+    fi
+
+    # Encrypt tarball
+    gpg --cipher-algo TWOFISH -c "$tarfile"
+
+    # If encryption fails, shred tarball and die
+    if [ $? -ne 0 ]; then
+        echo "Encryption fail, removing broken files"
+        shred -zuf "$tarfile"
+        rm "$indor.tar.gpg"
+        return 1
+    else
+        shred -zuf "$tarfile"
+    fi
+
+    # Shred unencrypted original data
+    gpgfile="$tarfile.gpg"
+    if [ -f "$gpgfile" ]; then
+
+        echo "Shredding original folder, please wait ..."
+
+        path=$PATH
+        export PATH='/usr/local/bin:/usr/bin'
+        find $indir/ -type f -execdir shred -zuf \{\} \;
+        export PATH=$path
+
+        if [ $? -ne 0 ]; then
+            echo "Find failed, input directory $indir was NOT shredded or removed"
+            echo "But folder was encrypted successfuly"
+        else
+            rm -Rf $indir
+        fi
+
+        return 0
+    else 
+        echo "Seems something didn't work, no .gpg output"
+        return 1
+    fi
+}
+
+function decrypt-dir {
+    if [ -f $1 ]; then
+        gpg -d $1 | tar --keep-newer-files -xf -
+    else
+        echo "Cannot open file $1"
+        return 1
+    fi
+}
