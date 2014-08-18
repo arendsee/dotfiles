@@ -34,10 +34,10 @@ alias atfna="cat $HOME/ohome/data/genomes/at/Arabidopsis_thaliana.fna"
 alias atcds="cat $HOME/ohome/data/genomes/at/Arabidopsis_thaliana.CDS.fna"
 
 # Parallel zipping/unzipping functions
-function pgzip    { ls $@ | xargs -P 0 -n 1 gzip;    }
-function pbzip2   { ls $@ | xargs -P 0 -n 1 bzip2;   }
-function pgunzip  { ls $@ | xargs -P 0 -n 1 gunzip;  }
-function pbunzip2 { ls $@ | xargs -P 0 -n 1 bunzip2; }
+function pgzip    { ls $@ | xargs -P `nproc` -n 1 gzip;    }
+function pbzip2   { ls $@ | xargs -P `nproc` -n 1 bzip2;   }
+function pgunzip  { ls $@ | xargs -P `nproc` -n 1 gunzip;  }
+function pbunzip2 { ls $@ | xargs -P `nproc` -n 1 bunzip2; }
 
 # Remove files created when building tex
 function rmtexjunk {

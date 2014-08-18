@@ -8,7 +8,7 @@ export VIMRC="$HOME/.vimrc"
 export BASHRC="$HOME/.bashrc"
 export BASH_ALIASES="$HOME/.bash_aliases"
 
-PATH="$PATH:~/bin"
+PATH="$PATH:~/bin:."
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -22,7 +22,7 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-PS1="\[\033[0;32m\]\$? \w \$ \[\033[00m\]"
+PS1="\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
 
 # enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
