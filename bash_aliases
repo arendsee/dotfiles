@@ -29,9 +29,11 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # cat Arabidopsis thaliana full genome sequences
-alias atfaa="cat $HOME/ohome/data/genomes/at/Arabidopsis_thaliana.protein.faa"
-alias atfna="cat $HOME/ohome/data/genomes/at/Arabidopsis_thaliana.fna"
-alias atcds="cat $HOME/ohome/data/genomes/at/Arabidopsis_thaliana.CDS.fna"
+alias atfaa="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.faa"
+alias atfna="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.fna"
+alias atcds="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.cds.fna"
+alias attra="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.transcript.fna"
+alias atgff="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.gene_exons.gff3"
 
 # Parallel zipping/unzipping functions
 function pgzip    { ls $@ | xargs -P `nproc` -n 1 gzip;    }
