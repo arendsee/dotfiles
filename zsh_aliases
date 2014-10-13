@@ -1,3 +1,4 @@
+alias parallel='parallel --gnu'
 alias ltree='tree -C | less -R'
 alias rmblastdb='rm *.{nhr,nin,nsq,phr,pin,psq} 2> /dev/null'
 alias csa='git commit -S -m '

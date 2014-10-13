@@ -3,6 +3,7 @@
 # fix for java
 # update-alternatives --install /usr/bin/java java $path_to_java 100
 
+alias parallel='parallel --gnu'
 alias ltree='tree -C | less -R'
 alias fbasename='while read line; do basename $line; done'
 alias rmblastdb='rm *.{nhr,nin,nsq,phr,pin,psq} 2> /dev/null'
