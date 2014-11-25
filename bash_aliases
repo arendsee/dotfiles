@@ -36,6 +36,21 @@ alias atcds="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thalian
 alias attra="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.transcript.fna"
 alias atgff="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.gene_exons.gff3"
 
+# view pdb
+function seepdb { 
+    [[ -r $1 ]] || exit 1
+    tmpfile=/tmp/$(basename $1 | sed 's/\.pdb$//').png
+    pymol $1 -qc -d 'hide all; show cartoon; spectrum' -g $tmpfile 2> /dev/null
+    eog $tmpfile
+    rm $tmpfile
+}
+
+function pdb2png {
+    [[ -r $1 ]] || exit 1
+    [[ -w $2 ]] || exit 1
+    pymol $1 -qc -d 'hide all; show cartoon; spectrum' -g $2
+}
+
 # Parallel zipping/unzipping functions
 function pgzip    { ls $@ | xargs -P `nproc` -n 1 gzip;    }
 function pbzip2   { ls $@ | xargs -P `nproc` -n 1 bzip2;   }
