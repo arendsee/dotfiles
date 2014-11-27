@@ -38,16 +38,21 @@ alias atgff="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thalian
 
 # view pdb
 function seepdb { 
-    [[ -r $1 ]] || exit 1
-    tmpfile=/tmp/$(basename $1 | sed 's/\.pdb$//').png
-    pymol $1 -qc -d 'hide all; show cartoon; spectrum' -g $tmpfile 2> /dev/null
+    [[ -r $1 ]] || return 1
+    f=$1
+    if [[ `file $f` =~ gzip ]]; then
+        f=/tmp/$(sed 's/\.gz$//' <<< $1)
+        zcat $1 > $f
+    fi
+    tmpfile=/tmp/$(basename $1).png
+    pymol $f -qc -d 'hide all; show cartoon; spectrum' -g $tmpfile 2> /dev/null > /dev/null
     eog $tmpfile
     rm $tmpfile
 }
 
 function pdb2png {
-    [[ -r $1 ]] || exit 1
-    [[ -w $2 ]] || exit 1
+    [[ -r $1 ]] || return 1
+    [[ -w $2 ]] || return 1
     pymol $1 -qc -d 'hide all; show cartoon; spectrum' -g $2
 }
 
