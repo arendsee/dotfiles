@@ -38,22 +38,27 @@ alias atgff="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thalian
 
 # view pdb
 function seepdb { 
-    [[ -r $1 ]] || return 1
-    f=$1
-    if [[ `file $f` =~ gzip ]]; then
-        f=/tmp/$(sed 's/\.gz$//' <<< $1)
-        zcat $1 > $f
-    fi
-    tmpfile=/tmp/$(basename $1).png
-    pymol $f -qc -d 'hide all; show cartoon; spectrum' -g $tmpfile 2> /dev/null > /dev/null
-    eog $tmpfile
-    rm $tmpfile
+    for f in $@
+    do
+        if [[ -r $f ]]
+        then
+            tmpfile=/tmp/$(basename $f).png
+            pymol $f -qc -d 'hide all; show cartoon; spectrum' -g $tmpfile 2> /dev/null > /dev/null
+            eog $tmpfile
+            rm $tmpfile
+        fi
+    done
 }
 
 function pdb2png {
-    [[ -r $1 ]] || return 1
-    [[ -w $2 ]] || return 1
-    pymol $1 -qc -d 'hide all; show cartoon; spectrum' -g $2
+    for f in $@
+    do
+        if [[ -r $f ]]
+        then
+            out=$(sed 's/pdb$/png/' <<< `basename $f`)
+            pymol $f -qc -d 'hide all; show cartoon; spectrum' -g $out
+        fi
+    done
 }
 
 # Parallel zipping/unzipping functions
