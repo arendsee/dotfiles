@@ -15,6 +15,14 @@ alias R='R --vanilla --quiet'
 alias seg='segmasker -outfmt fasta'
 alias x='exit'
 
+# Compile a knitr document
+knit () {
+    [[ ${1/*./} == Rnw ]] || { echo "Input must be a *.Rnw file" >&2; return 1 ; }
+    Rscript -e "library(knitr); knit('$1')"
+    [[ $? == 0 ]] || { echo "Failed to knit ..." >&2; return 1 ; }
+    latexmk --pdf --bibtex ${1%.Rnw}.tex
+}
+
 
 # Color associated aliases
 if [ -x /usr/bin/dircolors ]; then
