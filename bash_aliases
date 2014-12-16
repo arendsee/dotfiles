@@ -36,7 +36,7 @@ alias atcds="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thalian
 alias attra="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.transcript.fna"
 alias atgff="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.gene_exons.gff3"
 
-# view pdb
+# View image of a PDB file (requires pymol)
 function seepdb { 
     for f in $@
     do
@@ -50,6 +50,7 @@ function seepdb {
     done
 }
 
+# Convert PDB files to images (requires pymol)
 function pdb2png {
     for f in $@
     do
@@ -108,6 +109,7 @@ function gccp {
     g++ -ansi -pedantic-errors -Wall $1 $2 $3
 }
 
+# Moves a file to the recycle bin
 function damn {
     for j in $@;
     do
@@ -129,6 +131,7 @@ function unjar {
     done
 }
 
+# Encrypts a directory with a symmetric cypher, shreds originals
 function encrypt-dir {
     # If the input is not a directory, directly encrypt it
     if [ ! -d $1 ]; then
@@ -189,6 +192,7 @@ function encrypt-dir {
     fi
 }
 
+# Decrypts encrypted folder
 function decrypt-dir {
     if [ -f $1 ]; then
         gpg -d $1 | tar --keep-newer-files -xf -
