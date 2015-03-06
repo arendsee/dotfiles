@@ -1,0 +1,18 @@
+[global_config]
+    focus = system
+    borderless = True
+    tab_position = 'hidden'
+[profiles]
+[[default]]
+    scrollbar_position = 'disabled'
+    show_titlebar = False
+    scrollback_lines = '10000'
+[keybindings]
+    go_up = '<Alt>k' 
+    go_down = '<Alt>j' 
+    go_right = '<Alt>l' 
+    go_left = '<Alt>h' 
+    resize_up = '<Ctrl><Shift>k' 
+    resize_down = '<Ctrl><Shift>j' 
+    resize_right = '<Ctrl><Shift>l' 
+    resize_left = '<Ctrl><Shift>h' 
