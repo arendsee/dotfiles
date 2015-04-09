@@ -72,8 +72,9 @@ colorscheme distinguished
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dealing with particular file types
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab call TabularSettings()
+autocmd BufNewFile,BufRead *.R call RSettings()
 autocmd FileType text call TextSettings()
-autocmd FileType tex cal LatexSettings()
+autocmd FileType tex call LatexSettings()
 autocmd FileType markdown call MarkdownSettings()
 
 function! TabularSettings()
@@ -82,6 +83,12 @@ endfunction
 
 function! LatexSettings()
     setlocal syn=tex
+endfunction
+
+function! RSettings()
+    setlocal syn=r
+    setlocal tabstop=2
+    setlocal shiftwidth=2
 endfunction
 
 function! TextSettings()
