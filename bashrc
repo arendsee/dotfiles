@@ -7,6 +7,8 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 export VIMRC="$HOME/.vimrc"
 export BASHRC="$HOME/.bashrc"
 export BASH_ALIASES="$HOME/.bash_aliases"
+# This makes operations like sort MUCH faster
+export LANG=C
 
 PATH="$PATH:~/bin:."
 
