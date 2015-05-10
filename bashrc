@@ -1,23 +1,11 @@
-export WINEARCH="win32"
-export WINEPREFIX="$HOME/.wine32"
-export JAVA_HOME="/opt/java/jre1.7.0_60"
-export GITSITE="https://github.com/zbwrnz"
-export LIGHTNING='jenchang@lightning3.its.iastate.edu'
-export HISTTIMEFORMAT="%d/%m/%y %T "
-export VIMRC="$HOME/.vimrc"
-export BASHRC="$HOME/.bashrc"
-export BASH_ALIASES="$HOME/.bash_aliases"
-# This makes operations like sort MUCH faster
-export LANG=C
-
-PATH="$PATH:~/bin:."
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+export JAVA_HOME=/usr/lib/jvm/default
+export HISTTIMEFORMAT="%d/%m/%y %T "
 HISTCONTROL=ignoredups:ignorespace
-HISTSIZE=1000000
-HISTFILESIZE=1000000
+HISTSIZE=
+HISTFILESIZE=
 shopt -s histappend
 shopt -s checkwinsize
 
@@ -51,7 +39,6 @@ fi
 export LS_COLORS="$LS_COLORS:*.fa=00;33:*.faa=00;33:*.fna=00;33:*.fasta=00;33:"
 
 # Color masked fasta files
-
 export LS_COLORS="$LS_COLORS:*.mfa=00;33:*.mfaa=00;33:*.mfna=00;33:*.mfasta=00;33:"
 
 # Color csv, tsv, and tab files
@@ -62,4 +49,3 @@ export LS_COLORS="$LS_COLORS:*MANIFEST=01;39:*MANIFEST.txt=01;39:*SOURCE=01;39:*
 
 # pdf and tex
 export LS_COLORS="$LS_COLORS:*.pdf=00;35:*.tex=00;36"
-
