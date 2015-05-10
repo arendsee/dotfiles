@@ -51,14 +51,13 @@ set hlsearch
 set ignorecase
 set incsearch
 set noswapfile
-set relativenumber
 set number
 set scrolloff=5
 set shiftwidth=4
 set smartcase
 set smarttab
 set syntax=automatic
-set t_Co=256
+" set t_Co=256
 set tabstop=4
 set shiftwidth=4
 set wildmode=longest,list
@@ -66,7 +65,7 @@ autocmd BufNewFile,BufRead *.tex set syn=tex
 nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 
 syntax on
-colorscheme distinguished
+" colorscheme distinguished
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
