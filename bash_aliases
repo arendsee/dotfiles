@@ -79,7 +79,7 @@ function pbunzip2 { ls $@ | xargs -P `nproc` -n 1 bunzip2; }
 # Remove files created when building tex
 function rmtexjunk {
     if [ -f ${1}.tex ]; then
-        for j in aux bbl blg lof log out toc fdb_latexmk pdf dvi; do
+        for j in aux bbl blg fls lof log out toc fdb_latexmk pdf dvi; do
             rm "${1}.$j" 2> /dev/null
         done
     else
