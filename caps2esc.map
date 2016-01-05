@@ -1,0 +1,11 @@
+## to view the current key map
+# sudo dumpkeys
+
+## this line should be the same as the first line of dumpkeys output
+keymaps 0-255
+
+## Map Caps to Esc
+keycode 58 = Escape
+
+## to activate, call
+# sudo loadkeys <this file>
