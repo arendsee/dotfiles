@@ -75,6 +75,7 @@ autocmd BufNewFile,BufRead *.R call RSettings()
 autocmd FileType text call TextSettings()
 autocmd FileType tex call LatexSettings()
 autocmd FileType markdown call MarkdownSettings()
+autocmd FileType html call TwoStop()
 
 function! TabularSettings()
     setlocal nowrap
@@ -86,6 +87,11 @@ endfunction
 
 function! RSettings()
     setlocal syn=r
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+endfunction
+
+function! TwoStop()
     setlocal tabstop=2
     setlocal shiftwidth=2
 endfunction
