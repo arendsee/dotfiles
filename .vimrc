@@ -38,6 +38,8 @@ noremap <leader>' bi'<esc>ea'<esc>
 noremap <leader>" bi"<esc>ea"<esc>
 " wrap paragraph
 nnoremap <leader>p ma{V}gq'a$
+" search for selected text
+vnoremap // y/<C-R>"<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
@@ -57,7 +59,6 @@ set shiftwidth=4
 set smartcase
 set smarttab
 set syntax=automatic
-" set t_Co=256
 set tabstop=4
 set shiftwidth=4
 set wildmode=longest,list
@@ -65,6 +66,12 @@ autocmd BufNewFile,BufRead *.tex set syn=tex
 nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 
 syntax on
+
+" To turn on 256 bit colors and the awesome distinguished theme, uncomment
+" the lines below. Note that 256 bit color may require setting on parameters
+" in your kernel, or something.
+" -------
+" set t_Co=256
 " colorscheme distinguished
 
 
