@@ -6,17 +6,17 @@ runtime syntax/tex.vim
 " @c
 " int i;
 " @
-call SyntaxRange#Include('\v^\@c[^a-z]*', '\v^\@', 'c')
+call SyntaxRange#Include('\v^[ \t]*\@c[^a-z]*', '\v^[ \t]*\@', 'c')
 
 " Highlight C following @<...@> macro insertions
 " @c
 " @<Functions@>
 " int i;
 " @
-call SyntaxRange#Include('\v\@\>$', '\v^\@', 'c')
+call SyntaxRange#Include('\v\@\>$', '\v^[ \t]*\@', 'c')
 
 " Highlight C in floating C block
 " @<....@>=
 " int i;
 " @
-call SyntaxRange#Include('\v^\@\<', '\v^\@', 'c')
+call SyntaxRange#Include('\v^[ \t]*\@\<', '\v^[ \t]*\@', 'c')
