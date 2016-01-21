@@ -65,7 +65,11 @@ autocmd BufNewFile,BufRead *.tex set syn=tex
 nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 
 syntax on
-" colorscheme distinguished
+
+" If distinguished is unavailable (or 256 bit isn't OK)
+" use this theme
+" from https://github.com/flazz/vim-colorschemes
+colorscheme SlateDark
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
