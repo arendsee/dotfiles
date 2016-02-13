@@ -1,18 +1,31 @@
 " Reset any autocmd
 autocmd!
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pathogen
-filetype off " Pathogen needs to run before plugin indent on
-call pathogen#infect('bundle/{}')
-call pathogen#helptags() " generate helptags for everything in 'runtimepath'
-filetype plugin indent on
+" BEGIN VUNDLE
+" :PluginInstall - to install plugins
+" :PluginUpdate  - to update
+" :PluginSearch  - list all plugins in vim script
+" :PluginClean   - remove plugins not mentioned below
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Plugin 'gmarik/vundle'          " Vundle
+Plugin 'ervandew/supertab'      " magic with TAB
+Plugin 'screen.vim'             " something I don't exactly know how to use
+Plugin 'tComment'               " language-aware commenting
+Plugin 'Distinguished'          " may main colorscheme (256 bit)
+Plugin 'Python-mode-klen'       " python wrapping
+Plugin 'LaTeX-Box'              " latex wrapping, keybinding, etc.
+Plugin 'SirVer/ultisnips'       " snippet engine
+Plugin 'honza/vim-snippets'     " snippets use be ultisnips engine
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Global mapping
-let mapleader=";"
-let maplocalleader=","
+noremap ; :
+noremap : ;
 
 " Map window switching
 noremap <C-h> <C-w>h
@@ -23,21 +36,12 @@ noremap <C-l> <C-w>l
 " select a word with space
 noremap <space> viw
 
-" reset highlighting
+" press enter to reset highlighting
 nnoremap <CR> :noh<CR><CR>
 
-" noun: v from vimrc, s for shellrc, a for aliase file
-" verb: e for edit and s for source
-noremap <leader>ve :split $VIMRC<cr>
-noremap <leader>se :split $BASHRC<cr>
-noremap <leader>ae :split $BASH_ALIASES<cr>
-noremap <leader>vs :source $VIMRC<cr>
-noremap <leader>ss :source $BASHRC<cr>
-noremap <leader>as :source $BASH_ALIASES<cr>
-noremap <leader>' bi'<esc>ea'<esc>
-noremap <leader>" bi"<esc>ea"<esc>
 " wrap paragraph
 nnoremap <leader>p ma{V}gq'a$
+
 " search for selected text
 vnoremap // y/<C-R>"<CR>
 
@@ -67,17 +71,22 @@ nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 
 syntax on
 
-" If distinguished is unavailable (or 256 bit isn't OK)
-" use this theme
-" from https://github.com/flazz/vim-colorschemes
-colorscheme SlateDark
-
 " To turn on 256 bit colors and the awesome distinguished theme, uncomment
 " the lines below. Note that 256 bit color may require setting on parameters
 " in your kernel, or something.
 " -------
-" set t_Co=256
-" colorscheme distinguished
+set t_Co=256
+colorscheme distinguished
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Snippet commands - for use with ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="horizontal"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
