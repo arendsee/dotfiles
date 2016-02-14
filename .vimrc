@@ -27,12 +27,6 @@ Plugin 'honza/vim-snippets'     " snippets use be ultisnips engine
 noremap ; :
 noremap : ;
 
-" Map window switching
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-
 " select a word with space
 noremap <space> viw
 
@@ -83,8 +77,8 @@ colorscheme distinguished
 " Snippet commands - for use with ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="horizontal"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
