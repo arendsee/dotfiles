@@ -1,3 +1,6 @@
+set nocompatible
+filetype off
+
 " Reset any autocmd
 autocmd!
 
@@ -19,6 +22,8 @@ Plugin 'Python-mode-klen'       " python wrapping
 Plugin 'LaTeX-Box'              " latex wrapping, keybinding, etc.
 Plugin 'SirVer/ultisnips'       " snippet engine
 Plugin 'honza/vim-snippets'     " snippets use be ultisnips engine
+Plugin 'Gundo'                  " undo tree, <F5> to open
+Plugin 'Shougo/vinarise'        " hex editor
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -80,6 +85,19 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="horizontal"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Gundo options
+nnoremap <F5> :GundoToggle<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vinarise options
+let g:vinarise_enable_auto_detect=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
