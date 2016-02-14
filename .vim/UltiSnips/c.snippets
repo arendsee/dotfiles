@@ -1,3 +1,4 @@
+#------------------------------------------------------------------------------
 snippet header "build a default header"
 #ifndef __${1:NAME}_H__
 #define __$1_H__
@@ -6,3 +7,122 @@ ${0}
 
 #endif
 endsnippet
+#------------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------------
+snippet main "create main program" b
+int main(int argc, char * argv[]){
+	${0}
+	return 0;
+}
+endsnippet
+#------------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------------
+snippet define "create a new macro" b
+#define ${1:NAME} ${2:CODE}
+endsnippet
+
+snippet struct "typedef a new structure" b
+typedef struct {
+	${2:TYPE} ${3:VARNAME};
+	${0}
+} ${1:NAME};
+endsnippet
+#------------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------------
+snippet inc "make include standard" b
+#include <${1:stdio}.h>
+${0}
+endsnippet
+
+snippet incl "make include local" b
+#include "${1:NAME}.h"
+${0}
+endsnippet
+#------------------------------------------------------------------------------
+
+
+#------------------------------------------------------------------------------
+snippet for "make for loop" b
+for(int i = 0; i < ${1:VALUE}; i++){
+	${2://BLOCK}
+}
+endsnippet
+
+snippet switch "make switch statement" b
+switch(${1:VAR}){
+	case ${2:VAR}:
+		${3://BLOCK}
+		break;
+	default:
+		${4://DEFAULT ACTION}
+}
+endsnippet
+
+snippet "if else" "make if else statement" b
+if(${1:CONDITION}){
+	${2://BLOCK}
+} else {
+	${3://BLOCK}
+}
+endsnippet
+
+snippet "if elif else" "make if ... else if ... else" b
+if(${1:CONDITION}){
+	${2://BLOCK}
+}
+else if(${3:CONDITION}){
+	${4://BLOCK}
+}
+else {
+	${5://BLOCK}
+}
+endsnippet
+#------------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------------
+snippet malloc "build malloc command" b 
+${1:TYPE} * ${2:VARNAME} = ($1 *)malloc(${3:N_MEMBERS} * sizeof($1));
+${0}
+endsnippet
+
+snippet calloc "build calloc command" b 
+${1:TYPE} * ${2:VARNAME} = ($1 *)calloc(${3:N_MEMBERS}, sizeof($1));
+${0}
+endsnippet
+#------------------------------------------------------------------------------
+
+
+
+#------------------------------------------------------------------------------
+snippet memcpy "build memcpy command" b
+memcpy(${1:DESTINATION_PTR}, ${2:SOURCE_PTR}, ${3:SIZE});
+${0}
+endsnippet
+
+snippet qsort "build qsort command" b
+qsort(${1:BASE_PTR}, ${2:N_MEMBERS}, ${3:MEMBER_SIZE}, ${4:CMP_FUN});
+${0}
+endsnippet
+
+snippet qsort_r "qsort_r build command" b
+qsort_r(${1:BASE_PTR}, ${2:N_MEMBERS}, ${3:MEMBER_SIZE}, ${4:CMP_FUN}, ${5:ARG_PTR});
+${0}
+endsnippet
+
+snippet err "print an error message and die" b
+fprintf(stderr, "${1:ERROR_MESSAGE}");
+exit(${2:EXIT_FAILURE});
+${0}
+endsnippet
+#------------------------------------------------------------------------------
