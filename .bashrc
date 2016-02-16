@@ -1,7 +1,11 @@
+#!/bin/bash
+
+EDITOR=vim
+alias vi=vim
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-export JAVA_HOME=/usr/lib/jvm/default
 export HISTTIMEFORMAT="%d/%m/%y %T "
 HISTCONTROL=ignoredups:ignorespace
 HISTSIZE=
@@ -49,3 +53,8 @@ export LS_COLORS="$LS_COLORS:*MANIFEST=01;39:*MANIFEST.txt=01;39:*SOURCE=01;39:*
 
 # pdf and tex
 export LS_COLORS="$LS_COLORS:*.pdf=00;35:*.tex=00;36"
+
+# load into tmux if possible
+if command -v tmux > /dev/null; then
+  [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
+fi
