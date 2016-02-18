@@ -86,10 +86,27 @@ function annihilate {
 }
 
 # general opener (adapt as necessary)
-function sesame {
+function o {
     for j in $@
     do
-        gnome-open $j
+        if [[ $j =~ \.(png|jpg|jpeg|gif)$ ]]; then
+            display $j
+        elif [[ $j =~ \.(doc|docx|odt|ppt|pptx)$ ]]; then
+            libreoffice $j
+        elif [[ $j =~ \.(mp3|wav|flac)$ ]]; then
+            mplayer $j
+        elif [[ $j =~ \.html$ ]]; then
+            firefox $j
+        elif [[ $j =~ \.pdf$ ]]; then
+            evince $j
+        elif [[ $j =~ \.pdb$ ]]; then
+            pymol $j
+        elif [[ -d $j ]]; then
+            nautilus $j
+        else
+            echo "I don't know how to open this" >&2
+            return 1
+        fi
     done
 }
 
