@@ -4,7 +4,6 @@
 # update-alternatives --install /usr/bin/java java $path_to_java 100
 
 alias parallel='parallel --gnu'
-alias ltree='tree -C | less -R'
 alias fbasename='while read line; do basename $line; done'
 alias rmblastdb='rm *.{nhr,nin,nsq,phr,pin,psq} 2> /dev/null'
 alias csa='git commit -S -m '
@@ -12,6 +11,11 @@ alias cpan='perl -MCPAN -e shell'
 alias R='R --vanilla --quiet'
 alias seg='segmasker -outfmt fasta'
 alias x='exit'
+
+alias .,='cds -'
+alias ..='cds ..'
+alias ...='cds ../..'
+alias ....='cds ../../..'
 
 # Compile a knitr document
 knit () {
@@ -34,6 +38,11 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
     alias less='less -R'
 fi
+
+# colorfully pipe tree to less
+function ltree {
+   tree -C $@ | less -R
+}
 
 # View image of a PDB file (requires pymol)
 function seepdb { 
