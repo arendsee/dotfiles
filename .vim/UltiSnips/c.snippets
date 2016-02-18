@@ -52,11 +52,20 @@ endsnippet
 
 #------------------------------------------------------------------------------
 snippet for "make for loop" b
-for(int i = 0; i < ${1:VALUE}; i++){
-	${2://BLOCK}
+for(int ${1:i} = 0; $1 < ${2:VALUE}; $1++){
+	${0}
 }
 endsnippet
 
+snippet forb "make for reverse loop" b
+for(int ${1:i} = ${2:VALUE}; $1 >= ${3:0}; $1--){
+	${0}
+}
+endsnippet
+#------------------------------------------------------------------------------
+
+
+#------------------------------------------------------------------------------
 snippet switch "make switch statement" b
 switch(${1:VAR}){
 	case ${2:VAR}:
