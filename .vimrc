@@ -17,6 +17,7 @@ Plugin 'ervandew/supertab'      " magic with TAB
 Plugin 'screen.vim'             " something I don't exactly know how to use
 Plugin 'tComment'               " language-aware commenting
 Plugin 'Distinguished'          " may main colorscheme (256 bit)
+Plugin 'Vim-R-plugin'           " R code wrapper
 Plugin 'Python-mode-klen'       " python wrapping
 Plugin 'LaTeX-Box'              " latex wrapping, keybinding, etc.
 Plugin 'SirVer/ultisnips'       " snippet engine
@@ -125,7 +126,7 @@ autocmd BufNewFile,BufRead *.R call RSettings()
 autocmd FileType text call TextSettings()
 autocmd FileType tex call LatexSettings()
 autocmd FileType markdown call MarkdownSettings()
-autocmd FileType html call TwoStop()
+autocmd FileType html,tex call TwoStop()
 
 function! TabularSettings()
     setlocal nowrap
