@@ -8,8 +8,6 @@ alias ltree='tree -C | less -R'
 alias fbasename='while read line; do basename $line; done'
 alias rmblastdb='rm *.{nhr,nin,nsq,phr,pin,psq} 2> /dev/null'
 alias csa='git commit -S -m '
-# This is for my vim built from source
-# alias vi='/usr/local/bin/vim'
 alias cpan='perl -MCPAN -e shell'
 alias R='R --vanilla --quiet'
 alias seg='segmasker -outfmt fasta'
@@ -37,37 +35,40 @@ if [ -x /usr/bin/dircolors ]; then
     alias less='less -R'
 fi
 
-# cat Arabidopsis thaliana full genome sequences
-alias atfaa="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.faa"
-alias atfna="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.fna"
-alias atcds="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.cds.fna"
-alias attra="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.transcript.fna"
-alias atgff="cat /db/cheshire-data/nuclear-genomes/phytozome/Arabidopsis_thaliana.gene_exons.gff3"
-
 # View image of a PDB file (requires pymol)
 function seepdb { 
-    for f in $@
-    do
-        if [[ -r $f ]]
-        then
-            tmpfile=/tmp/$(basename $f).png
-            pymol $f -qc -d 'hide all; show cartoon; spectrum' -g $tmpfile 2> /dev/null > /dev/null
-            eog $tmpfile
-            rm $tmpfile
-        fi
-    done
+    if command -v pymol 2> /dev/null
+    then
+        for f in $@
+        do
+            if [[ -r $f ]]
+            then
+                tmpfile=/tmp/$(basename $f).png
+                pymol $f -qc -d 'hide all; show cartoon; spectrum' -g $tmpfile 2> /dev/null > /dev/null
+                eog $tmpfile
+                rm $tmpfile
+            fi
+        done
+    else
+        echo "pymol not in PATH" >&2
+    fi
 }
 
 # Convert PDB files to images (requires pymol)
 function pdb2png {
-    for f in $@
-    do
-        if [[ -r $f ]]
-        then
-            out=$(sed 's/pdb$/png/' <<< `basename $f`)
-            pymol $f -qc -d 'hide all; show cartoon; spectrum' -g $out
-        fi
-    done
+    if command -v pymol 2> /dev/null
+    then
+        for f in $@
+        do
+            if [[ -r $f ]]
+            then
+                out=$(sed 's/pdb$/png/' <<< `basename $f`)
+                pymol $f -qc -d 'hide all; show cartoon; spectrum' -g $out
+            fi
+        done
+    else
+        echo "pymol not in PATH" >&2
+    fi
 }
 
 # Parallel zipping/unzipping functions
@@ -75,18 +76,6 @@ function pgzip    { ls $@ | xargs -P `nproc` -n 1 gzip;    }
 function pbzip2   { ls $@ | xargs -P `nproc` -n 1 bzip2;   }
 function pgunzip  { ls $@ | xargs -P `nproc` -n 1 gunzip;  }
 function pbunzip2 { ls $@ | xargs -P `nproc` -n 1 bunzip2; }
-
-# Remove files created when building tex
-function rmtexjunk {
-    if [ -f ${1}.tex ]; then
-        for j in aux bbl blg fls lof log out toc fdb_latexmk pdf dvi; do
-            rm "${1}.$j" 2> /dev/null
-        done
-    else
-        echo "Please provide tex base filename" >&2
-        return 1
-    fi
-}
 
 # Shred files
 function annihilate {
@@ -111,10 +100,6 @@ function ma {
     do
         mplayer $j
     done
-}
-
-function gccp {
-    g++ -ansi -pedantic-errors -Wall $1 $2 $3
 }
 
 # Moves a file to the recycle bin
