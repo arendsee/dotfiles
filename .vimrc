@@ -12,7 +12,6 @@ autocmd!
 " :PluginClean   - remove plugins not mentioned below
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
 Plugin 'gmarik/vundle'          " Vundle
 Plugin 'ervandew/supertab'      " magic with TAB
 Plugin 'screen.vim'             " something I don't exactly know how to use
@@ -23,8 +22,10 @@ Plugin 'Python-mode-klen'       " python wrapping
 Plugin 'LaTeX-Box'              " latex wrapping, keybinding, etc.
 Plugin 'SirVer/ultisnips'       " snippet engine
 Plugin 'honza/vim-snippets'     " snippets use be ultisnips engine
-Plugin 'Gundo'                  " undo tree, <F5> to open
+Plugin 'Gundo'                  " * undo tree, <F5> to open
 Plugin 'Shougo/vinarise'        " hex editor
+Plugin 'reedes/vim-pencil'      " allows autowrapping for writing
+" * requires compilation with --enable-pythoninterp flag set
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -67,7 +68,7 @@ set tabstop=4
 set shiftwidth=4
 set wildmode=longest,list
 autocmd BufNewFile,BufRead *.tex set syn=tex
-nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
+" nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 
 syntax on
 
@@ -95,6 +96,11 @@ nnoremap <F5> :GundoToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe options
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vinarise options
@@ -103,7 +109,18 @@ let g:vinarise_enable_auto_detect=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pencil options
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dealing with particular file types
+filetype plugin on
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab call TabularSettings()
 autocmd BufNewFile,BufRead *.R call RSettings()
 autocmd FileType text call TextSettings()
