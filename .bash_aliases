@@ -12,6 +12,7 @@ alias R='R --vanilla --quiet'
 alias seg='segmasker -outfmt fasta'
 alias x='exit'
 
+alias ,='cds $1'
 alias .,='cds -'
 alias ..='cds ..'
 alias ...='cds ../..'
@@ -41,7 +42,7 @@ fi
 
 # colorfully pipe tree to less
 function ltree {
-   tree -C $@ | less -R
+   tree -C "$@" | less -R
 }
 
 # View image of a PDB file (requires pymol)
