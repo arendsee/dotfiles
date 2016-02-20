@@ -17,6 +17,13 @@ alias .,='cds -'
 alias ..='cds ..'
 alias ...='cds ../..'
 alias ....='cds ../../..'
+alias .....='cds ../../../..'
+
+alias ..2='cd ../..; pwd; ls'
+alias ..3='cd ../../..; pwd; ls'
+alias ..4='cd ../../../..; pwd; ls'
+alias ..5='cd ../../../../..; pwd; ls'
+alias ..6='cd ../../../../../..; pwd; ls'
 
 # Compile a knitr document
 knit () {
