@@ -18,14 +18,20 @@ Plugin 'screen.vim'             " something I don't exactly know how to use
 Plugin 'tComment'               " language-aware commenting
 Plugin 'Distinguished'          " may main colorscheme (256 bit)
 Plugin 'Vim-R-plugin'           " R code wrapper
-Plugin 'Python-mode-klen'       " python wrapping
+" Plugin 'jalvesaq/R-vim-runtime'
+Plugin 'Python-mode-klen'       " python wrapping etc
+" Plugin 'ivanov/vim-ipython'   " **
 Plugin 'LaTeX-Box'              " latex wrapping, keybinding, etc.
 Plugin 'SirVer/ultisnips'       " snippet engine
 Plugin 'honza/vim-snippets'     " snippets use be ultisnips engine
 Plugin 'Gundo'                  " * undo tree, <F5> to open
 Plugin 'Shougo/vinarise'        " hex editor
-Plugin 'reedes/vim-pencil'      " allows autowrapping for writing
+" Plugin 'reedes/vim-pencil'      " allows autowrapping for writing
+" Plugin 'jpalardy/vim-slme'      " copy and paste into another tmux window
+Plugin 'davidhalter/jedi-vim'   " for autocomplete
+
 " * requires compilation with --enable-pythoninterp flag set
+" ** requires installation of ipython
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -69,6 +75,10 @@ set shiftwidth=4
 set wildmode=longest,list
 autocmd BufNewFile,BufRead *.tex set syn=tex
 " nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
+
+" to remove the annoying ESC delay
+set timeoutlen=1000 ttimeoutlen=0
+
 
 syntax on
 
@@ -126,7 +136,8 @@ autocmd BufNewFile,BufRead *.R call RSettings()
 autocmd FileType text call TextSettings()
 autocmd FileType tex call LatexSettings()
 autocmd FileType markdown call MarkdownSettings()
-autocmd FileType html,tex call TwoStop()
+autocmd FileType html,tex,Rnw call TwoStop()
+autocmd FileType py call PythonSetting()
 
 function! TabularSettings()
     setlocal nowrap
@@ -140,6 +151,8 @@ function! RSettings()
     setlocal syn=r
     setlocal tabstop=2
     setlocal shiftwidth=2
+    setlocal expandtab
+    map <buffer> <leader> h RAction("head")
 endfunction
 
 function! TwoStop()
@@ -155,4 +168,15 @@ endfunction
 function! MarkdownSettings()
     " add row of '=' beneath header
     noremap <leader>h yypVr=
+endfunction
+
+function! PythonSetting()
+    let g:slime_target = "tmux"
+    let g:slime_paste_file = tempname()
+    let g:slime_python_ipython = 1
+
+    " let g:pymode_***
+    " jedi-vim does the same thing as ropes, but faster?
+    " nmap <buffer> <C-CR> <Plug>SlimeLineSend
+    " vmap <buffer> <C-CR> <Plug>SlimeRegionSend
 endfunction
