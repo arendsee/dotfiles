@@ -12,12 +12,14 @@ alias R='R --vanilla --quiet'
 alias seg='segmasker -outfmt fasta'
 alias x='exit'
 
-alias ,='cds $1'
-alias .,='cds -'
-alias ..='cds ..'
-alias ...='cds ../..'
-alias ....='cds ../../..'
-alias .....='cds ../../../..'
+function cd_ls { cd "$1"; ls; }
+
+alias ,='cd_ls $1'
+alias ,.='cd_ls -'
+alias ..='cd_ls ..'
+alias ...='cd_ls ../..'
+alias ....='cd_ls ../../..'
+alias .....='cd_ls ../../../..'
 
 alias ..2='cd ../..; pwd; ls'
 alias ..3='cd ../../..; pwd; ls'
@@ -37,10 +39,10 @@ knit () {
 # Color associated aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls -v --color=auto -X'
-    alias ll='ls -v --color=auto -X -alhF'
-    alias la='ls -v --color=auto -X -A'
-    alias l='ls -v --color=auto -X -CF'
+    alias ls='ls -v --color=auto'
+    alias ll='ls -alhF'
+    alias la='ls -A'
+    alias l='ls -CF'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -112,11 +114,11 @@ function o {
             libreoffice $j
         elif [[ $j =~ \.(mp3|wav|flac)$ ]]; then
             mplayer $j
-        elif [[ $j =~ \.html$ ]]; then
+        elif [[ $j =~ \.html ]]; then
             firefox $j
-        elif [[ $j =~ \.pdf$ ]]; then
+        elif [[ $j =~ \.pdf ]]; then
             evince $j
-        elif [[ $j =~ \.pdb$ ]]; then
+        elif [[ $j =~ \.pdb ]]; then
             pymol $j
         elif [[ -d $j ]]; then
             nautilus $j
@@ -126,8 +128,6 @@ function o {
         fi
     done
 }
-
-function cds { cd "$1"; ls; }
 
 function ma {
     for j in `ls *mp3 *wav *flac`
