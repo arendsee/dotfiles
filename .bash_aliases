@@ -98,23 +98,24 @@ function pdb2png {
 }
 
 # general opener (adapt as necessary)
+# run non-cli programs in the background
 function o {
     for j in $@
     do
         if [[ $j =~ \.(png|jpg|jpeg|gif)$ ]]; then
-            display $j
+            display $j &
         elif [[ $j =~ \.(doc|docx|odt|ppt|pptx)$ ]]; then
-            libreoffice $j
+            libreoffice $j &
         elif [[ $j =~ \.(mp3|wav|flac)$ ]]; then
             mplayer $j
         elif [[ $j =~ \.html ]]; then
-            firefox $j
+            firefox $j &
         elif [[ $j =~ \.pdf ]]; then
-            evince $j
+            evince $j &
         elif [[ $j =~ \.pdb ]]; then
-            pymol $j
+            pymol $j &
         elif [[ -d $j ]]; then
-            nautilus $j
+            nautilus $j &
         else
             echo "I don't know how to open this" >&2
             return 1
