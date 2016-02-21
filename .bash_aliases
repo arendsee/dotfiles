@@ -35,7 +35,15 @@ if [ -x /usr/bin/dircolors ]; then
     alias less='less -R'
 fi
 
-function cd_ls { cd "$1"; ls; }
+function cd_ls {
+    if [[ -z "$1" ]]
+    then
+        cd
+    else
+        cd "$1"
+    fi
+    ls
+}
 
 alias ,='cd_ls'
 alias ,.='cd_ls -'
