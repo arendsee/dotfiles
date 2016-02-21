@@ -3,38 +3,24 @@
 # fix for java
 # update-alternatives --install /usr/bin/java java $path_to_java 100
 
+
+
+# =============================================================================
+# Miscellaneous aliases
+# =============================================================================
+
 alias parallel='parallel --gnu'
 alias fbasename='while read line; do basename $line; done'
-alias rmblastdb='rm *.{nhr,nin,nsq,phr,pin,psq} 2> /dev/null'
-alias csa='git commit -S -m '
 alias cpan='perl -MCPAN -e shell'
 alias R='R --vanilla --quiet'
 alias seg='segmasker -outfmt fasta'
 alias x='exit'
 
-function cd_ls { cd "$1"; ls; }
 
-alias ,='cd_ls $1'
-alias ,.='cd_ls -'
-alias ..='cd_ls ..'
-alias ...='cd_ls ../..'
-alias ....='cd_ls ../../..'
-alias .....='cd_ls ../../../..'
 
-alias ..2='cd ../..; pwd; ls'
-alias ..3='cd ../../..; pwd; ls'
-alias ..4='cd ../../../..; pwd; ls'
-alias ..5='cd ../../../../..; pwd; ls'
-alias ..6='cd ../../../../../..; pwd; ls'
-
-# Compile a knitr document
-knit () {
-    [[ ${1/*./} == Rnw ]] || { echo "Input must be a *.Rnw file" >&2; return 1 ; }
-    Rscript -e "library(knitr); knit('$1')"
-    [[ $? == 0 ]] || { echo "Failed to knit ..." >&2; return 1 ; }
-    latexmk --pdf --bibtex ${1%.Rnw}.tex
-}
-
+# =============================================================================
+# Directory navigation
+# =============================================================================
 
 # Color associated aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -49,10 +35,31 @@ if [ -x /usr/bin/dircolors ]; then
     alias less='less -R'
 fi
 
+function cd_ls { cd "$1"; ls; }
+
+alias ,='cd_ls'
+alias ,.='cd_ls -'
+alias ..='cd_ls ..'
+alias ...='cd_ls ../..'
+alias ....='cd_ls ../../..'
+alias .....='cd_ls ../../../..'
+
+alias ..2='cd ../..; pwd; ls'
+alias ..3='cd ../../..; pwd; ls'
+alias ..4='cd ../../../..; pwd; ls'
+alias ..5='cd ../../../../..; pwd; ls'
+alias ..6='cd ../../../../../..; pwd; ls'
+
 # colorfully pipe tree to less
 function ltree {
    tree -C "$@" | less -R
 }
+
+
+
+# =============================================================================
+# IO
+# =============================================================================
 
 # View image of a PDB file (requires pymol)
 function seepdb { 
@@ -90,20 +97,6 @@ function pdb2png {
     fi
 }
 
-# Parallel zipping/unzipping functions
-function pgzip    { ls $@ | xargs -P `nproc` -n 1 gzip;    }
-function pbzip2   { ls $@ | xargs -P `nproc` -n 1 bzip2;   }
-function pgunzip  { ls $@ | xargs -P `nproc` -n 1 gunzip;  }
-function pbunzip2 { ls $@ | xargs -P `nproc` -n 1 bunzip2; }
-
-# Shred files
-function annihilate {
-    for j in $@
-    do
-        shred -fuzn 1 $j
-    done
-}
-
 # general opener (adapt as necessary)
 function o {
     for j in $@
@@ -136,13 +129,17 @@ function ma {
     done
 }
 
-# Moves a file to the recycle bin
-function damn {
-    for j in $@;
-    do
-        mv -f $j ~/.local/share/Trash/files
-    done
-}
+
+
+# =============================================================================
+# File deletion, compression, and encryption
+# =============================================================================
+
+# Parallel zipping/unzipping functions
+function pgzip    { ls $@ | xargs -P `nproc` -n 1 gzip;    }
+function pbzip2   { ls $@ | xargs -P `nproc` -n 1 bzip2;   }
+function pgunzip  { ls $@ | xargs -P `nproc` -n 1 gunzip;  }
+function pbunzip2 { ls $@ | xargs -P `nproc` -n 1 bunzip2; }
 
 function unjar {
     for j in $@
@@ -155,6 +152,22 @@ function unjar {
         jar -xvf $j
         mv $current_directory/$jar_dir/$j $current_directory
         cd $current_directory
+    done
+}
+
+# Shred files
+function annihilate {
+    for j in $@
+    do
+        shred -fuzn 1 $j
+    done
+}
+
+# Moves a file to the recycle bin
+function damn {
+    for j in $@;
+    do
+        mv -f $j ~/.local/share/Trash/files
     done
 }
 
@@ -228,3 +241,19 @@ function decrypt-dir {
         return 1
     fi
 }
+
+
+
+# =============================================================================
+# Stuff that ought to be in a Makefile
+# =============================================================================
+
+# Compile a knitr document
+knit () {
+    [[ ${1/*./} == Rnw ]] || { echo "Input must be a *.Rnw file" >&2; return 1 ; }
+    Rscript -e "library(knitr); knit('$1')"
+    [[ $? == 0 ]] || { echo "Failed to knit ..." >&2; return 1 ; }
+    latexmk --pdf --bibtex ${1%.Rnw}.tex
+}
+
+alias rmblastdb='rm *.{nhr,nin,nsq,phr,pin,psq} 2> /dev/null'
