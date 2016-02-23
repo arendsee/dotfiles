@@ -26,9 +26,10 @@ Plugin 'SirVer/ultisnips'       " snippet engine
 Plugin 'honza/vim-snippets'     " snippets use be ultisnips engine
 Plugin 'Gundo'                  " * undo tree, <F5> to open
 Plugin 'Shougo/vinarise'        " hex editor
-" Plugin 'reedes/vim-pencil'      " allows autowrapping for writing
+Plugin 'reedes/vim-pencil'      " allows autowrapping for writing
 " Plugin 'jpalardy/vim-slme'      " copy and paste into another tmux window
 Plugin 'davidhalter/jedi-vim'   " for autocomplete
+Plugin 'junegunn/goyo.vim'      " zen mode
 
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
@@ -83,6 +84,7 @@ autocmd BufNewFile,BufRead *.tex set syn=tex
 set timeoutlen=1000 ttimeoutlen=0
 
 
+filetype plugin on
 syntax on
 
 " To turn on 256 bit colors and the awesome distinguished theme, uncomment
@@ -133,7 +135,6 @@ augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dealing with particular file types
-filetype plugin on
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab call TabularSettings()
 autocmd BufNewFile,BufRead *.R call RSettings()
 autocmd FileType text call TextSettings()
@@ -165,7 +166,7 @@ endfunction
 
 function! TextSettings()
     setlocal spell
-    setlocal wrap
+    setlocal nonumber
 endfunction
 
 function! MarkdownSettings()
