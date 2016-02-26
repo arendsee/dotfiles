@@ -12,24 +12,24 @@ autocmd!
 " :PluginClean   - remove plugins not mentioned below
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-Plugin 'gmarik/vundle'          " Vundle
-Plugin 'ervandew/supertab'      " magic with TAB
-Plugin 'screen.vim'             " something I don't exactly know how to use
-Plugin 'tComment'               " language-aware commenting
-Plugin 'Distinguished'          " may main colorscheme (256 bit)
-Plugin 'Vim-R-plugin'           " R code wrapper
-" Plugin 'jalvesaq/R-vim-runtime'
-Plugin 'Python-mode-klen'       " python wrapping etc
-" Plugin 'ivanov/vim-ipython'   " **
-Plugin 'LaTeX-Box'              " latex wrapping, keybinding, etc.
-Plugin 'SirVer/ultisnips'       " snippet engine
-Plugin 'honza/vim-snippets'     " snippets use be ultisnips engine
-Plugin 'Gundo'                  " * undo tree, <F5> to open
-Plugin 'Shougo/vinarise'        " hex editor
-Plugin 'reedes/vim-pencil'      " allows autowrapping for writing
-" Plugin 'jpalardy/vim-slme'      " copy and paste into another tmux window
-Plugin 'davidhalter/jedi-vim'   " for autocomplete
-Plugin 'junegunn/goyo.vim'      " zen mode
+Plugin 'gmarik/vundle'           " Vundle
+Plugin 'ervandew/supertab'       " magic with TAB
+Plugin 'screen.vim'              " something I don't exactly know how to use
+Plugin 'tComment'                " language-aware commenting
+Plugin 'Distinguished'           " may main colorscheme (256 bit)
+Plugin 'Vim-R-plugin'            " R code wrapper
+" Plugin 'jalvesaq/R-vim-runtime "
+Plugin 'Python-mode-klen'        " python wrapping etc
+" Plugin 'ivanov/vim-ipython'    " **
+Plugin 'LaTeX-Box'               " latex wrapping, keybinding, etc.
+Plugin 'SirVer/ultisnips'        " snippet engine
+Plugin 'honza/vim-snippets'      " snippets use be ultisnips engine
+Plugin 'Gundo'                   " * undo tree, <F5> to open
+Plugin 'Shougo/vinarise'         " hex editor
+Plugin 'reedes/vim-pencil'       " allows autowrapping for writing
+" Plugin 'jpalardy/vim-slime'    " copy and paste into another tmux window
+Plugin 'davidhalter/jedi-vim'    " for autocomplete
+Plugin 'junegunn/goyo.vim'       " zen mode
 
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
@@ -130,6 +130,51 @@ augroup pencil
   autocmd FileType markdown,mkd call pencil#init()
   autocmd FileType text         call pencil#init()
 augroup END
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Goyo options
+function! s:goyo_enter()
+  set noshowmode
+  set noshowcmd
+  set nonumber
+  set scrolloff=999
+endfunction
+
+function! s:goyo_leave()
+  set showmode
+  set showcmd
+  set number
+  set scrolloff=5
+endfunction
+
+" Quitting whether Goyo is active or not
+" - junegunn: https://github.com/junegunn/goyo.vim/issues/16
+function! g:GoyoBefore()
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+" - junegunn
+function! g:GoyoAfter()
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+" - junegunn
+let g:goyo_callbacks = [function('g:GoyoBefore'), function('g:GoyoAfter')]
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 

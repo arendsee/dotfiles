@@ -15,6 +15,7 @@ alias cpan='perl -MCPAN -e shell'
 alias R='R --vanilla --quiet'
 alias seg='segmasker -outfmt fasta'
 alias x='exit'
+alias t='exec tmux'
 
 
 
@@ -113,7 +114,7 @@ function o {
         echo "$j"
         if [[ "$j" =~ \.(png|jpg|jpeg|gif)$ ]]; then
             display "$j" &
-        elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx)$ ]]; then
+        elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx|xlsx)$ ]]; then
             libreoffice "$j" &
         elif [[ "$j" =~ \.(mp3|wav|flac)$ ]]; then
             mplayer "$j"
@@ -123,6 +124,8 @@ function o {
             evince "$j" &
         elif [[ "$j" =~ \.(pdb)$ ]]; then
             pymol "$j" &
+        elif [[ "$j" =~ \.(txt|md)$ ]]; then
+            vi -c Goyo $j
         elif [[ -d "$j" ]]; then
             nautilus "$j" &
         else
