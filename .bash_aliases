@@ -16,7 +16,7 @@ alias R='R --vanilla --quiet'
 alias seg='segmasker -outfmt fasta'
 alias x='exit'
 alias lynx='lynx -vikeys -homepage=www.google.com'
-
+alias t='exec tmux'
 
 
 # =============================================================================
@@ -74,14 +74,14 @@ function ltree {
 function seepdb { 
     if command -v pymol 2> /dev/null
     then
-        for f in $@
+        for f in "$@"
         do
-            if [[ -r $f ]]
+            if [[ -r "$f" ]]
             then
-                tmpfile=/tmp/$(basename $f).png
-                pymol $f -qc -d 'hide all; show cartoon; spectrum' -g $tmpfile 2> /dev/null > /dev/null
-                eog $tmpfile
-                rm $tmpfile
+                tmpfile=/tmp/$(basename "$f").png
+                pymol "$f" -qc -d 'hide all; show cartoon; spectrum' -g "$tmpfile" 2> /dev/null > /dev/null
+                o "$tmpfile"
+                rm "$tmpfile"
             fi
         done
     else
@@ -93,12 +93,12 @@ function seepdb {
 function pdb2png {
     if command -v pymol 2> /dev/null
     then
-        for f in $@
+        for f in "$@"
         do
-            if [[ -r $f ]]
+            if [[ -r "$f" ]]
             then
-                out=$(sed 's/pdb$/png/' <<< `basename $f`)
-                pymol $f -qc -d 'hide all; show cartoon; spectrum' -g $out
+                out=$(sed 's/pdb$/png/' <<< `basename "$f"`)
+                pymol "$f" -qc -d 'hide all; show cartoon; spectrum' -g "$out"
             fi
         done
     else
@@ -114,7 +114,7 @@ function o {
         echo "$j"
         if [[ "$j" =~ \.(png|jpg|jpeg|gif)$ ]]; then
             display "$j" &
-        elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx)$ ]]; then
+        elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx|xlsx)$ ]]; then
             libreoffice "$j" &
         elif [[ "$j" =~ \.(mp3|wav|flac)$ ]]; then
             mplayer "$j"
@@ -124,6 +124,8 @@ function o {
             evince "$j" &
         elif [[ "$j" =~ \.(pdb)$ ]]; then
             pymol "$j" &
+        elif [[ "$j" =~ \.(txt|md)$ ]]; then
+            vi -c Goyo $j
         elif [[ -d "$j" ]]; then
             nautilus "$j" &
         else
@@ -136,7 +138,7 @@ function o {
 function ma {
     for j in `ls *mp3 *wav *flac`
     do
-        mplayer $j
+        mplayer "$j"
     done
 }
 
@@ -153,46 +155,46 @@ function pgunzip  { ls $@ | xargs -P `nproc` -n 1 gunzip;  }
 function pbunzip2 { ls $@ | xargs -P `nproc` -n 1 bunzip2; }
 
 function unjar {
-    for j in $@
+    for j in "$@"
     do 
         current_directory=$PWD
-        jar_dir=$(sed -e 's/\.jar$//' <<< $j)
-        mkdir $jar_dir
-        mv $j $jar_dir
-        cd $jar_dir
-        jar -xvf $j
-        mv $current_directory/$jar_dir/$j $current_directory
-        cd $current_directory
+        jar_dir=$(sed -e 's/\.jar$//' <<< "$j")
+        mkdir "$jar_dir"
+        mv "$j" "$jar_dir"
+        cd "$jar_dir"
+        jar -xvf "$j"
+        mv "$current_directory"/"$jar_dir"/"$j" "$current_directory"
+        cd "$current_directory"
     done
 }
 
 # Shred files
 function annihilate {
-    for j in $@
+    for j in "$@"
     do
-        shred -fuzn 1 $j
+        shred -fuzn 1 "$j"
     done
 }
 
 # Moves a file to the recycle bin
 function damn {
-    for j in $@;
+    for j in "$@";
     do
-        mv -f $j ~/.local/share/Trash/files
+        mv -f "$j" ~/.local/share/Trash/files
     done
 }
 
 # Encrypts a directory with a symmetric cypher, shreds originals
 function encrypt-dir {
     # If the input is not a directory, directly encrypt it
-    if [ ! -d $1 ]; then
+    if [ ! -d "$1" ]; then
         echo 'This command is intended for directories, but, yeah whatever'  >&2
-        gpg --cipher-algo TWOFISH -c $1
+        gpg --cipher-algo TWOFISH -c "$1"
         return 0
     fi
 
     # Remove trailing slash (if present) from input directory name
-    indir=$(perl -pe 's|/$||' <<< $1)
+    indir=$(perl -pe 's|/$||' <<< "$1")
 
     # Create tarball
     tarfile="$indir.tar"
@@ -226,14 +228,14 @@ function encrypt-dir {
 
         path=$PATH
         export PATH='/usr/local/bin:/usr/bin'
-        find $indir/ -type f -execdir shred -zuf \{\} \;
+        find "$indir"/ -type f -execdir shred -zuf \{\} \;
         export PATH=$path
 
         if [ $? -ne 0 ]; then
-            echo "Find failed, input directory $indir was NOT shredded or removed" >&2
+            echo "Find failed, input directory "$indir" was NOT shredded or removed" >&2
             echo "But folder was encrypted successfuly" >&2
         else
-            rm -Rf $indir
+            rm -Rf "$indir"
         fi
 
         return 0
@@ -245,8 +247,8 @@ function encrypt-dir {
 
 # Decrypts encrypted folder
 function decrypt-dir {
-    if [ -f $1 ]; then
-        gpg -d $1 | tar --keep-newer-files -xf -
+    if [ -f "$1" ]; then
+        gpg -d "$1" | tar --keep-newer-files -xf -
     else
         echo "Cannot open file $1" >&2
         return 1
@@ -261,10 +263,10 @@ function decrypt-dir {
 
 # Compile a knitr document
 knit () {
-    [[ ${1/*./} == Rnw ]] || { echo "Input must be a *.Rnw file" >&2; return 1 ; }
+    [[ "${1/*./}" == Rnw ]] || { echo "Input must be a *.Rnw file" >&2; return 1 ; }
     Rscript -e "library(knitr); knit('$1')"
     [[ $? == 0 ]] || { echo "Failed to knit ..." >&2; return 1 ; }
-    latexmk --pdf --bibtex ${1%.Rnw}.tex
+    latexmk --pdf --bibtex "${1%.Rnw}".tex
 }
 
 alias rmblastdb='rm *.{nhr,nin,nsq,phr,pin,psq} 2> /dev/null'
