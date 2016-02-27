@@ -15,6 +15,7 @@ alias cpan='perl -MCPAN -e shell'
 alias R='R --vanilla --quiet'
 alias seg='segmasker -outfmt fasta'
 alias x='exit'
+alias lynx='lynx -vikeys -homepage=www.google.com'
 
 
 
