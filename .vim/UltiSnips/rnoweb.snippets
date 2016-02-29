@@ -1,0 +1,72 @@
+snippet report "build template for default report" b
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{longtable}
+\title{${1:TITLE}}
+\author{Zebulun Arendsee}
+\begin{document}
+
+<<require>>=
+	require(ggplot2)
+	require(plyr)
+@
+
+\end{document}
+endsnippet
+
+snippet notes "build template for notes" b
+\documentclass[12pt]{article}
+
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.3ex plus 0.5ex minus 0.3ex}
+
+\usepackage[cm]{fullpage}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{color}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+\title{${1:TITLE}}
+\author{Zebulun Arendsee}
+\date{\today}
+\begin{document}
+
+\newcommand*{\secpath}{sections}
+\graphicspath{{images/}}
+
+\maketitle
+%\tableofcontents
+%\listoffigures
+
+${0}
+
+%\input{\secpath/section1}
+
+%\addcontentsline{toc}{section}{References}
+%\bibliographystyle{plain}
+\bibliography{${4:BIBFILE}}
+
+\end{document}
+endsnippet
+
+snippet img "Create an image using graphicx library" b
+\begin{figure}[!ht] \centering
+  \includegraphics[${1:width=0.9\textwidth}]{${2:FILE_BASENAME}}
+  \caption{${3:CAPTION}}
+\end{figure}
+${0}
+endsnippet
+
+snippet url "add url" w
+\href{${1:URL}}{${2:NAME}}
+endsnippet
