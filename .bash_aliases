@@ -15,8 +15,25 @@ alias cpan='perl -MCPAN -e shell'
 alias R='R --vanilla --quiet'
 alias seg='segmasker -outfmt fasta'
 alias x='exit'
+alias lynx='lynx -vikeys -homepage=www.google.com'
 alias t='exec tmux'
 
+# =============================================================================
+# Git functions
+# =============================================================================
+
+function gitallstatus() {
+    for d in `/usr/bin/ls -d $HOME/src/git/*`
+    do
+        cd $d
+        echo -------------------------------------------------------------------
+        echo $PWD
+        git status
+        echo -------------------------------------------------------------------
+        echo
+        cd - > /dev/null
+    done
+}
 
 
 # =============================================================================
