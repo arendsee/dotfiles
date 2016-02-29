@@ -125,9 +125,13 @@ function o {
         elif [[ "$j" =~ \.(pdb)$ ]]; then
             pymol "$j" &
         elif [[ "$j" =~ \.(txt|md)$ ]]; then
-            vi -c Goyo $j
+            vi -c Goyo "$j"
         elif [[ -d "$j" ]]; then
             nautilus "$j" &
+        elif [[ `file "$j"` =~ 'ASCII text' ]]; then
+            vi -c Goyo "$j"
+        elif [[ `file "$j"` =~ 'ELF' ]]; then
+            vi -c Vinarise "$j"
         else
             echo "I don't know how to open this" >&2
             return 1
