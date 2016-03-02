@@ -1,3 +1,15 @@
+snippet img "Create an image using graphicx library" b
+\begin{figure}[!ht] \centering
+  \includegraphics[${1:width=0.9\textwidth}]{${2:FILE_BASENAME}}
+  \caption{${3:CAPTION}}
+\end{figure}
+${0}
+endsnippet
+
+snippet url "add url" w
+\href{${1:URL}}{${2:NAME}}
+endsnippet
+
 snippet report "build template for default report" b
 \documentclass{article}
 \usepackage{amsmath}
@@ -59,14 +71,20 @@ ${0}
 \end{document}
 endsnippet
 
-snippet img "Create an image using graphicx library" b
-\begin{figure}[!ht] \centering
-  \includegraphics[${1:width=0.9\textwidth}]{${2:FILE_BASENAME}}
-  \caption{${3:CAPTION}}
-\end{figure}
-${0}
-endsnippet
+snippet hw "Build general homework template" b
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{placeins}
+\setlength{\parskip}{3mm}
+\pagestyle{fancy}
+\lhead{${1:NAME} \hspace{3mm}  ${2:CLASS}  \hspace{3mm} ${3:TERM} \hspace{3mm} Due ${4:DUE_DATE}}
+\rhead{Zebulun Arendsee}
 
-snippet url "add url" w
-\href{${1:URL}}{${2:NAME}}
+\begin{document}
+${0}
+\end{document}
 endsnippet
