@@ -145,7 +145,7 @@ function o {
             vi -c Goyo "$j"
         elif [[ -d "$j" ]]; then
             nautilus "$j" &
-        elif [[ `file "$j"` =~ 'ASCII text' ]]; then
+        elif [[ `file "$j"` =~ (ASCII text|empty) ]]; then
             vi -c Goyo "$j"
         elif [[ `file "$j"` =~ 'ELF' ]]; then
             vi -c Vinarise "$j"
