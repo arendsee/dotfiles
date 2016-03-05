@@ -139,14 +139,14 @@ function! s:goyo_enter()
   set noshowmode
   set noshowcmd
   set nonumber
-  set scrolloff=999
+  "set scrolloff=999
 endfunction
 
 function! s:goyo_leave()
   set showmode
   set showcmd
   set number
-  set scrolloff=5
+  "set scrolloff=5
 endfunction
 
 " Quitting whether Goyo is active or not
