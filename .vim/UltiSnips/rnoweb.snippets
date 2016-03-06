@@ -20,8 +20,8 @@ snippet report "build template for default report" b
 \begin{document}
 
 <<require>>=
-	require(ggplot2)
-	require(plyr)
+  require(ggplot2)
+  require(plyr)
 @
 
 \end{document}
@@ -91,12 +91,18 @@ endsnippet
 
 snippet equ "Make equation template" b
 \begin{equation}
-	${0}
+  ${0}
 \end{equation}
 endsnippet
 
 snippet itemize "Itemize template" b
 \begin{itemize}
-	\item ${0}
+  \item ${0}
 \end{itemize}
+endsnippet
+
+snippet desc "Description template" b
+\begin{description}
+  \item[${0}]
+\end{description}
 endsnippet

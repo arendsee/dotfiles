@@ -1,0 +1,42 @@
+snippet rscript "Initialize Rscript template" b
+#!/usr/bin/env Rscript
+
+require(data.table, quiet=TRUE)
+require(plyr, quiet=TRUE)
+
+version <- '0.1'
+
+suppressPackageStartupMessages(library("argparse"))
+parser <- ArgumentParser(
+	formatter_class='argparse.RawTextHelpFormatter',
+	description='${1:OVERALL_DESCRIPTION}',
+	usage='${2:PROGRAM_NAME} [options]')
+
+parser$add_argument(
+	'-v', '--version',
+	action='store_true',
+	default=FALSE)
+
+# parser$add_argument(
+#   '-f', '--files',
+#   metavar="x",
+#   help='tabular files to be parsed',
+#   nargs="+")
+
+args <- parser$parse_args()
+
+if(args$version){
+	cat(sprintf('rstab v%s\n', version))
+	q()
+}
+
+${0}
+endsnippet
+
+snippet addarg "Add an argparse argument" b
+parser$add_argument(
+	'-${1:x}' , '--${2:LONG}',
+	help='${3:HELP}'
+	${0}
+)
+endsnippet

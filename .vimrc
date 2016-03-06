@@ -179,6 +179,11 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-r-plugin options
+let vimrplugin_assign = 0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dealing with particular file types
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab call TabularSettings()
 autocmd BufNewFile,BufRead *.R call RSettings()
