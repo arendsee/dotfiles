@@ -1,3 +1,28 @@
+snippet default "Make header and body" b
+<!DOCTYPE HTML>
+<html lang=en-US>
+	<head>
+		<title>${1:web title}</title>
+		<meta name="description" content="${2:short description}">
+		<meta charset=UTF-8>
+	</head>
+	<body>
+		${0}
+	</body>
+</html>
+endsnippet
+
+snippet teximport "In the header, import the scripts needed to interpet Tex equations" b
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX","output/HTML-CSS"],
+		tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML"></script>
+endsnippet
+
 snippet td "expand td tag" b
 <td>
 	${0}
@@ -18,24 +43,27 @@ snippet "new week" "make new week entry" b
 		<td>
 		M
 		</td>
-
 		<td>
+			${0}
+		</td>
 	</tr>
 
 	<tr>
 		<td>
 		W
 		</td>
-
 		<td>
+
+		</td>
 	</tr>
 
 	<tr>
 		<td>
 		F
 		</td>
-
 		<td>
+
+		</td>
 	</tr>
 </td>
 endsnippet
