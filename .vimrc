@@ -81,7 +81,7 @@ autocmd BufNewFile,BufRead *.tex set syn=tex
 " NOTE: if you are using tmux, you will also need to add the following command
 " to your .tmux.conf file:
 " set -s escape-time 0
-set timeoutlen=1000 ttimeoutlen=0
+set timeoutlen=200 ttimeoutlen=0
 
 
 filetype plugin on

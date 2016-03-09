@@ -95,6 +95,12 @@ snippet equ "Make equation template" b
 \end{equation}
 endsnippet
 
+snippet aln "Make align template" b
+\begin{align}
+  ${0}
+\end{align}
+endsnippet
+
 snippet itemize "Itemize template" b
 \begin{itemize}
   \item ${0}
@@ -117,4 +123,23 @@ snippet framed "Framed template" b
 \begin{framed}
 	${0}
 \end{framed}
+endsnippet
+
+snippet doxy "Doxygen template" b
+#' ${1:ONE_LINE_DESCRIPTION}
+#' 
+#' @export
+#' @param ${2:x} ${3:desc}
+#' @return ${4:desc}
+#' @examples
+#' ${0}
+endsnippet
+
+snippet geom_hist "Build default geom_histogram" b
+${1:g} <- ggplot(${2:d}) +
+	geom_histogram(aes(x=${3:x}, y=..density..)) +
+	ggtitle('${4:title}') +
+	xlab('${5:xlab}') +
+	facet_wrap(~${6:group})
+	${0}
 endsnippet
