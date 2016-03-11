@@ -40,3 +40,12 @@ parser$add_argument(
 	${0}
 )
 endsnippet
+
+snippet addargf "Add a flag (boolean) argparse argument" b
+parser$add_argument(
+	'-${1:x}' , '--${2:LONG}',
+	help='${3:HELP}',
+	action='store_true',
+	default=FALSE
+)${0}
+endsnippet

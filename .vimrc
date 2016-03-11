@@ -127,7 +127,6 @@ let g:vinarise_enable_auto_detect=1
 " Pencil options
 augroup pencil
   autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
   autocmd FileType text         call pencil#init()
 augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
