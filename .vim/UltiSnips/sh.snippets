@@ -1,0 +1,22 @@
+snippet sec "Make comment section" b
+
+
+# ===================================================================
+# ${1:SECTION NAME}
+# -------------------------------------------------------------------
+${0}
+endsnippet
+
+snippet getopt "Template getopt" b
+while getopts "h${1:d:}" opt; do
+	case $opt in
+		h)
+			echo "${2:DESC}"
+			echo "REQUIRED ARGUMENTS"
+			echo "  ${3:-d DOM  description of the thing}"
+			exit 0 ;;
+		d) 
+			domain=$OPTARG ;;
+	esac 
+done
+endsnippet
