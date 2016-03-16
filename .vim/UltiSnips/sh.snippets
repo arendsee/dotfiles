@@ -1,37 +1,23 @@
-snippet "^(get)?opts?$" "Make getopts template" r
-__version=v0.1
-
-function usage ()
-{
-	echo "Usage : \$0 [options] [--]
-
-	${1:ONE-LINE DESCRIPTION}
-
-	Options:
-	-h|help	    Display this message
-	-v|version	Display script version"
-}
-
-while getopts ":hv" opt
-do
-	case $opt in
-
-	h|help ) usage; exit 0 ;;
-
-	v|version ) echo "\$0 $__version"; exit 0 ;;
-
-	${0}
-
-	* ) echo -e "\n  Unsupported option : $OPTARG\n"
-		usage; exit 1 ;;
-	esac
-done
-endsnippet
-
-snippet optarg "Add parameter setting argument to getopt" b
-${1:x}|${2:LONG} ) ${3:VAR}=\$OPTARG ;;${0}
-endsnippet
-
 snippet awktab "Setup awk for tab-delimited format" w
 awk 'BEGIN{FS="\t"; OFS=FS} ${0}'
+endsnippet
+
+snippet sec "Make comment section" b
+# ===================================================================
+# ${1:SECTION NAME}
+# -------------------------------------------------------------------${0}
+endsnippet
+
+snippet getopt "Template getopt" b
+while getopts "h${1:d:}" opt; do
+	case $opt in
+		h)
+			echo "${2:DESC}"
+			echo "REQUIRED ARGUMENTS"
+			echo "  ${3:-d DOM  description of the thing}"
+			exit 0 ;;
+		d) 
+			domain=$OPTARG ;;
+	esac 
+done
 endsnippet
