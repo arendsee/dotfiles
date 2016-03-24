@@ -1,10 +1,11 @@
+snippet awktab "Setup awk for tab-delimited format" w
+awk 'BEGIN{FS="\t"; OFS=FS} ${0}'
+endsnippet
+
 snippet sec "Make comment section" b
-
-
 # ===================================================================
 # ${1:SECTION NAME}
-# -------------------------------------------------------------------
-${0}
+# -------------------------------------------------------------------${0}
 endsnippet
 
 snippet getopt "Template getopt" b
