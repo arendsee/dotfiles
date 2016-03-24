@@ -8,15 +8,35 @@ ${0}
 endsnippet
 
 snippet getopt "Template getopt" b
+usage (){
+	echo "${2:DESC}"
+	echo "REQUIRED ARGUMENTS"
+	echo "  ${3:-d DOM  description of the thing}"
+	exit 0
+}
+
+# print help with no arguments
+[[ $# -eq 0 ]] && usage
+
 while getopts "h${1:d:}" opt; do
 	case $opt in
 		h)
-			echo "${2:DESC}"
-			echo "REQUIRED ARGUMENTS"
-			echo "  ${3:-d DOM  description of the thing}"
-			exit 0 ;;
+			usage ;;
 		d) 
 			domain=$OPTARG ;;
 	esac 
 done
+endsnippet
+
+snippet shflags "Template shflags argument handling" b
+source shflags.sh
+
+FLAGS_HELP="${5:DESCRIPTION}"
+
+DEFINE_string '${1:LONG}' '${2:DEFAULT}' '${3:HELP MSG}' '${4:X}'
+${0}
+
+FLAGS "$@" || exit 1
+[[ ${FLAGS_help} -eq ${FLAGS_TRUE} ]] && exit 0
+
 endsnippet

@@ -60,3 +60,4 @@ export LS_COLORS="$LS_COLORS:*.pdf=00;35:*.tex=00;36"
 # if command -v tmux > /dev/null; then
 #   [[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
 # fi
+export PATH=$PATH:/home/rnz/edirect
