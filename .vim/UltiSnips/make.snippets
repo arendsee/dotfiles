@@ -19,5 +19,5 @@ ${TARGET}.pdf: ${TARGET}.Rnw images/* ${TARGET}.bib
 .PHONY: clean
 clean:
 	latexmk -c ${TARGET}.tex
-	rm -rf cache ${TARGET}.Rnw
+	rm -rf cache ${TARGET}.tex
 endsnippet
