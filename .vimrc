@@ -120,6 +120,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vinarise options
 let g:vinarise_enable_auto_detect=1
+let g:vinarise_detect_large_file_size=-1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
