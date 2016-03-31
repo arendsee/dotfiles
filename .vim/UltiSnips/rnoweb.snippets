@@ -6,6 +6,10 @@ snippet img "Create an image using graphicx library" b
 ${0}
 endsnippet
 
+snippet norm "insert normal pdf" w
+\frac{1}{${1:\sigma} \sqrt{2\pi}} \exp \left( - \frac{(${2:x} - \mu_$2)^2}{2$1^2} \right)${0}
+endsnippet
+
 snippet url "add url" w
 \href{${1:URL}}{${2:NAME}}
 endsnippet
@@ -25,6 +29,17 @@ snippet report "build template for default report" b
 @
 
 \end{document}
+endsnippet
+
+snippet figchunk "build template figure chunk" b
+\begin{figure}[!hbpt]
+\centering
+<<fig.width=${1:4}, fig.height=${2:4}, echo=F>>=
+	${0}
+@
+\caption{${3:Some figure}}
+\label{fig:${4:label}}
+\end{figure}
 endsnippet
 
 snippet notes "build template for notes" b
@@ -141,5 +156,14 @@ ${1:g} <- ggplot(${2:d}) +
 	ggtitle('${4:title}') +
 	xlab('${5:xlab}') +
 	facet_wrap(~${6:group})
+	${0}
+endsnippet
+
+snippet geom_point "Build default geom_point" b
+${1:g} <- ggplot(${2:d}) +
+	geom_point(aes(x=${3:x}, y=${4:y})) +
+	ggtitle('${5:title}') +
+	xlab('${6:xlab}') +
+	ylab('${7:xlab}')
 	${0}
 endsnippet
