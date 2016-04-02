@@ -298,7 +298,7 @@ alias rmblastdb='rm *.{nhr,nin,nsq,phr,pin,psq} 2> /dev/null'
 # Tabular file handling 
 # =============================================================================
 header() {
-    head -1 $1 |
+    head -1 "$1" |
         tr "\t" "\n" |
         awk '{print NR"\t"$0}'
 }
