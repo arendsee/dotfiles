@@ -181,6 +181,16 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-r-plugin options
 let vimrplugin_assign = 0
+let vimrplugin_applescript = 0
+let vimrplugin_screenplugin = 0
+" start R with F2 key
+map  <F2> <Plug>RStart 
+imap <F2> <Plug>RStart
+vmap <F2> <Plug>RStart
+" send selection to R
+vmap <C-CR> <Plug>RDSendSelection 
+" send line to R
+nmap <C-CR> <Plug>RDSendLine
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
