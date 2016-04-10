@@ -6,6 +6,19 @@ snippet img "Create an image using graphicx library" b
 ${0}
 endsnippet
 
+snippet placein "Add code to precent floats from crossing section and subsection bounds" b
+% Prevent floats from crossing section or subsection boundaries
+\usepackage[section]{placeins}
+% Credit for this voodoo goes to Heiko Oberdiek
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\subsection\expandafter{%
+    \expandafter\@fb@secFB\subsection
+  }%
+}
+\makeatother
+endsnippet
+
 snippet norm "insert normal pdf" w
 \frac{1}{${1:\sigma} \sqrt{2\pi}} \exp \left( - \frac{(${2:x} - \mu_$2)^2}{2$1^2} \right)${0}
 endsnippet
