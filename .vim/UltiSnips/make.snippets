@@ -12,12 +12,17 @@ endsnippet
 snippet rnw "Default Rnw Makefile" b
 TARGET=${1:BASENAME}
 ${0}
-${TARGET}.pdf: ${TARGET}.Rnw images/* ${TARGET}.bib
+${TARGET}.pdf: ${TARGET}.Rnw
 	Rscript -e "library(knitr); knit('${TARGET}.Rnw')"
-	latexmk -bibtex -pdf ${TARGET}.tex
+	latexmk -pdf ${TARGET}.tex
 
 .PHONY: clean
 clean:
-	latexmk -c ${TARGET}.tex
-	rm -rf cache ${TARGET}.tex
+	latexmk -f -c ${TARGET}.tex
+	rm -f ${TARGET}.tex
+
+.PHONY: deepclean
+deepclean:
+	latexmk -f -c ${TARGET}.tex
+	rm -rf cache figure ${TARGET}.tex ${TARGET}.pdf
 endsnippet
