@@ -41,3 +41,11 @@ FLAGS "$@" || exit 1
 [[ ${FLAGS_help} -eq ${FLAGS_TRUE} ]] && exit 0
 
 endsnippet
+
+
+###### GIT COMMANDS #######
+
+snippet cachepwd "run git commands to set up password caching" b
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=${1:3600}'
+endsnippet
