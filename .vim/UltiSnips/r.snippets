@@ -49,3 +49,31 @@ parser$add_argument(
 	default=FALSE
 )${0}
 endsnippet
+
+snippet doxy "Doxygen template" b
+#' ${1:ONE_LINE_DESCRIPTION}
+#' 
+#' @export
+#' @param ${2:x} ${3:desc}
+#' @return ${4:desc}
+#' @examples
+#' ${0}
+endsnippet
+
+snippet geom_hist "Build default geom_histogram" b
+${1:g} <- ggplot(${2:d}) +
+	geom_histogram(aes(x=${3:x}, y=..density..)) +
+	ggtitle('${4:title}') +
+	xlab('${5:xlab}') +
+	facet_wrap(~${6:group})
+	${0}
+endsnippet
+
+snippet geom_point "Build default geom_point" b
+${1:g} <- ggplot(${2:d}) +
+	geom_point(aes(x=${3:x}, y=${4:y})) +
+	ggtitle('${5:title}') +
+	xlab('${6:xlab}') +
+	ylab('${7:xlab}')
+	${0}
+endsnippet

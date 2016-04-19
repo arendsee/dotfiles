@@ -128,7 +128,9 @@ let g:vinarise_detect_large_file_size=-1
 " Pencil options
 augroup pencil
   autocmd!
-  autocmd FileType text         call pencil#init()
+  autocmd FileType markdown,mkd call pencil#init({'wrap': 'soft'})
+  autocmd FileType text call pencil#init({'wrap': 'hard'})
+  let g:pencil#wrapModeDefault = 'soft'
 augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -225,7 +227,7 @@ function! TwoStop()
 endfunction
 
 function! TextSettings()
-    setlocal spell
+    setlocal nospell
     setlocal nonumber
 endfunction
 
