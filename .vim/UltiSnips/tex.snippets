@@ -1,3 +1,26 @@
+snippet ffr "Full Beamer frame template" b
+{
+	\setbeamertemplate{navigation symbols}{}
+	\setbeamercolor{background canvas}{bg=white}
+	\begin{frame}[plain]
+		\includegraphics[width=\textwidth]{${1:title}}
+	\end{frame}
+}
+endsnippet
+
+snippet fr "Beamer frame template" b
+\begin{frame}
+	\frametitle{${1:slide name}}
+	${0}
+\end{frame}
+endsnippet
+
+snippet bfig "beamer figure" b
+\begin{center}
+  \includegraphics[width=\textwidth]{${2:NAME}}
+\end{center}
+endsnippet
+
 snippet figure "load a figure" b
 \begin{figure}[h!]
   \centering
