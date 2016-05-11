@@ -21,6 +21,26 @@ snippet bfig "beamer figure" b
 \end{center}
 endsnippet
 
+snippet sum "sum template" w
+\sum_{${1:i=1}}^${2:n} ${0}
+endsnippet
+
+snippet exp "exponential expresssion" w
+\exp \left( ${0} \right)
+endsnippet
+
+snippet sqrt "square root" w
+\sqrt{${1:x}}${0}
+endsnippet
+
+snippet ( "\left parentheses" i
+\left(${0}
+endsnippet
+
+snippet ) "\right parentheses" i
+\right)${0}
+endsnippet
+
 snippet figure "load a figure" b
 \begin{figure}[h!]
   \centering
@@ -74,11 +94,11 @@ snippet notes "build template for notes" b
 \usepackage{color}
 \usepackage{hyperref}
 \hypersetup{
-    colorlinks,
-    citecolor=blue,
-    filecolor=blue,
-    linkcolor=blue,
-    urlcolor=blue
+	colorlinks,
+	citecolor=blue,
+	filecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue
 }
 
 \title{${1:TITLE}}
@@ -222,8 +242,8 @@ snippet n "nu" w
 \nu
 endsnippet
 
-snippet x "xsi" w
-\xsi
+snippet x "xi" w
+\xi
 endsnippet
 
 snippet p "pi" w
@@ -242,6 +262,10 @@ snippet t "tau" w
 \tau
 endsnippet
 
+snippet c "chi" w
+\chi
+endsnippet
+
 snippet f "phi" w
 \phi
 endsnippet
@@ -255,12 +279,20 @@ snippet G "Gamma" w
 \Gamma
 endsnippet
 
-snippet K "Kappa" w
-\Kappa
+snippet D "Delta" w
+\Delta
+endsnippet
+
+snippet T "Theta" w
+\Theta
 endsnippet
 
 snippet S "Sigma" w
 \Sigma
+endsnippet
+
+snippet S "Xsi" w
+\Xsi
 endsnippet
 
 # Greek hats
@@ -308,8 +340,8 @@ snippet hn "hat nu" w
 \hat{\nu}
 endsnippet
 
-snippet hx "hat xsi" w
-\hat{\xsi}
+snippet hx "hat xi" w
+\hat{\xi}
 endsnippet
 
 snippet hp "hat pi" w
