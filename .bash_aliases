@@ -141,7 +141,7 @@ function o {
             mplayer "$j"
         elif [[ "$j" =~ \.(html)$ ]]; then
             firefox "$j" &
-        elif [[ "$j" =~ \.(pdf|dvi)$ ]]; then
+        elif [[ "$j" =~ \.(pdf|dvi|ps)$ ]]; then
             evince "$j" &
         elif [[ "$j" =~ \.(pdb)$ ]]; then
             pymol "$j" &
