@@ -1,0 +1,15 @@
+snippet class "template class" b
+class ${1:NAME}:
+	def __init__(self):
+		${0}
+endsnippet
+
+snippet main "template of do-if-main" b
+if __name__ == '__main__':
+	${0}
+endsnippet
+
+snippet open "open file template" b
+with open(${1:filename}, ${2:'r'}) as f:
+	${0}
+endsnippet
