@@ -1,12 +1,12 @@
 snippet tex "Default tex Makefile" b
 TARGET=${1:BASENAME}
 ${0}
-${TARGET}.pdf: ${TARGET}.Rnw images/* ${TARGET}.bib
+${TARGET}.pdf: ${TARGET}.tex images/* ${TARGET}.bib
 	latexmk -bibtex -pdf ${TARGET}.Rnw
 
 .PHONY: clean
 clean:
-	latexmk -c ${TARGET}.Rnw
+	latexmk -c ${TARGET}.tex
 endsnippet
 
 snippet rnw "Default Rnw Makefile" b

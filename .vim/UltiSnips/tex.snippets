@@ -5,12 +5,28 @@ snippet fr "Build beamer frame" b
 \end{frame}
 endsnippet
 
+snippet ffr "Full Beamer frame template" b
+{
+	\setbeamertemplate{navigation symbols}{}
+	\setbeamercolor{background canvas}{bg=white}
+	\begin{frame}[plain]
+		\includegraphics[width=\textwidth]{${1:title}}
+	\end{frame}
+}
+endsnippet
+
 snippet stack "stack relative template" w
 \stackrel{${1:top}}{${2:bottom}}${0}
 endsnippet
 
 snippet under "add text underneath" w
 \underset{${1:below}}{${2:above}}${0}
+endsnippet
+
+snippet bfig "beamer figure" b
+\begin{center}
+	\includegraphics[width=\textwidth]{${2:NAME}}
+\end{center}
 endsnippet
 
 snippet sum "sum template" w
@@ -106,11 +122,11 @@ snippet notes "build template for notes" b
 \usepackage{color}
 \usepackage{hyperref}
 \hypersetup{
-    colorlinks,
-    citecolor=blue,
-    filecolor=blue,
-    linkcolor=blue,
-    urlcolor=blue
+	colorlinks,
+	citecolor=blue,
+	filecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue
 }
 
 \title{${1:TITLE}}

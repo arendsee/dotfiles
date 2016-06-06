@@ -87,6 +87,10 @@ function ltree {
 # IO
 # =============================================================================
 
+function vector-convert {
+    parallel 'convert {} -density 300 -quality 100 -trim -sharpen 0x2.0 -resize 200% {.}.png' ::: "$@"
+}
+
 # View image of a PDB file (requires pymol)
 function seepdb { 
     if command -v pymol 2> /dev/null
@@ -129,7 +133,7 @@ function o {
     for j in "$@"
     do
         echo "$j"
-        if [[ "$j" =~ \.(png|jpg|jpeg|gif)$ ]]; then
+        if [[ "$j" =~ \.(png|jpg|jpeg|gif|tiff)$ ]]; then
             display "$j" &
         elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx|xlsx)$ ]]; then
             libreoffice "$j" &
@@ -137,7 +141,7 @@ function o {
             mplayer "$j"
         elif [[ "$j" =~ \.(html)$ ]]; then
             firefox "$j" &
-        elif [[ "$j" =~ \.(pdf)$ ]]; then
+        elif [[ "$j" =~ \.(pdf|dvi|ps)$ ]]; then
             evince "$j" &
         elif [[ "$j" =~ \.(pdb)$ ]]; then
             pymol "$j" &

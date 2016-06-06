@@ -13,3 +13,10 @@ snippet open "open file template" b
 with open(${1:filename}, ${2:'r'}) as f:
 	${0}
 endsnippet
+
+snippet addarg "Add an argparse argument" b
+parser.add_argument(
+	'-${1:x}', '--${2:long}',
+	help="${3:help}"
+)
+endsnippet
