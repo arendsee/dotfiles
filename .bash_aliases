@@ -141,7 +141,7 @@ function o {
             evince "$j" &
         elif [[ "$j" =~ \.(pdb)$ ]]; then
             pymol "$j" &
-        elif [[ "$j" =~ \.(txt|md)$ ]]; then
+        elif [[ "$j" =~ \.(txt|md|tex)$ ]]; then
             vi -c Goyo "$j"
         elif [[ -d "$j" ]]; then
             nautilus "$j" &
