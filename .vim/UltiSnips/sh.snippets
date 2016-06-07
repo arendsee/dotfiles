@@ -10,9 +10,11 @@ endsnippet
 
 snippet getopt "Template getopt" b
 usage (){
-	echo "${2:DESC}"
-	echo "REQUIRED ARGUMENTS"
-	echo "  ${3:-d DOM  description of the thing}"
+cat << EOF
+${2:DESC}
+REQUIRED ARGUMENTS
+  ${3:-d DOM  description of the thing}
+EOF
 	exit 0
 }
 

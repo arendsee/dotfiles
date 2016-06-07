@@ -2,6 +2,13 @@ snippet cfig "Expansion of cfig macro (see orphan-notes)" b
 \cfig{${1:width=\textwidth}}{${2:image-filename}}{${3:caption}}
 endsnippet
 
+snippet fr "Build beamer frame" b
+\begin{frame}
+	\frametitle{${1:title}}
+	${0}
+\end{frame}
+endsnippet
+
 snippet ffr "Full Beamer frame template" b
 {
 	\setbeamertemplate{navigation symbols}{}
@@ -12,21 +19,26 @@ snippet ffr "Full Beamer frame template" b
 }
 endsnippet
 
-snippet fr "Beamer frame template" b
-\begin{frame}
-	\frametitle{${1:slide name}}
-	${0}
-\end{frame}
+snippet stack "stack relative template" w
+\stackrel{${1:top}}{${2:bottom}}${0}
+endsnippet
+
+snippet under "add text underneath" w
+\underset{${1:below}}{${2:above}}${0}
 endsnippet
 
 snippet bfig "beamer figure" b
 \begin{center}
-  \includegraphics[width=\textwidth]{${2:NAME}}
+	\includegraphics[width=\textwidth]{${2:NAME}}
 \end{center}
 endsnippet
 
 snippet sum "sum template" w
 \sum_{${1:i=1}}^${2:n} ${0}
+endsnippet
+
+snippet abs "absolute value template" w
+\left\lvert ${1:x} \right\lvert ${0}
 endsnippet
 
 snippet exp "exponential expresssion" w
@@ -43,6 +55,22 @@ endsnippet
 
 snippet ) "\right parentheses" i
 \right)${0}
+endsnippet
+
+snippet [ "\left parentheses" i
+\left[${0}
+endsnippet
+
+snippet ] "\right parentheses" i
+\right]${0}
+endsnippet
+
+snippet { "\left parentheses" i
+\left{${0}
+endsnippet
+
+snippet } "\right parentheses" i
+\right}${0}
 endsnippet
 
 snippet figure "load a figure" b

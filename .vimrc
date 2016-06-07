@@ -74,7 +74,7 @@ set syntax=automatic
 set tabstop=4
 set shiftwidth=4
 set wildmode=longest,list
-autocmd BufNewFile,BufRead *.tex set syn=tex
+" autocmd BufNewFile,BufRead *.tex set syn=tex
 " nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 
 " --- remove the annoying ESC delay ---
@@ -199,10 +199,10 @@ nmap <C-CR> <Plug>RDSendLine
 " Dealing with particular file types
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab call TabularSettings()
 autocmd BufNewFile,BufRead *.R call RSettings()
+autocmd BufNewFile,BufRead *.tex call LatexSettings()
 autocmd FileType text call TextSettings()
-autocmd FileType tex call LatexSettings()
 autocmd FileType markdown call MarkdownSettings()
-autocmd FileType html,tex,Rnw call TwoStop()
+autocmd FileType html,Rnw call TwoStop()
 autocmd FileType py call PythonSetting()
 
 function! TabularSettings()
@@ -211,6 +211,8 @@ endfunction
 
 function! LatexSettings()
     setlocal syn=tex
+    setlocal ft=tex
+    call TwoStop()
 endfunction
 
 function! RSettings()
