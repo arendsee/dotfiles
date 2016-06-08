@@ -69,6 +69,16 @@ ${1:g} <- ggplot(${2:d}) +
 	${0}
 endsnippet
 
+snippet geom_boxplot "Build default geom_boxplot" b
+${1:g} <- ggplot(${2:d}) +
+	geom_boxplot(aes(x=${3:x}, y=${4:y}), width=0.2) +
+	geom_violin(aes(x=$3, y=$4), alpha=0.3) +
+	ggtitle('${5:title}') +
+	xlab('${6:xlab}') +
+	ylab('${7:xlab}')
+	${0}
+endsnippet
+
 snippet geom_point "Build default geom_point" b
 ${1:g} <- ggplot(${2:d}) +
 	geom_point(aes(x=${3:x}, y=${4:y})) +
