@@ -5,13 +5,25 @@ snippet report "build template for default report" b
 \usepackage{amsmath}
 \usepackage{fullpage}
 \usepackage{longtable}
+
+% Prevent floats from crossing section or subsection boundaries
+\usepackage[section]{placeins}
+% Credit for this voodoo goes to Heiko Oberdiek
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsection\expandafter{%
+		\expandafter\@fb@secFB\subsection
+	}%
+}
+
+\makeatother
 \title{${1:TITLE}}
 \author{Zebulun Arendsee}
 \begin{document}
 
 <<require>>=
-  require(ggplot2)
-  require(plyr)
+	require(ggplot2)
+	require(plyr)
 @
 
 \end{document}
@@ -26,4 +38,9 @@ snippet figchunk "build template figure chunk" b
 \caption{${3:Some figure}}
 \label{fig:${4:label}}
 \end{figure}
+endsnippet
+
+snippet source "Source a child Rnw document" b
+<<${1:base}, child='${sections/}$1.Rnw'>>=
+@${0}
 endsnippet
