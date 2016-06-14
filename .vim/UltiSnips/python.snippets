@@ -9,6 +9,17 @@ if __name__ == '__main__':
 	${0}
 endsnippet
 
+snippet defaultdict "template and import for defaultdict" b
+from collections import defaultdict
+${1:dd} = defaultdict(${2:list})
+endsnippet
+
+snippet namedtuple "template declaration and import for named tuple" b
+from collections import namedtuple
+${1:Point} = namedtuple('$1', [${2:'x', 'y'}])
+${3:p = Point(1, y=2)}
+endsnippet
+
 snippet open "open file template" b
 with open(${1:filename}, ${2:'r'}) as f:
 	${0}
@@ -19,4 +30,46 @@ parser.add_argument(
 	'-${1:x}', '--${2:long}',
 	help="${3:help}"
 )
+endsnippet
+
+snippet addargf "Add an argparse argument for file input" b
+parser.add_argument(
+	'${1:file}',
+	help="${2:help}",
+	type=argparse.FileType('r')
+)
+endsnippet
+
+snippet addargb "Add an argparse argument for boolean input" b
+parser.add_argument(
+	'-${1:x}', '--${2:long}',
+	help="${3:help}",
+	action='store_true',
+	default=False
+)
+endsnippet
+
+snippet argparse "argparse-based template file" b
+#!/usr/bin/env python3
+
+import argparse
+
+__version__ = '0.0.0'
+__prog__ = '${1:prog}'
+
+def parser():
+	parser = argparse.ArgumentParser()
+	parser.add_argument(
+		'--version',
+		help='Display version',
+		action='version',
+		version='%(prog)s {}'.format(__version__)
+	)
+	args = parser.parse_args()
+
+	return(args)
+
+if __name__ == '__main__':
+	args = parser()
+	${0}
 endsnippet
