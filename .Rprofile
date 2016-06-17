@@ -28,17 +28,17 @@ utils::rc.settings(ipck=TRUE)
   }
 }
 
-# Allow colors, if appropriate
-if(Sys.getenv("TERM") %in% c("xterm-256color", "screen-256color")){
-  if(!require(colorout)){
-    require(devools) 
-    install_github('jalvesaq/colorout')
-  }
-  require(colorout)
-}
-
 # Suppress messages
 sshhh <- function(a.package){
   suppressWarnings(suppressPackageStartupMessages(
     library(a.package, character.only=TRUE)))
+}
+
+# Allow colors, if appropriate
+if(Sys.getenv("TERM") %in% c("xterm-256color", "screen-256color")){
+  # library(devools) 
+  # install_github('jalvesaq/colorout')
+  suppressMessages(require(colorout))
+  setOutputColors(stderror=2, verbose=FALSE)
+  invisible()
 }
