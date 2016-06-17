@@ -1,6 +1,8 @@
 # This config file is largely adapted from
 # http://www.r-bloggers.com/fun-with-rprofile-and-customizing-r-startup/
 
+suppressMessages(require(magrittr))
+
 # Quit without saving the stupid ennvironment
 q <- function (save="no", ...) {
   quit(save=save, ...)
