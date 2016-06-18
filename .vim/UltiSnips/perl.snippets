@@ -1,0 +1,48 @@
+snippet init "Initialize full template" b
+#! /usr/bin/perl
+use strict;
+use warnings;
+use v5.10;
+
+say 'hello';
+
+exit;
+endsnippet
+
+snippet argparse "Build template argparse" b
+use v5.10;
+use Getopt::ArgParse;
+
+$parser = Getopt::ArgParse->new_parser(
+	prog        => '${1:PROGRAM_NAME}',
+	description => '${2:DESCRIPTION}',
+	epilog      => '${3:EPILOG}',
+);
+
+# # string
+# $parser->add_arg('--foo', '-f', required => 1);
+# 
+# # boolean
+# $parser->add_arg('--bool', '-b', type => 'Bool', dest => 'boo');
+# 
+# # positional
+# $parser->add_arg('file', required => 1);
+# 
+# # choices
+# $parser->add_arg('--env', choices => [ 'dev', 'prod' ],);
+# 
+# # parse the arguments
+# $args = $parser->parse_args(split(' ', 'test -f 1 -b'));
+# 
+# # access
+# say $args->command;  # 'test'
+# say $args->foo;      # false
+# say $args->boo;      # false
+# say $args->no_boo;   # true - 'no_' is added for boolean options
+# say $args->help_command(); # list
+endsnippet
+
+snippet open "Open a file" b
+open(my ${1:FILE}, "${2:<}", "${3:FILENAME}")
+	or die "Can't open $2 $3: $!";
+endsnippet
