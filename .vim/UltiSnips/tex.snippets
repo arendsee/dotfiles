@@ -1,3 +1,35 @@
+snippet beamer "beamer template" b
+\documentclass[t]{beamer}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usetheme{Pittsburgh}
+\usecolortheme{dolphin}
+\usepackage{lipsum}
+
+\newcommand\blfootnote[1]{%
+	\begingroup
+	\renewcommand\thefootnote{}\footnote{#1}%
+	\addtocounter{footnote}{-1}%
+	\endgroup
+}
+
+\graphicspath{ {images/} }
+
+\author{Zebulun Arendsee}
+\date{\today}
+\title{${1:TITLE}}
+\subtitle{${2:SUBTITLE}}
+\institute{Iowa State University}
+
+\begin{document}
+
+${0}
+
+\end{document}
+
+endsnippet
+
 snippet cfig "Expansion of cfig macro (see orphan-notes)" b
 \cfig{${1:width=\textwidth}}{${2:image-filename}}{${3:caption}}
 endsnippet

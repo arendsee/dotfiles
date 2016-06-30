@@ -87,3 +87,25 @@ ${1:g} <- ggplot(${2:d}) +
 	ylab('${7:xlab}')
 	${0}
 endsnippet
+
+snippet logy "ggplot2 logy trans" b
+require(scales)
+scale_y_continuous(
+	trans='log2',
+	breaks=trans_breaks('log2', function(x) round(2^x))
+)
+endsnippet
+
+snippet logx "ggplot2 logx trans" b
+require(scales)
+scale_x_continuous(
+	trans='log2',
+	breaks=trans_breaks('log2', function(x) round(2^x))
+)
+endsnippet
+
+snippet slant270 "Make vertical ggplot x-axis labels" b
+theme(
+	axis.text.x = element_text(angle=270, hjust=0, vjust=1)
+)
+endsnippet

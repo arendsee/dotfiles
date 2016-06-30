@@ -51,3 +51,53 @@ snippet cachepwd "run git commands to set up password caching" b
 git config --global credential.helper cache
 git config --global credential.helper 'cache --timeout=${1:3600}'
 endsnippet
+
+snippet tawk "Initialize TAB-delimited AWK" b
+awk '
+	BEGIN{FS="\t"; OFS="\t"}
+	${0}
+'
+endsnippet
+
+snippet gensub "AWK gensub template" w
+gensub(/${1:.*(.).*}/, ${2:"a \\1 b &", ${3:"g"}, ${4:\$0}})${0}
+endsnippet
+
+snippet gsub "AWK gsub template" w
+gsub(/${1:.*(.).*}/, ${2:"a \\1 b &"}, ${3:\$1})${0}
+endsnippet
+
+snippet sub "AWK sub template" w
+sub(/${1:.*(.).*}/, ${2:"a \\1 b &"}, ${3:\$1})${0}
+endsnippet
+
+snippet match "AWK match template" w
+match(${1:string}, /${2:ri}/${3:, OPTIONAL_ARRAY})
+# sets RSTART to index (-1 on failure)
+# sets RLENGTH to length of the match
+# if ARRAY is given, 0th element set to full match, 1+ to captures
+endsnippet
+
+snippet patsplit "AWK patsplit template" w
+patsplit(${1:"1.344..22"}, ${2:ARRAY}, /${3:\.+}/, ${4:SEPS})
+# ARRAY holds the strings between the separator pattern (1, 344, 22)
+# SEPS holds the separator strings (., ..)
+endsnippet
+
+snippet split "AWK split template" w
+split(${1:"1-2-6"}, ${2:ARRAY}, ${3:"-"})
+endsnippet
+
+snippet substr "AWK substring template" w
+substr(${2:STRING}, ${2:start}, ${3:length})
+endsnippet
+
+snippet asort "AWK sort tempalte" w
+asort(${1:SOURCE}, ${2:DEST}) # sort by value
+# If DEST not given, SOURCE is overwritten with the ordered aray
+endsnippet
+
+snippet asorti "AWK sort tempalte" w
+asorti(${1:SOURCE}, ${2:DEST}) # sort by index
+# If DEST not given, SOURCE is overwritten with the ordered aray
+endsnippet
