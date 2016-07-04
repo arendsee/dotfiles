@@ -60,6 +60,11 @@ snippet doxy "Doxygen template" b
 #' ${0}
 endsnippet
 
+snippet geom_bar "geom_bar tempalte" b
+ggplot(aes(${1:XFACTOR}, ${2:BAR_HEIGHT})) +
+	geom_bar(aes(fill=${3:DODGE_COMPONENTS}), stat='identity', position='dodge')
+endsnippet
+
 snippet geom_hist "Build default geom_histogram" b
 ${1:g} <- ggplot(${2:d}) +
 	geom_histogram(aes(x=${3:x}, y=..density..)) +
