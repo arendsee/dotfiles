@@ -1,3 +1,14 @@
+snippet c "Default c Makefile" b
+TARGET=${1:}
+
+all:
+	cc -g -Wall -O2 -o ${TARGET} *.[ch]
+
+.PHONY: clean
+clean:
+	rm -f ${TARGET}.o ${TARGET}
+endsnippet
+
 snippet tex "Default tex Makefile" b
 TARGET=${1:BASENAME}
 ${0}
