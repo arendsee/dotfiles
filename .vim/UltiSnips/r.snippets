@@ -60,6 +60,11 @@ snippet doxy "Doxygen template" b
 #' ${0}
 endsnippet
 
+snippet geom_bar "geom_bar tempalte" b
+ggplot(aes(${1:XFACTOR}, ${2:BAR_HEIGHT})) +
+	geom_bar(aes(fill=${3:DODGE_COMPONENTS}), stat='identity', position='dodge')
+endsnippet
+
 snippet geom_hist "Build default geom_histogram" b
 ${1:g} <- ggplot(${2:d}) +
 	geom_histogram(aes(x=${3:x}, y=..density..)) +
@@ -86,4 +91,26 @@ ${1:g} <- ggplot(${2:d}) +
 	xlab('${6:xlab}') +
 	ylab('${7:xlab}')
 	${0}
+endsnippet
+
+snippet logy "ggplot2 logy trans" b
+require(scales)
+scale_y_continuous(
+	trans='log2',
+	breaks=trans_breaks('log2', function(x) round(2^x))
+)
+endsnippet
+
+snippet logx "ggplot2 logx trans" b
+require(scales)
+scale_x_continuous(
+	trans='log2',
+	breaks=trans_breaks('log2', function(x) round(2^x))
+)
+endsnippet
+
+snippet slant270 "Make vertical ggplot x-axis labels" b
+theme(
+	axis.text.x = element_text(angle=270, hjust=0, vjust=1)
+)
 endsnippet

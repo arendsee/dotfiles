@@ -16,7 +16,7 @@ options(menu.graphics=FALSE)
 # options(stringsAsFactors=FALSE)
 
 # Max number of lines to print
-options(max.print=100)
+options(max.print=200)
 
 # Allow autocomplate of package names in library or require
 utils::rc.settings(ipck=TRUE)

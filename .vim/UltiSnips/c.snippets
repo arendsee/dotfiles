@@ -1,3 +1,7 @@
+snippet ck_assert_msg "check template" b
+ck_assert_msg(${1:BOOLEAN}, "${2:ERROR MESSAGE}");${0}
+endsnippet
+
 #------------------------------------------------------------------------------
 snippet header "build a default header"
 #ifndef __${1:NAME}_H__

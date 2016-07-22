@@ -28,7 +28,7 @@ Plugin 'Gundo'                   " * undo tree, <F5> to open
 Plugin 'Shougo/vinarise'         " hex editor
 Plugin 'reedes/vim-pencil'       " allows autowrapping for writing
 " Plugin 'jpalardy/vim-slime'    " copy and paste into another tmux window
-Plugin 'davidhalter/jedi-vim'    " for autocomplete
+" Plugin 'davidhalter/jedi-vim'    " for autocomplete
 Plugin 'junegunn/goyo.vim'       " zen mode
 
 " * requires compilation with --enable-pythoninterp flag set
@@ -199,10 +199,10 @@ nmap <C-CR> <Plug>RDSendLine
 " Dealing with particular file types
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab call TabularSettings()
 autocmd BufNewFile,BufRead *.R call RSettings()
+autocmd BufNewFile,BufRead *.Rnw,*.html call TwoStop()
 autocmd BufNewFile,BufRead *.tex call LatexSettings()
 autocmd FileType text call TextSettings()
 autocmd FileType markdown call MarkdownSettings()
-autocmd FileType html,Rnw call TwoStop()
 autocmd FileType py call PythonSetting()
 
 function! TabularSettings()
@@ -226,6 +226,7 @@ endfunction
 function! TwoStop()
     setlocal tabstop=2
     setlocal shiftwidth=2
+    setlocal nonumber
 endfunction
 
 function! TextSettings()
