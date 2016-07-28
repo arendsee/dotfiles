@@ -30,6 +30,8 @@ Plugin 'reedes/vim-pencil'       " allows autowrapping for writing
 " Plugin 'jpalardy/vim-slime'    " copy and paste into another tmux window
 " Plugin 'davidhalter/jedi-vim'    " for autocomplete
 Plugin 'junegunn/goyo.vim'       " zen mode
+Plugin 'vim-scripts/Conque-GDB'
+Plugin 'airblade/vim-gitgutter'
 
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
@@ -106,26 +108,26 @@ let g:UltiSnipsEditSplit="horizontal"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Gundo options
+" --- Gundo options
 nnoremap <F5> :GundoToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YouCompleteMe options
+" --- YouCompleteMe options
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vinarise options
+" --- Vinarise options
 let g:vinarise_enable_auto_detect=1
 let g:vinarise_detect_large_file_size=-1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pencil options
+" --- Pencil options
 augroup pencil
   autocmd!
   autocmd FileType markdown,mkd call pencil#init({'wrap': 'soft'})
@@ -136,7 +138,7 @@ augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Goyo options
+" --- Goyo options
 function! s:goyo_enter()
   set noshowmode
   set noshowcmd
@@ -195,8 +197,28 @@ vmap <C-CR> <Plug>RDSendSelection
 nmap <C-CR> <Plug>RDSendLine
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Dealing with particular file types
+" --- GitGutter options
+" Notes:
+" stage the hunk with <Leader>hs or
+" undo it with <Leader>hu.
+" ---
+" Number of changes to track (for performance reasons) default=500
+let g:gitgutter_max_signs = 500
+" next hunk (default=]c)
+" nmap ]c <Plug>GitGutterNextHunk  
+" prev hunk (default=]c)
+" nmap [c <Plug>GitGutterPrevHunk
+" stage a hunk (default=<Leader>hs)
+nmap <Leader>hs <Plug>GitGutterStageHunk
+" undo a hunk (default=<Leader>hu)
+nmap <Leader>hu <Plug>GitGutterUndoHunk
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- Dealing with particular file types
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab call TabularSettings()
 autocmd BufNewFile,BufRead *.R call RSettings()
 autocmd BufNewFile,BufRead *.Rnw,*.html call TwoStop()
