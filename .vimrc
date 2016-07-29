@@ -368,10 +368,12 @@ nmap <C-CR> <Plug>RDSendLine
 " --- CtrlP options
 " --- HELP: :help ctrlp-commands and :help ctrlp-extensions
 let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_regexp = 1
 " use gitignore - https://github.com/ctrlpvim/ctrlp.vim
 set wildignore+=*.o,*.so,*.gch,*.out,*.gz,*.bz2
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_map = '<c-p>'
+nnoremap <c-f> :CtrlPTag<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 

@@ -7,7 +7,7 @@
   go_left = <Alt>h
   go_right = <Alt>l
   go_up = <Alt>k
-  layout_launcher = <Ctrl><Shift>P
+  layout_launcher = <Alt><Ctrl><Shift>P
   resize_down = <Ctrl><Shift>j
   resize_left = <Ctrl><Shift>h
   resize_right = <Ctrl><Shift>l
