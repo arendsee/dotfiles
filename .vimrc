@@ -395,4 +395,15 @@ nmap <Leader>hu <Plug>GitGutterUndoHunk
 " --- tagbar
 let g:tagbar_compact=1
 let g:tagbar_indent=1
+let g:tagbar_type_r = {'ctagstype':'r', 'kinds':['f:function']}
+let g:tagbar_type_rnoweb = {
+  \   'ctagstype':'rnoweb',
+  \   'kinds' : [
+  \       's:sections',
+  \       'f:function',
+  \       'c:chunk',
+  \   ],
+  \   'sro' : '::',
+  \   'sort' : 0
+  \ }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

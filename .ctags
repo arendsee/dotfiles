@@ -3,8 +3,18 @@
 --tag-relative=yes
 
 --exclude=.git
+--exclude=cache
+--exclude=old
 
 --langdef=r
 --langmap=r:.R
---regex-r=/^[ \t]+"?([.A-Za-z][.A-Za-z0-9_]*)"?[\t]*<-[\t]*function/\1/
---regex-r=/^"?([.A-Za-z][.A-Za-z0-9_]*)"?[ \t]*<-/\1/
+--regex-r=/^[ \t]*([.A-Za-z][.A-Za-z0-9_]*)[\t ]*<-[\t ]*function/\1/f,function/
+
+--langdef=rnoweb
+--langmap=rnoweb:.R
+--langmap=rnoweb:+.Rnw
+--regex-rnoweb=/^<<([a-zA-Z0-9_.-]+)/\1/c,chunk/
+--regex-rnoweb=/^\\section\{([^}]*)\}/\. \1/s,section/
+--regex-rnoweb=/^\\subsection\{([^}]*)\}/\.\. \1/s,subsection/
+--regex-rnoweb=/^\\subsubsection\{([^}]*)\}/\.\.\. \1/s,subsubsection/
+--regex-rnoweb=/^[ \t]*([.A-Za-z][.A-Za-z0-9_]*)[\t ]*<-[\t ]*function/\1/f,function/
