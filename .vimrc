@@ -12,25 +12,33 @@ autocmd!
 " :PluginClean   - remove plugins not mentioned below
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-Plugin 'gmarik/vundle'           " Vundle
-Plugin 'ervandew/supertab'       " magic with TAB
-Plugin 'screen.vim'              " something I don't exactly know how to use
-Plugin 'tComment'                " language-aware commenting
-Plugin 'Distinguished'           " may main colorscheme (256 bit)
-Plugin 'Vim-R-plugin'            " R code wrapper
-" Plugin 'jalvesaq/R-vim-runtime "
-Plugin 'Python-mode-klen'        " python wrapping etc
-" Plugin 'ivanov/vim-ipython'    " **
-Plugin 'LaTeX-Box'               " latex wrapping, keybinding, etc.
-Plugin 'SirVer/ultisnips'        " snippet engine
-Plugin 'honza/vim-snippets'      " snippets use be ultisnips engine
-Plugin 'Gundo'                   " * undo tree, <F5> to open
-Plugin 'Shougo/vinarise'         " hex editor
-Plugin 'reedes/vim-pencil'       " allows autowrapping for writing
-" Plugin 'jpalardy/vim-slime'    " copy and paste into another tmux window
-" Plugin 'davidhalter/jedi-vim'    " for autocomplete
-Plugin 'junegunn/goyo.vim'       " zen mode
-Plugin 'ctrlpvim/ctrlp.vim'      " CtrlP
+Plugin 'gmarik/vundle'                " Vundle
+Plugin 'ervandew/supertab'            " magic with TAB
+Plugin 'screen.vim'                   " something I don't exactly know how to use
+Plugin 'tComment'                     " language-aware commenting
+Plugin 'Distinguished'                " may main colorscheme (256 bit)
+Plugin 'Vim-R-plugin'                 " R code wrapper
+" Plugin 'jalvesaq/R-vim-runtime      "
+Plugin 'Python-mode-klen'             " python wrapping etc
+" Plugin 'ivanov/vim-ipython'         " **
+Plugin 'LaTeX-Box'                    " latex wrapping, keybinding, etc.
+Plugin 'SirVer/ultisnips'             " snippet engine
+Plugin 'honza/vim-snippets'           " snippets use be ultisnips engine
+Plugin 'Gundo'                        " * undo tree, <F5> to open
+Plugin 'Shougo/vinarise'              " hex editor
+Plugin 'reedes/vim-pencil'            " allows autowrapping for writing
+" Plugin 'jpalardy/vim-slime'         " copy and paste into another tmux window
+" Plugin 'davidhalter/jedi-vim'         " for autocomplete
+Plugin 'junegunn/goyo.vim'            " zen mode
+Plugin 'vim-scripts/Conque-GDB'       " sync vim and GNU Debugger
+Plugin 'airblade/vim-gitgutter'       " shows changes to git file
+Plugin 'majutsushi/tagbar'            " ctag code outline bar
+Plugin 'ap/vim-buftabline'            " show buffers
+Plugin 'scrooloose/nerdtree'          " filesystem browser
+Plugin 'Xuyuanp/nerdtree-git-plugin'  " git flag integration with NerdTree
+Plugin 'vim-scripts/Align'            " align based on a character
+Plugin 'tpope/vim-fugitive'           " manage git
+Plugin 'ctrlpvim/ctrlp.vim'           " CtrlP
 
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
@@ -41,6 +49,9 @@ Plugin 'ctrlpvim/ctrlp.vim'      " CtrlP
 " Global mapping
 noremap ; :
 noremap : ;
+
+" set default shell - needed for nerdtree-git-plugin
+set shell=sh
 
 " select a word with space
 noremap <space> viw
@@ -94,8 +105,57 @@ syntax on
 set t_Co=256
 colorscheme distinguished
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- F keys
+nnoremap <F5> :GundoToggle<CR>
+nnoremap <F6> :TagbarToggle<CR>
+nnoremap <F7> :PencilToggle<CR>
+nnoremap <F8> :NERDTreeToggle<CR>
+nnoremap <F9> <Plug>RStart 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- tags and other navigation magic
+" --- For nice discussion on ctags and whatnot:
+" --- https://andrew.stwrt.ca/posts/vim-ctags/
+" Search for tags along directory ancestral tree 
+set tags=./tags,tags;$HOME
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- BUFFERS, TABS, WINDOWS, and all that
+set hidden
+nnoremap <C-h> :bprev<CR>
+nnoremap <C-l> :bnext<CR>
+let g:buftabline_show=1
+let g:buftabline_indicators="on"
+let g:buftabline_numbers=2
+nmap <leader>1 <Plug>BufTabLine.Go(1)
+nmap <leader>2 <Plug>BufTabLine.Go(2)
+nmap <leader>3 <Plug>BufTabLine.Go(3)
+nmap <leader>4 <Plug>BufTabLine.Go(4)
+nmap <leader>5 <Plug>BufTabLine.Go(5)
+nmap <leader>6 <Plug>BufTabLine.Go(6)
+nmap <leader>7 <Plug>BufTabLine.Go(7)
+nmap <leader>8 <Plug>BufTabLine.Go(8)
+nmap <leader>9 <Plug>BufTabLine.Go(9)
+nmap <leader>0 <Plug>BufTabLine.Go(10)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- NerdTree
+" Close window if only NerdTree is left (borrowed from NerdTree docs)
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Open NerdTree if no other file selected
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- UltiSnips
 " Snippet commands - for use with ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -106,26 +166,26 @@ let g:UltiSnipsEditSplit="horizontal"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Gundo options
-nnoremap <F5> :GundoToggle<CR>
+" --- Gundo options
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YouCompleteMe options
+" --- YouCompleteMe options
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vinarise options
+" --- Vinarise options
 let g:vinarise_enable_auto_detect=1
 let g:vinarise_detect_large_file_size=-1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pencil options
+" --- Pencil options
 augroup pencil
   autocmd!
   autocmd FileType markdown,mkd call pencil#init({'wrap': 'soft'})
@@ -136,7 +196,7 @@ augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Goyo options
+" --- Goyo options
 function! s:goyo_enter()
   set noshowmode
   set noshowcmd
@@ -185,10 +245,6 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 let vimrplugin_assign = 0
 let vimrplugin_applescript = 0
 let vimrplugin_screenplugin = 0
-" start R with F2 key
-map  <F2> <Plug>RStart 
-imap <F2> <Plug>RStart
-vmap <F2> <Plug>RStart
 " send selection to R
 vmap <C-CR> <Plug>RDSendSelection 
 " send line to R
@@ -206,8 +262,32 @@ set wildignore+=*.o,*.so,*.gch,*.out,*.gz,*.bz2
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" --- GitGutter options
+" Notes:
+" stage the hunk with <Leader>hs or
+" undo it with <Leader>hu.
+" ---
+" Number of changes to track (for performance reasons) default=500
+let g:gitgutter_max_signs = 500
+" next hunk (default=]c)
+" nmap ]c <Plug>GitGutterNextHunk  
+" prev hunk (default=]c)
+" nmap [c <Plug>GitGutterPrevHunk
+" stage a hunk (default=<Leader>hs)
+nmap <Leader>hs <Plug>GitGutterStageHunk
+" undo a hunk (default=<Leader>hu)
+nmap <Leader>hu <Plug>GitGutterUndoHunk
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Dealing with particular file types
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- tagbar
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- Dealing with particular file types
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab call TabularSettings()
 autocmd BufNewFile,BufRead *.R call RSettings()
 autocmd BufNewFile,BufRead *.Rnw,*.html call TwoStop()
