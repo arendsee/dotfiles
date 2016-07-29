@@ -30,6 +30,7 @@ Plugin 'reedes/vim-pencil'       " allows autowrapping for writing
 " Plugin 'jpalardy/vim-slime'    " copy and paste into another tmux window
 " Plugin 'davidhalter/jedi-vim'    " for autocomplete
 Plugin 'junegunn/goyo.vim'       " zen mode
+Plugin 'ctrlpvim/ctrlp.vim'      " CtrlP
 
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
@@ -82,7 +83,6 @@ set wildmode=longest,list
 " to your .tmux.conf file:
 " set -s escape-time 0
 set timeoutlen=200 ttimeoutlen=0
-
 
 filetype plugin on
 syntax on
@@ -193,6 +193,17 @@ vmap <F2> <Plug>RStart
 vmap <C-CR> <Plug>RDSendSelection 
 " send line to R
 nmap <C-CR> <Plug>RDSendLine
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlP options
+" HELP: :help ctrlp-commands and :help ctrlp-extensions
+let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_map = '<c-p>'
+" use gitignore - https://github.com/ctrlpvim/ctrlp.vim
+set wildignore+=*.o,*.so,*.gch,*.out,*.gz,*.bz2
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
