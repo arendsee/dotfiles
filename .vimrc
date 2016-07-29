@@ -105,6 +105,28 @@ syntax on
 set t_Co=256
 colorscheme distinguished
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- From Alexander Shukaev on stack overflow (13850914)
+" --- These mappings may not be useful to me, but they would force a new vim
+" --- student to use vim correctly.
+" no arrows in normal
+noremap <Up>    <Nop>
+noremap <Down>  <Nop>
+noremap <Left>  <Nop>
+noremap <Right> <Nop>
+" no arrows in insert
+inoremap <Up>    <Nop>
+inoremap <Down>  <Nop>
+inoremap <Left>  <Nop>
+inoremap <Right> <Nop>
+" no arrows in visual
+vnoremap <Up>    <Nop>
+vnoremap <Down>  <Nop>
+vnoremap <Left>  <Nop>
+vnoremap <Right> <Nop>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- F keys
 nnoremap <F5> :GundoToggle<CR>
