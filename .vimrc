@@ -128,12 +128,26 @@ vnoremap <Right> <Nop>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" --- F keys
+" --- F keys - the F keys should work in all modes
 nnoremap <F5> :GundoToggle<CR>
+inoremap <F5> <ESC>:GundoToggle<CR>i
+vnoremap <F5> <ESC>:GundoToggle<CR>
+
 nnoremap <F6> :TagbarToggle<CR>
+inoremap <F6> <ESC>:TagbarToggle<CR>i
+vnoremap <F6> <ESC>:TagbarToggle<CR>
+
 nnoremap <F7> :PencilToggle<CR>
+inoremap <F7> <ESC>:PencilToggle<CR>i
+vnoremap <F7> <ESC>:PencilToggle<CR>
+
 nnoremap <F8> :NERDTreeToggle<CR>
-nnoremap <F9> <Plug>RStart 
+inoremap <F8> <ESC>:NERDTreeToggle<CR>i
+vnoremap <F8> <ESC>:NERDTreeToggle<CR>
+
+" nnoremap <F9> <Plug>RStart 
+" inoremap <F9> <Plug>RStart
+" vnoremap <F9> <Plug>RStart 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
