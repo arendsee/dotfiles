@@ -1,3 +1,23 @@
+#------------------------------------------------------------------------------
+
+snippet readlines "Template for reading a file line by line" b
+FILE * f = fopen(${1:filename}, "r");
+size_t size = ${2:BUFFER_SIZE};
+char * line = (char *) malloc(size * sizeof(char));
+
+int x;${0}
+char * y;
+
+while (fgets(line, size, f) && !feof(f)) {
+	if (!sscanf (line, "%d %s", &x, y)) {
+		fprintf(stderr, "Could not process the following line:\n%s", line);
+		exit(EXIT_FAILURE);
+	}
+}
+endsnippet
+
+
+#------------------------------------------------------------------------------
 snippet ck_assert_msg "check template" b
 ck_assert_msg(${1:BOOLEAN}, "${2:ERROR MESSAGE}");${0}
 endsnippet
