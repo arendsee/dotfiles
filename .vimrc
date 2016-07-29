@@ -37,6 +37,7 @@ Plugin 'ap/vim-buftabline'            " show buffers
 Plugin 'scrooloose/nerdtree'          " filesystem browser
 Plugin 'Xuyuanp/nerdtree-git-plugin'  " git flag integration with NerdTree
 Plugin 'vim-scripts/Align'            " align based on a character
+Plugin 'tpope/vim-fugitive'           " manage git
 
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
