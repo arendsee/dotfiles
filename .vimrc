@@ -30,8 +30,10 @@ Plugin 'reedes/vim-pencil'       " allows autowrapping for writing
 " Plugin 'jpalardy/vim-slime'    " copy and paste into another tmux window
 " Plugin 'davidhalter/jedi-vim'    " for autocomplete
 Plugin 'junegunn/goyo.vim'       " zen mode
-Plugin 'vim-scripts/Conque-GDB'
-Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-scripts/Conque-GDB'  " sync vim and GNU Debugger
+Plugin 'airblade/vim-gitgutter'  " shows changes to git file
+Plugin 'majutsushi/tagbar'       " ctag code outline bar
+Plugin 'ap/vim-buftabline'       " show buffers
 
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
@@ -85,6 +87,8 @@ set wildmode=longest,list
 " set -s escape-time 0
 set timeoutlen=200 ttimeoutlen=0
 
+" Search for tags along directory ancestral tree 
+set tags=./tags,tags;$HOME
 
 filetype plugin on
 syntax on
@@ -96,8 +100,38 @@ syntax on
 set t_Co=256
 colorscheme distinguished
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" F keys
+nnoremap <F5> :GundoToggle<CR>
+nnoremap <F6> :TagbarToggle<CR>
+nnoremap <F7> :PencilToggle<CR>
+nnoremap <F9> <Plug>RStart 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- BUFFERS, TABS, WINDOWS, and all that
+set hidden
+nnoremap <C-h> :bprev<CR>
+nnoremap <C-l> :bnext<CR>
+let g:buftabline_show=1
+let g:buftabline_indicators="on"
+let g:buftabline_numbers=2
+nmap <leader>1 <Plug>BufTabLine.Go(1)
+nmap <leader>2 <Plug>BufTabLine.Go(2)
+nmap <leader>3 <Plug>BufTabLine.Go(3)
+nmap <leader>4 <Plug>BufTabLine.Go(4)
+nmap <leader>5 <Plug>BufTabLine.Go(5)
+nmap <leader>6 <Plug>BufTabLine.Go(6)
+nmap <leader>7 <Plug>BufTabLine.Go(7)
+nmap <leader>8 <Plug>BufTabLine.Go(8)
+nmap <leader>9 <Plug>BufTabLine.Go(9)
+nmap <leader>0 <Plug>BufTabLine.Go(10)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- UltiSnips
 " Snippet commands - for use with ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -109,7 +143,7 @@ let g:UltiSnipsEditSplit="horizontal"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- Gundo options
-nnoremap <F5> :GundoToggle<CR>
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -187,10 +221,6 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 let vimrplugin_assign = 0
 let vimrplugin_applescript = 0
 let vimrplugin_screenplugin = 0
-" start R with F2 key
-map  <F2> <Plug>RStart 
-imap <F2> <Plug>RStart
-vmap <F2> <Plug>RStart
 " send selection to R
 vmap <C-CR> <Plug>RDSendSelection 
 " send line to R
@@ -214,6 +244,12 @@ let g:gitgutter_max_signs = 500
 nmap <Leader>hs <Plug>GitGutterStageHunk
 " undo a hunk (default=<Leader>hu)
 nmap <Leader>hu <Plug>GitGutterUndoHunk
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- tagbar
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
