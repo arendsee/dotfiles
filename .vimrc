@@ -12,28 +12,31 @@ autocmd!
 " :PluginClean   - remove plugins not mentioned below
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-Plugin 'gmarik/vundle'           " Vundle
-Plugin 'ervandew/supertab'       " magic with TAB
-Plugin 'screen.vim'              " something I don't exactly know how to use
-Plugin 'tComment'                " language-aware commenting
-Plugin 'Distinguished'           " may main colorscheme (256 bit)
-Plugin 'Vim-R-plugin'            " R code wrapper
-" Plugin 'jalvesaq/R-vim-runtime "
-Plugin 'Python-mode-klen'        " python wrapping etc
-" Plugin 'ivanov/vim-ipython'    " **
-Plugin 'LaTeX-Box'               " latex wrapping, keybinding, etc.
-Plugin 'SirVer/ultisnips'        " snippet engine
-Plugin 'honza/vim-snippets'      " snippets use be ultisnips engine
-Plugin 'Gundo'                   " * undo tree, <F5> to open
-Plugin 'Shougo/vinarise'         " hex editor
-Plugin 'reedes/vim-pencil'       " allows autowrapping for writing
-" Plugin 'jpalardy/vim-slime'    " copy and paste into another tmux window
-" Plugin 'davidhalter/jedi-vim'    " for autocomplete
-Plugin 'junegunn/goyo.vim'       " zen mode
-Plugin 'vim-scripts/Conque-GDB'  " sync vim and GNU Debugger
-Plugin 'airblade/vim-gitgutter'  " shows changes to git file
-Plugin 'majutsushi/tagbar'       " ctag code outline bar
-Plugin 'ap/vim-buftabline'       " show buffers
+Plugin 'gmarik/vundle'                " Vundle
+Plugin 'ervandew/supertab'            " magic with TAB
+Plugin 'screen.vim'                   " something I don't exactly know how to use
+Plugin 'tComment'                     " language-aware commenting
+Plugin 'Distinguished'                " may main colorscheme (256 bit)
+Plugin 'Vim-R-plugin'                 " R code wrapper
+" Plugin 'jalvesaq/R-vim-runtime      "
+Plugin 'Python-mode-klen'             " python wrapping etc
+" Plugin 'ivanov/vim-ipython'         " **
+Plugin 'LaTeX-Box'                    " latex wrapping, keybinding, etc.
+Plugin 'SirVer/ultisnips'             " snippet engine
+Plugin 'honza/vim-snippets'           " snippets use be ultisnips engine
+Plugin 'Gundo'                        " * undo tree, <F5> to open
+Plugin 'Shougo/vinarise'              " hex editor
+Plugin 'reedes/vim-pencil'            " allows autowrapping for writing
+" Plugin 'jpalardy/vim-slime'         " copy and paste into another tmux window
+" Plugin 'davidhalter/jedi-vim'         " for autocomplete
+Plugin 'junegunn/goyo.vim'            " zen mode
+Plugin 'vim-scripts/Conque-GDB'       " sync vim and GNU Debugger
+Plugin 'airblade/vim-gitgutter'       " shows changes to git file
+Plugin 'majutsushi/tagbar'            " ctag code outline bar
+Plugin 'ap/vim-buftabline'            " show buffers
+Plugin 'scrooloose/nerdtree'          " filesystem browser
+Plugin 'Xuyuanp/nerdtree-git-plugin'  " git flag integration with NerdTree
+Plugin 'vim-scripts/Align'            " align based on a character
 
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
@@ -44,6 +47,9 @@ Plugin 'ap/vim-buftabline'       " show buffers
 " Global mapping
 noremap ; :
 noremap : ;
+
+" set default shell - needed for nerdtree-git-plugin
+set shell=sh
 
 " select a word with space
 noremap <space> viw
@@ -105,12 +111,15 @@ colorscheme distinguished
 nnoremap <F5> :GundoToggle<CR>
 nnoremap <F6> :TagbarToggle<CR>
 nnoremap <F7> :PencilToggle<CR>
+nnoremap <F8> :NERDTreeToggle<CR>
 nnoremap <F9> <Plug>RStart 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- BUFFERS, TABS, WINDOWS, and all that
+" For some nice discussion on ctags and whatnot:
+" https://andrew.stwrt.ca/posts/vim-ctags/
 set hidden
 nnoremap <C-h> :bprev<CR>
 nnoremap <C-l> :bnext<CR>
@@ -129,6 +138,15 @@ nmap <leader>9 <Plug>BufTabLine.Go(9)
 nmap <leader>0 <Plug>BufTabLine.Go(10)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- NerdTree
+" Close window if only NerdTree is left (borrowed from NerdTree docs)
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Open NerdTree if no other file selected
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- UltiSnips
