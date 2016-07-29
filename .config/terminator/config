@@ -3,7 +3,7 @@
   focus = system
   tab_position = hidden
 [keybindings]
-  layout_launcher = <Ctrl><Shift>p
+  layout_launcher = <Alt><Ctrl><Shift>p
   go_up = <Alt>k
   resize_up = <Ctrl><Shift>k
   resize_left = <Ctrl><Shift>h
