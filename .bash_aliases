@@ -306,3 +306,7 @@ header() {
         tr "\t" "\n" |
         awk '{print NR"\t"$0}'
 }
+
+nth() {
+    head -n $1 "$2" | tail -n 1
+}
