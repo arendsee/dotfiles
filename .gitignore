@@ -1,2 +1,8 @@
 .vim/bundle
 .vim/.*
+
+# for xmonad (see vicfryzel)
+xmonad-x86_64-linux
+xmonad.errors
+xmonad.hi
+xmonad.o
