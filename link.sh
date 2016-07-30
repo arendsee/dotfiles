@@ -23,6 +23,7 @@ safely-link .gitignore
 safely-link .tmux.conf
 safely-link .vimrc
 safely-link .xinitrc
+safely-link .Xresources
 safely-link .xmobarrc
 safely-link caps2esc.map
 safely-link .vim
