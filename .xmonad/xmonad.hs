@@ -3,8 +3,8 @@ import qualified XMonad.StackSet as W
 import XMonad.Util.CustomKeys
 
 main = xmonad $ defaultConfig
-    { borderWidth        = 1
-    , terminal           = "xterm"
+    { borderWidth        = 0
+    , terminal           = "xterm -ie"
     , normalBorderColor  = "#cccccc"
     , focusedBorderColor = "#cd8b00"
     , keys = customKeys delkeys inskeys }
