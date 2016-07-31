@@ -5,3 +5,5 @@ main = xmonad $ defaultConfig
     , terminal           = "xterm"
     , normalBorderColor  = "#cccccc"
     , focusedBorderColor = "#cd8b00" }
+
+-- Mod4Mask - windows key
