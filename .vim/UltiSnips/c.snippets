@@ -52,10 +52,10 @@ snippet define "create a new macro" b
 endsnippet
 
 snippet struct "typedef a new structure" b
-typedef struct {
+typedef struct ${1:NAME}{
 	${2:TYPE} ${3:VARNAME};
 	${0}
-} ${1:NAME};
+} $1;
 endsnippet
 #------------------------------------------------------------------------------
 
