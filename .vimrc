@@ -407,3 +407,22 @@ let g:tagbar_type_rnoweb = {
   \   'sort' : 0
   \ }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- ConqueGDB
+let g:ConqueGdb_SaveHistory = 0
+let g:ConqueTerm_Color = 1
+" Needed to take commands from outside GDB shell
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_InsertOnEnter = 1
+let g:ConqueTerm_TERM = 'xterm'
+
+let g:ConqueGdb_Leader = ','
+let g:ConqueGdb_Run = g:ConqueGdb_Leader . 'r'
+let g:ConqueGdb_Continue = g:ConqueGdb_Leader . 'c'
+let g:ConqueGdb_Next = g:ConqueGdb_Leader . 'n'
+let g:ConqueGdb_Step = g:ConqueGdb_Leader . 's'
+let g:ConqueGdb_Print = g:ConqueGdb_Leader . 'p'
+let g:ConqueGdb_ToggleBreak = g:ConqueGdb_Leader . 'b'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
