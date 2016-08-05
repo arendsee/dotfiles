@@ -40,6 +40,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'  " git flag integration with NerdTree
 Plugin 'vim-scripts/Align'            " align based on a character
 Plugin 'tpope/vim-fugitive'           " manage git
 Plugin 'ctrlpvim/ctrlp.vim'           " CtrlP
+Plugin 'shinokada/dragvisuals.vim'    " Damian Conway's drag thing
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -425,4 +426,17 @@ let g:ConqueGdb_Next = g:ConqueGdb_Leader . 'n'
 let g:ConqueGdb_Step = g:ConqueGdb_Leader . 's'
 let g:ConqueGdb_Print = g:ConqueGdb_Leader . 'p'
 let g:ConqueGdb_ToggleBreak = g:ConqueGdb_Leader . 'b'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- Damian Conways Drag vis
+vmap  <expr>  <LEFT>   DVB_Drag('left')                     
+vmap  <expr>  <RIGHT>  DVB_Drag('right')                    
+vmap  <expr>  <DOWN>   DVB_Drag('down')                     
+vmap  <expr>  <UP>     DVB_Drag('up')                       
+vmap  <expr>  D        DVB_Duplicate()                      
+
+" Remove any introduced trailing whitespace after moving... 
+let g:DVB_TrimWS = 1    
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
