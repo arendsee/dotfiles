@@ -18,7 +18,16 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-PS1="\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+# If ROOT, use a scary red font
+if [[ $HOME == "/root" ]]; then
+    PS1="\[\033[0;31m\]\$? ROOT \W \$ \[\033[00m\]"
+# If not in tmux, show an naked yellow dollar sign
+elif [[ -z $TMUX ]]; then
+    PS1="\[\033[1;33m\]\$ \[\033[00m\]"
+# If in TMUX, use a nice subdued font with working directory shown
+else
+    PS1="\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+fi
 
 # enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
@@ -54,4 +63,6 @@ export LS_COLORS="$LS_COLORS:*.csv=38;5;106:*.tab=38;5;106:*.tsv=38;5;106:"
 export LS_COLORS="$LS_COLORS:*MANIFEST=01;39:*MANIFEST.txt=01;39:*SOURCE=01;39:*SOURCE.txt=01;39:*README=01;39:*README.txt=01;39:*README.md=01;39:*INSTALL=01;39:*TODO=01;39:"
 
 # pdf and tex
+
+
 export LS_COLORS="$LS_COLORS:*.pdf=00;35:*.tex=00;36"

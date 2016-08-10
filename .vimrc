@@ -40,6 +40,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'  " git flag integration with NerdTree
 Plugin 'vim-scripts/Align'            " align based on a character
 Plugin 'tpope/vim-fugitive'           " manage git
 Plugin 'ctrlpvim/ctrlp.vim'           " CtrlP
+Plugin 'shinokada/dragvisuals.vim'    " Damian Conway's drag thing
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -66,6 +67,7 @@ set syntax=automatic
 set tabstop=4
 set shiftwidth=4
 set wildmode=longest,list
+set history=99999
 " autocmd BufNewFile,BufRead *.tex set syn=tex
 " nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 filetype plugin on
@@ -413,4 +415,32 @@ let g:tagbar_type_rnoweb = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- statusline
 set statusline=%<%f\ %h%m%r%=%-14.(%b,%l,%c%V%)\ %P
+" --- ConqueGDB
+let g:ConqueGdb_SaveHistory = 0
+let g:ConqueTerm_Color = 1
+" Needed to take commands from outside GDB shell
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_InsertOnEnter = 1
+let g:ConqueTerm_TERM = 'xterm'
+
+let g:ConqueGdb_Leader = ','
+let g:ConqueGdb_Run = g:ConqueGdb_Leader . 'r'
+let g:ConqueGdb_Continue = g:ConqueGdb_Leader . 'c'
+let g:ConqueGdb_Next = g:ConqueGdb_Leader . 'n'
+let g:ConqueGdb_Step = g:ConqueGdb_Leader . 's'
+let g:ConqueGdb_Print = g:ConqueGdb_Leader . 'p'
+let g:ConqueGdb_ToggleBreak = g:ConqueGdb_Leader . 'b'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- Damian Conways Drag vis
+vmap  <expr>  <LEFT>   DVB_Drag('left')                     
+vmap  <expr>  <RIGHT>  DVB_Drag('right')                    
+vmap  <expr>  <DOWN>   DVB_Drag('down')                     
+vmap  <expr>  <UP>     DVB_Drag('up')                       
+vmap  <expr>  D        DVB_Duplicate()                      
+
+" Remove any introduced trailing whitespace after moving... 
+let g:DVB_TrimWS = 1    
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
