@@ -7,11 +7,20 @@
 tmp=/tmp/dotfiles-$(date | tr ' ' '-') 
 mkdir -p $tmp
 
-
 safely-link () {
     src="$PWD/$1"
+
     [[ -z "$2" ]] && des="$HOME/$1" || des="$2"
-    [[ ! -h "$des" && -r "$des" ]] && (mv "$des" "$tmp" && echo "Moving '$des' to $tmp")
+
+    # to avoid recurse madness
+    [[ -h "$des" ]] && rm $des
+
+    if [[ -f "$des" || -d "$des"  ]]
+    then
+        mv "$des" "$tmp"
+        echo "Moving '$des' to $tmp"
+    fi
+
     ln -sf "$src" "$des"
 }
 
@@ -27,7 +36,17 @@ safely-link .xinitrc
 safely-link .Xresources
 safely-link .xmobarrc
 safely-link caps2esc.map
-safely-link .vim
 safely-link .xmonad
+
+mkdir -p $HOME/.vim/bundle
+safely-link .vim/UltiSnips $HOME/.vim/UltiSnips
+safely-link .vim/ftdetect  $HOME/.vim/ftdetect
+safely-link .vim/ftplugin  $HOME/.vim/ftplugin
+safely-link .vim/syntax    $HOME/.vim/syntax
+
+vundledir=$HOME/.vim/bundle/Vundle.vim
+vundlerep=https://github.com/VundleVim/Vundle.vim.git
+[[ -r $vundledir ]] || git clone $vundlerep $vundledir
+vim +PluginClean +PluginInstall +PluginUpdate +qall
 
 rmdir $tmp 2> /dev/null

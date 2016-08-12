@@ -11,13 +11,13 @@ autocmd!
 " :PluginUpdate  - to update
 " :PluginSearch  - list all plugins in vim script
 " :PluginClean   - remove plugins not mentioned below
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Plugin 'gmarik/vundle'                " Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'         " Vundle
 Plugin 'ervandew/supertab'            " magic with TAB
 Plugin 'screen.vim'                   " something I don't exactly know how to use
 Plugin 'tComment'                     " language-aware commenting
-Plugin 'Distinguished'                " may main colorscheme (256 bit)
 Plugin 'Vim-R-plugin'                 " R code wrapper
 " Plugin 'jalvesaq/R-vim-runtime      "
 Plugin 'Python-mode-klen'             " python wrapping etc
@@ -43,6 +43,8 @@ Plugin 'ctrlpvim/ctrlp.vim'           " CtrlP
 Plugin 'shinokada/dragvisuals.vim'    " Damian Conway's drag thing
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
+
+call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -99,7 +101,7 @@ vnoremap // y/<C-R>"<CR>
 " the lines below. Note that 256 bit color may require setting on parameters
 " in your kernel, or something.
 set t_Co=256
-colorscheme distinguished
+" TODO: choose a colorscheme
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
