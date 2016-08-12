@@ -7,6 +7,7 @@
 tmp=/tmp/dotfiles-$(date | tr ' ' '-') 
 mkdir -p $tmp
 
+
 safely-link () {
     src="$PWD/$1"
     [[ -z "$2" ]] && des="$HOME/$1" || des="$2"

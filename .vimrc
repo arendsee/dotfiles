@@ -67,7 +67,10 @@ set syntax=automatic
 set tabstop=4
 set shiftwidth=4
 set wildmode=longest,list
-set history=99999
+set history=10000
+" tell it to use an undo file
+set undofile
+
 " autocmd BufNewFile,BufRead *.tex set syn=tex
 " nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 filetype plugin on
