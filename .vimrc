@@ -41,6 +41,7 @@ Plugin 'vim-scripts/Align'            " align based on a character
 Plugin 'tpope/vim-fugitive'           " manage git
 Plugin 'ctrlpvim/ctrlp.vim'           " CtrlP
 Plugin 'shinokada/dragvisuals.vim'    " Damian Conway's drag thing
+Plugin 'Lokaltog/vim-distinguished'   " Coloscheme
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
 
@@ -77,6 +78,7 @@ set undofile
 " nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 filetype plugin on
 syntax on
+colorscheme distinguished
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -101,7 +103,7 @@ vnoremap // y/<C-R>"<CR>
 " the lines below. Note that 256 bit color may require setting on parameters
 " in your kernel, or something.
 set t_Co=256
-" TODO: choose a colorscheme
+colorscheme distinguished
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
