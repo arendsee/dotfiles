@@ -207,6 +207,7 @@ autocmd BufNewFile,BufRead *.tex call LatexSettings()
 autocmd FileType text call TextSettings()
 autocmd FileType markdown call MarkdownSettings()
 autocmd FileType py call PythonSetting()
+autocmd FileType rnoweb call Rnoweb()
 
 function! TabularSettings()
     setlocal nowrap
@@ -230,6 +231,13 @@ function! TwoStop()
     setlocal tabstop=2
     setlocal shiftwidth=2
     setlocal nonumber
+endfunction
+
+function! Rnoweb()
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+    let g:tex_fold_enabled=1
+    setlocal foldmethod=syntax
 endfunction
 
 function! TextSettings()
