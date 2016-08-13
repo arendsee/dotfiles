@@ -50,13 +50,14 @@ vundlerep=https://github.com/VundleVim/Vundle.vim.git
 [[ -r $vundledir ]] || git clone $vundlerep $vundledir
 vim +PluginClean +PluginInstall +qall
 
-colorscheme=$HOME/.vim/bundle/vim-distinguished/colors/distinguished.vim
-if [[ -f $colorscheme ]]
+colorscheme=distinguished
+colorscheme_path=$HOME/.vim/bundle/vim-distinguished/colors
+if [[ -f "${colorscheme_path}/${colorscheme}.vim" ]]
 then
     mkdir -p $HOME/.vim/colors
-    cp -sf $colorscheme $HOME/.vim/colors
+    cp -sf ${colorscheme_path}/${colorscheme}.vim $HOME/.vim/colors
 else
-    echo "Color scheme not found" >&2
+    echo "Colorscheme '$colorscheme' not found in directory '$colorscheme_path'" >&2
 fi
 
 rmdir $tmp 2> /dev/null
