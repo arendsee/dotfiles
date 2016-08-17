@@ -32,6 +32,7 @@ safely-link .gitconfig
 safely-link .gitignore
 safely-link .tmux.conf
 safely-link .vimrc
+safely-link .goyo.vimrc
 safely-link .xinitrc
 safely-link .Xresources
 safely-link .xmobarrc

@@ -328,51 +328,6 @@ augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" --- Goyo options
-function! s:goyo_enter()
-  set noshowmode
-  set noshowcmd
-  set nonumber
-  "set scrolloff=999
-endfunction
-
-function! s:goyo_leave()
-  set showmode
-  set showcmd
-  set number
-  "set scrolloff=5
-endfunction
-
-" Quitting whether Goyo is active or not
-" - junegunn: https://github.com/junegunn/goyo.vim/issues/16
-function! g:GoyoBefore()
-  let b:quitting = 0
-  let b:quitting_bang = 0
-  autocmd QuitPre <buffer> let b:quitting = 1
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-endfunction
-
-" - junegunn
-function! g:GoyoAfter()
-  " Quit Vim if this is the only remaining buffer
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
-endfunction
-
-" - junegunn
-let g:goyo_callbacks = [function('g:GoyoBefore'), function('g:GoyoAfter')]
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- vim-r-plugin options
 let vimrplugin_assign = 0
 let vimrplugin_applescript = 0
@@ -439,7 +394,9 @@ let g:ConqueTerm_Color = 1
 let g:ConqueTerm_ReadUnfocused = 1
 let g:ConqueTerm_InsertOnEnter = 1
 let g:ConqueTerm_TERM = 'xterm'
-
+" open GDB window on left, source on right
+let g:ConqueGdb_SrcSplit = 'right'
+" set keybindings
 let g:ConqueGdb_Leader = ','
 let g:ConqueGdb_Run = g:ConqueGdb_Leader . 'r'
 let g:ConqueGdb_Continue = g:ConqueGdb_Leader . 'c'
@@ -460,4 +417,35 @@ vmap  <expr>  D        DVB_Duplicate()
 
 " Remove any introduced trailing whitespace after moving... 
 let g:DVB_TrimWS = 1    
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- Goyo options
+" Quitting whether Goyo is active or not
+" - junegunn: https://github.com/junegunn/goyo.vim/issues/16
+function! g:GoyoBefore()
+  set noshowmode
+  set noshowcmd
+  set nonumber
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+" - junegunn
+function! g:GoyoAfter()
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+" - junegunn
+let g:goyo_callbacks = [function('g:GoyoBefore'), function('g:GoyoAfter')]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
