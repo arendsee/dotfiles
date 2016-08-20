@@ -42,6 +42,7 @@ Plugin 'tpope/vim-fugitive'           " manage git
 Plugin 'ctrlpvim/ctrlp.vim'           " CtrlP
 Plugin 'shinokada/dragvisuals.vim'    " Damian Conway's drag thing
 Plugin 'Lokaltog/vim-distinguished'   " Coloscheme
+Plugin 'Chiel92/vim-autoformat'       " code formatting
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
 
@@ -78,7 +79,6 @@ set undofile
 " nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 filetype plugin on
 syntax on
-colorscheme distinguished
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -408,6 +408,13 @@ let g:ConqueGdb_ToggleBreak = g:ConqueGdb_Leader . 'b'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" auto-reformatting
+nnoremap <C-K> :Autoformat<CR>
+vnoremap <C-K> :Autoformat<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- Damian Conways Drag vis
 vmap  <expr>  <LEFT>   DVB_Drag('left')                     
 vmap  <expr>  <RIGHT>  DVB_Drag('right')                    
@@ -417,35 +424,4 @@ vmap  <expr>  D        DVB_Duplicate()
 
 " Remove any introduced trailing whitespace after moving... 
 let g:DVB_TrimWS = 1    
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" --- Goyo options
-" Quitting whether Goyo is active or not
-" - junegunn: https://github.com/junegunn/goyo.vim/issues/16
-function! g:GoyoBefore()
-  set noshowmode
-  set noshowcmd
-  set nonumber
-  let b:quitting = 0
-  let b:quitting_bang = 0
-  autocmd QuitPre <buffer> let b:quitting = 1
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-endfunction
-
-" - junegunn
-function! g:GoyoAfter()
-  " Quit Vim if this is the only remaining buffer
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
-endfunction
-
-" - junegunn
-let g:goyo_callbacks = [function('g:GoyoBefore'), function('g:GoyoAfter')]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
