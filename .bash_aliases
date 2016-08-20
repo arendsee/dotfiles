@@ -153,11 +153,11 @@ function o {
         elif [[ "$j" =~ \.(pdb)$ ]]; then
             pymol "$j" &
         elif [[ "$j" =~ \.(txt|md|tex)$ ]]; then
-            vi +Goyo -u ~/.goyo.vimrc "$j"
+            vi +Goyo +HardPencil -u ~/.goyo.vimrc "$j"
         elif [[ -d "$j" ]]; then
             nautilus "$j" &
         elif [[ `file "$j"` =~ (ASCII text|empty) ]]; then
-            vi +Goyo +PencilToggle -u ~/.goyo.vimrc "$j"
+            vi +Goyo +HardPencil -u ~/.goyo.vimrc "$j"
         elif [[ `file "$j"` =~ 'ELF' ]]; then
             vi -c Vinarise "$j"
         else

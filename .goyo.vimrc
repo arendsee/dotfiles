@@ -22,10 +22,18 @@ Plugin 'vim-scripts/Align'            " align based on a character
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+set backspace=indent,eol,start
 set clipboard^=autoselect
+set noswapfile
 set nonumber
 set noshowmode
 set noshowcmd
+set syntax=automatic
+
+filetype plugin on
+syntax on
+set t_Co=256
+colorscheme distinguished
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Global (and controversial) key mapping
