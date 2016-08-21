@@ -4,6 +4,7 @@ filetype off      " needs to be off (TODO: why exactly?)
 " Reset any autocmd (why ?)
 autocmd!
 
+let mapleader = " "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BEGIN VUNDLE
@@ -76,6 +77,8 @@ set history=10000
 " tell it to use an undo file
 set undofile
 set undodir=$HOME/.vimundo,.
+" set this higher to see what vim is or isn't doing
+set verbose=0
 
 " autocmd BufNewFile,BufRead *.tex set syn=tex
 " nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
@@ -89,7 +92,7 @@ syntax on
 noremap ; :
 noremap : ;
 " select a word with spacebar
-noremap <space> viw
+noremap <leader>v viw
 " press enter to reset highlighting
 nnoremap <CR> :noh<CR><CR>
 " wrap paragraph
@@ -115,7 +118,9 @@ colorscheme distinguished
 " NOTE: if you are using tmux, you will also need to add the following command
 " to your .tmux.conf file:
 " set -s escape-time 0
-set timeoutlen=200 ttimeoutlen=0
+set timeout
+set timeoutlen=1000
+set ttimeoutlen=1000
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -293,15 +298,37 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Snippet commands - for use with ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<leader>j"
+let g:UltiSnipsJumpBackwardTrigger="<leader>k"
 let g:UltiSnipsEditSplit="horizontal"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- Gundo options
-"
+" p    - show the whole diff from head to current node
+" <cr> - revert
+" Set the horizontal width of the Gundo graph (and preview).
+let g:gundo_width=45
+" Set the vertical height of the Gundo preview.
+let g:gundo_preview_height=15
+" Force the preview window below current windows instead of below the graph.
+let g:gundo_preview_bottom=1
+" 0 - open Gundo graph (and preview) left side
+" 1 - open Gundo graph (and preview) right side
+let g:gundo_right=0
+" Set this to 0 to disable the help text in the Gundo graph window.
+let g:gundo_help=0
+" Set this to 1 to automatically close the Gundo windows when reverting.
+let g:gundo_close_on_revert=0
+" Set this to 0 to disable automatically rendering preview diffs as you move
+" through the undo tree (you can still render a specific diff with r).  This can
+" be useful on large files and undo trees to speed up Gundo.
+let g:gundo_auto_preview=1
+" This is the delay in milliseconds between each change when running 'play to'
+" mode. Set this to a higher number for a slower playback or to a lower number
+" for a faster playback.
+let g:gundo_playback_delay=60
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -349,8 +376,9 @@ let g:ctrlp_regexp = 1
 " use gitignore - https://github.com/ctrlpvim/ctrlp.vim
 set wildignore+=*.o,*.so,*.gch,*.out,*.gz,*.bz2
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ctrlp_map = '<c-p>'
-nnoremap <c-f> :CtrlPTag<cr>
+let g:ctrlp_map = '<leader>o'
+nnoremap <leader>f :CtrlPTag<cr>
+nnoremap <leader>c :w<cr> :bd<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -365,6 +393,12 @@ let g:gitgutter_max_signs = 100
 nmap <Leader>hs <Plug>GitGutterStageHunk
 " undo a hunk (default=<Leader>hu)
 nmap <Leader>hu <Plug>GitGutterUndoHunk
+" preview hunk
+nmap <Leader>hp <Plug>GitGutterPreviewHunk <C-j>
+" prev hunk
+nmap [c <Plug>GitGutterPrevHunk
+" next hunk
+nmap ]c <Plug>GitGutterNextHunk
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -399,20 +433,23 @@ let g:ConqueTerm_TERM = 'xterm'
 " open GDB window on left, source on right
 let g:ConqueGdb_SrcSplit = 'right'
 " set keybindings
-let g:ConqueGdb_Leader = ','
-let g:ConqueGdb_Run = g:ConqueGdb_Leader . 'r'
-let g:ConqueGdb_Continue = g:ConqueGdb_Leader . 'c'
-let g:ConqueGdb_Next = g:ConqueGdb_Leader . 'n'
-let g:ConqueGdb_Step = g:ConqueGdb_Leader . 's'
-let g:ConqueGdb_Print = g:ConqueGdb_Leader . 'p'
-let g:ConqueGdb_ToggleBreak = g:ConqueGdb_Leader . 'b'
+let g:ConqueGdb_Leader      = '<leader>'
+let g:ConqueGdb_Run         = '<Nop>'
+let g:ConqueGdb_Continue    = '<Nop>'
+let g:ConqueGdb_Next        = '<Nop>'
+let g:ConqueGdb_Step        = '<Nop>'
+let g:ConqueGdb_Finish      = '<Nop>'
+let g:ConqueGdb_Backtrace   = '<Nop>'
+let g:ConqueGdb_Print       = '<Nop>'
+let g:ConqueGdb_ToggleBreak = '<leader>b'
+let g:ConqueGdb_DeleteBreak = '<leader>B'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto-reformatting
-nnoremap <C-K> :Autoformat<CR>
-vnoremap <C-K> :Autoformat<CR>
+nnoremap <C-A> :Autoformat<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
