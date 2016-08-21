@@ -182,8 +182,8 @@ set tags=./tags,tags;$HOME
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- BUFFERS, TABS, WINDOWS, and all that
 set hidden
-nnoremap <C-h> :bprev<CR>
-nnoremap <C-l> :bnext<CR>
+nnoremap <C-i> :bprev<CR>
+nnoremap <C-o> :bnext<CR>
 let g:buftabline_show=1
 let g:buftabline_indicators="on"
 let g:buftabline_numbers=2
