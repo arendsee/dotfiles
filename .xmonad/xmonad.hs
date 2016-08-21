@@ -4,7 +4,8 @@ import XMonad.Util.CustomKeys
 
 main = xmonad $ defaultConfig
     { borderWidth        = 0
-    , terminal           = "xterm -ie"
+    --, terminal           = "xterm -ie"
+    , terminal           = "urxvt"
     , normalBorderColor  = "#cccccc"
     , focusedBorderColor = "#cd8b00"
     , keys = customKeys delkeys inskeys }
