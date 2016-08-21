@@ -46,6 +46,8 @@ safely-link .vim/ftdetect  $HOME/.vim/ftdetect
 safely-link .vim/ftplugin  $HOME/.vim/ftplugin
 safely-link .vim/syntax    $HOME/.vim/syntax
 
+mkdir -p $HOME/.vimundo
+
 vundledir=$HOME/.vim/bundle/Vundle.vim
 vundlerep=https://github.com/VundleVim/Vundle.vim.git
 [[ -r $vundledir ]] || git clone $vundlerep $vundledir

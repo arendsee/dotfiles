@@ -14,35 +14,36 @@ autocmd!
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'         " Vundle
-Plugin 'ervandew/supertab'            " magic with TAB
-Plugin 'screen.vim'                   " something I don't exactly know how to use
-Plugin 'tComment'                     " language-aware commenting
-Plugin 'Vim-R-plugin'                 " R code wrapper
-" Plugin 'jalvesaq/R-vim-runtime      "
-Plugin 'Python-mode-klen'             " python wrapping etc
-" Plugin 'ivanov/vim-ipython'         " **
-Plugin 'LaTeX-Box'                    " latex wrapping, keybinding, etc.
-Plugin 'SirVer/ultisnips'             " snippet engine
-Plugin 'honza/vim-snippets'           " snippets use be ultisnips engine
-Plugin 'Gundo'                        " * undo tree, <F5> to open
-Plugin 'Shougo/vinarise'              " hex editor
-Plugin 'reedes/vim-pencil'            " allows autowrapping for writing
-" Plugin 'jpalardy/vim-slime'         " copy and paste into another tmux window
+Plugin 'VundleVim/Vundle.vim'           " Vundle
+Plugin 'ervandew/supertab'              " magic with TAB
+Plugin 'screen.vim'                     " something I don't exactly know how to use
+Plugin 'tComment'                       " language-aware commenting
+Plugin 'Vim-R-plugin'                   " R code wrapper
+" Plugin 'jalvesaq/R-vim-runtime        "
+Plugin 'Python-mode-klen'               " python wrapping etc
+" Plugin 'ivanov/vim-ipython'           " **
+Plugin 'LaTeX-Box'                      " latex wrapping, keybinding, etc.
+Plugin 'SirVer/ultisnips'               " snippet engine
+Plugin 'honza/vim-snippets'             " snippets use be ultisnips engine
+Plugin 'Gundo'                          " * undo tree, <F5> to open
+Plugin 'Shougo/vinarise'                " hex editor
+Plugin 'reedes/vim-pencil'              " allows autowrapping for writing
+" Plugin 'jpalardy/vim-slime'           " copy and paste into another tmux window
 " Plugin 'davidhalter/jedi-vim'         " for autocomplete
-Plugin 'junegunn/goyo.vim'            " zen mode
-Plugin 'vim-scripts/Conque-GDB'       " sync vim and GNU Debugger
-Plugin 'airblade/vim-gitgutter'       " shows changes to git file
-Plugin 'majutsushi/tagbar'            " ctag code outline bar
-Plugin 'ap/vim-buftabline'            " show buffers
-Plugin 'scrooloose/nerdtree'          " filesystem browser
-Plugin 'Xuyuanp/nerdtree-git-plugin'  " git flag integration with NerdTree
-Plugin 'vim-scripts/Align'            " align based on a character
-Plugin 'tpope/vim-fugitive'           " manage git
-Plugin 'ctrlpvim/ctrlp.vim'           " CtrlP
-Plugin 'shinokada/dragvisuals.vim'    " Damian Conway's drag thing
-Plugin 'Lokaltog/vim-distinguished'   " Coloscheme
-Plugin 'Chiel92/vim-autoformat'       " code formatting
+Plugin 'junegunn/goyo.vim'              " zen mode
+Plugin 'vim-scripts/Conque-GDB'         " sync vim and GNU Debugger
+Plugin 'airblade/vim-gitgutter'         " shows changes to git file
+Plugin 'majutsushi/tagbar'              " ctag code outline bar
+Plugin 'ap/vim-buftabline'              " show buffers
+Plugin 'scrooloose/nerdtree'            " filesystem browser
+Plugin 'Xuyuanp/nerdtree-git-plugin'    " git flag integration with NerdTree
+Plugin 'vim-scripts/Align'              " align based on a character
+Plugin 'tpope/vim-fugitive'             " manage git
+Plugin 'ctrlpvim/ctrlp.vim'             " CtrlP
+Plugin 'shinokada/dragvisuals.vim'      " Damian Conway's drag thing
+Plugin 'Lokaltog/vim-distinguished'     " Coloscheme
+Plugin 'Chiel92/vim-autoformat'         " code formatting
+Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
 
@@ -74,6 +75,7 @@ set wildmode=longest,list
 set history=10000
 " tell it to use an undo file
 set undofile
+set undodir=$HOME/.vimundo,.
 
 " autocmd BufNewFile,BufRead *.tex set syn=tex
 " nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward

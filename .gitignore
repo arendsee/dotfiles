@@ -1,8 +1,6 @@
 .vim/bundle
 .vim/.*
 
-.*un~
-
 # for xmonad (see vicfryzel)
 xmonad-x86_64-linux
 xmonad.errors
