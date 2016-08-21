@@ -57,8 +57,21 @@ URxvt*background.border:   false
 URxvt.secondaryScreen: 1
 URxvt.secondaryScroll: 0
 
-URxvt.font: xft:DejaVu Sans Mono:size=10:antialias=true
-URxvt.letterSpace: 0
+! -- practival, very light
+! -- correctly renders Chinese
+URxvt.font: xft:Nimbus Mono:size=10:antialias=true
+
+! -- Not fonts I would really use, but pretty
+! -- Actually can render Chinese
+! -- I can fix the spacing with letterSpace:-4
+! -- But the kerning is slightly off
+! URxvt.font: xft:Chancery URW:size=10:antialias=true
+! URxvt.letterSpace: -4
+
+! -- practical, but a bit heavy
+! -- cannot render all Chinese characters
+! URxvt.font: xft:DejaVu Sans Mono:size=10:antialias=true
+!  URxvt.font: xft:Terminal:size=10:antialias=true
 
 URxvt.perl-ext-common:resize-font
 URxvt.resize-font.smaller: C-Down
@@ -208,3 +221,4 @@ URxvt*perl-ext:
 ! True: store tabs as wide characters.
 ! False: interpret tabs as cursor movement only
 ! URxvt*pastableTabs:                   boolean
+
