@@ -4,7 +4,8 @@ filetype off      " needs to be off (TODO: why exactly?)
 " Reset any autocmd (why ?)
 autocmd!
 
-let mapleader = " "
+let leader = ","
+let maplocalleader = " "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BEGIN VUNDLE
@@ -92,11 +93,11 @@ syntax on
 noremap ; :
 noremap : ;
 " select a word with spacebar
-noremap <leader>v viw
+noremap <localleader>v viw
 " press enter to reset highlighting
 nnoremap <CR> :noh<CR><CR>
 " wrap paragraph
-nnoremap <leader>p ma{V}gq'a$
+nnoremap <localleader>p ma{V}gq'a$
 " search for selected text
 vnoremap // y/<C-R>"<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -192,16 +193,16 @@ nnoremap <C-o> :bnext<CR>
 let g:buftabline_show=1
 let g:buftabline_indicators="on"
 let g:buftabline_numbers=2
-nmap <leader>1 <Plug>BufTabLine.Go(1)
-nmap <leader>2 <Plug>BufTabLine.Go(2)
-nmap <leader>3 <Plug>BufTabLine.Go(3)
-nmap <leader>4 <Plug>BufTabLine.Go(4)
-nmap <leader>5 <Plug>BufTabLine.Go(5)
-nmap <leader>6 <Plug>BufTabLine.Go(6)
-nmap <leader>7 <Plug>BufTabLine.Go(7)
-nmap <leader>8 <Plug>BufTabLine.Go(8)
-nmap <leader>9 <Plug>BufTabLine.Go(9)
-nmap <leader>0 <Plug>BufTabLine.Go(10)
+nmap <localleader>1 <Plug>BufTabLine.Go(1)
+nmap <localleader>2 <Plug>BufTabLine.Go(2)
+nmap <localleader>3 <Plug>BufTabLine.Go(3)
+nmap <localleader>4 <Plug>BufTabLine.Go(4)
+nmap <localleader>5 <Plug>BufTabLine.Go(5)
+nmap <localleader>6 <Plug>BufTabLine.Go(6)
+nmap <localleader>7 <Plug>BufTabLine.Go(7)
+nmap <localleader>8 <Plug>BufTabLine.Go(8)
+nmap <localleader>9 <Plug>BufTabLine.Go(9)
+nmap <localleader>0 <Plug>BufTabLine.Go(10)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -233,7 +234,7 @@ function! RSettings()
     setlocal tabstop=2
     setlocal shiftwidth=2
     setlocal expandtab
-    map <buffer> <leader> h RAction("head")
+    map <buffer> <localleader> h RAction("head")
 endfunction
 
 function! TwoStop()
@@ -256,7 +257,7 @@ endfunction
 
 function! MarkdownSettings()
     " add row of '=' beneath header
-    noremap <leader>h yypVr=
+    noremap <localleader>h yypVr=
 endfunction
 
 function! PythonSetting()
@@ -298,8 +299,8 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Snippet commands - for use with ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<leader>j"
-let g:UltiSnipsJumpBackwardTrigger="<leader>k"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="horizontal"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -376,8 +377,8 @@ let g:ctrlp_regexp = 1
 " use gitignore - https://github.com/ctrlpvim/ctrlp.vim
 set wildignore+=*.o,*.so,*.gch,*.out,*.gz,*.bz2,*.hi
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-nnoremap <leader>o :CtrlP<cr>
-nnoremap <leader>f :CtrlPTag<cr>
+nnoremap <localleader>o :CtrlP<cr>
+nnoremap <localleader>f :CtrlPTag<cr>
 " leave a buffer, saving unless it is readonly (this still fails in some cases
 " CountBuffers re-adapted from Kyle Strand on superuser
 function! CountBuffers ()
@@ -407,8 +408,8 @@ function! Close_any_buffer ()
         endif
     endtry
 endfunction
-nnoremap <leader>c :call Close_any_buffer() <cr>
-nnoremap <leader>C :wqa<cr>
+nnoremap <localleader>c :call Close_any_buffer() <cr>
+nnoremap <localleader>C :wqa<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -420,11 +421,11 @@ nnoremap <leader>C :wqa<cr>
 " Number of changes to track (for performance reasons) default=500
 let g:gitgutter_max_signs = 100
 " stage a hunk (default=<Leader>hs)
-nmap <Leader>hs <Plug>GitGutterStageHunk
+nmap <localleader>hs <Plug>GitGutterStageHunk
 " undo a hunk (default=<Leader>hu)
-nmap <Leader>hu <Plug>GitGutterUndoHunk
+nmap <localleader>hu <Plug>GitGutterUndoHunk
 " preview hunk
-nmap <Leader>hp <Plug>GitGutterPreviewHunk <C-j>
+nmap <localleader>hp <Plug>GitGutterPreviewHunk <C-j>
 " prev hunk
 nmap [c <Plug>GitGutterPrevHunk
 " next hunk
@@ -463,7 +464,6 @@ let g:ConqueTerm_TERM = 'xterm'
 " open GDB window on left, source on right
 let g:ConqueGdb_SrcSplit = 'right'
 " set keybindings
-let g:ConqueGdb_Leader      = '<leader>'
 let g:ConqueGdb_Run         = '<Nop>'
 let g:ConqueGdb_Continue    = '<Nop>'
 let g:ConqueGdb_Next        = '<Nop>'
@@ -471,8 +471,9 @@ let g:ConqueGdb_Step        = '<Nop>'
 let g:ConqueGdb_Finish      = '<Nop>'
 let g:ConqueGdb_Backtrace   = '<Nop>'
 let g:ConqueGdb_Print       = '<Nop>'
-let g:ConqueGdb_ToggleBreak = '<leader>b'
-let g:ConqueGdb_DeleteBreak = '<leader>B'
+let g:ConqueGdb_DeleteBreak = '<Nop>'
+let g:ConqueGdb_SetBreak    = '<Nop>'
+let g:ConqueGdb_ToggleBreak = '<localleader>b'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
