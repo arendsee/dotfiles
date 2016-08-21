@@ -374,11 +374,41 @@ nmap <C-CR> <Plug>RDSendLine
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_regexp = 1
 " use gitignore - https://github.com/ctrlpvim/ctrlp.vim
-set wildignore+=*.o,*.so,*.gch,*.out,*.gz,*.bz2
+set wildignore+=*.o,*.so,*.gch,*.out,*.gz,*.bz2,*.hi
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ctrlp_map = '<leader>o'
+nnoremap <leader>o :CtrlP<cr>
 nnoremap <leader>f :CtrlPTag<cr>
-nnoremap <leader>c :w<cr> :bd<cr>
+" leave a buffer, saving unless it is readonly (this still fails in some cases
+" CountBuffers re-adapted from Kyle Strand on superuser
+function! CountBuffers ()
+    let n = 0 
+    for i in range(1, bufnr("$"))
+        if buflisted(i) && !empty(bufname(i))
+            let n += 1
+        endif
+    endfor
+    return n
+endfunction
+function! Close_any_buffer ()
+    try
+        write
+    catch /readonly/
+    catch /Cannot write/
+    catch /No filename/
+    finally
+        if CountBuffers() == 1
+            try
+                quit
+            catch /E173/
+                wqa
+            endtry
+        else
+            bdelete
+        endif
+    endtry
+endfunction
+nnoremap <leader>c :call Close_any_buffer() <cr>
+nnoremap <leader>C :wqa<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
