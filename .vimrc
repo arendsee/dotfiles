@@ -100,6 +100,13 @@ nnoremap <CR> :noh<CR><CR>
 nnoremap <localleader>p ma{V}gq'a$
 " search for selected text
 vnoremap // y/<C-R>"<CR>
+
+" One hand navigation
+noremap <Down>  5<C-e>
+noremap <Up>    5<C-y>
+noremap <Left>  <PageUp>
+noremap <Right> <PageDown>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 

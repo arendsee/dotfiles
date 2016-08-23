@@ -24,8 +24,6 @@ xterm*eightBitInput: false
 
 ! -----------------------------------------------------------------------
 ! For URxvt
-! This is mostly adapted from Arch wiki and http://www.askapache.com/
-! Special thanks to askapache for the comments on the options
 ! -----------------------------------------------------------------------
 
 ! ---- backspace mishandling leads to great sorrow -------------
@@ -49,7 +47,7 @@ URxvt*scrollBar_right:    false
 URxvt*scrollBar_floating: false
 URxvt*scrollBar_align:    false
 ! Set the scrollbar width in pixels.
-URxvt*thickness:          5
+URxvt*thickness:          0
 
 URxvt*background.border:   false
 
@@ -59,7 +57,8 @@ URxvt.secondaryScroll: 0
 
 ! -- practival, very light
 ! -- correctly renders Chinese
-URxvt.font: xft:Nimbus Mono:size=10:antialias=true
+! -- however, the { and ( are almost indistinguishable
+! URxvt.font: xft:Nimbus Mono:size=10:antialias=true
 
 ! -- Not fonts I would really use, but pretty
 ! -- Actually can render Chinese
@@ -70,8 +69,8 @@ URxvt.font: xft:Nimbus Mono:size=10:antialias=true
 
 ! -- practical, but a bit heavy
 ! -- cannot render all Chinese characters
-! URxvt.font: xft:DejaVu Sans Mono:size=10:antialias=true
-!  URxvt.font: xft:Terminal:size=10:antialias=true
+URxvt.font: xft:DejaVu Sans Mono:size=10:antialias=true
+!URxvt.font: xft:Terminal:size=10:antialias=true
 
 URxvt.perl-ext-common:resize-font
 URxvt.resize-font.smaller: C-Down
@@ -110,10 +109,10 @@ URxvt*skipScroll:                       true
 URxvt*transparent:                      false
 
 ! Fade the text by the given percentage when focus is lost
-URxvt*fading:                           30
+URxvt*fading:                           50
 
 ! Fade to this colour, when fading is used (see fading:). The default colour is black
-URxvt*fadeColor:                        Green
+URxvt*fadeColor:                        Black
 
 ! True:  inhibit writing record into the system log file utmp
 ! False: write record into the system log file utmp [default]
@@ -184,6 +183,9 @@ URxvt*buffered:                         true
 
 ! Turn on/off hold window after exit support. If enabled, urxvt will not immediately destroy its window when the program executed within it exits. Instead, it will wait till it is being killed or closed by the user.
 URxvt*hold:                             false
+
+! Request a borderless window, this may or may not be honored by the window manager
+URxvt*borderless:                       true
 
 ! External border of number pixels. This resource is limited to 100
 URxvt*externalBorder:                   0 

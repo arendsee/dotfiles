@@ -24,16 +24,7 @@ alias seg='segmasker -outfmt fasta'
 alias x='exit'
 alias lynx='lynx -vikeys -homepage=www.google.com'
 alias t='exec tmux'
-
-function info() {
-    vim                                 \
-        -c "Vinfo $1"                   \
-        -c 'silent only'                \
-        -c 'set nonumber'               \
-        -c 'Goyo'                       \
-        -c 'nnoremap q :q <CR> :q <CR>' \
-        -u ~/.goyo.vimrc 
-}
+alias info='info --vi-keys' 
 
 # =============================================================================
 # Git functions
@@ -176,6 +167,18 @@ function o {
         fi
     done
 }
+# A minimal path to one-hand info reading
+# Actually, I think gnu info rocks, probably don't need a replacement
+function vinfo() {
+    vim -R                              \
+        -c "Vinfo $1"                   \
+        -c 'silent only'                \
+        -c 'set nonumber'               \
+        -c 'Goyo'                       \
+        -c 'nnoremap q :q <CR> :q <CR>' \
+        -u ~/.goyo.vimrc 
+}
+
 
 function ma {
     for j in `ls *mp3 *wav *flac`
