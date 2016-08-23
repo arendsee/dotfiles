@@ -36,6 +36,7 @@ safely-link .goyo.vimrc
 safely-link .xinitrc
 safely-link .Xresources
 safely-link .xmobarrc
+safely-link .infokey
 safely-link caps2esc.map
 safely-link .xmonad
 

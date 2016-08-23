@@ -1,0 +1,33 @@
+# ====================================================================
+#info
+
+# Map arrow keys for lazy one hand navigation
+\kr    next-node 
+\kl    prev-node 
+\ku    scroll-backward
+\kd    scroll-forward
+
+# Use enter to follow xrefs
+\r     select-reference-this-line
+
+# Jump to next/prev xref
+l      move-to-next-xref
+h      move-to-prev-xref
+
+
+
+# ====================================================================
+#var
+
+highlight-searches=On
+
+# Continuous - keep scrolling right on up
+# Page Only - never change nodes with scroll
+# Next Only - only try to get the next node
+scroll-behavior='Page Only'
+
+# What do do when you scroll to the last node
+# Options:
+# Stop - do nothing
+# Top  - return to top of the document
+scroll-last-node='Stop'
