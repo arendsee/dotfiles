@@ -39,6 +39,7 @@ safely-link .xmobarrc
 safely-link .infokey
 safely-link caps2esc.map
 safely-link .xmonad
+safely-link .cgdb
 
 [[ -h $HOME/.vim ]] && rm $HOME/.vim
 mkdir -p $HOME/.vim/bundle
