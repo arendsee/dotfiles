@@ -14,10 +14,12 @@ autocmd!
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'         " Vundle
-Plugin 'reedes/vim-pencil'            " allows autowrapping for writing
-Plugin 'junegunn/goyo.vim'            " zen mode
-Plugin 'vim-scripts/Align'            " align based on a character
+Plugin 'VundleVim/Vundle.vim'           " Vundle
+Plugin 'reedes/vim-pencil'              " allows autowrapping for writing
+Plugin 'junegunn/goyo.vim'              " zen mode
+Plugin 'vim-scripts/Align'              " align based on a character
+Plugin 'alx741/vinfo'                   " Read info pages painlessly
+Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -36,7 +38,6 @@ set t_Co=256
 colorscheme distinguished
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Global (and controversial) key mapping
 noremap ; :
 noremap : ;
 " select a word with spacebar
@@ -47,6 +48,13 @@ nnoremap <CR> :noh<CR><CR>
 nnoremap <leader>p ma{V}gq'a$
 " search for selected text
 vnoremap // y/<C-R>"<CR>
+" navigate Vinfo
+nnoremap vn :VinfoNext <CR>
+nnoremap vp :VinfoPrev <CR>
+nnoremap <Down> <c-e>
+nnoremap <Up>   <c-y>
+nnoremap <Left> <PageUp>
+nnoremap <Right> <PageDown>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
