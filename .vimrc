@@ -4,7 +4,7 @@ filetype off      " needs to be off (TODO: why exactly?)
 " Reset any autocmd (why ?)
 autocmd!
 
-let leader = ","
+let leader = "\\"
 let maplocalleader = " "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -47,6 +47,9 @@ Plugin 'Chiel92/vim-autoformat'         " code formatting
 Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
 Plugin 'foosoft/vim-argwrap'            " toggle wrapping of functions, arrays, etc
 Plugin 'easymotion/vim-easymotion'      " super fast jellyfish
+Plugin 'terryma/vim-expand-region'      " autoexpand selections
+" Plugin 'kana/vim-textobj-user'          " required for vim-textobj-comment
+" Plugin 'glts/vim-textobj-comment'       " allow comment selection with ac and ic
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
 
@@ -93,14 +96,13 @@ syntax on
 " Global (and controversial) key mapping
 noremap ; :
 noremap : ;
-" select a word with spacebar
-noremap <localleader>v viw
-" press enter to reset highlighting
-nnoremap <CR> :noh<CR><CR>
 " wrap paragraph
 nnoremap <localleader>p ma{V}gq'a$
 " search for selected text
 vnoremap // y/<C-R>"<CR>
+" make escape cancel highlighting
+" nnoremap <ESC> <ESC>:noh<CR><ESC>
+nnoremap <CR> :noh<CR>
 
 " One hand navigation
 noremap <Down>  5<C-e>
@@ -130,6 +132,7 @@ colorscheme distinguished
 set timeout
 set timeoutlen=1000
 set ttimeoutlen=1000
+set updatetime=100
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -161,9 +164,9 @@ nnoremap <F5> :GundoToggle<CR>
 inoremap <F5> <ESC>:GundoToggle<CR>i
 vnoremap <F5> <ESC>:GundoToggle<CR>
 " Open Tagbar window on right
-nnoremap <F6> :TagbarToggle<CR>
-inoremap <F6> <ESC>:TagbarToggle<CR>i
-vnoremap <F6> <ESC>:TagbarToggle<CR>
+nnoremap <F6> :TagbarOpenAutoClose<CR>
+inoremap <F6> <ESC>:TagbarOpenAutoCLose<CR>i
+vnoremap <F6> <ESC>:TagbarOpenAutoCLose<CR>
 " UNUSED
 nnoremap <F7> <Nop>
 inoremap <F7> <ESC>:<CR>i
@@ -443,8 +446,6 @@ nmap ]c <Plug>GitGutterNextHunk
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- tagbar
-let g:tagbar_compact=1
-let g:tagbar_indent=1
 let g:tagbar_type_r = {'ctagstype':'r', 'kinds':['f:function']}
 let g:tagbar_type_rnoweb = {
   \   'ctagstype':'rnoweb',
@@ -456,6 +457,92 @@ let g:tagbar_type_rnoweb = {
   \   'sro' : '::',
   \   'sort' : 0
   \ }
+nnoremap <localleader>t :TagbarOpenAutoClose<CR>
+vnoremap <localleader>t <ESC>:TagbarOpenAutoCLose<CR>
+
+" By default the Tagbar window will be opened on the right-hand side of vim. Set
+" this option to open it on the left instead.
+let g:tagbar_left=0
+" If this is set to a positive value then the Tagbar window will be opened at
+" the top or bottom of the Vim window instead of at the side. This can be useful
+" for monitors that have been rotated into a vertical position. The value of
+" this variable will determine the number of lines to use for the Tagbar window.
+" See |g:tagbar_left| for configuring the position of the window.
+let g:tagbar_vertical = 0
+" Width of the Tagbar window in characters.
+let g:tagbar_width = 40
+" Width of the Tagbar window when zoomed.
+" Possible values are:
+"   1: Use the maximum width available.
+"   0: Use the width of the longest currently visible tag.
+"   >1: Use this width in characters.
+let g:tagbar_zoomwidth = 1
+" If you set this option the Tagbar window will automatically close when you
+" jump to a tag. This implies |g:tagbar_autofocus|. If enabled the "C" flag will
+" be shown in the statusline of the Tagbar window. This can also be toggled with
+" a key, see |tagbar-keys|.
+let g:tagbar_autoclose = 1
+" If you set this option the cursor will move to the Tagbar window when it is
+" opened.
+let g:tagbar_autofocus = 1
+" If this option is set the tags are sorted according to their name. If it is
+" unset they are sorted according to their order in the source file. Note that
+" in the second case Pseudo-tags are always sorted before normal tags of the
+" same kind since they don't have a real position in the file.
+let g:tagbar_sort = 0
+" Setting this option will result in Tagbar omitting the short help at the
+" top of the window and the blank lines in between top-level scopes in order to
+" save screen real estate.
+let g:tagbar_compact = 1
+" The number of spaces by which each level is indented. This allows making the
+" display more compact or more spacious.
+let g:tagbar_indent = 2
+" Show the visibility symbols (public/protected/private) to the left of the tag
+" name.
+let g:tagbar_show_visibility = 0
+" Whether line numbers should be shown in the Tagbar window.
+" Possible values are:
+"   0: Don't show any line numbers.
+"   1: Show absolute line numbers.
+"   2: Show relative line numbers.
+"   -1: Use the global line number settings.
+let g:tagbar_show_linenumbers = 0
+" Hide tags that are declared non-public. Tags without any visibility
+" information will still be shown. If enabled the "v" flag will be shown in the
+" statusline of the Tagbar window. This can also be toggled with a key, see
+" |tagbar-keys|.
+let g:tagbar_hide_nonpublic = 0
+" If this option is set to 1 the Vim window will be expanded by the width of the
+" Tagbar window if using a GUI version of Vim. Setting it to 2 will also try
+" expanding a terminal, but note that this is not supported by all terminals.
+" See also |xterm-resize|.
+let g:tagbar_expand = 1
+" If this option is set then a single- instead of a double-click is used to jump
+" to the tag definition.
+let g:tagbar_singleclick = 0
+" The initial foldlevel for folds in the Tagbar window. Folds with a level
+" higher than this number will be closed.
+let g:tagbar_foldlevel = 2
+" If this variable is set to 1 and the current tag is inside of a closed fold
+" then the folds will be opened as much as needed for the tag to be visible so
+" it can be highlighted. If it is set to 0 then the folds will only be opened
+" when opening the Tagbar window and the current tag is inside a closed fold,
+" otherwise the folds won't be opened and the parent tag will be highlighted
+" instead. If it is set to 2 then the folds will never be opened automatically.
+let g:tagbar_autoshowtag = 1
+" The position of the preview window. Valid values are the window splitting
+" commands that are described starting from |:vertical|. Set it to an empty
+" string to use the options 'splitbelow' and 'splitright'.
+" <
+" If you want to disable line numbers in the preview window put something like
+" this into your vimrc:
+" >
+"         autocmd BufWinEnter * if &previewwindow | setlocal nonumber | endif
+" <
+let g:tagbar_previewwin_pos = ""
+" If this variable is set to 1 then moving the cursor in the Tagbar window will
+" automatically show the current tag in the preview window.
+let g:tagbar_autopreview = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -494,56 +581,14 @@ nnoremap <localleader>a :ArgWrap<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDCommenter settings
-nmap - <Plug>NERDCommenterToggle
-vmap - <Plug>NERDCommenterToggle
+nmap =         <Plug>NERDCommenterNested
+vmap =         <Plug>NERDCommenterNested
+nmap <leader>+ <Plug>NERDCommenterSexy
+vmap <leader>+ <Plug>NERDCommenterSexy
+nmap -         <Plug>NERDCommenterUncomment
+vmap -         <Plug>NERDCommenterUncomment
 
-" [count]|<Leader>|cc |NERDComComment|
-" Comment out the current line or text selected in visual mode.
-" 
-" 
-" [count]|<Leader>|cn |NERDComNestedComment|
-" Same as |<Leader>|cc but forces nesting.
-" 
-" 
-" [count]|<Leader>|c<space> |NERDComToggleComment|
-" Toggles the comment state of the selected line(s). If the topmost selected
-" line is commented, all selected lines are uncommented and vice versa.
-" 
-" 
-" [count]|<Leader>|cm |NERDComMinimalComment|
-" Comments the given lines using only one set of multipart delimiters.
-" 
-" 
-" [count]|<Leader>|ci |NERDComInvertComment|
-" Toggles the comment state of the selected line(s) individually.
-" 
-" 
-" [count]|<Leader>|cs |NERDComSexyComment|
-" Comments out the selected lines ``sexily''
-" 
-" 
-" [count]|<Leader>|cy |NERDComYankComment|
-" Same as |<Leader>|cc except that the commented line(s) are yanked first.
-" 
-" 
-" |<Leader>|c$ |NERDComEOLComment|
-" Comments the current line from the cursor to the end of line.
-" 
-" 
-" |<Leader>|cA |NERDComAppendComment|
-" Adds comment delimiters to the end of line and goes into insert mode between
-" them.
-" 
-" 
-" |NERDComInsertComment|
-" Adds comment delimiters at the current cursor position and inserts between.
-" Disabled by default.
-" 
-" 
-" |<Leader>|ca |NERDComAltDelim|
-
-
-" Allows multipart alternative delimiters when commenting in a visual mode
+"  Allows multipart alternative delimiters when commenting in a visual mode
 let NERDAllowAnyVisualDelims=1
 " Forces right delimiters to be placed when doing visual-block comments.
 let NERDBlockComIgnoreEmpty=1
@@ -580,19 +625,28 @@ let g:NERDCustomDelimiters = {
  \  }
 " default alignment to use, one of 'none', 'left', 'start', or 'both'
 let NERDDefaultAlign='both'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- easy motion
 " Leader
 map <localleader><localleader> <Plug>(easymotion-prefix)
+
+" Disable default mappings
+let g:EasyMotion_do_mapping = 0
+nmap s <Plug>(easymotion-overwin-f2)
+
+" JK motions: Line motions
+map <localleader>j <Plug>(easymotion-j)
+map <localleader>k <Plug>(easymotion-k)
+
 let g:EasyMotion_keys='asdghklqwertyuiopzxcvbnmfj;'
 let g:EasyMotion_do_shade=1
 let g:EasyMotion_smartcase=1
 let g:EasyMotion_smartsign=0
 let g:EasyMotion_use_migemo=0
-let g:EasyMotion_use_upper=1
+let g:EasyMotion_use_upper=0
 let g:EasyMotion_enter_jump_first=1
 let g:EasyMotion_space_jump_first=0
 let g:EasyMotion_inc_highlight=1
@@ -601,3 +655,14 @@ let g:EasyMotion_off_screen_search = 0
 let g:EasyMotion_disable_two_key_combo=0
 let g:EasyMotion_verbose = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" --- vim-expand-region
+map ,              <Plug>(expand_region_expand)
+map <localleader>, <Plug>(expand_region_shrink)
+call expand_region#custom_text_objects({
+      \ 'a]' :1,
+      \ 'ab' :1,
+      \ 'aB' :1,
+      \ 'ii' :0,
+      \ 'ai' :0,
+      \ })
