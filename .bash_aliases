@@ -14,11 +14,15 @@ alias vvg='pamixer --get-volume '
 
 # =============================================================================
 # Git
-alias g-s='git status '
-alias g-c='git commit '
-alias g-m='git merge --no-ff --no-commit '
-alias g-a='git add '
-alias g-b='git branch '
+alias ggs='git status '
+alias ggc='git commit '
+alias ggm='git merge --no-ff --no-commit '
+alias gga='git add '
+alias ggb='git branch '
+alias ggp="git push origin "
+alias ggd="git diff "
+# commit and push to overleaf
+alias ggco='git add -A; git commit -m "edit"; git push origin master'
 # =============================================================================
 
 

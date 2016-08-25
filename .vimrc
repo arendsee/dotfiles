@@ -19,7 +19,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'           " Vundle
 Plugin 'ervandew/supertab'              " magic with TAB
 Plugin 'screen.vim'                     " something I don't exactly know how to use
-Plugin 'tComment'                       " language-aware commenting
+Plugin 'scrooloose/nerdcommenter'       " commenting
 Plugin 'Vim-R-plugin'                   " R code wrapper
 " Plugin 'jalvesaq/R-vim-runtime        "
 Plugin 'Python-mode-klen'               " python wrapping etc
@@ -33,19 +33,20 @@ Plugin 'reedes/vim-pencil'              " allows autowrapping for writing
 " Plugin 'jpalardy/vim-slime'           " copy and paste into another tmux window
 " Plugin 'davidhalter/jedi-vim'         " for autocomplete
 Plugin 'junegunn/goyo.vim'              " zen mode
-Plugin 'vim-scripts/Conque-GDB'         " sync vim and GNU Debugger
 Plugin 'airblade/vim-gitgutter'         " shows changes to git file
 Plugin 'majutsushi/tagbar'              " ctag code outline bar
 Plugin 'ap/vim-buftabline'              " show buffers
 Plugin 'scrooloose/nerdtree'            " filesystem browser
 Plugin 'Xuyuanp/nerdtree-git-plugin'    " git flag integration with NerdTree
-Plugin 'vim-scripts/Align'              " align based on a character
+Plugin 'junegunn/vim-easy-align'        " align based on a character
 Plugin 'tpope/vim-fugitive'             " manage git
 Plugin 'ctrlpvim/ctrlp.vim'             " CtrlP
 Plugin 'shinokada/dragvisuals.vim'      " Damian Conway's drag thing
 Plugin 'Lokaltog/vim-distinguished'     " Coloscheme
 Plugin 'Chiel92/vim-autoformat'         " code formatting
 Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
+Plugin 'foosoft/vim-argwrap'            " toggle wrapping of functions, arrays, etc
+Plugin 'easymotion/vim-easymotion'      " super fast jellyfish
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
 
@@ -163,10 +164,10 @@ vnoremap <F5> <ESC>:GundoToggle<CR>
 nnoremap <F6> :TagbarToggle<CR>
 inoremap <F6> <ESC>:TagbarToggle<CR>i
 vnoremap <F6> <ESC>:TagbarToggle<CR>
-" Open ConqueGdb window on bottom
-nnoremap <F7> :ConqueGdb<CR>
-inoremap <F7> <ESC>:ConqueGdb<CR>i
-vnoremap <F7> <ESC>:ConqueGdb<CR>
+" UNUSED
+nnoremap <F7> <Nop>
+inoremap <F7> <ESC>:<CR>i
+vnoremap <F7> <ESC>:<CR>
 " Open NERDTree window on left
 nnoremap <F8> :NERDTreeToggle<CR>
 inoremap <F8> <ESC>:NERDTreeToggle<CR>i
@@ -459,33 +460,6 @@ let g:tagbar_type_rnoweb = {
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" --- statusline
-set statusline=%<%f\ %h%m%r%=%-14.(%b,%l,%c%V%)\ %P
-" --- ConqueGDB
-let g:ConqueGdb_SaveHistory = 0
-let g:ConqueTerm_Color = 1
-" Needed to take commands from outside GDB shell
-let g:ConqueTerm_ReadUnfocused = 1
-let g:ConqueTerm_InsertOnEnter = 1
-let g:ConqueTerm_TERM = 'xterm'
-" open GDB window on left, source on right
-let g:ConqueGdb_SrcSplit = 'right'
-" set keybindings
-let g:ConqueGdb_Run         = '<Nop>'
-let g:ConqueGdb_Continue    = '<Nop>'
-let g:ConqueGdb_Next        = '<Nop>'
-let g:ConqueGdb_Step        = '<Nop>'
-let g:ConqueGdb_Finish      = '<Nop>'
-let g:ConqueGdb_Backtrace   = '<Nop>'
-let g:ConqueGdb_Print       = '<Nop>'
-let g:ConqueGdb_DeleteBreak = '<Nop>'
-let g:ConqueGdb_SetBreak    = '<Nop>'
-let g:ConqueGdb_ToggleBreak = '<localleader>b'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto-reformatting
 nnoremap <C-A> :Autoformat<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -501,4 +475,129 @@ vmap  <expr>  D        DVB_Duplicate()
 
 " Remove any introduced trailing whitespace after moving... 
 let g:DVB_TrimWS = 1    
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" easy-align settings
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" argwrap settings
+nnoremap <localleader>a :ArgWrap<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDCommenter settings
+nmap - <Plug>NERDCommenterToggle
+vmap - <Plug>NERDCommenterToggle
+
+" [count]|<Leader>|cc |NERDComComment|
+" Comment out the current line or text selected in visual mode.
+" 
+" 
+" [count]|<Leader>|cn |NERDComNestedComment|
+" Same as |<Leader>|cc but forces nesting.
+" 
+" 
+" [count]|<Leader>|c<space> |NERDComToggleComment|
+" Toggles the comment state of the selected line(s). If the topmost selected
+" line is commented, all selected lines are uncommented and vice versa.
+" 
+" 
+" [count]|<Leader>|cm |NERDComMinimalComment|
+" Comments the given lines using only one set of multipart delimiters.
+" 
+" 
+" [count]|<Leader>|ci |NERDComInvertComment|
+" Toggles the comment state of the selected line(s) individually.
+" 
+" 
+" [count]|<Leader>|cs |NERDComSexyComment|
+" Comments out the selected lines ``sexily''
+" 
+" 
+" [count]|<Leader>|cy |NERDComYankComment|
+" Same as |<Leader>|cc except that the commented line(s) are yanked first.
+" 
+" 
+" |<Leader>|c$ |NERDComEOLComment|
+" Comments the current line from the cursor to the end of line.
+" 
+" 
+" |<Leader>|cA |NERDComAppendComment|
+" Adds comment delimiters to the end of line and goes into insert mode between
+" them.
+" 
+" 
+" |NERDComInsertComment|
+" Adds comment delimiters at the current cursor position and inserts between.
+" Disabled by default.
+" 
+" 
+" |<Leader>|ca |NERDComAltDelim|
+
+
+" Allows multipart alternative delimiters when commenting in a visual mode
+let NERDAllowAnyVisualDelims=1
+" Forces right delimiters to be placed when doing visual-block comments.
+let NERDBlockComIgnoreEmpty=1
+" Specifies if empty lines should be commented (useful with regions).
+let NERDCommentEmptyLines=1
+" remove alternative comment delimiters when uncommenting.
+let NERDRemoveAltComs=0
+" remove the extra spaces when uncommenting
+let NERDRemoveExtraSpaces=1
+" how the NERD commenter menu will appear (if at all)
+let NERDMenuMode=0
+" use placeholders when nesting comments
+let NERDUsePlaceHolders=1
+" add a space after comment
+let NERDSpaceDelims=1
+" whether trailing whitespace should be deleted when uncommenting
+let NERDTrimTrailingWhitespace=1
+" use the compact style sexy comments
+let NERDCompactSexyComs=0
+" nest comments by default
+let NERDDefaultNesting=1
+" Add or override delimiters for any filetypes
+let g:NERDCustomDelimiters = {
+ \     'c': {
+ \          'left': '//',
+ \          'leftAlt': '/*',
+ \          'rightAlt': '*/'
+ \      },
+ \      'cpp': {
+ \          'left': '//',
+ \          'leftAlt': '/*',
+ \          'rightAlt': '*/'
+ \     }
+ \  }
+" default alignment to use, one of 'none', 'left', 'start', or 'both'
+let NERDDefaultAlign='both'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- easy motion
+" Leader
+map <localleader><localleader> <Plug>(easymotion-prefix)
+let g:EasyMotion_keys='asdghklqwertyuiopzxcvbnmfj;'
+let g:EasyMotion_do_shade=1
+let g:EasyMotion_smartcase=1
+let g:EasyMotion_smartsign=0
+let g:EasyMotion_use_migemo=0
+let g:EasyMotion_use_upper=1
+let g:EasyMotion_enter_jump_first=1
+let g:EasyMotion_space_jump_first=0
+let g:EasyMotion_inc_highlight=1
+let g:EasyMotion_add_search_history=0
+let g:EasyMotion_off_screen_search = 0
+let g:EasyMotion_disable_two_key_combo=0
+let g:EasyMotion_verbose = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

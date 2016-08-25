@@ -20,6 +20,7 @@ Plugin 'junegunn/goyo.vim'              " zen mode
 Plugin 'vim-scripts/Align'              " align based on a character
 Plugin 'alx741/vinfo'                   " Read info pages painlessly
 Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
+Plugin 'junegunn/vim-easy-align'        " align based on a character
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

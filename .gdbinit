@@ -10,3 +10,4 @@ set print null-stop           on
 set print object              on
 
 alias m   = info macro
+alias ls  = help user-defined
