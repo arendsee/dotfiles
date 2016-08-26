@@ -3,7 +3,7 @@
 # fix for java
 # update-alternatives --install /usr/bin/java java $path_to_java 100
 
-
+alias vi=vim
 
 # =============================================================================
 # Media

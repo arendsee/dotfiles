@@ -581,12 +581,13 @@ nnoremap <localleader>a :ArgWrap<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDCommenter settings
-nmap =         <Plug>NERDCommenterNested
-vmap =         <Plug>NERDCommenterNested
-nmap <leader>+ <Plug>NERDCommenterSexy
-vmap <leader>+ <Plug>NERDCommenterSexy
-nmap -         <Plug>NERDCommenterUncomment
-vmap -         <Plug>NERDCommenterUncomment
+nmap =              <Plug>NERDCommenterNested
+vmap =              <Plug>NERDCommenterNested
+nmap +              <Plug>NERDCommenterSexy
+vmap +              <Plug>NERDCommenterSexy
+nmap -              <Plug>NERDCommenterUncomment
+vmap -              <Plug>NERDCommenterUncomment
+nmap <localleader>= <plug>NERDCommenterAltDelims
 
 "  Allows multipart alternative delimiters when commenting in a visual mode
 let NERDAllowAnyVisualDelims=1
@@ -611,18 +612,18 @@ let NERDCompactSexyComs=0
 " nest comments by default
 let NERDDefaultNesting=1
 " Add or override delimiters for any filetypes
-let g:NERDCustomDelimiters = {
- \     'c': {
- \          'left': '//',
- \          'leftAlt': '/*',
- \          'rightAlt': '*/'
- \      },
- \      'cpp': {
- \          'left': '//',
- \          'leftAlt': '/*',
- \          'rightAlt': '*/'
- \     }
- \  }
+" let g:NERDCustomDelimiters = {
+"  \     'c': {
+"  \          'left': '//',
+"  \          'leftAlt': '/*',
+"  \          'rightAlt': '*/'
+"  \      },
+"  \      'cpp': {
+"  \          'left': '//',
+"  \          'leftAlt': '/*',
+"  \          'rightAlt': '*/'
+"  \     }
+"  \  }
 " default alignment to use, one of 'none', 'left', 'start', or 'both'
 let NERDDefaultAlign='both'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -633,8 +634,6 @@ let NERDDefaultAlign='both'
 " Leader
 map <localleader><localleader> <Plug>(easymotion-prefix)
 
-" Disable default mappings
-let g:EasyMotion_do_mapping = 0
 nmap s <Plug>(easymotion-overwin-f2)
 
 " JK motions: Line motions
