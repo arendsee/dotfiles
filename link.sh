@@ -41,6 +41,7 @@ safely-link caps2esc.map
 safely-link .xmonad
 safely-link .cgdb
 safely-link .gdbinit
+safely-link .inputrc
 
 [[ -h $HOME/.vim ]] && rm $HOME/.vim
 mkdir -p $HOME/.vim/bundle
