@@ -2,6 +2,9 @@
 
 EDITOR=vim
 
+set editing-mode vi
+set show-mode-in-prompt on
+
 export TERM="screen-256color"
 
 # If not running interactively, don't do anything
@@ -17,15 +20,41 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# requires installation of acpi
+battery-check() {
+    percent=$(acpi -b | sed -r 's/.*Discharging, ([0-9]+)%.*/\1/')  
+    if [[ -z $(acpi -b | grep Discharging) ]]
+    then
+        # if not discharging
+        echo -n ""
+    elif [[ $percent < 10 ]]
+    then
+        # if low powered (red)
+        echo -n "\[\033[1;31m\] $percent \[\033[0;32m\]"
+    elif [[ $percent < 50 ]]
+    then
+        # if half-powered (yellow)
+        echo -n "\[\033[0;33m\]:\[\033[0;32m\]"
+    else
+        # if mostly powered, but discharging (green)
+        echo -n "\[\033[0;32m\].\[\033[0;32m\]"
+    fi
+}
+
 # If ROOT, use a scary red font
 if [[ $HOME == "/root" ]]; then
-    PS1="\[\033[0;31m\]\$? ROOT \W \$ \[\033[00m\]"
+    PS1=" \[\033[0;31m\]\$? ROOT \W \$ \[\033[00m\]"
 # If not in tmux, show an naked yellow dollar sign
 elif [[ -z $TMUX ]]; then
-    PS1="\[\033[1;33m\]\$ \[\033[00m\]"
+    PS1=" \[\033[1;33m\]\$ \[\033[00m\]"
 # If in TMUX, use a nice subdued font with working directory shown
 else
-    PS1="\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+    if [[ ! -z `type -P acpi` ]]
+    then
+      PS1="$(battery-check)\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+    else
+      PS1=" \[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+    fi
 fi
 
 # enable programmable completion features
