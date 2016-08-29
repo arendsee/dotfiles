@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -u
 
 # Link all files in dotfiles. If the existing file is a symbolic link, it is
 # removed and replaced with a link to the corresponding file from this
@@ -24,24 +25,48 @@ safely-link () {
     ln -sf "$src" "$des"
 }
 
-safely-link .Rprofile
+clone () {
+    [[ -d ~/src/git ]] || mkdir -p ~/src/git
+    if [[ ! -d "~/src/git/$1" ]]
+    then
+        git clone "https://github.com/arendsee/$1" "~/src/git/$1"
+    fi
+}
+
+
+# -------------------------------------------------------------------
+# --- miscellaneous scripts
+# a script for mapping CAPS to ESC outside X
+safely-link caps2esc.map
+
+# -------------------------------------------------------------------
+# --- login scripts
+safely-link .xinitrc
+safely-link .xsessionrc
+safely-link .Xresources
+safely-link .xmonad
+
+# -------------------------------------------------------------------
+# --- shell and multiplexer configs
+safely-link .inputrc
 safely-link .bashrc
 safely-link .bash_aliases
-safely-link .ctags
-safely-link .gitconfig
-safely-link .gitignore
 safely-link .tmux.conf
+
+# -------------------------------------------------------------------
+# --- configs for various programs
+safely-link .gitconfig   # git
+safely-link .infokey     # the info pages
+safely-link .gdbinit     # GNU debugger
+safely-link .cgdb        # A GUI for GDB
+safely-link .Rprofile    # R
+safely-link .ctags       # ctags
+safely-link .xmobarrc    # xmobar
+
+# -------------------------------------------------------------------
+# --- vim setup
 safely-link .vimrc
 safely-link .goyo.vimrc
-safely-link .xinitrc
-safely-link .Xresources
-safely-link .xmobarrc
-safely-link .infokey
-safely-link caps2esc.map
-safely-link .xmonad
-safely-link .cgdb
-safely-link .gdbinit
-safely-link .inputrc
 
 [[ -h $HOME/.vim ]] && rm $HOME/.vim
 mkdir -p $HOME/.vim/bundle
@@ -67,4 +92,7 @@ else
     echo "Colorscheme '$colorscheme' not found in directory '$colorscheme_path'" >&2
 fi
 
+
+# -------------------------------------------------------------------
+# --- cleanup
 rmdir $tmp 2> /dev/null
