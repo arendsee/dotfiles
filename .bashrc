@@ -21,24 +21,63 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # requires installation of acpi
-battery-check() {
-    percent=$(acpi -b | sed -r 's/.*Discharging, ([0-9]+)%.*/\1/')  
-    if [[ -z $(acpi -b | grep Discharging) ]]
+battery-check_() {
+    operation=$1
+    percent=$2
+    time_remaining=$3
+    if [[ $time_remaining == "Unknown" ]]
     then
-        # if not discharging
-        echo -n ""
-    elif [[ $percent < 10 ]]
+        time_remaining='???'
+    fi
+    if [[ $operation == "Discharging" ]]
     then
-        # if low powered (red)
-        echo -n "\[\033[1;31m\] $percent \[\033[0;32m\]"
-    elif [[ $percent < 50 ]]
+        if [[ $percent -lt 20 ]]
+        then
+            # if low powered (red)
+            echo -ne "\033[1;31m $time_remaining \033[0;32m"
+        elif [[ $percent -lt 50 ]]
+        then
+            # if half-powered (yellow)
+            echo -ne "\033[0;33m $percent \033[0;32m"
+        else
+            # if half-powered (yellow)
+            echo -ne "\033[0;33m $percent \033[0;32m"
+            # # if mostly powered, but discharging (green)
+            # echo -ne "\033[0;32m.\033[0;32m"
+        fi
+    elif [[ $operation == "Charging" ]]
+    then
+        if [[ $percent -lt 75 ]]
+        then
+            echo -ne "\033[1;32m $percent \033[0;32m"
+        fi
+    elif [[ $operation == "Unknown" ]]
     then
         # if half-powered (yellow)
-        echo -n "\[\033[0;33m\]:\[\033[0;32m\]"
+        echo -ne "\033[0;33m $time_remaining \033[0;32m"
     else
-        # if mostly powered, but discharging (green)
-        echo -n "\[\033[0;32m\].\[\033[0;32m\]"
+        echo ""
     fi
+}
+parse-acpi () {
+    acpi -b |
+    sed 's/.*: //' |
+    awk '
+        BEGIN{FS=", "}
+        {
+            if($3 ~ /..:..:../){
+                $3 = gensub(/.*(..:..:..).*/, "\\1", "g", $3)
+            }
+            else{
+                $3 = "Unknown"
+            }
+            $2 = gensub(/([0-9]+).*/, "\\1", "g", $2)
+        }
+        END{ print $1, $2, $3 }
+    '
+}
+battery-check() {
+    battery-check_ `parse-acpi`
 }
 
 # If ROOT, use a scary red font
@@ -51,7 +90,7 @@ elif [[ -z $TMUX ]]; then
 else
     if [[ ! -z `type -P acpi` ]]
     then
-      PS1="$(battery-check)\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+      PS1="\$(battery-check)\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
     else
       PS1=" \[\033[0;32m\]\$? \W \$ \[\033[00m\]"
     fi
