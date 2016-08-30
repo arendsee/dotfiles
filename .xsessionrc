@@ -1,0 +1,2 @@
+# Set background image with feh
+feh --bg-scale ~/xmoback.jpg &

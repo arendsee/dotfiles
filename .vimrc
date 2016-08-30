@@ -225,6 +225,21 @@ nmap <localleader>9 <Plug>BufTabLine.Go(9)
 nmap <localleader>0 <Plug>BufTabLine.Go(10)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- functions that alter vims behavior in dubious ways
+
+" vp doesn't replace paste buffer, borrowed from Sheerun
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- Dealing with particular file types
