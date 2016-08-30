@@ -7,6 +7,7 @@ autocmd!
 let leader = "\\"
 let maplocalleader = " "
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BEGIN VUNDLE
 " :PluginInstall - to install plugins
@@ -97,7 +98,7 @@ syntax on
 noremap ; :
 noremap : ;
 " wrap paragraph
-nnoremap <localleader>p ma{V}gq'a$
+nnoremap <localleader>w ma{V}gq'a$
 " search for selected text
 vnoremap // y/<C-R>"<CR>
 " make escape cancel highlighting
@@ -110,6 +111,14 @@ noremap <Up>    5<C-y>
 noremap <Left>  <PageUp>
 noremap <Right> <PageDown>
 
+" Copy and paste from X-clipboard
+" requires +X11 compile option
+nnoremap <localleader>p "+p
+nnoremap <localleader>P "+P
+nnoremap <localleader>d "+dd
+nnoremap <localleader>y "+yy
+vnoremap <localleader>y "+y
+vnoremap <localleader>d "+d
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
