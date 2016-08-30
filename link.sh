@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -u
 
 # Link all files in dotfiles. If the existing file is a symbolic link, it is
 # removed and replaced with a link to the corresponding file from this
@@ -10,8 +9,8 @@ mkdir -p $tmp
 
 safely-link () {
     src="$PWD/$1"
-
-    [[ -z "$2" ]] && des="$HOME/$1" || des="$2"
+    des=$2
+    des=${des:="$HOME/$1"}
 
     # to avoid recurse madness
     [[ -h "$des" ]] && rm $des
