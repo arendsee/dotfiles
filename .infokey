@@ -14,6 +14,21 @@
 l      move-to-next-xref
 h      move-to-prev-xref
 
+# Supremely lazy numpad
+7   prev-node
+8   scroll-backward
+9   next-node
+4   move-to-prev-xref
+5   select-reference-this-line
+6   move-to-next-xref
+1   global-prev-node
+2   scroll-forward
+3   global-next-node
+0   history-node
+.   up-node
++   top-node
+*   quit
+
 
 
 # ====================================================================
