@@ -34,27 +34,27 @@ battery-check_() {
         if [[ $percent -lt 20 ]]
         then
             # if low powered (red)
-            echo -ne "\033[1;31m $time_remaining \033[0;32m"
+            echo -ne "\x01\e[1;31m\x02$time_remaining \x01\e[0;32m\x02"
         elif [[ $percent -lt 50 ]]
         then
             # if half-powered (yellow)
-            echo -ne "\033[0;33m $percent \033[0;32m"
+            echo -ne "\x01\e[0;33m\x02$percent \x01\e[0;32m\x02"
         else
             # if half-powered (yellow)
-            echo -ne "\033[0;33m $percent \033[0;32m"
+            echo -ne "\x01\e[0;33m\x02$percent \x01\e[0;32m\x02"
             # # if mostly powered, but discharging (green)
-            # echo -ne "\033[0;32m.\033[0;32m"
+            # echo -ne "\e[0;32m.\e[0;32m"
         fi
     elif [[ $operation == "Charging" ]]
     then
         if [[ $percent -lt 75 ]]
         then
-            echo -ne "\033[1;32m $percent \033[0;32m"
+            echo -ne "\x01\e[1;32m\x02$percent \x01\e[0;32m\x02"
         fi
     elif [[ $operation == "Unknown" ]]
     then
         # if half-powered (yellow)
-        echo -ne "\033[0;33m $time_remaining \033[0;32m"
+        echo -ne "\x01\e[0;33m\x02$time_remaining \x01\e[0;32m\x02"
     else
         echo ""
     fi
@@ -91,8 +91,9 @@ else
     if [[ ! -z `type -P acpi` ]]
     then
       PS1="\$(battery-check)\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+      # PS1="\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
     else
-      PS1=" \[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+      PS1="\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
     fi
 fi
 
