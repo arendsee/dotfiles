@@ -1,0 +1,10 @@
+# see `info xathurarc`
+
+map [normal]        r          rotate
+
+# for some reason xathura ignores these
+map [fullscreen]    <Down>     scroll full-down
+map [fullscreen]    <Up>       scroll full-up
+
+map [normal]        <Down>     scroll full-down
+map [normal]        <Up>       scroll full-up
