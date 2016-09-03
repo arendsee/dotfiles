@@ -1,3 +1,15 @@
+snippet hs "haskell default" b
+TARGET=${1:}
+
+all:
+	ghc ${TARGET}.hs
+
+.Phony: clean
+clean:
+	rm -f *.o *.hi ${TARGET}
+endsnippet
+
+
 snippet c "Default c Makefile" b
 TARGET=${1:}
 
