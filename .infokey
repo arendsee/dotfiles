@@ -2,8 +2,8 @@
 #info
 
 # Map arrow keys for lazy one hand navigation
-\kr    next-node 
-\kl    prev-node 
+\kr    global-next-node 
+\kl    global-prev-node 
 \ku    scroll-backward
 \kd    scroll-forward
 

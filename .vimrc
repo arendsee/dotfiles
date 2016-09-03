@@ -43,6 +43,7 @@ Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
 Plugin 'foosoft/vim-argwrap'            " toggle wrapping of functions, arrays, etc
 Plugin 'easymotion/vim-easymotion'      " super fast jellyfish
 Plugin 'terryma/vim-expand-region'      " autoexpand selections
+" Plugin 'mileszs/ack.vim'                " perl searches
 " Plugin 'screen.vim'                   " something I don't exactly know how to use
 " Plugin 'jalvesaq/R-vim-runtime        " R system
 " Plugin 'ivanov/vim-ipython'           " **
@@ -694,4 +695,11 @@ let g:expand_region_text_objects = {
       \ 'ip'  :0,
       \ 'ie'  :0,
       \ }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- Ack
+let g:ackprg = "ag --vimgrep"
+let g:ackhighlight = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
