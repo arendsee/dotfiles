@@ -2,6 +2,9 @@
 
 EDITOR=vim
 
+set editing-mode vi
+set show-mode-in-prompt on
+
 export TERM="screen-256color"
 
 # If not running interactively, don't do anything
@@ -17,15 +20,81 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# requires installation of acpi
+battery-check_() {
+    operation=$1
+    percent=$2
+    time_remaining=$3
+    if [[ $time_remaining == "Unknown" ]]
+    then
+        time_remaining='???'
+    fi
+    if [[ $operation == "Discharging" ]]
+    then
+        if [[ $percent -lt 20 ]]
+        then
+            # if low powered (red)
+            echo -ne "\x01\e[1;31m\x02$time_remaining \x01\e[0;32m\x02"
+        elif [[ $percent -lt 50 ]]
+        then
+            # if half-powered (yellow)
+            echo -ne "\x01\e[0;33m\x02$percent \x01\e[0;32m\x02"
+        else
+            # if half-powered (yellow)
+            echo -ne "\x01\e[0;33m\x02$percent \x01\e[0;32m\x02"
+            # # if mostly powered, but discharging (green)
+            # echo -ne "\e[0;32m.\e[0;32m"
+        fi
+    elif [[ $operation == "Charging" ]]
+    then
+        if [[ $percent -lt 75 ]]
+        then
+            echo -ne "\x01\e[1;32m\x02$percent \x01\e[0;32m\x02"
+        fi
+    elif [[ $operation == "Unknown" ]]
+    then
+        # if half-powered (yellow)
+        echo -ne "\x01\e[0;33m\x02$time_remaining \x01\e[0;32m\x02"
+    else
+        echo ""
+    fi
+}
+parse-acpi () {
+    acpi -b |
+    sed 's/.*: //' |
+    awk '
+        BEGIN{FS=", "}
+        {
+            if($3 ~ /..:..:../){
+                $3 = gensub(/.*(..:..:..).*/, "\\1", "g", $3)
+            }
+            else{
+                $3 = "Unknown"
+            }
+            $2 = gensub(/([0-9]+).*/, "\\1", "g", $2)
+        }
+        END{ print $1, $2, $3 }
+    '
+}
+battery-check() {
+    battery-check_ `parse-acpi`
+}
+
 # If ROOT, use a scary red font
 if [[ $HOME == "/root" ]]; then
-    PS1="\[\033[0;31m\]\$? ROOT \W \$ \[\033[00m\]"
+    PS1=" \[\033[0;31m\]\$? ROOT \W \$ \[\033[00m\]"
 # If not in tmux, show an naked yellow dollar sign
 elif [[ -z $TMUX ]]; then
-    PS1="\[\033[1;33m\]\$ \[\033[00m\]"
+    PS1=" \[\033[1;33m\]\$ \[\033[00m\]"
 # If in TMUX, use a nice subdued font with working directory shown
 else
-    PS1="\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+    if [[ ! -z `type -P acpi` ]]
+    then
+      PS1="\$(battery-check)\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+      # PS1="\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+    else
+      PS1="\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+    fi
 fi
 
 # enable programmable completion features

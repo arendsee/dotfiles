@@ -7,6 +7,7 @@ autocmd!
 let leader = "\\"
 let maplocalleader = " "
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BEGIN VUNDLE
 " :PluginInstall - to install plugins
@@ -15,23 +16,17 @@ let maplocalleader = " "
 " :PluginClean   - remove plugins not mentioned below
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
 Plugin 'VundleVim/Vundle.vim'           " Vundle
 Plugin 'ervandew/supertab'              " magic with TAB
-Plugin 'screen.vim'                     " something I don't exactly know how to use
 Plugin 'scrooloose/nerdcommenter'       " commenting
 Plugin 'Vim-R-plugin'                   " R code wrapper
-" Plugin 'jalvesaq/R-vim-runtime        "
 Plugin 'Python-mode-klen'               " python wrapping etc
-" Plugin 'ivanov/vim-ipython'           " **
 Plugin 'LaTeX-Box'                      " latex wrapping, keybinding, etc.
 Plugin 'SirVer/ultisnips'               " snippet engine
 Plugin 'honza/vim-snippets'             " snippets use be ultisnips engine
 Plugin 'Gundo'                          " * undo tree, <F5> to open
 Plugin 'Shougo/vinarise'                " hex editor
 Plugin 'reedes/vim-pencil'              " allows autowrapping for writing
-" Plugin 'jpalardy/vim-slime'           " copy and paste into another tmux window
-" Plugin 'davidhalter/jedi-vim'         " for autocomplete
 Plugin 'junegunn/goyo.vim'              " zen mode
 Plugin 'airblade/vim-gitgutter'         " shows changes to git file
 Plugin 'majutsushi/tagbar'              " ctag code outline bar
@@ -48,11 +43,15 @@ Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
 Plugin 'foosoft/vim-argwrap'            " toggle wrapping of functions, arrays, etc
 Plugin 'easymotion/vim-easymotion'      " super fast jellyfish
 Plugin 'terryma/vim-expand-region'      " autoexpand selections
+" Plugin 'screen.vim'                   " something I don't exactly know how to use
+" Plugin 'jalvesaq/R-vim-runtime        " R system
+" Plugin 'ivanov/vim-ipython'           " **
+" Plugin 'jpalardy/vim-slime'           " copy and paste into another tmux window
+" Plugin 'davidhalter/jedi-vim'         " for autocomplete
 " Plugin 'kana/vim-textobj-user'          " required for vim-textobj-comment
 " Plugin 'glts/vim-textobj-comment'       " allow comment selection with ac and ic
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
-
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -84,7 +83,6 @@ set undofile
 set undodir=$HOME/.vimundo,.
 " set this higher to see what vim is or isn't doing
 set verbose=0
-
 " autocmd BufNewFile,BufRead *.tex set syn=tex
 " nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 filetype plugin on
@@ -97,19 +95,25 @@ syntax on
 noremap ; :
 noremap : ;
 " wrap paragraph
-nnoremap <localleader>p ma{V}gq'a$
+nnoremap <localleader>w ma{V}gq'a$
 " search for selected text
 vnoremap // y/<C-R>"<CR>
 " make escape cancel highlighting
 " nnoremap <ESC> <ESC>:noh<CR><ESC>
 nnoremap <CR> :noh<CR>
-
 " One hand navigation
-noremap <Down>  5<C-e>
-noremap <Up>    5<C-y>
-noremap <Left>  <PageUp>
-noremap <Right> <PageDown>
-
+noremap <Down>  <PageDown>
+noremap <Up>    <PageUp>
+noremap <Left>  :bprev<CR>
+noremap <Right> :bnext<CR>
+" Copy and paste from X-clipboard
+" requires +X11 compile option
+nnoremap <localleader>p "+p
+nnoremap <localleader>P "+P
+nnoremap <localleader>d "+dd
+nnoremap <localleader>y "+yy
+vnoremap <localleader>y "+y
+vnoremap <localleader>d "+d
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -181,9 +185,9 @@ nnoremap <F9> :PencilToggle<CR>
 inoremap <F9> <ESC>:PencilToggle<CR>i
 vnoremap <F9> <ESC>:PencilToggle<CR>
 " Toggle R window and all that
-nnoremap <F10> <Plug>RStart 
+nnoremap <F10> <Plug>RStart
 inoremap <F10> <Plug>RStart
-vnoremap <F10> <Plug>RStart 
+vnoremap <F10> <Plug>RStart
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -191,7 +195,7 @@ vnoremap <F10> <Plug>RStart
 " --- tags and other navigation magic
 " --- For nice discussion on ctags and whatnot:
 " --- https://andrew.stwrt.ca/posts/vim-ctags/
-" Search for tags along directory ancestral tree 
+" Search for tags along directory ancestral tree
 set tags=./tags,tags;$HOME
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -214,6 +218,21 @@ nmap <localleader>7 <Plug>BufTabLine.Go(7)
 nmap <localleader>8 <Plug>BufTabLine.Go(8)
 nmap <localleader>9 <Plug>BufTabLine.Go(9)
 nmap <localleader>0 <Plug>BufTabLine.Go(10)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- functions that alter vims behavior in dubious ways
+" " vp doesn't replace paste buffer, borrowed from Sheerun
+" function! RestoreRegister()
+"   let @" = s:restore_reg
+"   return ''
+" endfunction
+" function! s:Repl()
+"   let s:restore_reg = @"
+"   return "p@=RestoreRegister()\<cr>"
+" endfunction
+" vmap <silent> <expr> p <sid>Repl()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -285,13 +304,11 @@ endfunction
 
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -------------------------------------------------------------------
 " Plugin Configurations
 " -------------------------------------------------------------------
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -304,6 +321,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- UltiSnips
@@ -374,7 +392,7 @@ let vimrplugin_assign = 0
 let vimrplugin_applescript = 0
 let vimrplugin_screenplugin = 0
 " send selection to R
-vmap <C-CR> <Plug>RDSendSelection 
+vmap <C-CR> <Plug>RDSendSelection
 " send line to R
 nmap <C-CR> <Plug>RDSendLine
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -393,7 +411,7 @@ nnoremap <localleader>f :CtrlPTag<cr>
 " leave a buffer, saving unless it is readonly (this still fails in some cases
 " CountBuffers re-adapted from Kyle Strand on superuser
 function! CountBuffers ()
-    let n = 0 
+    let n = 0
     for i in range(1, bufnr("$"))
         if buflisted(i) && !empty(bufname(i))
             let n += 1
@@ -445,6 +463,13 @@ nmap ]c <Plug>GitGutterNextHunk
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- supertab settings
+" TODO learn how to customize this ...
+" let g:SuperTabDefaultCompletionType = "context"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- tagbar
 let g:tagbar_type_r = {'ctagstype':'r', 'kinds':['f:function']}
 let g:tagbar_type_rnoweb = {
@@ -459,7 +484,6 @@ let g:tagbar_type_rnoweb = {
   \ }
 nnoremap <localleader>t :TagbarOpenAutoClose<CR>
 vnoremap <localleader>t <ESC>:TagbarOpenAutoCLose<CR>
-
 " By default the Tagbar window will be opened on the right-hand side of vim. Set
 " this option to open it on the left instead.
 let g:tagbar_left=0
@@ -547,26 +571,25 @@ let g:tagbar_autopreview = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" auto-reformatting
-nnoremap <C-A> :Autoformat<CR>
+" --- auto-reformatting
+nnoremap <localleader>A :Autoformat<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- Damian Conways Drag vis
-vmap  <expr>  <LEFT>   DVB_Drag('left')                     
-vmap  <expr>  <RIGHT>  DVB_Drag('right')                    
-vmap  <expr>  <DOWN>   DVB_Drag('down')                     
-vmap  <expr>  <UP>     DVB_Drag('up')                       
-vmap  <expr>  D        DVB_Duplicate()                      
-
-" Remove any introduced trailing whitespace after moving... 
-let g:DVB_TrimWS = 1    
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
+" Remove any introduced trailing whitespace after moving...
+let g:DVB_TrimWS=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" easy-align settings
+" --- easy-align settings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -575,12 +598,12 @@ nmap ga <Plug>(EasyAlign)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" argwrap settings
+" --- argwrap settings
 nnoremap <localleader>a :ArgWrap<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDCommenter settings
+" --- NERDCommenter settings
 nmap =              <Plug>NERDCommenterNested
 vmap =              <Plug>NERDCommenterNested
 nmap +              <Plug>NERDCommenterSexy
@@ -588,7 +611,6 @@ vmap +              <Plug>NERDCommenterSexy
 nmap -              <Plug>NERDCommenterUncomment
 vmap -              <Plug>NERDCommenterUncomment
 nmap <localleader>= <plug>NERDCommenterAltDelims
-
 "  Allows multipart alternative delimiters when commenting in a visual mode
 let NERDAllowAnyVisualDelims=1
 " Forces right delimiters to be placed when doing visual-block comments.
@@ -633,13 +655,10 @@ let NERDDefaultAlign='both'
 " --- easy motion
 " Leader
 map <localleader><localleader> <Plug>(easymotion-prefix)
-
 nmap s <Plug>(easymotion-overwin-f2)
-
 " JK motions: Line motions
 map <localleader>j <Plug>(easymotion-j)
 map <localleader>k <Plug>(easymotion-k)
-
 let g:EasyMotion_keys='asdghklqwertyuiopzxcvbnmfj;'
 let g:EasyMotion_do_shade=1
 let g:EasyMotion_smartcase=1
@@ -655,13 +674,24 @@ let g:EasyMotion_disable_two_key_combo=0
 let g:EasyMotion_verbose = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " --- vim-expand-region
 map ,              <Plug>(expand_region_expand)
 map <localleader>, <Plug>(expand_region_shrink)
-call expand_region#custom_text_objects({
-      \ 'a]' :1,
-      \ 'ab' :1,
-      \ 'aB' :1,
-      \ 'ii' :0,
-      \ 'ai' :0,
-      \ })
+let g:expand_region_text_objects = {
+      \ 'iw'  :0,
+      \ 'iW'  :0,
+      \ 'i"'  :0,
+      \ 'i''' :0,
+      \ 'i]'  :1,
+      \ 'a]'  :1,
+      \ 'ib'  :1,
+      \ 'ab'  :1,
+      \ 'iB'  :1,
+      \ 'aB'  :1,
+      \ 'il'  :0,
+      \ 'ip'  :0,
+      \ 'ie'  :0,
+      \ }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

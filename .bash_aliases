@@ -156,7 +156,7 @@ function o {
     do
         echo "$j"
         if [[ "$j" =~ \.(png|jpg|jpeg|gif|tiff)$ ]]; then
-            display "$j" &
+            feh "$j" &
         elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx|xlsx)$ ]]; then
             libreoffice "$j" &
         elif [[ "$j" =~ \.(mp3|wav|flac)$ ]]; then
