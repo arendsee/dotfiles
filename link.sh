@@ -32,6 +32,10 @@ clone () {
     fi
 }
 
+# -------------------------------------------------------------------
+# --- .config directory
+mkdir -p ~/.config
+safely-link .config/zathura
 
 # -------------------------------------------------------------------
 # --- miscellaneous scripts

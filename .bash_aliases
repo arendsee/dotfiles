@@ -162,15 +162,15 @@ function o {
         elif [[ "$j" =~ \.(mp3|wav|flac)$ ]]; then
             mplayer "$j"
         elif [[ "$j" =~ \.(html)$ ]]; then
-            firefox "$j" &
+            chromium "$j" &
         elif [[ "$j" =~ \.(pdf|dvi|ps)$ ]]; then
-            evince "$j" &
+            zathura "$j" &
         elif [[ "$j" =~ \.(pdb)$ ]]; then
             pymol "$j" &
         elif [[ "$j" =~ \.(txt|md|tex)$ ]]; then
             vi +Goyo +HardPencil -u ~/.goyo.vimrc "$j"
         elif [[ -d "$j" ]]; then
-            nautilus "$j" &
+            vi "$j"
         elif [[ `file "$j"` =~ (ASCII text|empty) ]]; then
             vi +Goyo +HardPencil -u ~/.goyo.vimrc "$j"
         elif [[ `file "$j"` =~ 'ELF' ]]; then

@@ -5,6 +5,8 @@ pacman -S dmenu
 
 pacman -S cabal-install
 
+pacman -S zathura zathura-pdf-poppler zathura-ps
+
 # used in vvs alias in bash_aliases
 pacman -S pamixer
 
