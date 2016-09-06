@@ -7,7 +7,6 @@ autocmd!
 let leader = "\\"
 let maplocalleader = " "
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BEGIN VUNDLE
 " :PluginInstall - to install plugins
@@ -34,7 +33,6 @@ Plugin 'ap/vim-buftabline'              " show buffers
 Plugin 'scrooloose/nerdtree'            " filesystem browser
 Plugin 'Xuyuanp/nerdtree-git-plugin'    " git flag integration with NerdTree
 Plugin 'junegunn/vim-easy-align'        " align based on a character
-Plugin 'tpope/vim-fugitive'             " manage git
 Plugin 'ctrlpvim/ctrlp.vim'             " CtrlP
 Plugin 'shinokada/dragvisuals.vim'      " Damian Conway's drag thing
 Plugin 'Lokaltog/vim-distinguished'     " Coloscheme
@@ -43,6 +41,12 @@ Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
 Plugin 'foosoft/vim-argwrap'            " toggle wrapping of functions, arrays, etc
 Plugin 'easymotion/vim-easymotion'      " super fast jellyfish
 Plugin 'terryma/vim-expand-region'      " autoexpand selections
+Plugin 'tpope/vim-fugitive'             " manage git
+Plugin 'tpope/vim-surround'             " quote/unquote, tag/untag, replace etc
+Plugin 'tpope/vim-repeat'               " extend . to plugins
+Plugin 'tpope/vim-endwise'              " add fi to if, etc
+Plugin 'raimondi/delimitmate'           " automatically generate pairs
+" Plugin 'mileszs/ack.vim'                " perl searches
 " Plugin 'screen.vim'                   " something I don't exactly know how to use
 " Plugin 'jalvesaq/R-vim-runtime        " R system
 " Plugin 'ivanov/vim-ipython'           " **
@@ -54,7 +58,6 @@ Plugin 'terryma/vim-expand-region'      " autoexpand selections
 " ** requires installation of ipython
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
@@ -694,4 +697,11 @@ let g:expand_region_text_objects = {
       \ 'ip'  :0,
       \ 'ie'  :0,
       \ }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- Ack
+let g:ackprg = "ag --vimgrep"
+let g:ackhighlight = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

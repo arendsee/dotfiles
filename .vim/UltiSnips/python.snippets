@@ -1,3 +1,15 @@
+snippet addview "Add new flask view" b
+@app.route('/${1:${VISUAL}}')
+def `!p snip.rv = t[1].replace("-", "_").replace("/", "__")`():
+	user = {'nickname': 'a_turtle'}
+	return render_template(
+		'$1.html',
+		title="${2:TITLE}",
+		user=user
+	)
+${0}
+endsnippet
+
 snippet class "template class" b
 class ${1:NAME}:
 	def __init__(self):
