@@ -1,3 +1,9 @@
+priority 0
+
+snippet href "Wrap a selection in a url" w
+<a href=${1:URL}>${VISUAL}</a>
+endsnippet
+
 snippet default "Make header and body" b
 <!DOCTYPE HTML>
 <html lang=en-US>
@@ -25,14 +31,15 @@ endsnippet
 
 snippet td "expand td tag" b
 <td>
-	${0}
+	${VISUAL}
 </td>
 endsnippet
 
 snippet p "expand paragraph" b
-<p> ${0} </p>
+<p> ${VISUAL} </p>
 endsnippet
 
+# specialized snippet, deprecated
 snippet "new week" "make new week entry" b
 <!--New Week-->
 <tr>
