@@ -21,3 +21,6 @@ pacman -S feh
 
 # allow zooming etc
 yaourt -S urxvt-resize-font-git
+
+# needed for autformat in vim for C, C++, Java
+pacman -S astyle

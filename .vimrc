@@ -36,7 +36,7 @@ Plugin 'junegunn/vim-easy-align'        " align based on a character
 Plugin 'ctrlpvim/ctrlp.vim'             " CtrlP
 Plugin 'shinokada/dragvisuals.vim'      " Damian Conway's drag thing
 Plugin 'Lokaltog/vim-distinguished'     " Coloscheme
-Plugin 'Chiel92/vim-autoformat'         " code formatting
+Plugin 'Chiel92/vim-autoformat'         " REQUIRES: (astyle)
 Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
 Plugin 'foosoft/vim-argwrap'            " toggle wrapping of functions, arrays, etc
 Plugin 'easymotion/vim-easymotion'      " super fast jellyfish
@@ -45,7 +45,7 @@ Plugin 'tpope/vim-fugitive'             " manage git
 Plugin 'tpope/vim-surround'             " quote/unquote, tag/untag, replace etc
 Plugin 'tpope/vim-repeat'               " extend . to plugins
 Plugin 'tpope/vim-endwise'              " add fi to if, etc
-Plugin 'raimondi/delimitmate'           " automatically generate pairs
+" Plugin 'raimondi/delimitmate'           " automatically generate pairs
 " Plugin 'mileszs/ack.vim'                " perl searches
 " Plugin 'screen.vim'                   " something I don't exactly know how to use
 " Plugin 'jalvesaq/R-vim-runtime        " R system
