@@ -25,13 +25,21 @@ ck_assert_msg(${1:BOOLEAN}, "${2:ERROR MESSAGE}");${0}
 endsnippet
 
 #------------------------------------------------------------------------------
-snippet header "build a default header"
-#ifndef __${1:NAME}_H__
-#define __$1_H__
-
+snippet "^h(ead(er)?)?" "build a default header" r
+`!p 
+a = "__" + snip.fn.replace("-", "_").replace(".", "_").upper() + "__"
+snip.rv = "#ifndef {}\n#define {}\n".format(a,a)
+`
 ${0}
 
 #endif
+endsnippet
+#------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------
+snippet c "build a default source file" b
+`!p snip.rv = '#include "{}.h"'.format(snip.basename)`
+${0}
 endsnippet
 #------------------------------------------------------------------------------
 
