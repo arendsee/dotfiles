@@ -21,6 +21,7 @@ alias gga='git add '
 alias ggb='git branch '
 alias ggp="git push origin "
 alias ggd="git diff "
+alias ggg="git log --graph"
 # commit and push to overleaf
 alias ggco='git add -A; git commit -m "edit"; git push origin master'
 # =============================================================================
