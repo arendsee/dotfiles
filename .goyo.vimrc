@@ -4,6 +4,8 @@ filetype off      " needs to be off (TODO: why exactly?)
 " Reset any autocmd (why ?)
 autocmd!
 
+let leader = "\\"
+let maplocalleader = " "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BEGIN VUNDLE
@@ -21,6 +23,8 @@ Plugin 'vim-scripts/Align'              " align based on a character
 Plugin 'alx741/vinfo'                   " Read info pages painlessly
 Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
 Plugin 'junegunn/vim-easy-align'        " align based on a character
+Plugin 'easymotion/vim-easymotion'      " super fast jellyfish
+Plugin 'terryma/vim-expand-region'      " autoexpand selections
 
 call vundle#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -39,23 +43,29 @@ set t_Co=256
 colorscheme distinguished
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Global (and controversial) key mapping
 noremap ; :
 noremap : ;
-" select a word with spacebar
-noremap <space> viw
-" press enter to reset highlighting
-nnoremap <CR> :noh<CR><CR>
 " wrap paragraph
-nnoremap <leader>p ma{V}gq'a$
+nnoremap <localleader>w ma{V}gq'a$
 " search for selected text
 vnoremap // y/<C-R>"<CR>
-" navigate Vinfo
-nnoremap vn :VinfoNext <CR>
-nnoremap vp :VinfoPrev <CR>
-nnoremap <Down> <c-e>
-nnoremap <Up>   <c-y>
-nnoremap <Left> <PageUp>
-nnoremap <Right> <PageDown>
+" make escape cancel highlighting
+" nnoremap <ESC> <ESC>:noh<CR><ESC>
+nnoremap <CR> :noh<CR>
+" One hand navigation
+noremap <Down>  <PageDown>
+noremap <Up>    <PageUp>
+noremap <Left>  :bprev<CR>
+noremap <Right> :bnext<CR>
+" Copy and paste from X-clipboard
+" requires +X11 compile option
+nnoremap <localleader>p "+p
+nnoremap <localleader>P "+P
+nnoremap <localleader>d "+dd
+nnoremap <localleader>y "+yy
+vnoremap <localleader>y "+y
+vnoremap <localleader>d "+d
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -83,4 +93,50 @@ endfunction
 
 " - junegunn
 let g:goyo_callbacks = [function('g:GoyoBefore'), function('g:GoyoAfter')]
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- easy motion
+" Leader
+map <localleader><localleader> <Plug>(easymotion-prefix)
+nmap s <Plug>(easymotion-overwin-f2)
+" JK motions: Line motions
+map <localleader>j <Plug>(easymotion-j)
+map <localleader>k <Plug>(easymotion-k)
+let g:EasyMotion_keys='asdghklqwertyuiopzxcvbnmfj;'
+let g:EasyMotion_do_shade=1
+let g:EasyMotion_smartcase=1
+let g:EasyMotion_smartsign=0
+let g:EasyMotion_use_migemo=0
+let g:EasyMotion_use_upper=0
+let g:EasyMotion_enter_jump_first=1
+let g:EasyMotion_space_jump_first=0
+let g:EasyMotion_inc_highlight=1
+let g:EasyMotion_add_search_history=0
+let g:EasyMotion_off_screen_search = 0
+let g:EasyMotion_disable_two_key_combo=0
+let g:EasyMotion_verbose = 0
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --- vim-expand-region
+map ,              <Plug>(expand_region_expand)
+map <localleader>, <Plug>(expand_region_shrink)
+let g:expand_region_text_objects = {
+      \ 'iw'  :0,
+      \ 'iW'  :0,
+      \ 'i"'  :0,
+      \ 'i''' :0,
+      \ 'i]'  :1,
+      \ 'a]'  :1,
+      \ 'ib'  :1,
+      \ 'ab'  :1,
+      \ 'iB'  :1,
+      \ 'aB'  :1,
+      \ 'il'  :0,
+      \ 'ip'  :0,
+      \ 'ie'  :0,
+      \ }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

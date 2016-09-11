@@ -1,3 +1,7 @@
+extends awk
+
+priority 1
+
 snippet awktab "Setup awk for tab-delimited format" w
 awk 'BEGIN{FS="\t"; OFS=FS} ${0}'
 endsnippet

@@ -1,3 +1,5 @@
+priority 0
+
 snippet addview "Add new flask view" b
 @app.route('/${1:${VISUAL}}')
 def `!p snip.rv = t[1].replace("-", "_").replace("/", "__")`():
