@@ -65,6 +65,7 @@ safely-link .cgdb        # A GUI for GDB
 safely-link .Rprofile    # R
 safely-link .ctags       # ctags
 safely-link .xmobarrc    # xmobar
+safely-link .astylerc    # astyle formatter for C/C++/Java code
 
 # -------------------------------------------------------------------
 # --- vim setup
