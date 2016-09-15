@@ -10,6 +10,10 @@ pacman -S zathura zathura-pdf-poppler zathura-ps
 # used in vvs alias in bash_aliases
 pacman -S pamixer
 
+# A GUI that allows me to turn my damn head phones on
+# I really need to find a better solution
+pacman -S pavucontrol
+
 pacman -S gdb
 
 pacman -S cgdb

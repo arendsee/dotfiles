@@ -64,15 +64,15 @@ awk '
 endsnippet
 
 snippet gensub "AWK gensub template" w
-gensub(/${1:.*(.).*}/, ${2:"a \\1 b &", ${3:"g"}, ${4:\$0}})${0}
+gensub(/${1:.*(.).*}/, ${2:"a \\\\1 b &", ${3:"g"}, ${4:\$0}})${0}
 endsnippet
 
 snippet gsub "AWK gsub template" w
-gsub(/${1:.*(.).*}/, ${2:"a \\1 b &"}, ${3:\$1})${0}
+gsub(/${1:.*(.).*}/, ${2:"a \\\\1 b &"}, ${3:\$1})${0}
 endsnippet
 
 snippet sub "AWK sub template" w
-sub(/${1:.*(.).*}/, ${2:"a \\1 b &"}, ${3:\$1})${0}
+sub(/${1:.*(.).*}/, ${2:"a \\\\1 b &"}, ${3:\$1})${0}
 endsnippet
 
 snippet match "AWK match template" w
