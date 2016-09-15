@@ -18,7 +18,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'           " Vundle
 Plugin 'ervandew/supertab'              " magic with TAB
 Plugin 'scrooloose/nerdcommenter'       " commenting
-Plugin 'Vim-R-plugin'                   " R code wrapper
+" Plugin 'Vim-R-plugin'                   " R code wrapper
 Plugin 'Python-mode-klen'               " python wrapping etc
 Plugin 'LaTeX-Box'                      " latex wrapping, keybinding, etc.
 Plugin 'SirVer/ultisnips'               " snippet engine
