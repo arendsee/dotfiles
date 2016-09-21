@@ -45,6 +45,8 @@ Plugin 'tpope/vim-fugitive'             " manage git
 Plugin 'tpope/vim-surround'             " quote/unquote, tag/untag, replace etc
 Plugin 'tpope/vim-repeat'               " extend . to plugins
 Plugin 'tpope/vim-endwise'              " add fi to if, etc
+Plugin 'tpope/vim-unimpaired'           " navigation and stuff
+Plugin 'scrooloose/syntastic'           " linters
 " Plugin 'raimondi/delimitmate'           " automatically generate pairs
 " Plugin 'mileszs/ack.vim'                " perl searches
 " Plugin 'screen.vim'                   " something I don't exactly know how to use
@@ -704,4 +706,28 @@ let g:expand_region_text_objects = {
 " --- Ack
 let g:ackprg = "ag --vimgrep"
 let g:ackhighlight = 1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list            = 1
+let g:syntastic_check_on_open            = 1
+let g:syntastic_check_on_wq              = 0
+let g:syntastic_check_on_wq              = 0
+let g:syntastic_check_on_open            = 1
+let g:syntastic_aggregate_errors         = 1
+let g:syntastic_enable_highlighting      = 1
+
+let g:syntastic_cpp_compiler = "g++"
+let g:syntastic_cpp_compiler_options = "-Wall -Wextra -pedantic -std=c++11 -Wshadow -Wconversion -Wold-style-cast -Wcast-align -Weffc++ -Wmisleading-indentation"
+
+let g:syntastic_mode_map = { "mode": "passive" }
+
+nnoremap <localleader>l :SyntasticToggleMode<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
