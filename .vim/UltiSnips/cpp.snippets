@@ -5,3 +5,13 @@ priority 1
 snippet inc "include standard library" b
 #include <${1:$VISUAL}>${0}
 endsnippet
+
+snippet class "make a class" b
+class ${1:CLASS}
+{
+private:
+public:
+	$1();
+	~$1();
+};
+endsnippet
