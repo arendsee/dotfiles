@@ -81,10 +81,8 @@ safely-link .vim/syntax    $HOME/.vim/syntax
 
 mkdir -p $HOME/.vimundo
 
-vundledir=$HOME/.vim/bundle/Vundle.vim
-vundlerep=https://github.com/VundleVim/Vundle.vim.git
-[[ -r $vundledir ]] || git clone $vundlerep $vundledir
-vim +PluginClean +PluginInstall +qall
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 colorscheme=distinguished
 colorscheme_path=$HOME/.vim/bundle/vim-distinguished/colors

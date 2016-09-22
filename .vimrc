@@ -13,52 +13,86 @@ let maplocalleader = " "
 " :PluginUpdate  - to update
 " :PluginSearch  - list all plugins in vim script
 " :PluginClean   - remove plugins not mentioned below
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'           " Vundle
-Plugin 'ervandew/supertab'              " magic with TAB
-Plugin 'scrooloose/nerdcommenter'       " commenting
-" Plugin 'Vim-R-plugin'                   " R code wrapper
-Plugin 'Python-mode-klen'               " python wrapping etc
-Plugin 'LaTeX-Box'                      " latex wrapping, keybinding, etc.
-Plugin 'SirVer/ultisnips'               " snippet engine
-Plugin 'honza/vim-snippets'             " snippets use be ultisnips engine
-Plugin 'Gundo'                          " * undo tree, <F5> to open
-Plugin 'Shougo/vinarise'                " hex editor
-Plugin 'reedes/vim-pencil'              " allows autowrapping for writing
-Plugin 'junegunn/goyo.vim'              " zen mode
-Plugin 'airblade/vim-gitgutter'         " shows changes to git file
-Plugin 'majutsushi/tagbar'              " ctag code outline bar
-Plugin 'ap/vim-buftabline'              " show buffers
-Plugin 'scrooloose/nerdtree'            " filesystem browser
-Plugin 'Xuyuanp/nerdtree-git-plugin'    " git flag integration with NerdTree
-Plugin 'junegunn/vim-easy-align'        " align based on a character
-Plugin 'ctrlpvim/ctrlp.vim'             " CtrlP
-Plugin 'shinokada/dragvisuals.vim'      " Damian Conway's drag thing
-Plugin 'Lokaltog/vim-distinguished'     " Coloscheme
-Plugin 'Chiel92/vim-autoformat'         " REQUIRES: (astyle)
-Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
-Plugin 'foosoft/vim-argwrap'            " toggle wrapping of functions, arrays, etc
-Plugin 'easymotion/vim-easymotion'      " super fast jellyfish
-Plugin 'terryma/vim-expand-region'      " autoexpand selections
-Plugin 'tpope/vim-fugitive'             " manage git
-Plugin 'tpope/vim-surround'             " quote/unquote, tag/untag, replace etc
-Plugin 'tpope/vim-repeat'               " extend . to plugins
-Plugin 'tpope/vim-endwise'              " add fi to if, etc
-Plugin 'tpope/vim-unimpaired'           " navigation and stuff
-Plugin 'scrooloose/syntastic'           " linters
-" Plugin 'raimondi/delimitmate'           " automatically generate pairs
-" Plugin 'mileszs/ack.vim'                " perl searches
-" Plugin 'screen.vim'                   " something I don't exactly know how to use
-" Plugin 'jalvesaq/R-vim-runtime        " R system
-" Plugin 'ivanov/vim-ipython'           " **
-" Plugin 'jpalardy/vim-slime'           " copy and paste into another tmux window
-" Plugin 'davidhalter/jedi-vim'         " for autocomplete
-" Plugin 'kana/vim-textobj-user'          " required for vim-textobj-comment
-" Plugin 'glts/vim-textobj-comment'       " allow comment selection with ac and ic
+call plug#begin('~/.vim/plugged')
+
+" magic with TAB
+Plug 'ervandew/supertab'
+" commenting
+Plug 'scrooloose/nerdcommenter'
+" python wrapping etc
+Plug 'Python-mode-klen'
+" latex wrapping, keybinding, etc.
+Plug 'LaTeX-Box'
+" snippet engine | snippets use by ultisnips engine
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" * undo tree, <F5> to open
+Plug 'Gundo'
+" hex editor
+Plug 'Shougo/vinarise'
+" allows autowrapping for writing
+Plug 'reedes/vim-pencil'
+" zen mode
+Plug 'junegunn/goyo.vim'
+" shows changes to git file
+Plug 'airblade/vim-gitgutter'
+" ctag code outline bar
+Plug 'majutsushi/tagbar'
+" show buffers
+Plug 'ap/vim-buftabline'
+" filesystem browser
+Plug 'scrooloose/nerdtree'
+" git flag integration with NerdTree
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" align based on a character
+Plug 'junegunn/vim-easy-align'
+" CtrlP
+Plug 'ctrlpvim/ctrlp.vim'
+" Damian Conway's drag thing
+Plug 'shinokada/dragvisuals.vim'
+" Coloscheme
+Plug 'Lokaltog/vim-distinguished'
+" REQUIRES: (c:astyle)
+Plug 'Chiel92/vim-autoformat'
+" unify tmux and vim window switching
+Plug 'christoomey/vim-tmux-navigator'
+" toggle wrapping of functions, arrays, etc
+Plug 'foosoft/vim-argwrap'
+" super fast jellyfish
+Plug 'easymotion/vim-easymotion'
+" autoexpand selections
+Plug 'terryma/vim-expand-region'
+" manage git
+Plug 'tpope/vim-fugitive'
+" quote/unquote, tag/untag, replace etc
+Plug 'tpope/vim-surround'
+" extend . to plugins
+Plug 'tpope/vim-repeat'
+" add fi to if, etc
+Plug 'tpope/vim-endwise'
+" navigation and stuff
+Plug 'tpope/vim-unimpaired'
+" linters
+Plug 'scrooloose/syntastic'
+" penalize hjkl
+Plug 'takac/vim-hardtime'
+" allow asynchronous operation, requires compilation | haskell mode
+Plug 'Shougo/vimproc.vim', { 'do': 'make' } | Plug 'eagletmt/ghcmod-vim'
+
+" " deprecated, forgotten, betrayed, abondoned
+" Plug 'raimondi/delimitmate'           " automatically generate pairs
+" Plug 'mileszs/ack.vim'                " perl searches
+" Plug 'screen.vim'                   " something I don't exactly know how to use
+" Plug 'jalvesaq/R-vim-runtime        " R system
+" Plug 'ivanov/vim-ipython'           " **
+" Plug 'jpalardy/vim-slime'           " copy and paste into another tmux window
+" Plug 'davidhalter/jedi-vim'         " for autocomplete
+" Plug 'kana/vim-textobj-user'          " required for vim-textobj-comment
+" Plug 'glts/vim-textobj-comment'       " allow comment selection with ac and ic
+" Plug 'Vim-R-plugin'                   " R code wrapper
+
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
-call vundle#end()
+call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -731,3 +765,9 @@ let g:syntastic_mode_map = { "mode": "passive" }
 
 nnoremap <localleader>l :SyntasticToggleMode<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" hardtime
+let g:hardtime_default_on = 1
+let g:hardtime_timeout = 100
