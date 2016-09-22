@@ -7,34 +7,19 @@ autocmd!
 let leader = "\\"
 let maplocalleader = " "
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" BEGIN VUNDLE
-" :PluginInstall - to install plugins
-" :PluginUpdate  - to update
-" :PluginSearch  - list all plugins in vim script
-" :PluginClean   - remove plugins not mentioned below
+" =============================== BEGIN SECTION ===============================
+" --- PLUGINS
+" -----------------------------------------------------------------------------
+" :PlugInstall - to install plugins
+" :PlugUpdate  - to update
+" :PlugSearch  - list all plugins in vim script
+" :PlugClean   - remove plugins not mentioned below
+" -----------------------------------------------------------------------------
+
 call plug#begin('~/.vim/plugged')
 
-" magic with TAB
-Plug 'ervandew/supertab'
-" commenting
-Plug 'scrooloose/nerdcommenter'
-" python wrapping etc
-Plug 'Python-mode-klen'
-" latex wrapping, keybinding, etc.
-Plug 'LaTeX-Box'
-" snippet engine | snippets use by ultisnips engine
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" * undo tree, <F5> to open
-Plug 'Gundo'
-" hex editor
-Plug 'Shougo/vinarise'
-" allows autowrapping for writing
-Plug 'reedes/vim-pencil'
-" zen mode
-Plug 'junegunn/goyo.vim'
-" shows changes to git file
-Plug 'airblade/vim-gitgutter'
+" ------------------------------- begin subsection -------------------------------
+" --- navigation related
 " ctag code outline bar
 Plug 'majutsushi/tagbar'
 " show buffers
@@ -43,41 +28,86 @@ Plug 'ap/vim-buftabline'
 Plug 'scrooloose/nerdtree'
 " git flag integration with NerdTree
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" align based on a character
-Plug 'junegunn/vim-easy-align'
 " CtrlP
 Plug 'ctrlpvim/ctrlp.vim'
-" Damian Conway's drag thing
-Plug 'shinokada/dragvisuals.vim'
-" Coloscheme
-Plug 'Lokaltog/vim-distinguished'
-" REQUIRES: (c:astyle)
-Plug 'Chiel92/vim-autoformat'
-" unify tmux and vim window switching
-Plug 'christoomey/vim-tmux-navigator'
-" toggle wrapping of functions, arrays, etc
-Plug 'foosoft/vim-argwrap'
 " super fast jellyfish
 Plug 'easymotion/vim-easymotion'
-" autoexpand selections
-Plug 'terryma/vim-expand-region'
-" manage git
-Plug 'tpope/vim-fugitive'
+" --------------------------------------------------------------------------------
+
+
+" ------------------------------- begin subsection -------------------------------
+" --- code completion
+" magic with TAB
+Plug 'ervandew/supertab'
+" commenting
+Plug 'scrooloose/nerdcommenter'
+" snippet engine | snippets use by ultisnips engine
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" align based on a character
+Plug 'junegunn/vim-easy-align'
 " quote/unquote, tag/untag, replace etc
 Plug 'tpope/vim-surround'
 " extend . to plugins
 Plug 'tpope/vim-repeat'
 " add fi to if, etc
 Plug 'tpope/vim-endwise'
-" navigation and stuff
-Plug 'tpope/vim-unimpaired'
+" --------------------------------------------------------------------------------
+
+
+" ------------------------------- begin subsection -------------------------------
+" --- magic
+" toggle wrapping of functions, arrays, etc
+Plug 'foosoft/vim-argwrap'
+" autoexpand selections
+Plug 'terryma/vim-expand-region'
+" * undo tree, <F5> to open
+Plug 'Gundo'
+" shows changes to git file
+Plug 'airblade/vim-gitgutter'
+" for interaction with git
+Plug 'tpope/vim-fugitive'
+" Damian Conway's drag thing
+Plug 'shinokada/dragvisuals.vim'
+" --------------------------------------------------------------------------------
+
+
+" ------------------------------- begin subsection -------------------------------
+" --- programming related
+" REQUIRES: (c:astyle)
+Plug 'Chiel92/vim-autoformat'
 " linters
 Plug 'scrooloose/syntastic'
-" penalize hjkl
-Plug 'takac/vim-hardtime'
-" allow asynchronous operation, requires compilation | haskell mode
-Plug 'Shougo/vimproc.vim', { 'do': 'make' } | Plug 'eagletmt/ghcmod-vim'
+" --------------------------------------------------------------------------------
 
+
+" ------------------------------- begin subsection -------------------------------
+" --- landuate/filetype specific plugins
+" allow asynchronous operation, requires compilation | haskell mode
+Plug 'Shougo/vimproc.vim', { 'do': 'make' } | Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
+" python wrapping etc
+Plug 'Python-mode-klen', {'for': 'python'}
+" latex wrapping, keybinding, etc.
+Plug 'LaTeX-Box', {'for': ['tex', 'rnoweb']}
+" hex editor
+Plug 'Shougo/vinarise'
+" allows autowrapping for writing
+Plug 'reedes/vim-pencil'
+" zen mode
+Plug 'junegunn/goyo.vim'
+" --------------------------------------------------------------------------------
+
+
+" ------------------------------- begin subsection -------------------------------
+" --- miscellaneous
+" Colorscheme
+Plug 'Lokaltog/vim-distinguished'
+" unify tmux and vim window switching
+Plug 'christoomey/vim-tmux-navigator'
+" --------------------------------------------------------------------------------
+
+
+" ------------------------------- begin subsection -------------------------------
+" --- unused plugins
 " " deprecated, forgotten, betrayed, abondoned
 " Plug 'raimondi/delimitmate'           " automatically generate pairs
 " Plug 'mileszs/ack.vim'                " perl searches
@@ -89,22 +119,32 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' } | Plug 'eagletmt/ghcmod-vim'
 " Plug 'kana/vim-textobj-user'          " required for vim-textobj-comment
 " Plug 'glts/vim-textobj-comment'       " allow comment selection with ac and ic
 " Plug 'Vim-R-plugin'                   " R code wrapper
+" --------------------------------------------------------------------------------
 
+
+" ------------------------------- begin subsection -------------------------------
+" --- notes
 " * requires compilation with --enable-pythoninterp flag set
 " ** requires installation of ipython
-call plug#end()
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General
-set winheight=40
+call plug#end()
+
+
+" =============================== BEGIN SECTION ===============================
+" --- Global settings
+" -----------------------------------------------------------------------------
+
+
+" ------------------------------- begin subsection -------------------------------
+" --- basic settings
 set backspace=indent,eol,start
 set ai
 " Visual blocks automatically written to system clipboard
 set clipboard^=autoselect
 set expandtab
-set hlsearch
 set ignorecase
+set hlsearch
 set incsearch
 set noswapfile
 set number
@@ -112,6 +152,7 @@ set scrolloff=5
 set shiftwidth=4
 set smartcase
 set smarttab
+set relativenumber
 set syntax=automatic
 set tabstop=4
 set shiftwidth=4
@@ -126,47 +167,20 @@ set verbose=0
 " nnoremap <SID>annoying_latex_thing_cj <Plug>IMAP_JumpForward
 filetype plugin on
 syntax on
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Global (and controversial) key mapping
-noremap ; :
-noremap : ;
-" wrap paragraph
-nnoremap <localleader>w ma{V}gq'a$
-" search for selected text
-vnoremap // y/<C-R>"<CR>
-" make escape cancel highlighting
-" nnoremap <ESC> <ESC>:noh<CR><ESC>
-nnoremap <CR> :noh<CR>
-" One hand navigation
-noremap <Down>  <PageDown>
-noremap <Up>    <PageUp>
-noremap <Left>  :bprev<CR>
-noremap <Right> :bnext<CR>
-" Copy and paste from X-clipboard
-" requires +X11 compile option
-nnoremap <localleader>p "+p
-nnoremap <localleader>P "+P
-nnoremap <localleader>d "+dd
-nnoremap <localleader>y "+yy
-vnoremap <localleader>y "+y
-vnoremap <localleader>d "+d
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" --- Set color schemes
+" ------------------------------- begin subsection -------------------------------
+" --- aesthetic settings
 " To turn on 256 bit colors and the awesome distinguished theme, uncomment
 " the lines below. Note that 256 bit color may require setting on parameters
 " in your kernel, or something.
 set t_Co=256
 colorscheme distinguished
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- Dirty hacks for fixing dumb problems
 " remove the annoying ESC delay ---
 " NOTE: if you are using tmux, you will also need to add the following command
@@ -176,9 +190,113 @@ set timeout
 set timeoutlen=1000
 set ttimeoutlen=1000
 set updatetime=100
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" ------------------------------- begin subsection -------------------------------
+" --- tags and other navigation magic
+" --- For nice discussion on ctags and whatnot:
+" --- https://andrew.stwrt.ca/posts/vim-ctags/
+" Search for tags along directory ancestral tree
+set tags=./tags,tags;$HOME
+" --------------------------------------------------------------------------------
+
+
+
+" =============================== BEGIN SECTION ===============================
+" --- Global Keybindings
+" -----------------------------------------------------------------------------
+" This section should include all keybindings that are not associated with a
+" particular plugin.
+" -----------------------------------------------------------------------------
+
+" ------------------------------- begin subsection -------------------------------
+" --- general
+" fast command calling
+noremap ; :
+noremap : ;
+" wrap paragraph
+nnoremap <localleader>w ma{V}gq'a$
+" search for selected text
+vnoremap // y/<C-R>"<CR>
+" make escape cancel highlighting
+nnoremap <CR> :noh<CR>
+" One hand navigation
+noremap <Down>  <PageDown>
+noremap <Up>    <PageUp>
+noremap <Left>  :bprev<CR>
+noremap <Right> :bnext<CR>
+" --------------------------------------------------------------------------------
+
+
+" ------------------------------- begin subsection -------------------------------
+" --- keybindings based of tpope's unimpaired plugin
+" I don't like all the bindings in tpope's plugin. The paste commands are
+" especially inconvenient because they use =*, which interferes with my
+" commenting keybindings.
+" --------------------------------------------------------------------------------
+" arguments
+nnoremap [a :previous<CR>
+nnoremap ]a :next<CR>
+nnoremap [A :first<CR>
+nnoremap ]A :last<CR>
+" buffers
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
+nnoremap [B :bfirst<CR>
+nnoremap ]B :blast<CR>
+" quickfix, but use local window
+nnoremap [l :lprevious<CR>
+nnoremap ]l :lnext<CR>
+nnoremap [L :lfirst<CR>
+nnoremap ]L :llast<CR>
+" quickfix (errors)
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
+" tag
+nnoremap [t :tprevious<CR>
+nnoremap ]t :tnext<CR>
+nnoremap [T :tfirst<CR>
+nnoremap ]T :tlast<CR>
+" --------------------------------------------------------------------------------
+
+
+" ------------------------------- begin subsection -------------------------------
+" --- Copy and paste from X-clipboard
+" requires +X11 compile option
+nnoremap <localleader>p "+p
+nnoremap <localleader>P "+P
+nnoremap <localleader>d "+dd
+nnoremap <localleader>y "+yy
+vnoremap <localleader>y "+y
+vnoremap <localleader>d "+d
+" --------------------------------------------------------------------------------
+
+
+" ------------------------------- begin subsection -------------------------------
+" --- BUFFERS, TABS, WINDOWS, and all that
+set hidden
+nnoremap <C-i> :bprev<CR>
+nnoremap <C-o> :bnext<CR>
+let g:buftabline_show=1
+let g:buftabline_indicators="on"
+let g:buftabline_numbers=2
+nmap <localleader>1 <Plug>BufTabLine.Go(1)
+nmap <localleader>2 <Plug>BufTabLine.Go(2)
+nmap <localleader>3 <Plug>BufTabLine.Go(3)
+nmap <localleader>4 <Plug>BufTabLine.Go(4)
+nmap <localleader>5 <Plug>BufTabLine.Go(5)
+nmap <localleader>6 <Plug>BufTabLine.Go(6)
+nmap <localleader>7 <Plug>BufTabLine.Go(7)
+nmap <localleader>8 <Plug>BufTabLine.Go(8)
+nmap <localleader>9 <Plug>BufTabLine.Go(9)
+nmap <localleader>0 <Plug>BufTabLine.Go(10)
+" --------------------------------------------------------------------------------
+
+
+" ------------------------------- begin subsection -------------------------------
 " --- From Alexander Shukaev on stack overflow (13850914)
 " --- These mappings force a new vim student to use vim correctly.
 " --- However, I have no reason to use them currently use them
@@ -197,9 +315,9 @@ set updatetime=100
 " vnoremap <Down>  <Nop>
 " vnoremap <Left>  <Nop>
 " vnoremap <Right> <Nop>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- F keys - the F keys should work in all modes
 " +++ Reserve F5-F8 for toggling windows (e.g. NerdTree)
 " Open Gundo window on left
@@ -227,55 +345,51 @@ vnoremap <F9> <ESC>:PencilToggle<CR>
 nnoremap <F10> <Plug>RStart
 inoremap <F10> <Plug>RStart
 vnoremap <F10> <Plug>RStart
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" --- tags and other navigation magic
-" --- For nice discussion on ctags and whatnot:
-" --- https://andrew.stwrt.ca/posts/vim-ctags/
-" Search for tags along directory ancestral tree
-set tags=./tags,tags;$HOME
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =============================== BEGIN SECTION ===============================
+" --- Functions
+" -----------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" --- BUFFERS, TABS, WINDOWS, and all that
-set hidden
-nnoremap <C-i> :bprev<CR>
-nnoremap <C-o> :bnext<CR>
-let g:buftabline_show=1
-let g:buftabline_indicators="on"
-let g:buftabline_numbers=2
-nmap <localleader>1 <Plug>BufTabLine.Go(1)
-nmap <localleader>2 <Plug>BufTabLine.Go(2)
-nmap <localleader>3 <Plug>BufTabLine.Go(3)
-nmap <localleader>4 <Plug>BufTabLine.Go(4)
-nmap <localleader>5 <Plug>BufTabLine.Go(5)
-nmap <localleader>6 <Plug>BufTabLine.Go(6)
-nmap <localleader>7 <Plug>BufTabLine.Go(7)
-nmap <localleader>8 <Plug>BufTabLine.Go(8)
-nmap <localleader>9 <Plug>BufTabLine.Go(9)
-nmap <localleader>0 <Plug>BufTabLine.Go(10)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
+" --- Dealing with buffers
+" leave a buffer, saving unless it is readonly (this still fails in some cases
+" CountBuffers re-adapted from Kyle Strand on superuser
+function! CountBuffers ()
+    let n = 0
+    for i in range(1, bufnr("$"))
+        if buflisted(i) && !empty(bufname(i))
+            let n += 1
+        endif
+    endfor
+    return n
+endfunction
+function! Close_any_buffer ()
+    try
+        write
+    catch /readonly/
+    catch /Cannot write/
+    catch /No filename/
+    finally
+        if CountBuffers() == 1
+            try
+                quit
+            catch /E173/
+                wqa
+            endtry
+        else
+            bdelete
+        endif
+    endtry
+endfunction
+nnoremap <localleader>c :call Close_any_buffer() <cr>
+nnoremap <localleader>C :wqa<cr>
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" --- functions that alter vims behavior in dubious ways
-" " vp doesn't replace paste buffer, borrowed from Sheerun
-" function! RestoreRegister()
-"   let @" = s:restore_reg
-"   return ''
-" endfunction
-" function! s:Repl()
-"   let s:restore_reg = @"
-"   return "p@=RestoreRegister()\<cr>"
-" endfunction
-" vmap <silent> <expr> p <sid>Repl()
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- Dealing with particular file types
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab,*.gff call TabularSettings()
 autocmd BufNewFile,BufRead *.R call RSettings()
@@ -285,6 +399,19 @@ autocmd FileType text call TextSettings()
 autocmd FileType markdown call MarkdownSettings()
 autocmd FileType py call PythonSetting()
 autocmd FileType rnoweb call Rnoweb()
+autocmd FileType haskell call Haskell()
+
+function! Haskell()
+    hi ghcmodType ctermbg=cyan
+    nnoremap gh             :GhcModType<CR>
+    nnoremap <CR>           :call HaskellClean()<CR>
+    nnoremap <localleader>l :GhcModCheck<CR>
+    nnoremap <localleader>L :GhcModLint<CR>
+endfunction
+function! HaskellClean()
+    :GhcModTypeClear
+    :noh
+endfunction
 
 function! TabularSettings()
     setlocal nowrap
@@ -340,17 +467,15 @@ function! PythonSetting()
     " vmap <buffer> <C-CR> <Plug>SlimeRegionSend
 endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" -------------------------------------------------------------------
-" Plugin Configurations
-" -------------------------------------------------------------------
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" =============================== BEGIN SECTION ===============================
+" --- Plugin Configurations
+" -----------------------------------------------------------------------------
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- NerdTree
 " set default shell - needed for nerdtree-git-plugin
 set shell=sh
@@ -359,10 +484,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Open NerdTree if no other file selected
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- UltiSnips
 " Snippet commands - for use with ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -370,10 +495,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 let g:UltiSnipsEditSplit="horizontal"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- Gundo options
 " p    - show the whole diff from head to current node
 " <cr> - revert
@@ -398,23 +523,23 @@ let g:gundo_auto_preview=1
 " mode. Set this to a higher number for a slower playback or to a lower number
 " for a faster playback.
 let g:gundo_playback_delay=60
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- YouCompleteMe options
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- Vinarise options
 let g:vinarise_enable_auto_detect=1
 let g:vinarise_detect_large_file_size=-1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- Pencil options
 augroup pencil
   autocmd!
@@ -422,10 +547,10 @@ augroup pencil
   autocmd FileType text call pencil#init({'wrap': 'hard'})
   let g:pencil#wrapModeDefault = 'soft'
 augroup END
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- vim-r-plugin options
 let vimrplugin_assign = 0
 let vimrplugin_applescript = 0
@@ -434,10 +559,10 @@ let vimrplugin_screenplugin = 0
 vmap <C-CR> <Plug>RDSendSelection
 " send line to R
 nmap <C-CR> <Plug>RDSendLine
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- CtrlP options
 " --- HELP: :help ctrlp-commands and :help ctrlp-extensions
 let g:ctrlp_working_path_mode = 'r'
@@ -447,45 +572,14 @@ set wildignore+=*.o,*.so,*.gch,*.out,*.gz,*.bz2,*.hi
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 nnoremap <localleader>o :CtrlP<cr>
 nnoremap <localleader>f :CtrlPTag<cr>
-" leave a buffer, saving unless it is readonly (this still fails in some cases
-" CountBuffers re-adapted from Kyle Strand on superuser
-function! CountBuffers ()
-    let n = 0
-    for i in range(1, bufnr("$"))
-        if buflisted(i) && !empty(bufname(i))
-            let n += 1
-        endif
-    endfor
-    return n
-endfunction
-function! Close_any_buffer ()
-    try
-        write
-    catch /readonly/
-    catch /Cannot write/
-    catch /No filename/
-    finally
-        if CountBuffers() == 1
-            try
-                quit
-            catch /E173/
-                wqa
-            endtry
-        else
-            bdelete
-        endif
-    endtry
-endfunction
-nnoremap <localleader>c :call Close_any_buffer() <cr>
-nnoremap <localleader>C :wqa<cr>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- GitGutter options
-" --- Notes:
-" --- stage the hunk with <Leader>hs or
-" --- undo it with <Leader>hu.
+" stage the hunk with <Leader>hs or
+" undo it with <Leader>hu.
+" --------------------------------------------------------------------------------
 " Number of changes to track (for performance reasons) default=500
 let g:gitgutter_max_signs = 100
 " stage a hunk (default=<Leader>hs)
@@ -498,17 +592,17 @@ nmap <localleader>hp <Plug>GitGutterPreviewHunk <C-j>
 nmap [c <Plug>GitGutterPrevHunk
 " next hunk
 nmap ]c <Plug>GitGutterNextHunk
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- supertab settings
 " TODO learn how to customize this ...
 " let g:SuperTabDefaultCompletionType = "context"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- tagbar
 let g:tagbar_type_r = {'ctagstype':'r', 'kinds':['f:function']}
 let g:tagbar_type_rnoweb = {
@@ -606,16 +700,16 @@ let g:tagbar_previewwin_pos = ""
 " If this variable is set to 1 then moving the cursor in the Tagbar window will
 " automatically show the current tag in the preview window.
 let g:tagbar_autopreview = 0
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- auto-reformatting
 nnoremap <localleader>A :Autoformat<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- Damian Conways Drag vis
 vmap  <expr>  <LEFT>   DVB_Drag('left')
 vmap  <expr>  <RIGHT>  DVB_Drag('right')
@@ -624,24 +718,24 @@ vmap  <expr>  <UP>     DVB_Drag('up')
 vmap  <expr>  D        DVB_Duplicate()
 " Remove any introduced trailing whitespace after moving...
 let g:DVB_TrimWS=1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- easy-align settings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- argwrap settings
 nnoremap <localleader>a :ArgWrap<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- NERDCommenter settings
 nmap =              <Plug>NERDCommenterNested
 vmap =              <Plug>NERDCommenterNested
@@ -687,10 +781,10 @@ let NERDDefaultNesting=1
 "  \  }
 " default alignment to use, one of 'none', 'left', 'start', or 'both'
 let NERDDefaultAlign='both'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- easy motion
 " Leader
 map <localleader><localleader> <Plug>(easymotion-prefix)
@@ -711,10 +805,10 @@ let g:EasyMotion_add_search_history=0
 let g:EasyMotion_off_screen_search = 0
 let g:EasyMotion_disable_two_key_combo=0
 let g:EasyMotion_verbose = 0
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- vim-expand-region
 map ,              <Plug>(expand_region_expand)
 map <localleader>, <Plug>(expand_region_shrink)
@@ -733,22 +827,21 @@ let g:expand_region_text_objects = {
       \ 'ip'  :0,
       \ 'ie'  :0,
       \ }
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " --- Ack
 let g:ackprg = "ag --vimgrep"
 let g:ackhighlight = 1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" --------------------------------------------------------------------------------
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ------------------------------- begin subsection -------------------------------
 " syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list            = 1
 let g:syntastic_check_on_open            = 1
@@ -757,17 +850,9 @@ let g:syntastic_check_on_wq              = 0
 let g:syntastic_check_on_open            = 1
 let g:syntastic_aggregate_errors         = 1
 let g:syntastic_enable_highlighting      = 1
-
+" language specific opitions
 let g:syntastic_cpp_compiler = "g++"
 let g:syntastic_cpp_compiler_options = "-Wall -Wextra -pedantic -std=c++11 -Wshadow -Wconversion -Wold-style-cast -Wcast-align -Weffc++ -Wmisleading-indentation"
-
 let g:syntastic_mode_map = { "mode": "passive" }
-
 nnoremap <localleader>l :SyntasticToggleMode<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" hardtime
-let g:hardtime_default_on = 1
-let g:hardtime_timeout = 100
+" --------------------------------------------------------------------------------
