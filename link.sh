@@ -4,7 +4,7 @@
 # removed and replaced with a link to the corresponding file from this
 # repository. Otherwise, the existing file is moved to a temporary folder.
 
-tmp=/tmp/dotfiles-$(date | tr ' ' '-') 
+tmp=/tmp/dotfiles-$(date | tr ' ' '-')
 mkdir -p $tmp
 
 safely-link () {
