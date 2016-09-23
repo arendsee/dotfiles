@@ -84,6 +84,8 @@ mkdir -p $HOME/.vimundo
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+vim +PlugClean +PlugInstall +qall
+
 colorscheme=distinguished
 colorscheme_path=$HOME/.vim/bundle/vim-distinguished/colors
 if [[ -f "${colorscheme_path}/${colorscheme}.vim" ]]
