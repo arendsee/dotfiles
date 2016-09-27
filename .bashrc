@@ -21,7 +21,7 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # requires installation of acpi
-battery-check_() {
+__battery-check_() {
     operation=$1
     percent=$2
     time_remaining=$3
@@ -76,26 +76,34 @@ parse-acpi () {
         END{ print $1, $2, $3 }
     '
 }
-battery-check() {
-    battery-check_ `parse-acpi`
+
+__battery-check() {
+    __battery-check_ `parse-acpi`
 }
 
-# If ROOT, use a scary red font
-if [[ $HOME == "/root" ]]; then
-    PS1=" \[\033[0;31m\]\$? ROOT \W \$ \[\033[00m\]"
-# If not in tmux, show an naked yellow dollar sign
-elif [[ -z $TMUX ]]; then
-    PS1=" \[\033[1;33m\]\$ \[\033[00m\]"
-# If in TMUX, use a nice subdued font with working directory shown
-else
-    if [[ ! -z `type -P acpi` ]]
-    then
-      PS1="\$(battery-check)\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
-      # PS1="\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+PROMPT_COMMAND=__prompt_cmd
+__prompt_cmd() {
+    local EXIT=$?
+    local NORMAL='\[\033[00m\]'
+    local RED='\[\033[0;31m\]'
+    local GREEN='\[\033[0;32m\]'
+    local YELLOW='\[\033[1;33m\]'
+    # If ROOT, use a scary red font
+    if [[ $HOME == "/root" ]]; then
+        PS1="${RED}${EXIT} ROOT \W \$ ${NORMAL}"
+    # If not in tmux, show an naked yellow dollar sign
+    elif [[ -z $TMUX ]]; then
+        PS1="${YELLOW}${EXIT} \$ ${NORMAL}"
+    # If in TMUX, use a nice subdued font with working directory shown
     else
-      PS1="\[\033[0;32m\]\$? \W \$ \[\033[00m\]"
+        if [[ ! -z `type -P acpi` ]]
+        then
+          PS1="\$(__battery-check)${GREEN}${EXIT} \W \$ ${NORMAL}"
+        else
+          PS1="${GREEN}${EXIT} \W \$ ${NORMAL}"
+        fi
     fi
-fi
+}
 
 # enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
