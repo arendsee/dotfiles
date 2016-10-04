@@ -9,9 +9,16 @@ endsnippet
 snippet class "make a class" b
 class ${1:CLASS}
 {
-private:
 public:
+	$1(const $1&) = delete;
+	$1& operator=(const $1&) = delete;
+
 	$1();
 	~$1();
 };
+endsnippet
+
+snippet nocopy "Delete copy constructor and delete operator" b
+${VISUAL}(const ${VISUAL}&) = delete;
+${VISUAL}& operator=(const ${VISUAL}&) = delete;
 endsnippet
