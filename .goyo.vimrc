@@ -9,24 +9,25 @@ let maplocalleader = " "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BEGIN VUNDLE
-" :PluginInstall - to install plugins
-" :PluginUpdate  - to update
-" :PluginSearch  - list all plugins in vim script
-" :PluginClean   - remove plugins not mentioned below
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" :PlugInstall - to install plugins
+" :PlugUpdate  - to update
+" :PlugSearch  - list all plugins in vim script
+" :PlugClean   - remove plugins not mentioned below
+call plug#begin('~/.vim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'           " Vundle
-Plugin 'reedes/vim-pencil'              " allows autowrapping for writing
-Plugin 'junegunn/goyo.vim'              " zen mode
-Plugin 'vim-scripts/Align'              " align based on a character
-Plugin 'alx741/vinfo'                   " Read info pages painlessly
-Plugin 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
-Plugin 'junegunn/vim-easy-align'        " align based on a character
-Plugin 'easymotion/vim-easymotion'      " super fast jellyfish
-Plugin 'terryma/vim-expand-region'      " autoexpand selections
+" snippet engine | snippets use by ultisnips engine
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'VundleVim/Vundle.vim'           " Vundle
+Plug 'reedes/vim-pencil'              " allows autowrapping for writing
+Plug 'junegunn/goyo.vim'              " zen mode
+Plug 'vim-scripts/Align'              " align based on a character
+Plug 'alx741/vinfo'                   " Read info pages painlessly
+Plug 'christoomey/vim-tmux-navigator' " unify tmux and vim window switching
+Plug 'junegunn/vim-easy-align'        " align based on a character
+Plug 'easymotion/vim-easymotion'      " super fast jellyfish
+Plug 'terryma/vim-expand-region'      " autoexpand selections
 
-call vundle#end()
+call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set backspace=indent,eol,start
