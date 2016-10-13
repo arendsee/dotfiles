@@ -15,3 +15,9 @@ public:
 	~$1();
 };
 endsnippet
+
+snippet debug "Make debug message" b
+#ifdef DEBUG
+cerr << "${1:msg}\n";
+#endif
+endsnippet
