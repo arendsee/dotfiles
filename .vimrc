@@ -405,13 +405,9 @@ autocmd FileType haskell call Haskell()
 function! Haskell()
     hi ghcmodType ctermbg=cyan
     nnoremap gh             :GhcModType<CR>
-    nnoremap <CR>           :call HaskellClean()<CR>
+    nnoremap <CR>           :GhcModTypeClear<CR>:noh<CR>
     nnoremap <localleader>l :GhcModCheck<CR>
     nnoremap <localleader>L :GhcModLint<CR>
-endfunction
-function! HaskellClean()
-    :GhcModTypeClear
-    :noh
 endfunction
 
 function! TabularSettings()
