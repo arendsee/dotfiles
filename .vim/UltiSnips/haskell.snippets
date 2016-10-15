@@ -1,5 +1,18 @@
 priority 0
 
+snippet io "An ugly IO template, from Real World Haskell" b
+interactWith function inputFile outputFile = do
+	input <- readFile inputFile
+	writeFile outputFile (function input)
+
+main = mainWith $ foo
+	where mainWith function = do
+			args <- getArgs
+			case args of
+			[a,b,c] -> interactWith (function a b c) "/dev/stdin" "/dev/stdout"
+			_ -> putStrLn "error: incorrect number of arguments"
+endsnippet
+
 snippet turtle "make turtle shell template" b
 #!/usr/bin/env runhaskell
 

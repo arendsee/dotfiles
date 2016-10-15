@@ -84,8 +84,8 @@ Plug 'scrooloose/syntastic'
 " --- landuate/filetype specific plugins
 " allow asynchronous operation, requires compilation | haskell mode
 Plug 'Shougo/vimproc.vim', { 'do': 'make' } | Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
-" python wrapping etc
-Plug 'Python-mode-klen', {'for': 'python'}
+" " python wrapping etc
+" Plug 'Python-mode-klen', {'for': 'python'}
 " latex wrapping, keybinding, etc.
 Plug 'LaTeX-Box', {'for': ['tex', 'rnoweb']}
 " hex editor
