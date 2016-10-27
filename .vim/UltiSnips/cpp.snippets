@@ -18,6 +18,12 @@ public:
 };
 endsnippet
 
+snippet debug "Make debug message" b
+#ifdef DEBUG
+cerr << "${1:msg}\n";
+#endif
+endsnippet
+
 snippet nocopy "Delete copy constructor and delete operator" b
 ${VISUAL}(const ${VISUAL}&) = delete;
 ${VISUAL}& operator=(const ${VISUAL}&) = delete;

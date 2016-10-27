@@ -148,6 +148,7 @@ set hlsearch
 set incsearch
 set noswapfile
 set number
+set relativenumber
 set scrolloff=5
 set shiftwidth=4
 set smartcase
