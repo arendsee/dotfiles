@@ -116,3 +116,10 @@ theme(
 	axis.text.x = element_text(angle=270, hjust=0, vjust=1)
 )
 endsnippet
+
+snippet rcpp "rcpp template" b
+include(Rcpp)
+
+sourceCpp("${1:source.cpp}")
+
+endsnippet

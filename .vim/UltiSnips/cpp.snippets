@@ -22,3 +22,19 @@ snippet nocopy "Delete copy constructor and delete operator" b
 ${VISUAL}(const ${VISUAL}&) = delete;
 ${VISUAL}& operator=(const ${VISUAL}&) = delete;
 endsnippet
+
+snippet rfun "Make new Rcpp exported function" b
+// [[Rcpp::plugins(cpp11)]]
+// [[Rpp::export]]
+endsnippet
+
+snippet rcpp "Make Rcpp hello world" b
+#include <Rcpp.h>
+using namespace Rcpp
+
+// [[Rpp::export]]
+void hello()
+{
+	Rprintf("Hello world\n");
+}
+endsnippet

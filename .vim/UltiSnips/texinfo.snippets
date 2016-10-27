@@ -1,0 +1,26 @@
+snippet t "template for minimal texinfo" b
+\input texinfo
+@settitle ${1:TITLE}
+
+@ifnottex
+@node Top
+@top ${2:SHORT_DESCRIPTION}
+@end ifnottex
+
+@menu${0}
+* First Chapter::    The cat
+* Second Chapter::    The hat
+@end menu
+
+@node First Chapter
+@chapter First Chapter
+
+The cat sat in the hat
+
+@node Second Chapter
+@chapter Second Chapter
+
+The hat purred smuggly, much to the annoyance of the cat.
+
+@bye
+endsnippet
