@@ -77,27 +77,22 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 function cd_ls {
-    if [[ -z "$1" ]]
-    then
-        cd
-    else
-        cd "$1"
-    fi
-    ls
+    cd $1; ls
 }
 
-alias ,='cd_ls'
+alias ,="cd_ls"
 alias ,.='cd_ls -'
 alias ..='cd_ls ..'
 alias ...='cd_ls ../..'
 alias ....='cd_ls ../../..'
 alias .....='cd_ls ../../../..'
+alias ......='cd_ls ../../../../..'
 
-alias ..2='cd ../..; pwd; ls'
-alias ..3='cd ../../..; pwd; ls'
-alias ..4='cd ../../../..; pwd; ls'
-alias ..5='cd ../../../../..; pwd; ls'
-alias ..6='cd ../../../../../..; pwd; ls'
+alias ..2='cd_ls ../..'
+alias ..3='cd_ls ../../..'
+alias ..4='cd_ls ../../../..'
+alias ..5='cd_ls ../../../../..'
+alias ..6='cd_ls ../../../../../..'
 
 # colorfully pipe tree to less
 function ltree {
