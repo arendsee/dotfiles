@@ -77,7 +77,12 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 function cd_ls {
-    cd "$1"; ls
+    if [[ -z $1 ]]
+    then
+        cd ; ls
+    else
+        cd "$1"; ls
+    fi
 }
 
 alias ,="cd_ls"
