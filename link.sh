@@ -98,5 +98,19 @@ fi
 
 
 # -------------------------------------------------------------------
+# Filesystem setup
+
+# Make $HOME/bin directory if absent
+[[ -d $HOME/bin ]] || mkdir $HOME/bin
+
+# Get dropbox CLI script
+if [[ ! -f ~/bin/dropbox.py ]]
+then
+    wget -O ~/bin/dropbox.py "https://www.dropbox.com/download?dl=packages/dropbox.py"
+    chmod 755 ~/bin/dropbox.py
+fi
+
+
+# -------------------------------------------------------------------
 # --- cleanup
 rmdir $tmp 2> /dev/null

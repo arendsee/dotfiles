@@ -5,6 +5,8 @@ EDITOR=vim
 set editing-mode vi
 set show-mode-in-prompt on
 
+PATH="$PATH:$HOME/bin"
+
 export TERM="screen-256color"
 
 # If not running interactively, don't do anything
@@ -139,6 +141,4 @@ export LS_COLORS="$LS_COLORS:*.csv=38;5;106:*.tab=38;5;106:*.tsv=38;5;106:"
 export LS_COLORS="$LS_COLORS:*MANIFEST=01;39:*MANIFEST.txt=01;39:*SOURCE=01;39:*SOURCE.txt=01;39:*README=01;39:*README.txt=01;39:*README.md=01;39:*INSTALL=01;39:*TODO=01;39:"
 
 # pdf and tex
-
-
 export LS_COLORS="$LS_COLORS:*.pdf=00;35:*.tex=00;36"
