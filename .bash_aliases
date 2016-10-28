@@ -77,7 +77,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 function cd_ls {
-    cd $1; ls
+    cd "$1"; ls
 }
 
 alias ,="cd_ls"
