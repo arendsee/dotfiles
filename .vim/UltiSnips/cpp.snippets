@@ -29,18 +29,27 @@ ${VISUAL}(const ${VISUAL}&) = delete;
 ${VISUAL}& operator=(const ${VISUAL}&) = delete;
 endsnippet
 
-snippet rfun "Make new Rcpp exported function" b
-// [[Rcpp::plugins(cpp11)]]
-// [[Rpp::export]]
-endsnippet
-
 snippet rcpp "Make Rcpp hello world" b
 #include <Rcpp.h>
 using namespace Rcpp
 
-// [[Rpp::export]]
+// [[Rcpp::export]]
 void hello()
 {
 	Rprintf("Hello world\n");
 }
 endsnippet
+
+snippet rfun "Build Rcpp function" b
+//' ${1:DESCRIPTION}
+//'
+//' @param x description
+//' @export
+// [[Rcpp::export]]
+${2:void} ${3:FUN}(${4:int x})
+{
+	${0}
+	return $2;
+}
+endsnippet
+
