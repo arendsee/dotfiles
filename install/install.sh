@@ -8,6 +8,8 @@ pacman -S cabal-install
 pacman -S ghc-mod
 # ctags equivalent for haskell
 pacman -S hasktags
+# the Haskell tool stack - needed for H and HaskellR
+pacman -S stack
 
 # ---------------------------------------------------------
 # --- shell and xmonad stuff
