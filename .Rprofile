@@ -8,15 +8,20 @@ q <- function (save="no", ...) {
   quit(save=save, ...)
 }
 
+options(error=utils::dump.frames)
+options(show.error.locations=TRUE)
+
+# set all available warnings
+options(check.bounds=TRUE)
+options(warnPartialMatchArgs=TRUE)
+options(warnPartialMatchAttr=TRUE)
+options(warnPartialMatchDollar=TRUE)
+
 # Turn off those annoying popups
 options(menu.graphics=FALSE)
 
-# # Stop the madness
-# # I comment this out to avoid portability issues
-# options(stringsAsFactors=FALSE)
-
 # Max number of lines to print
-options(max.print=200)
+options(max.print=1000)
 
 # Allow autocomplate of package names in library or require
 utils::rc.settings(ipck=TRUE)
