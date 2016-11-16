@@ -12,7 +12,7 @@ options(error=utils::dump.frames)
 options(show.error.locations=TRUE)
 
 # set all available warnings
-options(check.bounds=TRUE)
+# options(check.bounds=TRUE)
 options(warnPartialMatchArgs=TRUE)
 options(warnPartialMatchAttr=TRUE)
 options(warnPartialMatchDollar=TRUE)
