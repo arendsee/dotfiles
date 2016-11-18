@@ -22,6 +22,11 @@ alias ggb='git branch '
 alias ggp="git push origin "
 alias ggd="git diff "
 alias ggg="git log --graph"
+function gcl() {
+    repo=$1
+    user=${2-arendsee}
+    git clone "https://github.com/$user/$repo"
+}
 # commit and push to overleaf
 alias ggco='git add -A; git commit -m "edit"; git push origin master'
 # =============================================================================
