@@ -1,5 +1,16 @@
 extends sh
 
+snippet cpp "Default cpp Makefile" b 
+TARGET=${1:}
+
+all:
+	g++ -std=c++11 -g -Wall -O2 -o ${TARGET} *.[ch]
+
+.PHONY: clean
+clean:
+	rm -f ${TARGET}.o ${TARGET}
+endsnippet
+
 priority 2
 
 snippet hs "haskell default" b
