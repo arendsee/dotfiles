@@ -1,6 +1,8 @@
 # Compile vim my way
 # Works on Archlinux
 
+# Also need to comment out all the gvim trash
+
 all:
 	sudo abs
 	cp /var/abs/extra/vim/* .
@@ -14,4 +16,4 @@ all:
 
 .PHONY: clean
 clean:
-	rm -fr PKGBUILD vimrc gvim.desktop gvim.install archlinux.vim *xz *gz pkg src
+	rm -fr PKGBUILD vimrc gvim.desktop gvim.install archlinux.vim *xz *gz pkg src *patch *hook
