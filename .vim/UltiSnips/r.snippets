@@ -1,5 +1,21 @@
 priority 0
 
+snippet test "Add a test_that entry" b
+test_that(
+	"${1:test something}",
+	{
+		expect_equal(1, 1)
+	}
+)
+endsnippet
+
+snippet assign "Create an assignment template" b
+\`${1:foo}<-\` <- function(x, value){
+	${0} <- value
+	x
+}
+endsnippet
+
 snippet rscript "Initialize Rscript template" b
 #!/usr/bin/env Rscript
 
