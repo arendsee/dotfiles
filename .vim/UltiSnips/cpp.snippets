@@ -53,3 +53,23 @@ ${2:void} ${3:FUN}(${4:int x})
 }
 endsnippet
 
+
+snippet op<< "template extraction operator" b
+std::ostream& operator<<(std::ostream& os, const ${1:class}& obj)
+{
+	// write obj to stream
+	${0}
+	return os;
+}
+endsnippet
+
+snippet op>> "template insertion operator" b
+std::istream& operator>>(std::istream& is, ${1:class}& obj)
+{
+	// read obj from stream
+	${0}
+	if( /* $1 could not be constructed */ )
+		is.setstate(std::ios::failbit);
+	return is;
+}
+endsnippet
