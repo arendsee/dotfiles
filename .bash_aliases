@@ -3,6 +3,20 @@
 # fix for java
 # update-alternatives --install /usr/bin/java java $path_to_java 100
 
+# =============================================================================
+# Utility functions
+function works_(){
+    $1 > /dev/null 2>&1
+    if [[ $? -eq 0 ]]
+    then
+        echo 1
+    else
+        echo 0
+    fi
+}
+# =============================================================================
+
+
 alias vi=vim
 
 # =============================================================================
@@ -19,9 +33,9 @@ alias ggc='git commit '
 alias ggm='git merge --no-ff --no-commit '
 alias gga='git add '
 alias ggb='git branch '
-alias ggp="git push origin "
-alias ggd="git diff "
-alias ggg="git log --graph"
+alias ggp='git push origin '
+alias ggd='git diff '
+alias ggg='git log --graph'
 function gcl() {
     repo=$1
     user=${2-arendsee}
@@ -35,6 +49,24 @@ alias ggco='git add -A; git commit -m "edit"; git push origin master'
 # =============================================================================
 # Miscellaneous aliases
 # =============================================================================
+
+function ?() {
+    if [[ $(works_ "man $1") -eq 1 ]]
+    then
+        man $1
+    elif [[ $(works_ "$1 --help") -eq 1 ]]
+    then
+        $1 --help | less
+    elif [[ $(works_ "$1 -help") -eq 1 ]]
+    then
+        $1 -help | less
+    elif [[ $(works_ "$1 -h") -eq 1 ]]
+    then
+        $1 -h | less
+    else
+        echo "Could not find help" >&2
+    fi
+}
 
 alias parallel='parallel --gnu'
 alias fbasename='while read line; do basename $line; done'
@@ -187,6 +219,7 @@ function o {
         fi
     done
 }
+
 # A minimal path to one-hand info reading
 # Actually, I think gnu info rocks, probably don't need a replacement
 function vinfo() {
