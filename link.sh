@@ -1,5 +1,35 @@
 #!/usr/bin/env bash
 
+usage (){
+cat << EOF
+Build my system
+ * link all dotfiles to home directory
+ * make ~/.config/ if missing
+ * build ~/.vim/
+   * make ~/.vim/bundle/ and setup vim package manager
+   * setup colorscheme (distinguished)
+   * move these files from here to ~/.vim
+     * ~/.vim/UltiSnips
+     * ~/.vim/ftdetect
+     * ~/.vim/ftplugin
+     * ~/.vim/syntax
+ * make ~/.vimundo/
+ * install all vim plugins
+ * make ~/bin/
+ * retrieve dropbox.py
+
+Files already present in home will be copied to a temporary folder
+EOF
+    exit 0
+}
+
+while getopts "h" opt; do
+    case $opt in
+        h)
+            usage ;;
+    esac 
+done
+
 # Link all files in dotfiles. If the existing file is a symbolic link, it is
 # removed and replaced with a link to the corresponding file from this
 # repository. Otherwise, the existing file is moved to a temporary folder.
