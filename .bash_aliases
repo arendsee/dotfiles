@@ -45,6 +45,17 @@ function gcl() {
 alias ggco='git add -A; git commit -m "edit"; git push origin master'
 # =============================================================================
 
+# =============================================================================
+# Blogging
+rpost (){
+    filename=$(date +%Y-%m-%d-)$1.Rmd
+    touch $filename
+}
+jpost (){
+    filename=$(date +%y-%m-%d-)$1.md
+    touch $filename
+}
+
 
 # =============================================================================
 # Miscellaneous aliases
