@@ -74,6 +74,12 @@ function ?() {
     elif [[ $(works_ "$1 -h") -eq 1 ]]
     then
         $1 -h | less
+    elif [[ -f $1 ]]
+    then
+        file $1
+    elif [[ -d $1 ]]
+    then
+        ltree $1
     else
         echo "Could not find help" >&2
     fi
