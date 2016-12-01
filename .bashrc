@@ -8,6 +8,7 @@ set show-mode-in-prompt on
 PATH="$PATH:$HOME/bin"
 
 export TERM="screen-256color"
+export VISUAL="vim"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
