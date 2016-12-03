@@ -1,4 +1,19 @@
 extends sh
+priority 2
+
+snippet flex "flex/bison make template" b
+TARGET=${1:base_name}
+
+all:
+	bison -d ${TARGET}.y
+	flex ${TARGET}.l
+	cc -o ${TARGET} ${TARGET}.tab.c lex.yy.c -lfl
+
+.PHONY: clean
+clean:
+	rm -f lex.yy.c ${TARGET}.tab.c ${TARGET}.tab.h ${TARGET}
+endsnippet
+
 
 snippet cpp "Default cpp Makefile" b 
 TARGET=${1:}
@@ -10,8 +25,6 @@ all:
 clean:
 	rm -f ${TARGET}.o ${TARGET}
 endsnippet
-
-priority 2
 
 snippet hs "haskell default" b
 TARGET=${1:}
