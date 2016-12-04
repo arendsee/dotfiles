@@ -212,6 +212,11 @@ function o {
         echo "$j"
         if [[ "$j" =~ \.(png|jpg|jpeg|gif|tiff)$ ]]; then
             feh "$j" &
+        elif [[ "$j" =~ \.dot$ ]]; then
+            tempfile=/tmp/$RANDOM.svg
+            dot -Tsvg "$j" -o $tempfile 
+            inkscape $tempfile 
+            rm $tempfile
         elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx|xlsx)$ ]]; then
             libreoffice "$j" &
         elif [[ "$j" =~ \.(mp3|wav|flac)$ ]]; then
