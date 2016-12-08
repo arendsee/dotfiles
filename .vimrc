@@ -764,18 +764,7 @@ let NERDCompactSexyComs=0
 " nest comments by default
 let NERDDefaultNesting=1
 " Add or override delimiters for any filetypes
-" let g:NERDCustomDelimiters = {
-"  \     'c': {
-"  \          'left': '//',
-"  \          'leftAlt': '/*',
-"  \          'rightAlt': '*/'
-"  \      },
-"  \      'cpp': {
-"  \          'left': '//',
-"  \          'leftAlt': '/*',
-"  \          'rightAlt': '*/'
-"  \     }
-"  \  }
+let g:NERDCustomDelimiters = { 'rat' : { 'left' : '#' } }
 " default alignment to use, one of 'none', 'left', 'start', or 'both'
 let NERDDefaultAlign='both'
 " --------------------------------------------------------------------------------
