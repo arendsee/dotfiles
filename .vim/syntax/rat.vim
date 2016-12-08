@@ -1,0 +1,1 @@
+/home/shoggoth/src/git/rat/vim-syntax/rat.vim
