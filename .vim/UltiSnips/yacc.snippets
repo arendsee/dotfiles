@@ -1,1 +1,9 @@
 extends c
+
+snippet set "set $$ to some value" w
+{ $$ = ${1:\$1}; }
+endsnippet
+
+snippet say "print value of an expression" w
+{ printf(${1:"%s\n"}, ${2:\$1}); }
+endsnippet
