@@ -129,17 +129,26 @@ if [ -f ~/.local_bashrc ]; then
     . ~/.local_bashrc
 fi
 
+F="\e[2;49;90" # faint grey
+Y="\e[3;49;33" # yellow
+P="\e[0;49;35" # purple
+T="\e[0;49;36" # teal
+U="\e[3;49;90" # underlined grey
+
 # Color fasta files
-export LS_COLORS="$LS_COLORS:*.fa=00;33:*.faa=00;33:*.fna=00;33:*.fasta=00;33:"
+export LS_COLORS="$LS_COLORS:*.fa=$Y:*.faa=$Y:*.fna=$Y:*.fasta=$Y:"
 
 # Color masked fasta files
-export LS_COLORS="$LS_COLORS:*.mfa=00;33:*.mfaa=00;33:*.mfna=00;33:*.mfasta=00;33:"
+export LS_COLORS="$LS_COLORS:*.mfa=$Y:*.mfaa=$Y:*.mfna=$Y:*.mfasta=$Y:"
 
 # Color csv, tsv, and tab files
-export LS_COLORS="$LS_COLORS:*.csv=38;5;106:*.tab=38;5;106:*.tsv=38;5;106:"
+export LS_COLORS="$LS_COLORS:*.csv=$Y:*.tab=$Y:*.tsv=$Y:"
+
+# Color temporary files
+export LS_COLORS="$LS_COLORS:*.gch=$F:*.o=$F:*.so=$F:*.hi=$F:*~=$F"
 
 # Embolden MANIFEST, SOURCE, README, and TODO files
-export LS_COLORS="$LS_COLORS:*MANIFEST=01;39:*MANIFEST.txt=01;39:*SOURCE=01;39:*SOURCE.txt=01;39:*README=01;39:*README.txt=01;39:*README.md=01;39:*INSTALL=01;39:*TODO=01;39:"
+export LS_COLORS="$LS_COLORS:*MANIFEST=$U:*MANIFEST.txt=$U:*SOURCE=$U:*SOURCE.txt=$U:*README=$U:*README.txt=$U:*README.md=$U:*INSTALL=$U:*TODO=$U:*DELETEME=$U:*tags=$U:*VERSION=$U:*Makefile=$U:"
 
 # pdf and tex
-export LS_COLORS="$LS_COLORS:*.pdf=00;35:*.tex=00;36"
+export LS_COLORS="$LS_COLORS:*.pdf=$P:*.tex=$T"
