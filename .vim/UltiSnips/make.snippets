@@ -1,6 +1,12 @@
 extends sh
 priority 2
 
+snippet m4 "m4 makefile ..." b
+TARGET=${1:zzz}
+
+m4 ${2:-DX=2} ${TARGET}.m4
+endsnippet
+
 snippet flex "flex/bison make template" b
 TARGET=${1:base_name}
 
