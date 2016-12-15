@@ -145,7 +145,9 @@ export LS_COLORS="$LS_COLORS:*.mfa=$Y:*.mfaa=$Y:*.mfna=$Y:*.mfasta=$Y:"
 export LS_COLORS="$LS_COLORS:*.csv=$Y:*.tab=$Y:*.tsv=$Y:"
 
 # Color temporary files
-export LS_COLORS="$LS_COLORS:*.gch=$F:*.o=$F:*.so=$F:*.hi=$F:*~=$F"
+export LS_COLORS="$LS_COLORS:*.gch=$F:*.o=$F:*.so=$F:*.hi=$F:*~=$F:*.yy.c=$F:*.yy.h=$F"
+# latex temporary files
+export LS_COLORS="$LS_COLORS:*.aux=$F:*.log=$F:*.fdb_latexmk=$F:*.fls=$F:*.toc=$F:*.out=$F:"
 
 # Embolden MANIFEST, SOURCE, README, and TODO files
 export LS_COLORS="$LS_COLORS:*MANIFEST=$U:*MANIFEST.txt=$U:*SOURCE=$U:*SOURCE.txt=$U:*README=$U:*README.txt=$U:*README.md=$U:*INSTALL=$U:*TODO=$U:*DELETEME=$U:*tags=$U:*VERSION=$U:*Makefile=$U:"
