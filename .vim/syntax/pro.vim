@@ -9,6 +9,9 @@
 " $ cp pro.vim ~/.vim/syntax/
 " $ echo 'au BufRead,BufNewFile *.pro set filetype=pro' > ~/.vim/ftdetect/pro.vim
 
+" Well, actually I don't need this file, there is, of course, already a Prolog
+" syntax highlighter
+
 if exists("b:current_syntax")
   finish
 endif
