@@ -145,7 +145,9 @@ export LS_COLORS="$LS_COLORS:*.mfa=$Y:*.mfaa=$Y:*.mfna=$Y:*.mfasta=$Y:"
 export LS_COLORS="$LS_COLORS:*.csv=$Y:*.tab=$Y:*.tsv=$Y:"
 
 # Color temporary files
-export LS_COLORS="$LS_COLORS:*.gch=$F:*.o=$F:*.so=$F:*.hi=$F:*~=$F:*.yy.c=$F:*.yy.h=$F"
+export LS_COLORS="$LS_COLORS:*.gch=$F:*.o=$F:*.so=$F:*.hi=$F:*~=$F:"
+# Flex/Bison autogen files
+export LS_COLORS="$LS_COLORS:*.yy.c=$F:*.yy.h=$F:*.output=$F"
 # latex temporary files
 export LS_COLORS="$LS_COLORS:*.aux=$F:*.log=$F:*.fdb_latexmk=$F:*.fls=$F:*.toc=$F:*.out=$F:"
 
