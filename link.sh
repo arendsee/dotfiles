@@ -108,6 +108,7 @@ safely-link .vim/UltiSnips $HOME/.vim/UltiSnips
 safely-link .vim/ftdetect  $HOME/.vim/ftdetect
 safely-link .vim/ftplugin  $HOME/.vim/ftplugin
 safely-link .vim/syntax    $HOME/.vim/syntax
+safely-link .vim/after     $HOME/.vim/after
 
 mkdir -p $HOME/.vimundo
 
