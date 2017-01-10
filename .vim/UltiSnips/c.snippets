@@ -117,10 +117,10 @@ endsnippet
 snippet switch "make switch statement" b
 switch(${1:VAR}){
 	case ${2:VAR}:
-		${3://BLOCK}
+		${0}
 		break;
 	default:
-		${4://DEFAULT ACTION}
+		break;
 }
 endsnippet
 
@@ -162,6 +162,22 @@ snippet realloc "build realloc command" b
 ${1:VARNAME} = (${2:TYPE}*) ($*)realloc($1, ${3:N_MEMBERS} * sizeof($2));
 ${0}
 endsnippet
+
+snippet malloc1 "build malloc command for n=1" b 
+${1:TYPE}* ${2:VARNAME} = ($1*)malloc(sizeof($1));
+${0}
+endsnippet
+
+snippet calloc1 "build calloc command for n=1" b 
+${1:TYPE}* ${2:VARNAME} = ($1*)calloc(1, sizeof($1));
+${0}
+endsnippet
+
+snippet realloc1 "build realloc command for n=1" b 
+${1:VARNAME} = (${2:TYPE}*) ($*)realloc($1, sizeof($2));
+${0}
+endsnippet
+
 #------------------------------------------------------------------------------
 
 

@@ -1,0 +1,28 @@
+snippet def "function definition" b
+define ${1:fname}
+	dont-repeat
+	print "--------------------------------------------"
+	if $argc == 0
+		print *syn
+		print syn->genome[0]
+		print syn->genome[1]
+	end
+	if $argc == 1
+		print *syn->genome[$arg0]
+	end
+	if $argc == 2
+		print *syn->genome[$arg0]->contig[$arg1]
+	end
+end
+document $1
+	Print synmap, args = [0,1,2]
+end
+endsnippet
+
+snippet loop "while loop template" b
+set $i = ${NUMBER}
+while $i >= 0
+	print $i
+	set $i = $i - 1
+end
+endsnippet

@@ -222,6 +222,13 @@ snippet equ "Make equation template" b
 \end{equation}
 endsnippet
 
+snippet case "Add cases" b
+\begin{cases}
+	${1:lhs} & ${2:rhs} \\\\
+	${3:lhs} & ${4:rhs}
+\end{cases}
+endsnippet
+
 snippet aln "Make align template" b
 \begin{align}
   ${0}
@@ -250,6 +257,12 @@ snippet framed "Framed template" b
 \begin{framed}
 	${0}
 \end{framed}
+endsnippet
+
+snippet verbatim "verbatim template" b
+\begin{verbatim}
+	${0}
+\end{verbatim}
 endsnippet
 
 snippet sec "Make section" b
