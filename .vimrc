@@ -216,6 +216,9 @@ set tags=./tags,tags;$HOME
 " fast command calling
 noremap ; :
 noremap : ;
+" change formatting to `
+noremap ` =
+noremap = `
 " wrap paragraph
 nnoremap <localleader>w ma{V}gq'a$
 " search for selected text
