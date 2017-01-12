@@ -151,8 +151,8 @@ export LS_COLORS="$LS_COLORS:*.yy.c=$F:*.yy.h=$F:*.output=$F"
 # latex temporary files
 export LS_COLORS="$LS_COLORS:*.aux=$F:*.log=$F:*.fdb_latexmk=$F:*.fls=$F:*.toc=$F:*.out=$F:"
 
-# Embolden MANIFEST, SOURCE, README, and TODO files
-export LS_COLORS="$LS_COLORS:*MANIFEST=$U:*MANIFEST.txt=$U:*SOURCE=$U:*SOURCE.txt=$U:*README=$U:*README.txt=$U:*README.md=$U:*INSTALL=$U:*TODO=$U:*DELETEME=$U:*tags=$U:*VERSION=$U:*Makefile=$U:"
+# Darken biolerplate
+export LS_COLORS="$LS_COLORS:*LICENSE=$U:*MANIFEST=$U:*MANIFEST.txt=$U:*SOURCE=$U:*SOURCE.txt=$U:*README=$U:*README.txt=$U:*README.md=$U:*INSTALL=$U:*TODO=$U:*DELETEME=$U:*tags=$U:*VERSION=$U:*Makefile=$U:"
 
 # pdf and tex
 export LS_COLORS="$LS_COLORS:*.pdf=$P:*.tex=$T"
