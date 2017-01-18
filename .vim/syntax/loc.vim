@@ -44,7 +44,7 @@ syn keyword s_todo TODO NOTE FIXME XXX contained
 syn match s_tag /\(Author\|Email\|Github\|Bugs\|Website\|Maintainer\|Description\):/ contained 
 
 " define keywords that will be translated into native equivalents
-syn keyword s_logical TRUE NULL FALSE contained
+syn keyword s_logical TRUE NULL RESET FALSE contained
 
 " define comments
 " syn match comment '\/\/.*$' contains=tag
@@ -112,7 +112,7 @@ syn match s_sep     /,/              contained
 syn match s_par     /[()]/           contained
 syn match s_brk     /[\[\]]/         contained
 syn match s_bar     /|/              contained
-syn match s_star    /\_\W\*\_\W/     contained
+syn match s_star    /\_\W\*\_\W\|^\*\_W\|^\*$/ contained
 
 syn match s_positional /`[^`]*`/ contained
 syn match s_group /\*\w\+/ contained
@@ -138,8 +138,8 @@ syn match s_varlabel ':[\w.]\+' contained
 syn cluster c_subglobal contains=s_comment,s_section,DEFAULT_ERROR
 syn cluster c_global    contains=@c_subglobal,s_var,s_constant,s_logical
 
-syn cluster c_couple_nl contains=s_couple
-syn cluster c_modify_nl contains=s_modify,s_pathsep
+syn cluster c_couple_nl contains=s_couple,s_star
+syn cluster c_modify_nl contains=s_modify,s_pathsep,s_star
 syn cluster c_couple    contains=@c_couple_nl,s_varlabel
 syn cluster c_modify    contains=@c_modify_nl,s_varlabel
 
@@ -174,8 +174,8 @@ syn region r_include  start=/@include/  end=/@\@=/ contains=@c_subglobal,s_strin
 syn region r_import   start=/@import/   end=/@\@=/ contains=@c_subglobal,s_string,s_import_keyword,s_var
 syn region r_ontology start=/@ontology/ end=/@\@=/ contains=@c_global,@c_couple_nl,s_bar,s_sep,s_par,s_brk
 syn region r_open     start=/@open/     end=/@\@=/ contains=@c_global,@c_function,@c_modify
-syn region r_pack     start=/@pack/     end=/@\@=/ contains=@c_global,@c_function,@c_modify
-syn region r_pass     start=/@pass/     end=/@\@=/ contains=@c_global,@c_function,@c_modify
+syn region r_pack     start=/@pack/     end=/@\@=/ contains=@c_global,@c_function,@c_couple
+syn region r_pass     start=/@pass/     end=/@\@=/ contains=@c_global,@c_function,@c_couple
 syn region r_type     start=/@type/     end=/@\@=/ contains=@c_global,@c_type,@c_couple_nl,s_star
 
 
@@ -222,6 +222,7 @@ hi def link s_todo     Todo
 hi def link s_tag      SpecialComment
 
 hi def link s_positional Identifier
+hi def link s_refer      Identifier
 hi def link s_group      Identifier
 hi def link s_fun        Identifier
 
