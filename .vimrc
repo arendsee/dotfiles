@@ -151,12 +151,10 @@ set number
 set relativenumber
 set scrolloff=5
 set shiftwidth=4
+set tabstop=4
 set smartcase
 set smarttab
-set relativenumber
 set syntax=automatic
-set tabstop=4
-set shiftwidth=4
 set wildmode=longest,list
 set history=10000
 " tell it to use an undo file

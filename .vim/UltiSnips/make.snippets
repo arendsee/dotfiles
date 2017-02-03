@@ -1,6 +1,18 @@
 extends sh
 priority 2
 
+snippet loc "loc makefile" b
+TARGET=${1:x.loc}
+
+all:
+	loc -kx locout ${TARGET}
+
+.PHONY: clean
+clean:
+	rm manifold-nexus.py
+	rm -rf locout
+endsnippet
+
 snippet m4 "m4 makefile ..." b
 TARGET=${1:zzz}
 
