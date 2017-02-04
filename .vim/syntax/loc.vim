@@ -83,17 +83,7 @@ syn match s_section '@source'   contained
 
 syn match s_var /\h[\w.0-9-]*/ contained
 syn match s_arg /--\?\w*/ contained
-
-" syn match s_num '\h\@<!-\?\(\d*\.\d\+\|\d\+\)\h\@!' contained
-syn match s_num '-\d'             contained
-syn match s_num '-[1-9]\d\+'      contained
-syn match s_num '\d'              contained
-syn match s_num '[1-9]\d\+'       contained
-syn match s_num '-\d\.\d*'        contained
-syn match s_num '-[1-9]\d\+\.\d*' contained
-syn match s_num '\d\.\d*'         contained
-syn match s_num '[1-9]\d\+\.\d*'  contained
-
+syn match s_num '\h\@<!-\?\(\d*\.\d\+\|\d\+\)\h\@!' contained
 syn match s_fun /&\w*/ contained
 syn match s_marg /$\d/ contained
 
@@ -131,8 +121,8 @@ syn region s_string start=/'/ end=/'/ contained
 syn region s_string start=/"/ end=/"/ contained
 
 
-" define constants
-syn keyword s_nil NIL contained
+" define terms used in types
+syn keyword s_nil NIL MULTI contained
 
 " keywords
 syn keyword s_export_keyword as contained
@@ -164,7 +154,7 @@ syn cluster c_type      contains=s_nil,s_rarrow,s_sep,s_par,s_brk
 
 syn region r_top start=/\%^/ end=/@\@=/ skip=/\\@/ contains=s_comment
 
-syn region r_source start=/@source R$/  end=/@\@=/ skip=/\\@/ contains=s_section,@R
+syn region r_source start=/@source R$/ end=/@\@=/ skip=/\\@/ contains=s_section,@R
 syn region r_source start=/@source py$/ end=/@\@=/ skip=/\\@/ contains=s_section,@Python
 syn region r_source start=/@source pl$/ end=/@\@=/ skip=/\\@/ contains=s_section,@Perl
 syn region r_source start=/@source sh$/ end=/@\@=/ skip=/\\@/ contains=s_section,@Shell
@@ -175,7 +165,7 @@ syn region r_alias start=/@alias/ end=/@\@=/ contains=@c_global,@c_equality,@c_h
 
 syn region r_path     start=/@path/     end=/@\@=/ contains=@c_global,@c_couple,@c_function,@c_path
 syn region r_check    start=/@check/    end=/@\@=/ contains=@c_global,@c_function,@c_modify,@c_path
-syn region r_effect   start=/@[0-9]/    end=/@\@=/ contains=@c_global,@c_function,@c_modify,@c_path
+syn region r_effect   start=/@[0-9]/   end=/@\@=/ contains=@c_global,@c_function,@c_modify,@c_path
 syn region r_fail     start=/@fail/     end=/@\@=/ contains=@c_global,@c_function,@c_couple,@c_path
 
 syn region r_arg      start=/@arg/      end=/@\@=/ contains=@c_global,@c_hasarg,s_positional,s_angel,@c_modify,s_arg

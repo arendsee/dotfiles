@@ -7,9 +7,13 @@ TARGET=${1:x.loc}
 all:
 	loc -kx locout ${TARGET}
 
+.PHONY: run
+run:
+	./manifold-nexus.py main
+
 .PHONY: clean
 clean:
-	rm manifold-nexus.py
+	rm -f manifold-nexus.py
 	rm -rf locout
 endsnippet
 
