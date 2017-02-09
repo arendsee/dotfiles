@@ -41,6 +41,16 @@ function gcl() {
     user=${2-arendsee}
     git clone "https://github.com/$user/$repo"
 }
+function minor-commit() {
+    if [[ -z "$1" ]]
+    then
+        msg=minor
+    else
+        msg="$1"
+    fi
+    git add -A && git commit -m "$msg" && git push origin master
+}
+
 # commit and push to overleaf
 alias ggco='git add -A; git commit -m "edit"; git push origin master'
 # =============================================================================
