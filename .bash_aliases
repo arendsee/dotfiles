@@ -41,6 +41,9 @@ function gcl() {
     user=${2-arendsee}
     git clone "https://github.com/$user/$repo"
 }
+function overleaf-commit() {
+    git pull origin master && minor-commit "$@"
+}
 function minor-commit() {
     if [[ -z "$1" ]]
     then
