@@ -90,7 +90,7 @@ syn match s_arg /--\?\w*/ contained
 syn match s_num '\h\@<!-\?\(\d*\.\d\+\|\d\+\)\h\@!' contained
 syn match s_fun /&\w*/ contained
 syn match s_marg /$\d/ contained
-syn match s_file /\w\+\(\/\w\+\)*/ contained
+syn match s_file /[A-Za-z_-]\+\(\/[A-Za-z_-]\+\)*/ contained
 
 " default caching functions
 syn keyword s_cache_function memcache datcache nocache contained
@@ -115,7 +115,7 @@ syn match s_star    /\_\W\*\_\W\|^\*\_W\|^\*$/ contained
 
 syn match s_positional /`[^`]*`/ contained
 syn match s_group /\*\w\+/ contained
-syn match s_refer /<[^>]\+>/ contained
+syn match s_refer /<[A-Za-z0-9_./:-]\+>/ contained
 
 " strings
 syn region s_string start=/'/ end=/'/ contained
