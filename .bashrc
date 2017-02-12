@@ -20,6 +20,9 @@ HISTFILESIZE=
 shopt -s histappend
 shopt -s checkwinsize
 
+# Required for opam, the ocaml package manager
+source /home/shoggoth/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
