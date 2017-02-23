@@ -10,6 +10,10 @@ PATH="$PATH:$HOME/bin"
 export TERM="screen-256color"
 export VISUAL="vim"
 
+# Support for the obscure Ptolemy language
+export PYC_HOME="$HOME/src/ptolemy"
+PATH="$PATH:$PYC_HOME/bin"
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
