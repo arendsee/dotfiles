@@ -19,6 +19,7 @@ function works_(){
 
 alias vi=vim
 
+
 # =============================================================================
 # Media
 alias vvs='pamixer --set-volume '
@@ -255,16 +256,8 @@ function o {
     done
 }
 
-# A minimal path to one-hand info reading
-# Actually, I think gnu info rocks, probably don't need a replacement
-function vinfo() {
-    vim -R                              \
-        -c "Vinfo $1"                   \
-        -c 'silent only'                \
-        -c 'set nonumber'               \
-        -c 'Goyo'                       \
-        -c 'nnoremap q :q <CR> :q <CR>' \
-        -u ~/.goyo.vimrc 
+function vih() {
+    vi -c "help $1 | only"
 }
 
 

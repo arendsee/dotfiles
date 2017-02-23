@@ -1,6 +1,28 @@
 extends sh
 priority 2
 
+snippet ml "ml makefile" b
+TARGET=x
+
+all:
+	ocamlc ${TARGET}.ml
+
+.PHONY: clean
+clean:
+	rm a.out ${TARGET}.cmi ${TARGET}.cmo
+endsnippet
+
+snippet scheme "scheme makefile" b
+TARGET=x
+
+all:
+	bigloo ${TARGET}.scm
+
+.PHONY: clean
+clean:
+	rm *.o a.out
+endsnippet
+
 snippet loc "loc makefile" b
 TARGET=${1:x.loc}
 
@@ -9,7 +31,7 @@ all:
 
 .PHONY: run
 run:
-	./manifold-nexus.py main
+	./manifold-nexus.py ${2:main}
 
 .PHONY: clean
 clean:
