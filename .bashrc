@@ -91,6 +91,11 @@ __battery-check() {
     __battery-check_ `parse-acpi`
 }
 
+__not_in_kansas() {
+    # if there is a '.' in the node hostname, then I am probably not local
+    uname -n | grep '\.'
+}
+
 PROMPT_COMMAND=__prompt_cmd
 __prompt_cmd() {
     local EXIT=$?
@@ -98,19 +103,24 @@ __prompt_cmd() {
     local RED='\[\033[0;31m\]'
     local GREEN='\[\033[0;32m\]'
     local YELLOW='\[\033[1;33m\]'
+    if __not_in_kansas; then
+        place=$(uname -n)
+    else
+        place=""
+    fi
     # If ROOT, use a scary red font
     if [[ $HOME == "/root" ]]; then
         PS1="${RED}${EXIT} ROOT \W \$ ${NORMAL}"
     # If not in tmux, show an naked yellow dollar sign
     elif [[ -z $TMUX ]]; then
-        PS1="${YELLOW}${EXIT} \$ ${NORMAL}"
+        PS1="${YELLOW}${EXIT} ${place}\$ ${NORMAL}"
     # If in TMUX, use a nice subdued font with working directory shown
     else
         if [[ ! -z `type -P acpi` ]]
         then
-          PS1="\$(__battery-check)${GREEN}${EXIT} \W \$ ${NORMAL}"
+          PS1="\$(__battery-check)${GREEN}${EXIT} \W ${place}\$ ${NORMAL}"
         else
-          PS1="${GREEN}${EXIT} \W \$ ${NORMAL}"
+          PS1="${GREEN}${EXIT} \W ${place}\$ ${NORMAL}"
         fi
     fi
 }
