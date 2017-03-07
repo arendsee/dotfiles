@@ -106,14 +106,14 @@ __prompt_cmd() {
     if __not_in_kansas; then
         place="${NORMAL}$(uname -n) \$\n"
     else
-        place="${NORMAL}\$"
+        place="\$${NORMAL} "
     fi
     # If ROOT, use a scary red font
     if [[ $HOME == "/root" ]]; then
         PS1="${RED}${EXIT} ROOT \W ${place}"
     # If not in tmux, show an naked yellow dollar sign
     elif [[ -z $TMUX ]]; then
-        PS1="${YELLOW}${EXIT} ${place} "
+        PS1="${YELLOW}${EXIT} ${place}"
     # If in TMUX, use a nice subdued font with working directory shown
     else
         if [[ ! -z `type -P acpi` ]]
