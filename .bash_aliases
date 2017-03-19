@@ -237,6 +237,8 @@ function o {
             mplayer "$j"
         elif [[ "$j" =~ \.(html)$ ]]; then
             chromium "$j" &
+        elif [[ "$j" =~ \.(svg)$ ]]; then
+            inkscape "$j" &
         elif [[ "$j" =~ \.(pdf|dvi|ps)$ ]]; then
             zathura "$j" &
         elif [[ "$j" =~ \.(pdb)$ ]]; then
@@ -254,6 +256,19 @@ function o {
             return 1
         fi
     done
+}
+
+function tokindle() {
+    input=$1
+    output=$2
+    k2pdfopt                    \
+        -o $2                   \
+        -dev kpw                \
+        -col 1                  \
+        -wrap-                  \
+        -x                      \
+        -om 0.04 0.04 0.04 0.04 \
+        $1
 }
 
 function vih() {

@@ -21,6 +21,12 @@ yaourt -S urxvt-resize-font-git
 pacman -S dmenu
 
 # ---------------------------------------------------------
+# --- other
+# A totally wicked cool PDF reformater
+yaourt -S k2pdfopt
+
+
+# ---------------------------------------------------------
 # --- utilities
 pacman -S zathura zathura-pdf-poppler zathura-ps
 # used in vvs alias in bash_aliases
