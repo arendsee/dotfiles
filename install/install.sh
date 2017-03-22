@@ -12,6 +12,13 @@ pacman -S hasktags
 pacman -S stack
 
 # ---------------------------------------------------------
+# --- OCaml stuff
+# ocaml compiler and all that
+pacman -S ocaml
+# ocaml package manager
+pacman -S opam
+
+# ---------------------------------------------------------
 # --- shell and xmonad stuff
 # urxvt
 pacman -S rxvt-unicode
