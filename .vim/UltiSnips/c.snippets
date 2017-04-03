@@ -8,6 +8,10 @@ snippet doxy "Doxygen template" b
  */
 endsnippet
 
+snippet pw "Print a LOC W*" b
+fprintf(stderr, " -- %s --\n", w_str(${1:w}));${0}
+endsnippet
+
 #------------------------------------------------------------------------------
 
 snippet readlines "Template for reading a file line by line" b
