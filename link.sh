@@ -13,6 +13,7 @@ Build my system
      * ~/.vim/ftdetect
      * ~/.vim/ftplugin
      * ~/.vim/syntax
+     * ~/.vim/after
  * make ~/.vimundo/
  * install all vim plugins
  * make ~/bin/
