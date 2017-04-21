@@ -27,7 +27,7 @@ snippet loc "loc makefile" b
 TARGET=${1:x.loc}
 
 all:
-	loc -kx locout ${TARGET}
+	morloc -kx locout ${TARGET}
 
 .PHONY: run
 run:
