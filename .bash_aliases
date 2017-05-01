@@ -75,6 +75,16 @@ jpost (){
 # Miscellaneous aliases
 # =============================================================================
 
+# - This function should be adapted to display whatever timezones suite
+#   your fancy.
+# - To find the appropriate time zone, use `tzselect`
+function ddate () {
+    echo -ne "Central time:\n   "
+    (TZ='America/Chicago' date)
+    echo -ne "Chinese time:\n   "
+    (TZ='Asia/Shanghai' date)
+}
+
 function ?() {
     if [[ $(works_ "man $1") -eq 1 ]]
     then
