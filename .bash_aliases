@@ -231,12 +231,14 @@ function pdb2png {
 # general opener (adapt as necessary)
 # run non-cli programs in the background
 function o {
+    if [[ "$1" =~ \.(png|jpg|JPG|jpeg|gif|tiff)$ ]]; then
+        feh -ZF "$@" &
+        return 0
+    fi
     for j in "$@"
     do
         echo "$j"
-        if [[ "$j" =~ \.(png|jpg|jpeg|gif|tiff)$ ]]; then
-            feh "$j" &
-        elif [[ "$j" =~ \.dot$ ]]; then
+        if [[ "$j" =~ \.dot$ ]]; then
             tempfile=/tmp/$RANDOM.svg
             dot -Tsvg "$j" -o $tempfile 
             inkscape $tempfile 
