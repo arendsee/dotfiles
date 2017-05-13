@@ -61,7 +61,7 @@ Plug 'foosoft/vim-argwrap'
 " autoexpand selections
 Plug 'terryma/vim-expand-region'
 " * undo tree, <F5> to open
-Plug 'Gundo'
+" Plug 'Gundo'
 " shows changes to git file
 Plug 'airblade/vim-gitgutter'
 " for interaction with git
@@ -86,8 +86,8 @@ Plug 'scrooloose/syntastic'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' } | Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
 " " python wrapping etc
 " Plug 'Python-mode-klen', {'for': 'python'}
-" latex wrapping, keybinding, etc.
-Plug 'LaTeX-Box', {'for': ['tex', 'rnoweb']}
+" " latex wrapping, keybinding, etc.
+" Plug 'LaTeX-Box', {'for': ['tex', 'rnoweb']}
 " hex editor
 Plug 'Shougo/vinarise'
 " allows autowrapping for writing
@@ -324,9 +324,9 @@ nmap <localleader>0 <Plug>BufTabLine.Go(10)
 " --- F keys - the F keys should work in all modes
 " +++ Reserve F5-F8 for toggling windows (e.g. NerdTree)
 " Open Gundo window on left
-nnoremap <F5> :GundoToggle<CR>
-inoremap <F5> <ESC>:GundoToggle<CR>i
-vnoremap <F5> <ESC>:GundoToggle<CR>
+" nnoremap <F5> :GundoToggle<CR>
+" inoremap <F5> <ESC>:GundoToggle<CR>i
+" vnoremap <F5> <ESC>:GundoToggle<CR>
 " Open Tagbar window on right
 nnoremap <F6> :TagbarOpenAutoClose<CR>
 inoremap <F6> <ESC>:TagbarOpenAutoCLose<CR>i
@@ -396,6 +396,7 @@ nnoremap <localleader>C :wqa<cr>
 " --- Dealing with particular file types
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab,*.gff call TabularSettings()
 autocmd BufNewFile,BufRead *.R call RSettings()
+autocmd BufNewFile,BufRead *.hs call HaskellSettings()
 autocmd BufNewFile,BufRead *.Rnw,*.html call TwoStop()
 autocmd BufNewFile,BufRead *.tex call LatexSettings()
 autocmd FileType text call TextSettings()
@@ -430,6 +431,11 @@ function! RSettings()
     setlocal shiftwidth=2
     setlocal expandtab
     map <buffer> <localleader> h RAction("head")
+endfunction
+
+function! HaskellSettings()
+    setlocal tabstop=2
+    setlocal shiftwidth=2
 endfunction
 
 function! TwoStop()
@@ -497,32 +503,32 @@ let g:UltiSnipsEditSplit="horizontal"
 " --------------------------------------------------------------------------------
 
 
-" ------------------------------- begin subsection -------------------------------
-" --- Gundo options
-" p    - show the whole diff from head to current node
-" <cr> - revert
-" Set the horizontal width of the Gundo graph (and preview).
-let g:gundo_width=45
-" Set the vertical height of the Gundo preview.
-let g:gundo_preview_height=15
-" Force the preview window below current windows instead of below the graph.
-let g:gundo_preview_bottom=1
-" 0 - open Gundo graph (and preview) left side
-" 1 - open Gundo graph (and preview) right side
-let g:gundo_right=0
-" Set this to 0 to disable the help text in the Gundo graph window.
-let g:gundo_help=0
-" Set this to 1 to automatically close the Gundo windows when reverting.
-let g:gundo_close_on_revert=0
-" Set this to 0 to disable automatically rendering preview diffs as you move
-" through the undo tree (you can still render a specific diff with r).  This can
-" be useful on large files and undo trees to speed up Gundo.
-let g:gundo_auto_preview=1
-" This is the delay in milliseconds between each change when running 'play to'
-" mode. Set this to a higher number for a slower playback or to a lower number
-" for a faster playback.
-let g:gundo_playback_delay=60
-" --------------------------------------------------------------------------------
+" " ------------------------------- begin subsection -------------------------------
+" " --- Gundo options
+" " p    - show the whole diff from head to current node
+" " <cr> - revert
+" " Set the horizontal width of the Gundo graph (and preview).
+" let g:gundo_width=45
+" " Set the vertical height of the Gundo preview.
+" let g:gundo_preview_height=15
+" " Force the preview window below current windows instead of below the graph.
+" let g:gundo_preview_bottom=1
+" " 0 - open Gundo graph (and preview) left side
+" " 1 - open Gundo graph (and preview) right side
+" let g:gundo_right=0
+" " Set this to 0 to disable the help text in the Gundo graph window.
+" let g:gundo_help=0
+" " Set this to 1 to automatically close the Gundo windows when reverting.
+" let g:gundo_close_on_revert=0
+" " Set this to 0 to disable automatically rendering preview diffs as you move
+" " through the undo tree (you can still render a specific diff with r).  This can
+" " be useful on large files and undo trees to speed up Gundo.
+" let g:gundo_auto_preview=1
+" " This is the delay in milliseconds between each change when running 'play to'
+" " mode. Set this to a higher number for a slower playback or to a lower number
+" " for a faster playback.
+" let g:gundo_playback_delay=60
+" " --------------------------------------------------------------------------------
 
 
 " ------------------------------- begin subsection -------------------------------
@@ -766,7 +772,7 @@ let NERDCompactSexyComs=0
 " nest comments by default
 let NERDDefaultNesting=1
 " Add or override delimiters for any filetypes
-let g:NERDCustomDelimiters = { 'loc' : { 'left' : '#' }, 'pro' : { 'left' : '%'}, 'scope' : { 'left' : '#' }, 'mouse' : { 'left' : '#'} }
+let g:NERDCustomDelimiters = { 'loc' : { 'left' : '#' }, 'pro' : { 'left' : '%'}, 'scope' : { 'left' : '#' }, 'mouse' : { 'left' : '#'}, 'toyloc' : { 'left' : '#'} }
 " default alignment to use, one of 'none', 'left', 'start', or 'both'
 let NERDDefaultAlign='both'
 " --------------------------------------------------------------------------------
