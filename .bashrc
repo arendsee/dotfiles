@@ -57,7 +57,7 @@ __battery-check_() {
         fi
     elif [[ $operation == "Charging" ]]
     then
-        if [[ $percent -lt 75 ]]
+        if [[ $percent -lt 98 ]]
         then
             echo -ne "\x01\e[1;32m\x02$percent \x01\e[0;32m\x02"
         fi
