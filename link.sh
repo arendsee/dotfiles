@@ -99,6 +99,10 @@ safely-link .xmobarrc    # xmobar
 safely-link .astylerc    # astyle formatter for C/C++/Java code
 
 # -------------------------------------------------------------------
+# --- haskell setup
+safely-link .cabal/config $HOME/.cabal/config
+
+# -------------------------------------------------------------------
 # --- vim setup
 safely-link .vimrc
 safely-link .goyo.vimrc
