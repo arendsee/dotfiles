@@ -245,7 +245,7 @@ function o {
             rm $tempfile
         elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx|xlsx)$ ]]; then
             libreoffice "$j" &
-        elif [[ "$j" =~ \.(mp3|wav|flac)$ ]]; then
+        elif [[ "$j" =~ \.(mp3|mp4|wav|flac)$ ]]; then
             mplayer "$j"
         elif [[ "$j" =~ \.(html)$ ]]; then
             chromium "$j" &
