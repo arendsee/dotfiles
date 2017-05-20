@@ -85,6 +85,10 @@ function ddate () {
     (TZ='Asia/Shanghai' date)
 }
 
+timestr () {
+    date +%Y-%m-%d_%H%M%S 
+}
+
 function ?() {
     if [[ $(works_ "man $1") -eq 1 ]]
     then
