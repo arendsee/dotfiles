@@ -101,6 +101,9 @@ safely-link .astylerc    # astyle formatter for C/C++/Java code
 # -------------------------------------------------------------------
 # --- haskell setup
 safely-link .cabal/config $HOME/.cabal/config
+# configuration for Haskell shell
+safely-link .ghc/ghci.conf $HOME/.ghc/ghci.conf 
+
 
 # -------------------------------------------------------------------
 # --- vim setup
