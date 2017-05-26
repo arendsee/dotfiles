@@ -175,6 +175,16 @@ alias ....='cd_ls ../../..'
 alias .....='cd_ls ../../../..'
 alias ......='cd_ls ../../../../..'
 
+function ,, {
+    d=~/src/git/$1
+    if [[ -d "$d" ]]
+    then
+        cd $d && ls
+    else
+        cd "$d"* && ls
+    fi
+}
+
 alias ..2='cd_ls ../..'
 alias ..3='cd_ls ../../..'
 alias ..4='cd_ls ../../../..'
