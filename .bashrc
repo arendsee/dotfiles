@@ -6,6 +6,7 @@ set editing-mode vi
 set show-mode-in-prompt on
 
 PATH="$PATH:$HOME/bin"
+PATH="$PATH:$HOME/.cabal/bin"
 
 export TERM="screen-256color"
 export VISUAL="vim"

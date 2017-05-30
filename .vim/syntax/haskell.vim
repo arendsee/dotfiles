@@ -213,10 +213,10 @@ sy match   hsNumber		"\<[0-9]\+\>\|\<0[xX][0-9a-fA-F]\+\>\|\<0[oO][0-7]\+\>"
 sy match   hsFloat		"\<[0-9]\+\.[0-9]\+\([eE][-+]\=[0-9]\+\)\=\>"
 
 " Comments
-sy keyword hsCommentTodo    TODO FIXME XXX TBD contained
-sy match   hsLineComment      "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=hsCommentTodo,@Spell
-sy region  hsBlockComment     start="{-"  end="-}" contains=hsBlockComment,hsCommentTodo,@Spell
-sy region  hsPragma	       start="{-#" end="#-}"
+sy keyword hsCommentTodo   TODO FIXME XXX TBD contained
+sy match   hsLineComment   "---*\([^-!#$%&\*\+./<=>\?@\\^|~].*\)\?$" contains=hsCommentTodo,@Spell
+sy region  hsBlockComment  start="{-"  end="-}" contains=hsBlockComment,hsCommentTodo,@Spell
+sy region  hsPragma        start="{-#" end="#-}"
 
 " QuasiQuotation
 sy region hsQQ start="\[\$" end="|\]"me=e-2 keepend contains=hsQQVarID,hsQQContent nextgroup=hsQQEnd

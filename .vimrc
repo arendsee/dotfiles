@@ -83,7 +83,9 @@ Plug 'scrooloose/syntastic'
 " ------------------------------- begin subsection -------------------------------
 " --- landuate/filetype specific plugins
 " allow asynchronous operation, requires compilation | haskell mode
-Plug 'Shougo/vimproc.vim', { 'do': 'make' } | Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
+Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 " " python wrapping etc
 " Plug 'Python-mode-klen', {'for': 'python'}
 " " latex wrapping, keybinding, etc.
@@ -849,4 +851,6 @@ let g:syntastic_cpp_compiler = "g++"
 let g:syntastic_cpp_compiler_options = "-Wall -Wextra -pedantic -std=c++11 -Wshadow -Wconversion -Wold-style-cast -Wcast-align -Weffc++ -Wmisleading-indentation"
 let g:syntastic_mode_map = { "mode": "passive" }
 nnoremap <localleader>l :SyntasticToggleMode<CR>
+
+
 " --------------------------------------------------------------------------------

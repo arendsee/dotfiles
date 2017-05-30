@@ -1,5 +1,10 @@
 priority 0
 
+snippet lang "add a language extension"
+{-# LANGUAGE $0 #-}
+endsnippet
+	
+
 snippet io "An ugly IO template, from Real World Haskell" b
 interactWith function inputFile outputFile = do
 	input <- readFile inputFile
