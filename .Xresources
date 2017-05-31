@@ -69,7 +69,7 @@ URxvt.secondaryScroll: 0
 
 ! -- practical, but a bit heavy
 ! -- cannot render all Chinese characters
-URxvt.font: xft:DejaVu Sans Mono:size=10:antialias=true
+URxvt.font: xft:DejaVu Sans Mono:size=8:antialias=true
 !URxvt.font: xft:Terminal:size=10:antialias=true
 
 URxvt.perl-ext-common:resize-font

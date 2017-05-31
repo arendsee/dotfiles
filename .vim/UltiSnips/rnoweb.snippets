@@ -2,6 +2,15 @@ extends r, plaintex, tex
 
 priority 5
 
+snippet wrap "wrap a code block in a figure"
+\begin{figure}[!ht]
+  \centering
+${VISUAL}
+  \caption{}
+\end{figure}
+endsnippet
+	
+
 snippet report "build template for default report" b
 \documentclass{article}
 \usepackage{amsmath}

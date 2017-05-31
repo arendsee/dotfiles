@@ -242,6 +242,8 @@ function pdb2png {
     fi
 }
 
+alias oloop="mplayer -loop 0"
+
 # general opener (adapt as necessary)
 # run non-cli programs in the background
 function o {
