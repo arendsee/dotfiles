@@ -149,9 +149,9 @@ set ignorecase
 set hlsearch
 set incsearch
 set noswapfile
-set number
 set relativenumber " NOTE: potential performance penalty
 set lazyredraw     " offsets the penalty of relativenumber
+set number
 set scrolloff=5
 set shiftwidth=4
 set tabstop=4
@@ -443,7 +443,7 @@ endfunction
 function! TwoStop()
     setlocal tabstop=2
     setlocal shiftwidth=2
-    setlocal nonumber
+    " setlocal nonumber
 endfunction
 
 function! Rnoweb()
