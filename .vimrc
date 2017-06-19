@@ -774,7 +774,7 @@ let NERDCompactSexyComs=0
 " nest comments by default
 let NERDDefaultNesting=1
 " Add or override delimiters for any filetypes
-let g:NERDCustomDelimiters = { 'loc' : { 'left' : '#' }, 'pro' : { 'left' : '%'}, 'scope' : { 'left' : '#' }, 'mouse' : { 'left' : '#'}, 'toyloc' : { 'left' : '#'} }
+let g:NERDCustomDelimiters = { 'loc' : { 'left' : '#' }, 'pro' : { 'left' : '%'}, 'scope' : {'left':'#'}, 'mouse' : {'left' : '#'}, 'toyloc' : {'left' : '#'}, 'haskell' : {'left' : '--'} }
 " default alignment to use, one of 'none', 'left', 'start', or 'both'
 let NERDDefaultAlign='both'
 " --------------------------------------------------------------------------------
