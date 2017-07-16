@@ -75,20 +75,6 @@ jpost (){
 # Miscellaneous aliases
 # =============================================================================
 
-# - This function should be adapted to display whatever timezones suite
-#   your fancy.
-# - To find the appropriate time zone, use `tzselect`
-function ddate () {
-    echo -ne "Central time:\n   "
-    (TZ='America/Chicago' date)
-    echo -ne "Chinese time:\n   "
-    (TZ='Asia/Shanghai' date)
-}
-
-timestr () {
-    date +%Y-%m-%d_%H%M%S 
-}
-
 function ?() {
     if [[ $(works_ "man $1") -eq 1 ]]
     then
@@ -175,21 +161,22 @@ alias ....='cd_ls ../../..'
 alias .....='cd_ls ../../../..'
 alias ......='cd_ls ../../../../..'
 
-function ,, {
-    d=~/src/git/$1
-    if [[ -d "$d" ]]
-    then
-        cd $d && ls
-    else
-        cd "$d"* && ls
-    fi
-}
-
 alias ..2='cd_ls ../..'
 alias ..3='cd_ls ../../..'
 alias ..4='cd_ls ../../../..'
 alias ..5='cd_ls ../../../../..'
 alias ..6='cd_ls ../../../../../..'
+
+function ,, {
+    gitbase=$HOME/src/git
+    n=$(ls -d $gitbase/$1* | wc -l)
+    if [ $n -eq 1 ]
+    then
+        cd $gitbase/$1*; ls
+    else
+        cd $gitbase; ls
+    fi
+}
 
 # colorfully pipe tree to less
 function ltree {
@@ -247,21 +234,19 @@ alias oloop="mplayer -loop 0"
 # general opener (adapt as necessary)
 # run non-cli programs in the background
 function o {
-    if [[ "$1" =~ \.(png|jpg|JPG|jpeg|gif|tiff)$ ]]; then
-        feh -ZF "$@" &
-        return 0
-    fi
     for j in "$@"
     do
         echo "$j"
-        if [[ "$j" =~ \.dot$ ]]; then
+        if [[ "$j" =~ \.(png|jpg|jpeg|gif|tiff)$ ]]; then
+            feh "$j" &
+        elif [[ "$j" =~ \.dot$ ]]; then
             tempfile=/tmp/$RANDOM.svg
             dot -Tsvg "$j" -o $tempfile 
             inkscape $tempfile 
             rm $tempfile
         elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx|xlsx)$ ]]; then
             libreoffice "$j" &
-        elif [[ "$j" =~ \.(mp3|mp4|wav|flac)$ ]]; then
+        elif [[ "$j" =~ \.(mp3|wav|flac)$ ]]; then
             mplayer "$j"
         elif [[ "$j" =~ \.(html)$ ]]; then
             chromium "$j" &
