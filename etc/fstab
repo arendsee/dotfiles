@@ -1,0 +1,5 @@
+# other normal stuff
+# ....
+
+# Add a 1G ramdrive
+tmpfs   /mnt/sheep   tmpfs   nodev,nosuid,noexec,nodiratime,size=1024M   0   0
