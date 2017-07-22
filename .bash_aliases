@@ -257,7 +257,7 @@ function o {
         elif [[ "$j" =~ \.(mp3|wav|flac)$ ]]; then
             mplayer "$j"
         elif [[ "$j" =~ \.(html)$ ]]; then
-            chromium "$j" &
+            chromium "$j" || firefox $j &
         elif [[ "$j" =~ \.(svg)$ ]]; then
             inkscape "$j" &
         elif [[ "$j" =~ \.(pdf|dvi|ps)$ ]]; then
