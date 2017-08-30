@@ -2,6 +2,8 @@
 # http://www.r-bloggers.com/fun-with-rprofile-and-customizing-r-startup/
 
 suppressMessages(require(magrittr))
+suppressMessages(require(devtools))
+suppressMessages(require(pryr))
 
 # Quit without saving the stupid ennvironment
 q <- function (save="no", ...) {
