@@ -38,10 +38,21 @@ done
 tmp=/tmp/dotfiles-$(date | tr ' ' '-')
 mkdir -p $tmp
 
+# Before linking a file, the permissions are set to 644, so as not to let them
 safely-link () {
     src="$PWD/$1"
     des=$2
     des=${des:="$HOME/$1"}
+
+    if [[ -f $src ]]
+    then
+        chmod 644 $src
+    fi
+
+    if [[ -d $src ]]
+    then
+        chmod go-w $src
+    fi
 
     # to avoid recurse madness
     [[ -h "$des" ]] && rm $des
