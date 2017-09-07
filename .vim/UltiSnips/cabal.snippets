@@ -37,3 +37,14 @@ executable $1
 
     ghc-options: -Wall
 endsnippet
+
+snippet executable "executable yay!"
+executable ${1:NAME}
+    default-language: Haskell2010
+    main-is: Main.hs
+    hs-source-dirs: executable
+    build-depends: base,
+                   $1
+
+    ghc-options: -Wall
+endsnippet

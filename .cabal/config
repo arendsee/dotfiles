@@ -11,21 +11,21 @@
 -- cabal-install version: 1.24.0.0
 
 
-repository hackage.haskell.org
-  url: http://hackage.haskell.org/
-  -- secure: False
-  -- root-keys:
-  -- key-threshold:
+-- repository hackage.haskell.org
+--  url: http://hackage.haskell.org/
+--  -- secure: False
+--  -- root-keys:
+--  -- key-threshold:
 
 -- default-user-config:
 -- require-sandbox: False
 -- ignore-sandbox: False
 -- ignore-expiry: False
 -- http-transport:
-remote-repo-cache: /home/shoggoth/.cabal/packages
+remote-repo-cache: /home/z/.cabal/packages
 -- local-repo:
 -- logs-dir:
-world-file: /home/shoggoth/.cabal/world
+world-file: /home/z/.cabal/world
 -- verbose: 1
 -- compiler: ghc
 -- with-compiler:
@@ -53,7 +53,7 @@ library-profiling: True
 -- extra-include-dirs:
 -- extra-lib-dirs:
 -- extra-framework-dirs:
-extra-prog-path: /home/shoggoth/.cabal/bin
+extra-prog-path: /home/z/.cabal/bin
 -- tests: False
 -- coverage: False
 -- library-coverage:
@@ -77,7 +77,7 @@ documentation: True
 -- upgrade-dependencies: False
 -- root-cmd:
 -- symlink-bindir:
-build-summary: /home/shoggoth/.cabal/logs/build.log
+build-summary: /home/z/.cabal/logs/build.log
 -- build-log:
 remote-build-reporting: anonymous
 -- report-planning-failure: False
@@ -107,7 +107,7 @@ haddock
   -- contents-location:
 
 install-dirs user
-  -- prefix: /home/shoggoth/.cabal
+  -- prefix: /home/z/.cabal
   -- bindir: $prefix/bin
   -- libdir: $prefix/lib
   -- libsubdir: $abi/$libname

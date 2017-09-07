@@ -49,11 +49,6 @@ safely-link () {
         chmod 644 $src
     fi
 
-    if [[ -d $src ]]
-    then
-        chmod go-w $src
-    fi
-
     # to avoid recurse madness
     [[ -h "$des" ]] && rm $des
 
