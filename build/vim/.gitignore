@@ -1,0 +1,8 @@
+PKGBUILD
+archlinux.vim
+pkg
+src
+vim
+vimdoc.hook
+vimrc
+vim-*
