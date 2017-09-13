@@ -4,8 +4,8 @@
 # Also need to comment out all the gvim trash
 
 all:
-	sudo abs
-	cp /var/abs/extra/vim/* .
+	asp export vim
+	mv vim/* .
 	# Required for pasting to X clipboard from vim
 	sed -i 's/--with-x=no/--with-x=yes/' PKGBUILD
 	makepkg PKGBUILD
@@ -14,4 +14,4 @@ all:
 
 .PHONY: clean
 clean:
-	rm -fr PKGBUILD vimrc gvim.desktop gvim.install archlinux.vim *xz *gz pkg src *patch *hook
+	rm -fr PKGBUILD vimrc gvim.desktop gvim.install archlinux.vim *xz *gz pkg src *patch *hook vim/
