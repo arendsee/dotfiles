@@ -1,0 +1,6 @@
+/*
+ * To install the amnesiac script, just download and open
+ * http://amnesiac.ircii.org/amnesiac2.0.2cvs51.tgz
+ */
+
+load ~/src/amn/amn.epic
