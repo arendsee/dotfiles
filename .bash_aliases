@@ -114,7 +114,7 @@ alias R='R --quiet'
 alias seg='segmasker -outfmt fasta'
 alias x='exit'
 alias lynx='lynx -vikeys -homepage=www.google.com'
-alias t='exec tmux'
+alias t='tmux -2' # the `-2` forces color256
 alias info='info --vi-keys' 
 
 # =============================================================================
