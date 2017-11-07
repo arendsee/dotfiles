@@ -261,9 +261,9 @@ function o {
         elif [[ "$j" =~ \.(svg)$ ]]; then
             inkscape "$j" &
         elif [[ "$j" =~ \.(pdf|dvi|ps)$ ]]; then
-            zathura "$j" &
+            atril "$j" || zathura "$j" &
         elif [[ "$j" =~ \.(pdb)$ ]]; then
-            pymol "$j" &
+            pymol "$j" || vi "$j" &
         elif [[ "$j" =~ \.(txt|md|tex)$ ]]; then
             vi +Goyo +HardPencil -u ~/.goyo.vimrc "$j"
         elif [[ -d "$j" ]]; then
