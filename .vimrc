@@ -149,7 +149,7 @@ set ignorecase
 set hlsearch
 set incsearch
 set noswapfile
-set relativenumber " NOTE: potential performance penalty
+" set relativenumber " NOTE: potential performance penalty
 set lazyredraw     " offsets the penalty of relativenumber
 set number
 set scrolloff=5
@@ -163,6 +163,12 @@ set history=10000
 " tell it to use an undo file
 set undofile
 set undodir=$HOME/.vimundo,.
+" Tell vim to consider a sentence to be bound by double spaces
+" Double spaces are a good thing.  I did not believe ths before, but there is
+" indeed a solid reason for using them.  They are unique delimiters of
+" sentences.  See this lovely blog:
+" http://stevelosh.com/blog/2012/10/why-i-two-space/
+set cpo+=J
 " set this higher to see what vim is or isn't doing
 set verbose=0
 " autocmd BufNewFile,BufRead *.tex set syn=tex
@@ -813,6 +819,8 @@ let g:expand_region_text_objects = {
       \ 'iW'  :0,
       \ 'i"'  :0,
       \ 'i''' :0,
+      \ 'is'  :0,
+      \ 'as'  :0,
       \ 'i]'  :1,
       \ 'a]'  :1,
       \ 'ib'  :1,
