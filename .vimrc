@@ -81,11 +81,12 @@ Plug 'scrooloose/syntastic'
 
 
 " ------------------------------- begin subsection -------------------------------
-" --- landuate/filetype specific plugins
+" --- languate/filetype specific plugins
 " allow asynchronous operation, requires compilation | haskell mode
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+Plug 'ngn/vim-apl', {'for': 'apl'}
 " " python wrapping etc
 " Plug 'Python-mode-klen', {'for': 'python'}
 " " latex wrapping, keybinding, etc.
