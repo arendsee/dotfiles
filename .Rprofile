@@ -13,11 +13,11 @@ q <- function (save="no", ...) {
 options(error=utils::dump.frames)
 options(show.error.locations=TRUE)
 
-# set all available warnings
+# # set all available warnings
 # options(check.bounds=TRUE)
-options(warnPartialMatchArgs=TRUE)
-options(warnPartialMatchAttr=TRUE)
-options(warnPartialMatchDollar=TRUE)
+# options(warnPartialMatchArgs=TRUE)
+# options(warnPartialMatchAttr=TRUE)
+# options(warnPartialMatchDollar=TRUE)
 
 # Turn off those annoying popups
 options(menu.graphics=FALSE)
