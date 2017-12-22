@@ -97,6 +97,8 @@ Plug 'Shougo/vinarise'
 Plug 'reedes/vim-pencil'
 " zen mode
 Plug 'junegunn/goyo.vim'
+" big file handling
+Plug 'mhinz/vim-hugefile'
 " --------------------------------------------------------------------------------
 
 
