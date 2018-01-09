@@ -18,10 +18,12 @@ function works_(){
 
 function ddate() {
     # To find the appropriate TZ, use `tzselect`
-    echo "central:"
+    # echo "central:"
     TZ=America/Chicago date
-    echo "china:"
-    TZ=Asia/Shanghai date
+    # echo "china:"
+    # TZ=Asia/Shanghai date
+    echo
+    cal
 }
 
 
