@@ -26,6 +26,17 @@ function ddate() {
     cal
 }
 
+function pdf2eps() {
+    # adapted from Herbert Voss's answer to stackoverflow question 20883
+    # Convert PDF to encapsulated PostScript.
+    # usage:
+    # pdf2eps <page number> <pdf file without ext>
+    pdfcrop $2.pdf
+    pdftops -f $1 -l $1 -eps "$2-crop.pdf" 
+    rm  "$2-crop.pdf"
+    mv  "$2-crop.eps" $2.eps
+}
+
 
 alias vi=vim
 
