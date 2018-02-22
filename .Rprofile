@@ -13,6 +13,16 @@ q <- function (save="no", ...) {
 options(error=utils::dump.frames)
 options(show.error.locations=TRUE)
 
+## Make tibble less tacky
+options(tibble.print_max = Inf)
+options(tibble.width = 200)
+options(tibble.max_extra_cols = Inf)
+options(pillar.bold = FALSE)
+options(pillar.subtle = FALSE)
+options(pillar.neg = FALSE)
+options(pillar.sigfig = 3)
+options(pillar.min_title_chars = 15)
+
 # # set all available warnings
 # options(check.bounds=TRUE)
 # options(warnPartialMatchArgs=TRUE)
