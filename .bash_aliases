@@ -448,6 +448,7 @@ knitmd () {
     [[ "${1/*./}" == Rmd ]] || { echo "Input must be an *.Rmd file" >&2; return 1 ; }
     Rscript -e "library(knitr); knit('$1')"
     [[ $? == 0 ]] || { echo "Failed to knit ..." >&2; return 1 ; }
+	pandoc -f markdown+table_captions -V geometry:margin=1in -o ${1%.Rmd}.pdf ${1%.Rmd}.md
 }
 
 alias rmblastdb='rm *.{nhr,nin,nsq,phr,pin,psq} 2> /dev/null'
