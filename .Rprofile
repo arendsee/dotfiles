@@ -3,7 +3,6 @@
 
 suppressMessages(require(magrittr))
 suppressMessages(require(devtools))
-suppressMessages(require(pryr))
 
 # Quit without saving the stupid ennvironment
 q <- function (save="no", ...) {
@@ -65,4 +64,3 @@ fs <- function(){
     savehistory(hist_file)
   }
 }
-
