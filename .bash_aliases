@@ -252,6 +252,14 @@ function pdb2png {
 
 alias oloop="mplayer -loop 0"
 
+function saturn {
+    cd $HOME/music/noise
+    echo ">>> $1 -- $(date)" >> $HOME/.timesheet
+    mplayer saturn.mp3
+    echo "<<< $1 -- $(date)" >> $HOME/.timesheet
+    mplayer water.mp3
+}
+
 # general opener (adapt as necessary)
 # run non-cli programs in the background
 function o {
