@@ -9,6 +9,9 @@ q <- function (save="no", ...) {
   quit(save=save, ...)
 }
 
+# Number of CPUs to use, for instance when installing
+options(Ncpus = 4L)
+
 options(error=utils::dump.frames)
 options(show.error.locations=TRUE)
 
