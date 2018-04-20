@@ -1,0 +1,10 @@
+extends sh
+priority 2
+
+snippet ubuntu "Default ubuntu based image" b
+# Version: 0.0.1
+FROM ubuntu:17.10
+MAINTAINER Zebulun Arendsee "zbwrnz@gmail.com"
+{$0}
+EXPOSE 80
+endsnippet

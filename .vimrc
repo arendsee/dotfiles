@@ -87,6 +87,7 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'ngn/vim-apl', {'for': 'apl'}
+Plug 'niklasl/vim-rdf'
 " " python wrapping etc
 " Plug 'Python-mode-klen', {'for': 'python'}
 " " latex wrapping, keybinding, etc.
