@@ -1,8 +1,12 @@
 # This config file is largely adapted from
 # http://www.r-bloggers.com/fun-with-rprofile-and-customizing-r-startup/
 
-suppressMessages(require(magrittr))
-suppressMessages(require(devtools))
+# Turn off those annoying popups
+options(menu.graphics=FALSE)
+
+# suppressMessages(require(magrittr))
+# suppressMessages(require(devtools))
+# suppressMessages(require(microbenchmark))
 
 # Quit without saving the stupid ennvironment
 q <- function (save="no", ...) {
@@ -30,9 +34,6 @@ options(pillar.min_title_chars = 15)
 # options(warnPartialMatchArgs=TRUE)
 # options(warnPartialMatchAttr=TRUE)
 # options(warnPartialMatchDollar=TRUE)
-
-# Turn off those annoying popups
-options(menu.graphics=FALSE)
 
 # Max number of lines to print
 options(max.print=1000)
