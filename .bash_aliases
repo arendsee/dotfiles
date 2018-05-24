@@ -23,7 +23,7 @@ function ddate() {
     # echo "china:"
     # TZ=Asia/Shanghai date
     echo
-    cal
+    cal -m -n 6
 }
 
 function pdf2eps() {
