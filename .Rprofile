@@ -4,9 +4,8 @@
 # Turn off those annoying popups
 options(menu.graphics=FALSE)
 
-# suppressMessages(require(magrittr))
-# suppressMessages(require(devtools))
-# suppressMessages(require(microbenchmark))
+suppressMessages(require(magrittr))
+suppressMessages(require(devtools))
 
 # Quit without saving the stupid ennvironment
 q <- function (save="no", ...) {
