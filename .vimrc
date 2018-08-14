@@ -88,6 +88,7 @@ Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'ngn/vim-apl', {'for': 'apl'}
 Plug 'niklasl/vim-rdf'
+Plug 'vim-scripts/sparql.vim', {'for': 'sparql'}
 " " python wrapping etc
 " Plug 'Python-mode-klen', {'for': 'python'}
 " " latex wrapping, keybinding, etc.
@@ -784,7 +785,7 @@ let NERDCompactSexyComs=0
 " nest comments by default
 let NERDDefaultNesting=1
 " Add or override delimiters for any filetypes
-let g:NERDCustomDelimiters = { 'loc' : { 'left' : '#' }, 'pro' : { 'left' : '%'}, 'scope' : {'left':'#'}, 'mouse' : {'left' : '#'}, 'toyloc' : {'left' : '#'}, 'haskell' : {'left' : '--'}, 'mop' : {'left' : '--'} }
+let g:NERDCustomDelimiters = { 'loc' : { 'left' : '#' }, 'pro' : { 'left' : '%'}, 'scope' : {'left':'#'}, 'mouse' : {'left' : '#'}, 'toyloc' : {'left' : '#'}, 'haskell' : {'left' : '--'}, 'mop' : {'left' : '--'}, "turtle" : {'left' : '#'} }
 " default alignment to use, one of 'none', 'left', 'start', or 'both'
 let NERDDefaultAlign='both'
 " --------------------------------------------------------------------------------
