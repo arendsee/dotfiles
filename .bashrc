@@ -12,13 +12,13 @@ PATH="$PATH:$HOME/.local/bin"
 # export TERM="xterm-256color"
 export VISUAL="vim"
 
-# Support for the obscure Ptolemy language
-export PYC_HOME="$HOME/src/ptolemy"
-PATH="$PATH:$PYC_HOME/bin"
+# # Support for the obscure Ptolemy language
+# export PYC_HOME="$HOME/src/ptolemy"
+# PATH="$PATH:$PYC_HOME/bin"
 
-# Support for the cool looking ATS language
-export PATSHOME="$HOME/src/ATS2-Postiats"
-PATH="$PATH:$PATSHOME/bin"
+# # Support for the cool looking ATS language
+# export PATSHOME="$HOME/src/ATS2-Postiats"
+# PATH="$PATH:$PATSHOME/bin"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
