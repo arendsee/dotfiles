@@ -88,7 +88,6 @@ Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'ngn/vim-apl', {'for': 'apl'}
 Plug 'niklasl/vim-rdf'
-Plug 'vim-scripts/sparql.vim', {'for': 'sparql'}
 " " python wrapping etc
 " Plug 'Python-mode-klen', {'for': 'python'}
 " " latex wrapping, keybinding, etc.
