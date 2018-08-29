@@ -49,6 +49,7 @@ syntax match rqVar /[?$]\{1\}\(\w\|\\U\x\{8\}\|\\u\x\{4\}\)\+/ contains=rqCodepo
 
 
 highlight link rqKeyword Keyword 
+highlight link rqBuiltinAggregate Keyword
 highlight link rqBuiltinCall Keyword
 highlight link rqVar Identifier 
 highlight link rqStringSingle String 
