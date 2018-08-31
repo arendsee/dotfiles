@@ -12,9 +12,17 @@ endif
 
 " A.3 Keywords are matched in a case-insensitive manner. (only keywords)
 syntax case ignore
-syntax keyword rqKeyword BASE PREFIX SELECT DISTINCT CONSTRUCT DESCRIBE ASK FROM NAMED WHERE ORDER BY ASC DESC LIMIT OFFSET OPTIONAL GRAPH FILTER REGEX UNION MINUS DISTINCT GROUP BY HAVING NOT EXISTS SERVICE AS BINDINGS
-syntax keyword rqBuiltinCall STR LANG LANGMATCHES DATATYPE BOUND isIRI isURI isBLANK isLITERAL ROUND BIND
+syntax keyword rqKeyword BASE PREFIX SELECT DISTINCT CONSTRUCT DESCRIBE ASK FROM NAMED WHERE ORDER BY ASC DESC LIMIT OFFSET OPTIONAL GRAPH FILTER UNION MINUS DISTINCT GROUP BY HAVING NOT EXISTS SERVICE AS BINDINGS
+syntax keyword rqBuiltinCall STR LANG DATATYPE BOUND isIRI isURI isBLANK isLITERAL ROUND BIND
 syntax keyword rqBuiltinAggregate COUNT MIN MAX SUM AVG GROUP_CONCAT SAMPLE 
+
+syntax keyword rqStringFunction STRLEN SUBSTR UCASE LCASE STRSTARTS STRENDS STRBEFORE STRAFTER ENCODE_FOR_URI CONCAT LANGMATCHES REGEX REPLACE
+syntax match rqContains 'CONTAINS' " since 'contains' conflicts with the vim keyword
+
+syntax keyword rqNumericFunction ABS ROUND CEIL FLOOR RAND
+syntax keyword rqTimeFunction NOW YEAR MONTH DAY HOURS MINUTES SECONDS TIMEZONE TZ
+
+
 syntax case match
 " case sensitive: 
 syntax keyword rqRdfType a
@@ -51,6 +59,10 @@ syntax match rqVar /[?$]\{1\}\(\w\|\\U\x\{8\}\|\\u\x\{4\}\)\+/ contains=rqCodepo
 highlight link rqKeyword Keyword 
 highlight link rqBuiltinAggregate Keyword
 highlight link rqBuiltinCall Keyword
+highlight link rqStringFunction Keyword
+highlight link rqContains Keyword
+highlight link rqNumericFunction Keyword
+highlight link rqTimeFunction Keyword
 highlight link rqVar Identifier 
 highlight link rqStringSingle String 
 highlight link rqStringLongSingle String 
