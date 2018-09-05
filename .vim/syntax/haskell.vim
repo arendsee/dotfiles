@@ -48,6 +48,10 @@ elseif exists("b:current_syntax")
   finish
 endif
 
+let b:current_syntax = ''
+unlet b:current_syntax
+syn include @Sparql syntax/sparql.vim
+
 "syntax sync fromstart "mmhhhh.... is this really ok to do so?
 syntax sync linebreaks=15 minlines=50 maxlines=500
 
@@ -226,6 +230,9 @@ sy match hsQQEnd "|\]" contained
 sy match hsQQVarID "\[\$\(.\&[^|]\)*|" contained
 sy match hsQQVarIDNew "\[\(.\&[^|]\)*|" contained
 
+" Sparql quasiquotation (unique to Morloc compiler)
+sy region hsSparqlContent start='\[sparql|$' end='|\]' contains=@Sparql
+
 if exists("hs_highlight_debug")
   " Debugging functions from the standard prelude.
   syn keyword hsDebug undefined error trace
@@ -347,6 +354,10 @@ if version >= 508 || !exists("did_hs_syntax_inits")
   HiLink hsQQVarIDNew Keyword
   HiLink hsQQEnd   Keyword
   HiLink hsQQContent String
+
+  HiLink hsSparql Keyword
+  HiLink hsIdocContent String
+  HiLink hsIdocInterpolation Macro
 
   delcommand HiLink
 endif
