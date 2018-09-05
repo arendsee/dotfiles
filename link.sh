@@ -110,6 +110,8 @@ safely-link .ghci        # ghci customizations
 safely-link .cabal/config $HOME/.cabal/config
 # configuration for Haskell shell
 safely-link .ghc/ghci.conf $HOME/.ghc/ghci.conf 
+# configureation for Stack
+safely-link .stack/config.yaml $HOME/.stack/config.yaml
 
 
 # -------------------------------------------------------------------
