@@ -40,6 +40,14 @@ function pdf2eps() {
 
 alias vi=vim
 
+# get external IP address
+alias ipe='curl ipinfo.io/ip'
+
+# # get internal IP address (doesn't currently work)
+# alias ipi='ipconfig getifaddr en0'
+
+# Get random password
+alias getpass="openssl rand -base64 20"
 
 # =============================================================================
 # Media
