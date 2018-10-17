@@ -68,6 +68,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 " Damian Conway's drag thing
 Plug 'shinokada/dragvisuals.vim'
+" Visualize code
+Plug 'kristijanhusak/vim-carbon-now-sh'
+vnoremap <F5> :CarbonNowSh<CR>
 " --------------------------------------------------------------------------------
 
 
