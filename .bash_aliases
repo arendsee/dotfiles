@@ -289,7 +289,7 @@ function o {
             chromium "$j" || firefox $j &
         elif [[ "$j" =~ \.(svg)$ ]]; then
             inkscape "$j" &
-        elif [[ "$j" =~ \.(pdf|dvi|ps)$ ]]; then
+        elif [[ "$j" =~ \.(pdf|dvi|ps|eps)$ ]]; then
             atril "$j" || zathura "$j" &
         elif [[ "$j" =~ \.(pdb)$ ]]; then
             pymol "$j" || vi "$j" &
