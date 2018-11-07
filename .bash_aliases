@@ -203,7 +203,7 @@ function ,, {
     then
         cd $gitbase/$1*; ls
     else
-        cd $gitbase; ls
+        cd $gitbase/$1 2> /dev/null || cd $gitbase; ls
     fi
 }
 
