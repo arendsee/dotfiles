@@ -805,7 +805,7 @@ let NERDDefaultAlign='both'
 " --- easy motion
 " Leader
 map <localleader><localleader> <Plug>(easymotion-prefix)
-nmap s <Plug>(easymotion-overwin-f2)
+nmap <localleader>s <Plug>(easymotion-overwin-f2)
 " JK motions: Line motions
 map <localleader>j <Plug>(easymotion-j)
 map <localleader>k <Plug>(easymotion-k)
