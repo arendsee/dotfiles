@@ -420,6 +420,7 @@ autocmd FileType markdown call MarkdownSettings()
 autocmd FileType py call PythonSetting()
 autocmd FileType rnoweb call Rnoweb()
 autocmd FileType haskell call Haskell()
+autocmd FileType rmd call RmdSettings()
 
 function! Haskell()
     hi ghcmodType ctermbg=cyan
@@ -433,6 +434,12 @@ function! TabularSettings()
     setlocal nowrap
     setlocal list
     NoPencil
+endfunction
+
+function! RmdSettings()
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+    setlocal expandtab
 endfunction
 
 function! LatexSettings()
@@ -798,7 +805,7 @@ let NERDDefaultAlign='both'
 " --- easy motion
 " Leader
 map <localleader><localleader> <Plug>(easymotion-prefix)
-nmap s <Plug>(easymotion-overwin-f2)
+nmap <localleader>s <Plug>(easymotion-overwin-f2)
 " JK motions: Line motions
 map <localleader>j <Plug>(easymotion-j)
 map <localleader>k <Plug>(easymotion-k)

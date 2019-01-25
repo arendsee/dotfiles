@@ -18,6 +18,9 @@ options(Ncpus = 4L)
 options(error=utils::dump.frames)
 options(show.error.locations=TRUE)
 
+# Set width
+options(width=150)
+
 ## Make tibble less tacky
 options(tibble.print_max = Inf)
 options(tibble.width = 200)
