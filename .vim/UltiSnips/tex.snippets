@@ -2,6 +2,25 @@ extends plaintex
 
 priority 1
 
+snippet default "Default LaTeX template" b
+\documentclass[12pt]{article} 
+
+\usepackage{amsmath}
+\date{\today}
+
+\title{foo}
+\author{Zebulun Arendsee}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  This is the abstract
+\end{abstract}
+
+\end{document}
+endsnippet
+
 snippet macro "Macro template" b
 \newcommand{\\${1:VARIABLE_NAME}}[${2:NARGS}]{
 ${3:xxx #1 xxx #2}

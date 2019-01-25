@@ -12,8 +12,8 @@ PATH="$PATH:$HOME/.local/bin"
 # export TERM="xterm-256color"
 export VISUAL="vim"
 
-# setup autocompletion for stack commands
-eval "$(stack --bash-completion-script stack)"
+# # setup autocompletion for stack commands
+# eval "$(stack --bash-completion-script stack)"
 
 # # Support for the obscure Ptolemy language
 # export PYC_HOME="$HOME/src/ptolemy"
