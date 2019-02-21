@@ -60,12 +60,15 @@ alias vvg='pamixer --get-volume '
 # Git
 alias ggs='git status '
 alias ggc='git commit '
+alias ggcam='git commit -am ' # stage everything and write a message
 alias ggm='git merge --no-ff --no-commit '
 alias gga='git add '
 alias ggb='git branch '
 alias ggp='git push origin '
 alias ggd='git diff '
 alias ggg='git log --graph'
+alias gg2m='git push origin master'
+alias gg2d='git push origin dev'
 function gcl() {
     repo=$1
     user=${2-arendsee}
