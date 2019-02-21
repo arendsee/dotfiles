@@ -12,6 +12,14 @@ q <- function (save="no", ...) {
   quit(save=save, ...)
 }
 
+# load a R package here
+.dochere <- function(d){
+    w <- getwd()
+    setwd(d)
+    devtools::document()
+    setwd(w)
+}
+
 # Number of CPUs to use, for instance when installing
 options(Ncpus = 4L)
 
