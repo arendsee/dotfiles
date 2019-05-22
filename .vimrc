@@ -413,6 +413,7 @@ nnoremap <localleader>C :wqa<cr>
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab,*.gff call TabularSettings()
 autocmd BufNewFile,BufRead *.R call RSettings()
 autocmd BufNewFile,BufRead *.hs call HaskellSettings()
+autocmd BufNewFile,BufRead *.asc call ASCIIDocSettings()
 autocmd BufNewFile,BufRead *.Rnw,*.html call TwoStop()
 autocmd BufNewFile,BufRead *.tex call LatexSettings()
 autocmd FileType text call TextSettings()
@@ -437,6 +438,13 @@ function! TabularSettings()
 endfunction
 
 function! RmdSettings()
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+    setlocal expandtab
+endfunction
+
+function! ASCIIDocSettings()
+    set syn=asciidoc
     setlocal tabstop=2
     setlocal shiftwidth=2
     setlocal expandtab
