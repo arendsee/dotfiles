@@ -113,7 +113,7 @@ __prompt_cmd() {
     local GREEN='\[\033[0;32m\]'
     local YELLOW='\[\033[1;33m\]'
     if __not_in_kansas; then
-        place="${NORMAL}$(uname -n) \$\n"
+        place="${NORMAL}$(uname -n) \$ "
     else
         place="\$${NORMAL} "
     fi
@@ -151,10 +151,6 @@ if [ -f ~/.local_bash_aliases ]; then
     . ~/.local_bash_aliases
 fi
 
-if [ -f ~/.local_bashrc ]; then
-    . ~/.local_bashrc
-fi
-
 F="\e[2;49;90" # faint grey
 Y="\e[3;49;33" # yellow
 P="\e[0;49;35" # purple
@@ -182,3 +178,7 @@ export LS_COLORS="$LS_COLORS:*LICENSE=$U:*MANIFEST=$U:*MANIFEST.txt=$U:*SOURCE=$
 
 # pdf and tex
 export LS_COLORS="$LS_COLORS:*.pdf=$P:*.tex=$T"
+
+if [ -f ~/.local_bashrc ]; then
+    . ~/.local_bashrc
+fi
