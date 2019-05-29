@@ -417,7 +417,7 @@ autocmd BufNewFile,BufRead *.Rnw,*.html call TwoStop()
 autocmd BufNewFile,BufRead *.tex call LatexSettings()
 autocmd FileType text call TextSettings()
 autocmd FileType markdown call MarkdownSettings()
-autocmd FileType py call PythonSetting()
+autocmd FileType python call PythonSetting()
 autocmd FileType rnoweb call Rnoweb()
 autocmd FileType haskell call Haskell()
 autocmd FileType rmd call RmdSettings()
@@ -485,6 +485,8 @@ function! MarkdownSettings()
 endfunction
 
 function! PythonSetting()
+    setlocal tabstop=2
+    setlocal shiftwidth=2
     let g:slime_target = "tmux"
     let g:slime_paste_file = tempname()
     let g:slime_python_ipython = 1
