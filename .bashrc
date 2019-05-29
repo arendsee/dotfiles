@@ -8,6 +8,7 @@ set show-mode-in-prompt on
 PATH="$PATH:$HOME/bin"
 PATH="$PATH:$HOME/.cabal/bin"
 PATH="$PATH:$HOME/.local/bin"
+PATH="$PATH:$HOME/.cargo/bin"
 
 # export TERM="xterm-256color"
 export VISUAL="vim"

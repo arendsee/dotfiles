@@ -4,6 +4,20 @@
 # update-alternatives --install /usr/bin/java java $path_to_java 100
 
 # =============================================================================
+# Haskell functions
+function stack-new (){
+   stack new $1
+}
+
+function stack-build (){
+    stack build --test --fast --haddock-deps
+}
+
+function stack-view (){
+    stack haddock --open $1
+}
+
+# =============================================================================
 # Utility functions
 function works_(){
     $1 > /dev/null 2>&1
@@ -345,6 +359,8 @@ function vih() {
 }
 
 
+# for cd
+# $ mplayer -cdrom-device /dev/sr0 cdda:// # or wherever the socket is
 function ma {
     for j in `ls *mp3 *wav *flac`
     do

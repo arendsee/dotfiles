@@ -413,6 +413,7 @@ nnoremap <localleader>C :wqa<cr>
 autocmd BufNewFile,BufRead *.csv,*.tsv,*.tab,*.gff call TabularSettings()
 autocmd BufNewFile,BufRead *.R call RSettings()
 autocmd BufNewFile,BufRead *.hs call HaskellSettings()
+autocmd BufNewFile,BufRead *.asc call ASCIIDocSettings()
 autocmd BufNewFile,BufRead *.Rnw,*.html call TwoStop()
 autocmd BufNewFile,BufRead *.tex call LatexSettings()
 autocmd FileType text call TextSettings()
@@ -437,6 +438,12 @@ function! TabularSettings()
 endfunction
 
 function! RmdSettings()
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+    setlocal expandtab
+endfunction
+
+function! ASCIIDocSettings()
     setlocal tabstop=2
     setlocal shiftwidth=2
     setlocal expandtab
@@ -797,7 +804,7 @@ let NERDCompactSexyComs=0
 " nest comments by default
 let NERDDefaultNesting=1
 " Add or override delimiters for any filetypes
-let g:NERDCustomDelimiters = { 'loc' : { 'left' : '#' }, 'pro' : { 'left' : '%'}, 'scope' : {'left':'#'}, 'mouse' : {'left' : '#'}, 'toyloc' : {'left' : '#'}, 'haskell' : {'left' : '--'}, 'mop' : {'left' : '--'}, "turtle" : {'left' : '#'}, "sparql" : {'left' : '#'} }
+let g:NERDCustomDelimiters = { 'loc' : { 'left' : '#' }, 'pro' : { 'left' : '%'}, 'scope' : {'left' : '#'}, 'mouse' : {'left' : '#'}, 'toyloc' : {'left' : '#'}, 'haskell' : {'left' : '--'}, 'mop' : {'left' : '--'}, "turtle" : {'left' : '#'}, "sparql" : {'left' : '#'}, "asciidoc" : {'left' : '//'} }
 " default alignment to use, one of 'none', 'left', 'start', or 'both'
 let NERDDefaultAlign='both'
 " --------------------------------------------------------------------------------
