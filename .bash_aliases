@@ -16,6 +16,10 @@ function works_(){
 }
 # =============================================================================
 
+function h() {
+    column -t -s $'\t' $1
+}
+
 function ddate() {
     # To find the appropriate TZ, use `tzselect`
     # echo "central:"
@@ -164,7 +168,19 @@ function gitallstatus() {
 # =============================================================================
 
 # Color associated aliases
-if [ -x /usr/bin/dircolors ]; then
+if [ "$(uname)" = "Darwin" ]
+then
+    alias ls='ls -vG'
+    alias ls='ls -vG'
+    alias ll='ls -alhFG'
+    alias la='ls -AG'
+    alias l='ls -CFG'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+    alias less='less -R'
+elif [ -x /usr/bin/dircolors ]
+then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls -v --color=auto'
     alias ll='ls -alhF'
