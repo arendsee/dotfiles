@@ -55,6 +55,17 @@ function pdf2eps() {
     mv  "$2-crop.eps" $2.eps
 }
 
+function xgrep() {
+   mkdir .xgrep
+   cp $1 .xgrep
+   cd .xgrep
+   tar -xf $1
+   shift
+   cd ..
+   cat .xgrep/xl/*xml .xgrep/xl/worksheets/*xml | grep $@
+   rm -rf .xgrep
+}
+
 
 alias vi=vim
 

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-EDITOR=vim
+# EDITOR=vim
 
-set editing-mode vi
+# set editing-mode vi
 set show-mode-in-prompt on
 
 PATH="$PATH:$HOME/bin"
