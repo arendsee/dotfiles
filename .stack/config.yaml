@@ -1,3 +1,4 @@
+allow-newer: true # ignore all dependency constraints
 templates:
   params:
     author-email: zbwrnz@gmail.com
