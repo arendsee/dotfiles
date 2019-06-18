@@ -14,6 +14,10 @@ PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
 # export TERM="xterm-256color"
 export VISUAL="vim"
 
+# For fuseki
+export FUSEKI_HOME="$HOME/.fuseki"
+export FUSEKI_BASE="$FUSEKI_HOME/run"
+
 # # setup autocompletion for stack commands
 # eval "$(stack --bash-completion-script stack)"
 
