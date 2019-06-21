@@ -80,6 +80,8 @@ vnoremap <F5> :CarbonNowSh<CR>
 Plug 'Chiel92/vim-autoformat'
 " linters
 Plug 'scrooloose/syntastic'
+" psychodelic rainbow magic parentheses
+Plug 'luochen1990/rainbow'
 " --------------------------------------------------------------------------------
 
 
@@ -511,6 +513,27 @@ endfunction
 " =============================== BEGIN SECTION ===============================
 " --- Plugin Configurations
 " -----------------------------------------------------------------------------
+
+
+" ------------------------------- begin subsection -------------------------------
+" --- Rainbow
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\   'guifgs': ['blue', 'orange', 'yellow', 'red'],
+\   'ctermfgs': ['white', 'darkgray', 'darkblue', 'yellow', 'darkgreen', 'red', 'cyan'],
+\   'guis': [''],
+\   'cterms': [''],
+\   'operators': '_,_',
+\   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+\   'separately': {
+\     '*': {},
+\     'haskell': {
+\       'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/\v\{\ze[^-]/ end=/}/ fold'],
+\     }
+\   }
+\ }
+" --------------------------------------------------------------------------------
+
 
 " ------------------------------- begin subsection -------------------------------
 " --- NerdTree

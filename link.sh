@@ -115,6 +115,10 @@ safely-link .stack/config.yaml $HOME/.stack/config.yaml
 
 
 # -------------------------------------------------------------------
+# --- guile setup
+safely-link .guile
+
+# -------------------------------------------------------------------
 # --- vim setup
 safely-link .vimrc
 safely-link .goyo.vimrc
