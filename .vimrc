@@ -517,16 +517,19 @@ endfunction
 
 " ------------------------------- begin subsection -------------------------------
 " --- Rainbow
-let g:rainbow_active = 1
+let g:rainbow_active = 0
 let g:rainbow_conf = {
 \   'guifgs': ['blue', 'orange', 'yellow', 'red'],
-\   'ctermfgs': ['white', 'darkgray', 'darkblue', 'yellow', 'darkgreen', 'red', 'cyan'],
+\   'ctermfgs': ['white', 'darkgray'],
 \   'guis': [''],
 \   'cterms': [''],
 \   'operators': '_,_',
 \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 \   'separately': {
 \     '*': {},
+\     'scheme' : {
+\       'ctermfgs': ['white', 'darkgray', 'darkblue', 'yellow', 'darkgreen', 'red', 'cyan'],
+\     },
 \     'haskell': {
 \       'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/\v\{\ze[^-]/ end=/}/ fold'],
 \     }
