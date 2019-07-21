@@ -17,6 +17,10 @@ function stack-view (){
     stack haddock --open $1
 }
 
+function browse (){
+    ghci -e ":browse $1"
+}
+
 # =============================================================================
 # Utility functions
 function works_(){
