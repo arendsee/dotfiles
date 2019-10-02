@@ -602,15 +602,16 @@ let g:vinarise_detect_large_file_size=-1
 " --------------------------------------------------------------------------------
 
 
-" ------------------------------- begin subsection -------------------------------
-" --- Pencil options
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init({'wrap': 'soft'})
-  autocmd FileType text call pencil#init({'wrap': 'hard'})
-  let g:pencil#wrapModeDefault = 'soft'
-augroup END
-" --------------------------------------------------------------------------------
+" " ------------------------------- begin subsection -------------------------------
+" " --- Pencil options
+" " No, I never want Pencil on by default
+" augroup pencil
+"   autocmd!
+"   autocmd FileType markdown,mkd call pencil#init({'wrap': 'soft'})
+"   autocmd FileType text call pencil#init({'wrap': 'hard'})
+"   let g:pencil#wrapModeDefault = 'soft'
+" augroup END
+" " --------------------------------------------------------------------------------
 
 
 " ------------------------------- begin subsection -------------------------------
@@ -830,7 +831,7 @@ let NERDCompactSexyComs=0
 " nest comments by default
 let NERDDefaultNesting=1
 " Add or override delimiters for any filetypes
-let g:NERDCustomDelimiters = { 'loc' : { 'left' : '#' }, 'pro' : { 'left' : '%'}, 'scope' : {'left' : '#'}, 'mouse' : {'left' : '#'}, 'toyloc' : {'left' : '#'}, 'haskell' : {'left' : '--'}, 'mop' : {'left' : '--'}, "turtle" : {'left' : '#'}, "sparql" : {'left' : '#'}, "asciidoc" : {'left' : '//'} }
+let g:NERDCustomDelimiters = { 'loc' : { 'left' : '--' }, 'pro' : { 'left' : '%'}, 'scope' : {'left' : '#'}, 'mouse' : {'left' : '#'}, 'toyloc' : {'left' : '#'}, 'haskell' : {'left' : '--'}, 'mop' : {'left' : '--'}, "turtle" : {'left' : '#'}, "sparql" : {'left' : '#'}, "asciidoc" : {'left' : '//'} }
 " default alignment to use, one of 'none', 'left', 'start', or 'both'
 let NERDDefaultAlign='both'
 " --------------------------------------------------------------------------------
