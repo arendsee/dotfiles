@@ -87,6 +87,7 @@ Plug 'luochen1990/rainbow'
 
 " ------------------------------- begin subsection ----------------------------
 " --- languate/filetype specific plugins
+Plug 'vim-scripts/AnsiEsc.vim'
 " allow asynchronous operation, requires compilation | haskell mode
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
