@@ -492,6 +492,7 @@ endfunction
 function! MarkdownSettings()
     " add row of '=' beneath header
     noremap <localleader>h yypVr=
+    set nonumber
 endfunction
 
 function! PythonSetting()
