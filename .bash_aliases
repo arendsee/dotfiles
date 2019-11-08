@@ -319,42 +319,48 @@ function saturn {
 # general opener (adapt as necessary)
 # run non-cli programs in the background
 function o {
-    for j in "$@"
-    do
-        echo "$j"
-        if [[ "$j" =~ \.(png|jpg|jpeg|gif|tiff)$ ]]; then
-            feh "$j" &
-        elif [[ "$j" =~ \.dot$ ]]; then
-            tempfile=/tmp/$RANDOM.svg
-            dot -Tsvg "$j" -o $tempfile 
-            inkscape $tempfile 
-            rm $tempfile
-        elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx|xlsx)$ ]]; then
-            libreoffice "$j" &
-        elif [[ "$j" =~ \.(mp3|wav|flac)$ ]]; then
-            mplayer "$j"
-        elif [[ "$j" =~ \.(html)$ ]]; then
-            chromium "$j" || firefox $j &
-        elif [[ "$j" =~ \.(svg)$ ]]; then
-            inkscape "$j" &
-        elif [[ "$j" =~ \.(pdf|dvi|ps|eps)$ ]]; then
-            atril "$j" || zathura "$j" &
-        elif [[ "$j" =~ \.(pdb)$ ]]; then
-            pymol "$j" || vi "$j" &
-        elif [[ "$j" =~ \.(txt|md|tex)$ ]]; then
-            vi +Goyo +HardPencil -u ~/.goyo.vimrc "$j"
-        elif [[ -d "$j" ]]; then
-            vi "$j"
-        elif [[ `file "$j"` =~ (ASCII text|empty) ]]; then
-            vi +Goyo +HardPencil -u ~/.goyo.vimrc "$j"
-        elif [[ `file "$j"` =~ 'ELF' ]]; then
-            vi -c Vinarise "$j"
-        else
-            echo "I don't know how to open this" >&2
-            return 1
-        fi
-    done
+    if [ "$(uname)" = "Darwin" ]
+    then
+        open "$@"
+    else
+        for j in "$@"
+        do
+            echo "$j"
+            if [[ "$j" =~ \.(png|jpg|jpeg|gif|tiff)$ ]]; then
+                feh "$j" &
+            elif [[ "$j" =~ \.dot$ ]]; then
+                tempfile=/tmp/$RANDOM.svg
+                dot -Tsvg "$j" -o $tempfile 
+                inkscape $tempfile 
+                rm $tempfile
+            elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx|xlsx)$ ]]; then
+                libreoffice "$j" &
+            elif [[ "$j" =~ \.(mp3|wav|flac)$ ]]; then
+                mplayer "$j"
+            elif [[ "$j" =~ \.(html)$ ]]; then
+                chromium "$j" || firefox $j &
+            elif [[ "$j" =~ \.(svg)$ ]]; then
+                inkscape "$j" &
+            elif [[ "$j" =~ \.(pdf|dvi|ps|eps)$ ]]; then
+                atril "$j" || zathura "$j" &
+            elif [[ "$j" =~ \.(pdb)$ ]]; then
+                pymol "$j" || vi "$j" &
+            elif [[ "$j" =~ \.(txt|md|tex)$ ]]; then
+                vi +Goyo +HardPencil -u ~/.goyo.vimrc "$j"
+            elif [[ -d "$j" ]]; then
+                vi "$j"
+            elif [[ `file "$j"` =~ (ASCII text|empty) ]]; then
+                vi +Goyo +HardPencil -u ~/.goyo.vimrc "$j"
+            elif [[ `file "$j"` =~ 'ELF' ]]; then
+                vi -c Vinarise "$j"
+            else
+                echo "I don't know how to open this" >&2
+                return 1
+            fi
+        done
+    fi
 }
+alias open=o
 
 function tokindle() {
     input=$1
