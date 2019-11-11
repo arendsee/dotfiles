@@ -244,16 +244,19 @@ alias ..4='cd_ls ../../../..'
 alias ..5='cd_ls ../../../../..'
 alias ..6='cd_ls ../../../../../..'
 
-function ,, {
-    gitbase=$HOME/src/git
-    n=$(ls -d $gitbase/$1* | wc -l)
+function gotoGit {
+    gitbase=$1
+    gitname=$2
+    n=$(ls -d $gitbase/${gitname}* | wc -l)
     if [ $n -eq 1 ]
     then
-        cd $gitbase/$1*; ls
+        cd $gitbase/${gitname}*; ls
     else
-        cd $gitbase/$1 2> /dev/null || cd $gitbase; ls
+        cd $gitbase/$gitname 2> /dev/null || cd $gitbase; ls
     fi
 }
+alias ,,="gotoGit $HOME/src/git"
+alias ,,,="gotoGit $HOME/.morloc/lib"
 
 # colorfully pipe tree to less
 function ltree {
