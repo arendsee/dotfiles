@@ -650,15 +650,15 @@ let g:gitgutter_max_signs = 2000 " big enough to remember all changes in any
                                  " realistic code file, but not in big data
                                  " files
 " stage a hunk (default=<Leader>hs)
-nmap <localleader>hs <Plug>GitGutterStageHunk
+nmap <localleader>hs <Plug>(GitGutterStageHunk)
 " undo a hunk (default=<Leader>hu)
-nmap <localleader>hu <Plug>GitGutterUndoHunk
+nmap <localleader>hu <Plug>(GitGutterUndoHunk)
 " preview hunk
-nmap <localleader>hp <Plug>GitGutterPreviewHunk <C-j>
+nmap <localleader>hp <Plug>(GitGutterPreviewHunk) <C-j>
 " prev hunk
-nmap [c <Plug>GitGutterPrevHunk
+nmap [c <Plug>(GitGutterPrevHunk)
 " next hunk
-nmap ]c <Plug>GitGutterNextHunk
+nmap ]c <Plug>(GitGutterNextHunk)
 " -----------------------------------------------------------------------------
 
 
