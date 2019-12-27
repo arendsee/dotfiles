@@ -4,14 +4,15 @@
 # Also need to comment out all the gvim trash
 
 all:
+	asp update
 	asp export vim
 	mv vim/* .
 	# Required for pasting to X clipboard from vim
 	sed 's/--with-x=no/--with-x=yes/' PKGBUILD > PKGBUILD~
-	grep -vP 'enable-python3|enable-ruby' PKGBUILD~ > PKGBUILD
-	makepkg PKGBUILD
-	sudo pacman -R vim-runtime vim
-	sudo pacman -U vim-*.tar.xz
+	# grep -vP 'enable-python3|enable-ruby' PKGBUILD~ > PKGBUILD
+	# makepkg PKGBUILD
+	# sudo pacman -R vim-runtime vim
+	# sudo pacman -U vim-*.tar.xz
 
 .PHONY: clean
 clean:
