@@ -95,6 +95,7 @@ Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'ngn/vim-apl', {'for': 'apl'}
 Plug 'niklasl/vim-rdf'
 Plug 'idris-hackers/idris-vim'
+Plug 'bohlender/vim-smt2'
 " " python wrapping etc
 " Plug 'Python-mode-klen', {'for': 'python'}
 " " latex wrapping, keybinding, etc.
