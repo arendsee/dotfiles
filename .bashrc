@@ -188,3 +188,6 @@ export LS_COLORS="$LS_COLORS:*.pdf=$P:*.tex=$T"
 if [ -f ~/.local_bashrc ]; then
     . ~/.local_bashrc
 fi
+
+# added by travis gem
+[ ! -s /home/z/.travis/travis.sh ] || source /home/z/.travis/travis.sh

@@ -10,7 +10,7 @@ function stack-new (){
 }
 
 function stack-build (){
-    stack build --test --fast --haddock-deps
+    stack build --fast && stack install && stack test --fast
 }
 
 function stack-view (){

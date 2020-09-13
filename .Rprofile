@@ -57,13 +57,13 @@ sshhh <- function(a.package){
     library(a.package, character.only=TRUE)))
 }
 
-# Allow colors, if appropriate
-if(Sys.getenv("TERM") %in% c("xterm-256color", "screen-256color")){
-  # library(devtools) 
-  # install_github('jalvesaq/colorout')
-  suppressMessages(require(colorout))
-  setOutputColors(stderror=2, verbose=FALSE)
-}
+# # Allow colors, if appropriate
+# if(Sys.getenv("TERM") %in% c("xterm-256color", "screen-256color")){
+#   # library(devtools)
+#   # install_github('jalvesaq/colorout')
+#   suppressMessages(require(colorout))
+#   setOutputColors(stderror=2, verbose=FALSE)
+# }
 
 fs <- function(){
   # set the width of the output to the width of the window
