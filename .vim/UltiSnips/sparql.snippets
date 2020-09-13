@@ -1,7 +1,52 @@
-snippet construct "construct" b
-CONSTRUCT {
+snippet regex "basic regex pattern" b
+REGEX(?field, "pattern")
+endsnippet
 
-} WHERE {
+snippet if "make if statement" b
+IF(cond,0,1)
+endsnippet
 
+snippet optional "make optional blause" b
+OPTIONAL { $0 }
+endsnippet
+
+snippet bind "bind a variable" b
+BIND($0 as ?x) .
+endsnippet
+
+snippet d79 "d79 template - retrieves all A0 HAs" b
+PREFIX onto: <http://www.ontotext.com/>
+PREFIX f: <https://flu-crew.org/term/>
+PREFIX fid: <https://flu-crew.org/id/>
+PREFIX world: <https://flu-crew.org/geo/country/>
+PREFIX usa: <https://flu-crew.org/geo/country/usa/>
+
+SELECT DISTINCT
+  ?strain
+  (GROUP_CONCAT(DISTINCT ?gb; separator="+") as ?gbs)
+  ?subtype
+  (GROUP_CONCAT(DISTINCT ?const; separator="+") as ?consts)
+  ?country
+  (MIN(?date) as ?earliest_date)
+  ?seq
+FROM onto:disable-sameAs
+WHERE {
+  ?sid f:strain_name ?strain .
+  ?sid f:host "swine" .
+  ?sid f:country/f:code ?country .
+  ?sid f:date ?date .
+
+  # Keep only the A0 strains (e.g., not the TOSU strains or gisaid crap)
+  # Also removes the A0 strains that are missing the host
+  FILTER REGEX(?strain, "A/swine/.*/A0") .
+
+  ?sid f:has_segment ?gid .
+  ?gid f:segment_name "HA" .
+  ?gid f:genbank_id ?gb .
+  ?gid f:dnaseq ?seq .
+
+  OPTIONAL { ?sid f:constellation ?const . }
+  OPTIONAL { ?sid f:subtype ?subtype . }
 }
+GROUP BY ?strain ?subtype ?country ?seq
 endsnippet

@@ -21,6 +21,11 @@ function browse (){
     ghci -e ":browse $1"
 }
 
+function py-setup (){
+    pkg=$(basename `pwd`)
+    rm -rf build dist *.egg-info/ && pip3 uninstall ${pkg} && python3 setup.py sdist bdist_wheel && pip3 install dist/${pkg}*whl
+}
+
 # =============================================================================
 # Utility functions
 function works_(){

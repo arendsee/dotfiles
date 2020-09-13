@@ -12,6 +12,77 @@ def `!p snip.rv = t[1].replace("-", "_").replace("/", "__")`():
 ${0}
 endsnippet
 
+snippet argparse "argparse with subcommand decorator template"
+#!/usr/bin/env python3
+
+import textwrap
+import argparse
+
+cli = argparse.ArgumentParser(
+    prog="pgraphdb",
+    usage="pgraphdb <subcommand> <options>",
+    formatter_class=argparse.RawDescriptionHelpFormatter,
+    description="Top-level description",
+    epilog=textwrap.dedent("ladida back end stuff"),
+)
+subparsers = cli.add_subparsers(
+    metavar="[ for help on each: pgraphdb <subcommand> -h ]", title="subcommands"
+)
+
+# subcommand decorator idea adapted from Mike Depalatis blog
+def subcommand(args=[], parent=subparsers):
+    def decorator(func):
+        if func.__doc__:
+            help_str = func.__doc__.strip().split("\n")[0]
+            desc_str = textwrap.dedent(func.__doc__)
+        else:
+            help_str = "DOCUMENT ME PLEASE!!!"
+            desc_str = None
+        parser = parent.add_parser(
+            func.__name__, description=desc_str, help=help_str,
+            formatter_class=argparse.RawDescriptionHelpFormatter
+        )
+        for arg in args:
+            parser.add_argument(*arg[0], **arg[1])
+        parser.set_defaults(func=func)
+    return decorator
+
+
+def argument(*name_or_flags, **kwargs):
+    return (list(name_or_flags), kwargs)
+
+
+@subcommand(
+    [argument("--voodoo", help="some voodoo", action="store_true", default=False)]
+)
+def foo(args):
+    print(args.voodoo)
+
+
+@subcommand(
+    [argument("--voodoo", help="some voodoo", action="store_true", default=False)]
+)
+def bar(args):
+    """
+    This is bar
+
+    bar is an awesome function bar is an awesome function bar is an awesome
+    function bar is an awesome functionbar is an awesome function
+
+    so important
+    """
+    print(args.voodoo)
+
+
+if __name__ == "__main__":
+    args = cli.parse_args()
+    if len(vars(args)) == 0:
+        cli.print_help()
+    else:
+        args.func(args)
+endsnippet
+	
+
 snippet class "template class" b
 class ${1:NAME}:
 	def __init__(self):
@@ -61,29 +132,4 @@ parser.add_argument(
 	action='store_true',
 	default=False
 )
-endsnippet
-
-snippet argparse "argparse-based template file" b
-#!/usr/bin/env python3
-
-import argparse
-
-__version__ = '0.0.0'
-__prog__ = '${1:prog}'
-
-def parser():
-	parser = argparse.ArgumentParser()
-	parser.add_argument(
-		'--version',
-		help='Display version',
-		action='version',
-		version='%(prog)s {}'.format(__version__)
-	)
-	args = parser.parse_args()
-
-	return(args)
-
-if __name__ == '__main__':
-	args = parser()
-	${0}
 endsnippet
