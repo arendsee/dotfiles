@@ -2,6 +2,12 @@ extends awk
 
 priority 1
 
+snippet makeblastdb "makeblastdb"
+# makeblastdb -in xxx.fna -dbtype nucl
+# makeblastdb -in xxx.faa -dbtype prot 
+endsnippet
+	
+
 snippet awktab "Setup awk for tab-delimited format" w
 awk 'BEGIN{FS="\t"; OFS=FS} ${0}'
 endsnippet
