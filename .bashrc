@@ -10,6 +10,7 @@ PATH="$PATH:$HOME/.cabal/bin"
 PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:$HOME/.cargo/bin"
 PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
+PATH="$PATH:$HOME/.scarf/bin"
 
 # export TERM="xterm-256color"
 export VISUAL="vim"

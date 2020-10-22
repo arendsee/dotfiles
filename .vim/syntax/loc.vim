@@ -28,6 +28,7 @@ let b:current_syntax = "loc"
 
 
 syn keyword reserved where
+syn keyword reserved module
 syn keyword reserved import
 syn keyword reserved from
 syn keyword reserved as
@@ -40,6 +41,8 @@ syn keyword reserved or
 syn keyword reserved xor
 syn keyword reserved nand
 syn keyword reserved not
+syn keyword reserved type
+syn keyword reserved object
 
 " -----------------------------------------------------------------------------
 hi def link reserved Keyword

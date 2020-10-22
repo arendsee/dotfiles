@@ -3,6 +3,25 @@
 # fix for java
 # update-alternatives --install /usr/bin/java java $path_to_java 100
 
+# Chinese corpus lookup
+function z () {
+    echo " -- from news 10K"
+    grep --color=always $@ ~/.corpus/leipzig/zho_news_2007-2009_10K-sentences.txt
+    echo " -- from web 10K"
+    grep --color=always $@ ~/.corpus/leipzig/zho-simp-tw_web_2014_10K-sentences.txt
+}
+
+function zz () {
+    echo " -- from news 1M"
+    grep --color=always $@ ~/.corpus/leipzig/zho_news_2007-2009_1M-sentences.txt
+    echo " -- from web 300K"
+    grep --color=always $@ ~/.corpus/leipzig/zho-simp-tw_web_2014_300K-sentences.txt
+}
+
+function zf () {
+    grep -oh --color=never $@ ~/.corpus/leipzig/zho_news_2007-2009_1M-sentences.txt ~/.corpus/leipzig/zho-simp-tw_web_2014_300K-sentences.txt | sort | uniq -c | sort -g
+}
+
 # =============================================================================
 # Haskell functions
 function stack-new (){
@@ -46,6 +65,10 @@ function ddate() {
     # TZ=Asia/Shanghai date
     echo
     cal -m -n 6
+}
+
+function weather() {
+    curl http://wttr.in
 }
 
 function pdf2eps() {
