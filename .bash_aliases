@@ -29,10 +29,11 @@ function stack-new (){
 }
 
 function stack-build (){
-    stack build --fast && stack install && stack test --fast
+    stack build --fast --ghc-options -Wall && stack install && stack test --fast
 }
 
 function stack-view (){
+    # `stack haddock` alone will build the documentation for a project
     stack haddock --open $1
 }
 

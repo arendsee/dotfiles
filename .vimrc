@@ -42,7 +42,7 @@ Plug 'ervandew/supertab'
 " commenting
 Plug 'scrooloose/nerdcommenter'
 " " snippet engine | snippets use by ultisnips engine
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " align based on a character
 Plug 'junegunn/vim-easy-align'
 " quote/unquote, tag/untag, replace etc

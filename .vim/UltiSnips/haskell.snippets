@@ -59,3 +59,15 @@ snippet instance "Instance template" b
 instance ${1:Name} ${2:`!p snip.rv = "%s" % snip.basename`} where
 	${3:`!p snip.rv = t[1][0].lower() + t[1][1::]`} ($2 ${4:_}) = ${5:_}${0}
 endsnippet
+
+snippet lookup "lookup type"
+	map :: a -> Map a b -> Maybe b
+endsnippet
+
+snippet foldl "foldl type"
+	foldl :: (b -> a -> b) -> b -> t a -> b
+endsnippet
+
+snippet foldr "foldr type"
+	foldr :: (a -> b -> b) -> b -> t a -> b
+endsnippet
