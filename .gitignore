@@ -1,6 +1,11 @@
 .vim/bundle
 .vim/.*
 
+# ignore any password files
+*.pem
+*.crt
+*.key
+
 # for xmonad (see vicfryzel)
 xmonad-x86_64-linux
 xmonad.errors
