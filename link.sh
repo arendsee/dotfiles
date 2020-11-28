@@ -104,6 +104,7 @@ safely-link .ctags       # ctags
 safely-link .xmobarrc    # xmobar
 safely-link .astylerc    # astyle formatter for C/C++/Java code
 safely-link .ghci        # ghci customizations
+safely-link .irssi       # irssi IRC config
 
 # -------------------------------------------------------------------
 # --- haskell setup

@@ -9,3 +9,6 @@ xmonad.o
 .xmonad/xmonad.state
 
 .cgdb/readline_history.txt
+
+# for irssi
+config.autosave
