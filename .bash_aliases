@@ -3,6 +3,11 @@
 # fix for java
 # update-alternatives --install /usr/bin/java java $path_to_java 100
 
+function latest () {
+    days=$1
+    find . -newermt $(date +%Y-%m-%d -d "$days day ago") -type f -print
+}
+
 # Chinese corpus lookup
 function z () {
     echo " -- from news 10K"
