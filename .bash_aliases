@@ -134,6 +134,7 @@ alias ggb='git branch '
 alias ggp='git push origin '
 alias ggd='git diff --color-moved --word-diff -M9'
 alias ggg='git log --graph'
+alias unamend='git reset --soft HEAD@{1}'
 alias gg2m='git push origin master'
 alias gg2d='git push origin dev'
 function gcl() {
