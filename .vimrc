@@ -66,8 +66,6 @@ Plug 'terryma/vim-expand-region'
 Plug 'airblade/vim-gitgutter'
 " for interaction with git
 Plug 'tpope/vim-fugitive'
-" Damian Conway's drag thing
-Plug 'shinokada/dragvisuals.vim'
 " Visualize code
 Plug 'kristijanhusak/vim-carbon-now-sh'
 vnoremap <F5> :CarbonNowSh<CR>
@@ -90,8 +88,8 @@ Plug 'luochen1990/rainbow'
 Plug 'vim-scripts/AnsiEsc.vim'
 " allow asynchronous operation, requires compilation | haskell mode
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'eagletmt/ghcmod-vim', {'for': 'haskell'}
-Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+" To install follow instruections at https://github.com/neoclide/coc.nvim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ngn/vim-apl', {'for': 'apl'}
 Plug 'niklasl/vim-rdf'
 Plug 'idris-hackers/idris-vim'
@@ -429,10 +427,10 @@ autocmd FileType rmd call RmdSettings()
 
 function! Haskell()
     hi ghcmodType ctermbg=cyan
-    nnoremap gh             :GhcModType<CR>
-    nnoremap <CR>           :GhcModTypeClear<CR>:noh<CR>
-    nnoremap <localleader>l :GhcModCheck<CR>
-    nnoremap <localleader>L :GhcModLint<CR>
+    " nnoremap gh             :GhcModType<CR>
+    " nnoremap <CR>           :GhcModTypeClear<CR>:noh<CR>
+    " nnoremap <localleader>l :GhcModCheck<CR>
+    " nnoremap <localleader>L :GhcModLint<CR>
 endfunction
 
 function! TabularSettings()
@@ -515,6 +513,10 @@ endfunction
 " =============================== BEGIN SECTION ===============================
 " --- Plugin Configurations
 " -----------------------------------------------------------------------------
+
+" ------------------------------- begin subsection ----------------------------
+" The default red font on gray background blows my brain
+hi Pmenu ctermbg=black ctermfg=gray
 
 
 " ------------------------------- begin subsection ----------------------------
