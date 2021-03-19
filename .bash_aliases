@@ -51,6 +51,11 @@ function py-setup (){
     rm -rf build dist *.egg-info/ && pip3 uninstall ${pkg} && python3 setup.py sdist bdist_wheel && pip3 install dist/${pkg}*whl
 }
 
+function twine-install (){
+    python3 setup.py sdist bdist_wheel
+    twine upload dist/*
+}
+
 # =============================================================================
 # Utility functions
 function works_(){
