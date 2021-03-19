@@ -1,0 +1,7 @@
+```
+# install browser syncer
+npm install -g browser-sync
+
+# make it watch the current directory
+browser-sync start --server --files .
+```
