@@ -1,6 +1,6 @@
 [user]
     name=Zebulun Arendsee
-    email=arendsee@iastate.edu
+    email=zbwrnz@gmail.com
 [color]
     status=auto
     branch=auto
@@ -16,4 +16,4 @@
 	smudge = git-lfs smudge -- %f
 	required = true
 [credential]
-	helper = cache --timeout=3600
+	helper = osxkeychain
