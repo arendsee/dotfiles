@@ -5,7 +5,7 @@
 # set editing-mode vi
 set show-mode-in-prompt on
 
-PATH="$PATH:$HOME/bin"
+PATH="$HOME/bin:$PATH"
 PATH="$PATH:$HOME/.cabal/bin"
 PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:$HOME/.cargo/bin"
@@ -120,7 +120,8 @@ __prompt_cmd() {
     local GREEN='\[\033[0;32m\]'
     local YELLOW='\[\033[1;33m\]'
     if __not_in_kansas; then
-        place="${NORMAL}$(uname -n) \$ "
+        # place="${NORMAL}$(uname -n) \$ "
+        place="\$${NORMAL} "
     else
         place="\$${NORMAL} "
     fi
