@@ -9,8 +9,9 @@ PATH="$PATH:$HOME/bin"
 PATH="$PATH:$HOME/.cabal/bin"
 PATH="$PATH:$HOME/.local/bin"
 PATH="$PATH:$HOME/.cargo/bin"
-PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
+PATH="$PATH:$HOME/.gem/ruby/3.0.0/bin"
 PATH="$PATH:$HOME/.scarf/bin"
+PATH="$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin"
 
 # export TERM="xterm-256color"
 export VISUAL="vim"
@@ -192,3 +193,19 @@ fi
 
 # added by travis gem
 [ ! -s /home/z/.travis/travis.sh ] || source /home/z/.travis/travis.sh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/z/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/z/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/z/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/z/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

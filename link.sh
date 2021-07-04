@@ -114,6 +114,10 @@ safely-link .ghc/ghci.conf $HOME/.ghc/ghci.conf
 # configureation for Stack
 safely-link .stack/config.yaml $HOME/.stack/config.yaml
 
+# -------------------------------------------------------------------
+# --- rust setup
+mkdir -p .cargo
+safely-link .cargo/config
 
 # -------------------------------------------------------------------
 # --- guile setup
