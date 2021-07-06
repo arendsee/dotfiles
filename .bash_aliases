@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source ${HOME}/.local_aliases
+
 # fix for java
 # update-alternatives --install /usr/bin/java java $path_to_java 100
 
@@ -49,6 +51,11 @@ function browse (){
 function py-setup (){
     pkg=$(basename `pwd`)
     rm -rf build dist *.egg-info/ && pip3 uninstall ${pkg} && python3 setup.py sdist bdist_wheel && pip3 install dist/${pkg}*whl
+}
+
+function twine-install (){
+    python3 setup.py sdist bdist_wheel
+    twine upload dist/*
 }
 
 # =============================================================================
@@ -556,9 +563,10 @@ knit () {
 
 knitmd () {
     [[ "${1/*./}" == Rmd ]] || { echo "Input must be an *.Rmd file" >&2; return 1 ; }
-    Rscript -e "library(knitr); knit('$1')"
+    Rscript -e "rmarkdown::render('$1')"
     [[ $? == 0 ]] || { echo "Failed to knit ..." >&2; return 1 ; }
-	pandoc -f markdown+table_captions -V geometry:margin=1in -o ${1%.Rmd}.pdf ${1%.Rmd}.md
+	# pandoc -f markdown+table_captions -V geometry:margin=1in -o ${1%.Rmd}.pdf ${1%.Rmd}.md
+	# pandoc -f markdown+table_captions -V geometry:margin=1in -o ${1%.Rmd}.html ${1%.Rmd}.md
 }
 
 alias rmblastdb='rm *.{nhr,nin,nsq,phr,pin,psq} 2> /dev/null'
