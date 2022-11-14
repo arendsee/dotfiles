@@ -12,7 +12,6 @@ local options = {
   showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
   showtabline = 2,                         -- always show tabs
   smartcase = true,                        -- smart case
-  smartindent = true,                      -- make indenting smarter again
   splitbelow = true,                       -- force all horizontal splits to go below current window
   splitright = true,                       -- force all vertical splits to go to the right of current window
   swapfile = false,                        -- creates a swapfile
@@ -33,7 +32,19 @@ local options = {
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
-}
+  textwidth = 80,
+  formatoptions = "tcrqpnwa",              -- * t  - format textual paragraphs using textwidth
+                                           -- * cr - auto-wrap comments using textwidth and insert comment leaders
+                                           -- * q  - allow manual formatting with 'gq'
+                                           -- * p  - don't break on weird periods
+                                           -- * n  - recognize numbered lists
+                                           -- * w  - trailing white space means the paragraph continues to the next line
+                                           -- * a  - automatic formatting of paragraphs
+  -- keep the indentation from the prior line (generally nice)
+  autoindent = true,
+  -- smart indenting is specific to C-like programs, it will mess up wrapping of
+  -- text by indenting after the word "for" or "if".
+  smartindent = false, }
 
 vim.opt.shortmess:append "c"
 
@@ -43,6 +54,17 @@ end
 
 
 vim.cmd([[
+
+" ------------------------------- begin subsection ----------------------------
+" --- Copy and paste from X-clipboard
+" requires +X11 compile option
+nnoremap <localleader>p "+p
+nnoremap <localleader>P "+P
+nnoremap <localleader>d "+dd
+nnoremap <localleader>y "+yy
+vnoremap <localleader>y "+y
+vnoremap <localleader>d "+d
+" -----------------------------------------------------------------------------
 
 " ------------------------------- begin subsection ----------------------------
 " --- easy-align settings
