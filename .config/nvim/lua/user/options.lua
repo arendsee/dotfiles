@@ -33,13 +33,12 @@ local options = {
   sidescrolloff = 8,
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
   textwidth = 80,
-  formatoptions = "tcrqpnwa",              -- * t  - format textual paragraphs using textwidth
-                                           -- * cr - auto-wrap comments using textwidth and insert comment leaders
-                                           -- * q  - allow manual formatting with 'gq'
-                                           -- * p  - don't break on weird periods
-                                           -- * n  - recognize numbered lists
-                                           -- * w  - trailing white space means the paragraph continues to the next line
-                                           -- * a  - automatic formatting of paragraphs
+  -- formatoptions = "tcrqpn",                -- * t  - format textual paragraphs using textwidth
+  --                                          -- * cr - auto-wrap comments using textwidth and insert comment leaders
+  --                                          -- * q  - allow manual formatting with 'gq'
+  --                                          -- * p  - don't break on weird periods
+  --                                          -- * n  - recognize numbered lists
+  --                                          -- * a  - automatic formatting
   -- keep the indentation from the prior line (generally nice)
   autoindent = true,
   -- smart indenting is specific to C-like programs, it will mess up wrapping of
