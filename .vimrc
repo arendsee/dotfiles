@@ -85,10 +85,9 @@ Plug 'luochen1990/rainbow'
 " --- languate/filetype specific plugins
 Plug 'vim-scripts/AnsiEsc.vim'
 " allow asynchronous operation, requires compilation | haskell mode
+Plug 'eagletmt/ghcmod-vim'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-" To install follow instruections at https://github.com/neoclide/coc.nvim
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ngn/vim-apl', {'for': 'apl'}
+" Plug 'ngn/vim-apl', {'for': 'apl'}
 Plug 'niklasl/vim-rdf'
 Plug 'idris-hackers/idris-vim'
 Plug 'bohlender/vim-smt2'
@@ -104,6 +103,8 @@ Plug 'reedes/vim-pencil'
 Plug 'junegunn/goyo.vim'
 " big file handling
 Plug 'mhinz/vim-hugefile'
+" support for Singularity definition file syntax
+Plug 'rbberger/vim-singularity-syntax'
 " -----------------------------------------------------------------------------
 
 
@@ -222,8 +223,7 @@ set tags=./tags,tags;$HOME
 " =============================== BEGIN SECTION ===============================
 " --- Global Keybindings
 " -----------------------------------------------------------------------------
-" This section should include all keybindings that are not associated with a
-" particular plugin.
+" This section should include all keybindings that are not associated with a " particular plugin.
 " -----------------------------------------------------------------------------
 
 " ------------------------------- begin subsection ----------------------------
@@ -236,6 +236,18 @@ noremap ` =
 noremap = `
 " wrap paragraph
 nnoremap <localleader>w ma{V}gq'a$
+" ma  -- store the current position under 'a'
+" {   -- go to the beginning of the paragraph
+" V   -- line visualizeation mode
+" gq  -- autoformat
+" 'a  -- return to 'a'
+" $   -- go to the end of line
+"
+" The 'gq' step is the magic bit. For this we want to customize exactly what
+" is happening. We can do that with the `fo` options, see `fo-table` in the
+" help.
+
+
 " search for selected text
 vnoremap // y/<C-R>"<CR>
 " make escape cancel highlighting
@@ -302,38 +314,6 @@ nnoremap <C-o> :bnext<CR>
 let g:buftabline_show=1
 let g:buftabline_indicators="on"
 let g:buftabline_numbers=2
-nmap <localleader>1 <Plug>BufTabLine.Go(1)
-nmap <localleader>2 <Plug>BufTabLine.Go(2)
-nmap <localleader>3 <Plug>BufTabLine.Go(3)
-nmap <localleader>4 <Plug>BufTabLine.Go(4)
-nmap <localleader>5 <Plug>BufTabLine.Go(5)
-nmap <localleader>6 <Plug>BufTabLine.Go(6)
-nmap <localleader>7 <Plug>BufTabLine.Go(7)
-nmap <localleader>8 <Plug>BufTabLine.Go(8)
-nmap <localleader>9 <Plug>BufTabLine.Go(9)
-nmap <localleader>0 <Plug>BufTabLine.Go(10)
-" -----------------------------------------------------------------------------
-
-
-" ------------------------------- begin subsection ----------------------------
-" --- From Alexander Shukaev on stack overflow (13850914)
-" --- These mappings force a new vim student to use vim correctly.
-" --- However, I have no reason to use them currently use them
-" " no arrows in normal
-" noremap <Up>    <Nop>
-" noremap <Down>  <Nop>
-" noremap <Left>  <Nop>
-" noremap <Right> <Nop>
-" " no arrows in insert
-" inoremap <Up>    <Nop>
-" inoremap <Down>  <Nop>
-" inoremap <Left>  <Nop>
-" inoremap <Right> <Nop>
-" " no arrows in visual
-" vnoremap <Up>    <Nop>
-" vnoremap <Down>  <Nop>
-" vnoremap <Left>  <Nop>
-" vnoremap <Right> <Nop>
 " -----------------------------------------------------------------------------
 
 " ------------------------------- begin subsection ----------------------------
@@ -425,7 +405,7 @@ autocmd FileType rmd call RmdSettings()
 
 function! Haskell()
     hi ghcmodType ctermbg=cyan
-    " nnoremap gh             :GhcModType<CR>
+    nnoremap tq             :GhcModType<CR>
     " nnoremap <CR>           :GhcModTypeClear<CR>:noh<CR>
     " nnoremap <localleader>l :GhcModCheck<CR>
     " nnoremap <localleader>L :GhcModLint<CR>
@@ -599,18 +579,6 @@ let g:vinarise_detect_large_file_size=-1
 " -----------------------------------------------------------------------------
 
 
-" " ------------------------------- begin subsection ----------------------------
-" " --- Pencil options
-" " No, I never want Pencil on by default
-" augroup pencil
-"   autocmd!
-"   autocmd FileType markdown,mkd call pencil#init({'wrap': 'soft'})
-"   autocmd FileType text call pencil#init({'wrap': 'hard'})
-"   let g:pencil#wrapModeDefault = 'soft'
-" augroup END
-" " -----------------------------------------------------------------------------
-
-
 " ------------------------------- begin subsection ----------------------------
 " --- vim-r-plugin options
 let vimrplugin_assign = 0
@@ -641,7 +609,7 @@ nnoremap <leader>o :CtrlP<cr>
 " undo it with <Leader>hu.
 " -----------------------------------------------------------------------------
 " Number of changes to track (for performance reasons) default=500
-let g:gitgutter_max_signs = 2000 " big enough to remember all changes in any
+let g:gitgutter_max_signs = 5000 " big enough to remember all changes in any
                                  " realistic code file, but not in big data
                                  " files
 " stage a hunk (default=<Leader>hs)
@@ -655,6 +623,7 @@ nmap [c <Plug>(GitGutterPrevHunk)
 " next hunk
 nmap ]c <Plug>(GitGutterNextHunk)
 " -----------------------------------------------------------------------------
+
 
 
 " ------------------------------- begin subsection ----------------------------
@@ -766,24 +735,6 @@ let g:tagbar_autopreview = 0
 
 
 " ------------------------------- begin subsection ----------------------------
-" --- auto-reformatting
-nnoremap <localleader>A :Autoformat<CR>
-" -----------------------------------------------------------------------------
-
-
-" ------------------------------- begin subsection ----------------------------
-" --- Damian Conways Drag vis
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-vmap  <expr>  D        DVB_Duplicate()
-" Remove any introduced trailing whitespace after moving...
-let g:DVB_TrimWS=1
-" -----------------------------------------------------------------------------
-
-
-" ------------------------------- begin subsection ----------------------------
 " --- easy-align settings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -890,148 +841,3 @@ let g:ackhighlight = 1
 " -----------------------------------------------------------------------------
 
 
-" ------------------------------- begin subsection ----------------------------
-" Support for hsl
-" The default red font on gray background blows my brain
-hi Pmenu ctermbg=black ctermfg=gray
-
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=2
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" " Use tab for trigger completion with characters ahead and navigate.
-" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" " other plugin before putting this into your config.
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-" inoremap <expr><S-TAB>
-"       \ pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" " Use <c-space> to trigger completion.
-" if has('nvim')
-"   inoremap <silent><expr> <c-space> coc#refresh()
-" else
-"   inoremap <silent><expr> <c-@> coc#refresh()
-" endif
-
-" " Make <CR> auto-select the first completion item and notify coc.nvim to
-" " format on enter, <cr> could be remapped by other vim plugin
-" inoremap <silent><expr> <cr>
-"             \ pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" " Use `[g` and `]g` to navigate diagnostics
-" " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-" nmap <silent> [g <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]g <Plug>(coc-diagnostic-next)
-"
-" " GoTo code navigation.
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  " elseif (coc#rpc#ready())
-  "   call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" " Highlight the symbol and its references when holding the cursor.
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-"
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  " autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list. FIXME: conflicts with my <localleader>p for opening files
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>

@@ -2,6 +2,13 @@
 
 source ${HOME}/.local_aliases
 
+function obsidian-sync () {
+    cd ~/src/git/obsidian-vaults
+    git add -A
+    git commit -m 'note updates'
+    git push origin main
+}
+
 # fix for java
 # update-alternatives --install /usr/bin/java java $path_to_java 100
 
@@ -35,8 +42,13 @@ function stack-new (){
    stack new $1
 }
 
-function stack-build (){
-    stack build --fast --ghc-options -Wall && stack install && stack test --fast
+function pinstall (){
+    stack build --fast --profile --ghc-options="-fprof-auto-top -Wall" && stack install
+}
+
+function prun (){
+    stack exec --profile -- $@ +RTS -p -hc -xc
+    stack exec -- hp2ps -e8in -c *.hp
 }
 
 function stack-view (){
@@ -112,7 +124,7 @@ function xgrep() {
 }
 
 
-alias vi=vim
+alias vi=nvim
 
 # get external IP address
 alias ipe='curl ipinfo.io/ip'
@@ -380,7 +392,7 @@ function o {
                 rm $tempfile
             elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx|xlsx)$ ]]; then
                 libreoffice "$j" &
-            elif [[ "$j" =~ \.(mp3|wav|flac)$ ]]; then
+            elif [[ "$j" =~ \.(mp3|wav|flac|mp4|mkv)$ ]]; then
                 mplayer "$j"
             elif [[ "$j" =~ \.(html)$ ]]; then
                 chromium "$j" || firefox $j &

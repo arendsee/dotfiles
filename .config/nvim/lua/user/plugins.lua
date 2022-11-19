@@ -73,7 +73,7 @@ return packer.startup(function(use)
 
 	-- snippets
 	use({"L3MON4D3/LuaSnip"}) --snippet engine
-	use({"rafamadriz/friendly-snippets"}) -- a bunch of snippets to use
+	-- use({"rafamadriz/friendly-snippets"}) -- a bunch of snippets to use -- and some are VERY annoying, I'll make my own Goddamn snippets
 
     -- LSP
     use({"williamboman/mason.nvim"}) -- simple to use language server installer

@@ -72,7 +72,9 @@ clone () {
 # -------------------------------------------------------------------
 # --- .config directory
 mkdir -p ~/.config
-safely-link .config/zathura
+safely-link .config/nvim
+ln -s $PWD/.vim/ftdetect $HOME/.config/nvim/ftdetect
+ln -s $PWD/.vim/syntax $HOME/.config/nvim/syntax
 
 # -------------------------------------------------------------------
 # --- miscellaneous scripts
