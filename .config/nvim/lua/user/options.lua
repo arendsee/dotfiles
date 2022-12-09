@@ -1,6 +1,6 @@
 local options = {
   backup = false,                          -- creates a backup file
-  clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
+  -- clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
   cmdheight = 2,                           -- more space in the neovim command line for displaying messages
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0,                        -- so that `` is visible in markdown files
@@ -55,25 +55,12 @@ end
 vim.cmd([[
 
 " ------------------------------- begin subsection ----------------------------
-" --- Copy and paste from X-clipboard
-" requires +X11 compile option
-nnoremap <localleader>p "+p
-nnoremap <localleader>P "+P
-nnoremap <localleader>d "+dd
-nnoremap <localleader>y "+yy
-vnoremap <localleader>y "+y
-vnoremap <localleader>d "+d
-" -----------------------------------------------------------------------------
-
-" ------------------------------- begin subsection ----------------------------
 " --- easy-align settings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 " -----------------------------------------------------------------------------
-
-
 
 " ------------------------------- begin subsection ----------------------------
 " --- NERDCommenter settings

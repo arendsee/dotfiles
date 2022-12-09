@@ -228,9 +228,9 @@ set tags=./tags,tags;$HOME
 
 " ------------------------------- begin subsection ----------------------------
 " --- general
-" fast command calling
-noremap ; :
-noremap : ;
+" " fast command calling
+" noremap ; :
+" noremap : ;
 " change formatting to `
 noremap ` =
 noremap = `
