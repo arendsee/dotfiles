@@ -58,7 +58,7 @@ local lsp_flags = {
 -- https://github.com/williamboman/mason-lspconfig.nvim/tree/main/lua/mason-lspconfig
 -- They can be installed with `:LspInstall <server name>` 
 
-require('lspconfig')['sumneko_lua'].setup{
+require('lspconfig')['lua_ls'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 	settings = {

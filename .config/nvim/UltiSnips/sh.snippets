@@ -1,0 +1,70 @@
+extends awk
+
+priority 1
+
+snippet makeblastdb "makeblastdb"
+# makeblastdb -in xxx.fna -dbtype nucl
+# makeblastdb -in xxx.faa -dbtype prot 
+endsnippet
+	
+
+snippet awktab "Setup awk for tab-delimited format" w
+awk 'BEGIN{FS="\t"; OFS=FS} ${0}'
+endsnippet
+
+snippet sec "Make comment section" b
+# ===================================================================
+# ${1:SECTION NAME}
+# -------------------------------------------------------------------${0}
+endsnippet
+
+snippet getopt "Template getopt" b
+usage (){
+cat << EOF
+${2:DESC}
+REQUIRED ARGUMENTS
+  ${3:-d DOM  description of the thing}
+EOF
+	exit 0
+}
+
+# print help with no arguments
+[[ $# -eq 0 ]] && usage
+
+while getopts "h${1:d:}" opt; do
+	case $opt in
+		h)
+			usage ;;
+		d) 
+			domain=$OPTARG ;;
+	esac 
+done
+endsnippet
+
+snippet shflags "Template shflags argument handling" b
+source shflags.sh
+
+FLAGS_HELP="${5:DESCRIPTION}"
+
+DEFINE_string '${1:LONG}' '${2:DEFAULT}' '${3:HELP MSG}' '${4:X}'
+${0}
+
+FLAGS "$@" || exit 1
+[[ ${FLAGS_help} -eq ${FLAGS_TRUE} ]] && exit 0
+
+endsnippet
+
+
+###### GIT COMMANDS #######
+
+snippet cachepwd "run git commands to set up password caching" b
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=${1:3600}'
+endsnippet
+
+snippet tawk "Initialize TAB-delimited AWK" b
+awk '
+	BEGIN{FS="\t"; OFS="\t"}
+	${0}
+'
+endsnippet

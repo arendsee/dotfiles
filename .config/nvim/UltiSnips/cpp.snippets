@@ -1,0 +1,75 @@
+extends c
+
+priority 1
+
+snippet inc "include standard library" b
+#include <${1:$VISUAL}>${0}
+endsnippet
+
+snippet class "make a class" b
+class ${1:CLASS}
+{
+public:
+	$1(const $1&) = delete;
+	$1& operator=(const $1&) = delete;
+
+	$1();
+	~$1();
+};
+endsnippet
+
+snippet debug "Make debug message" b
+#ifdef DEBUG
+cerr << "${1:msg}\n";
+#endif
+endsnippet
+
+snippet nocopy "Delete copy constructor and delete operator" b
+${VISUAL}(const ${VISUAL}&) = delete;
+${VISUAL}& operator=(const ${VISUAL}&) = delete;
+endsnippet
+
+snippet rcpp "Make Rcpp hello world" b
+#include <Rcpp.h>
+using namespace Rcpp
+
+// [[Rcpp::export]]
+void hello()
+{
+	Rprintf("Hello world\n");
+}
+endsnippet
+
+snippet rfun "Build Rcpp function" b
+//' ${1:DESCRIPTION}
+//'
+//' @param x description
+//' @export
+// [[Rcpp::export]]
+${2:void} ${3:FUN}(${4:int x})
+{
+	${0}
+	return $2;
+}
+endsnippet
+
+
+snippet op<< "template extraction operator" b
+std::ostream& operator<<(std::ostream& os, const ${1:class}& obj)
+{
+	// write obj to stream
+	${0}
+	return os;
+}
+endsnippet
+
+snippet op>> "template insertion operator" b
+std::istream& operator>>(std::istream& is, ${1:class}& obj)
+{
+	// read obj from stream
+	${0}
+	if( /* $1 could not be constructed */ )
+		is.setstate(std::ios::failbit);
+	return is;
+}
+endsnippet

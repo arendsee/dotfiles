@@ -1,0 +1,22 @@
+extends txt
+
+priority 1
+
+snippet link "link template" w
+[${1:NAME}](${2:URL})${0}
+endsnippet
+
+snippet table "github flavor table template" b
+| ${1:COL1} | ${2:COL2} |
+| --- |: --- :|
+| ${3:11} | ${4:12} |
+endsnippet
+
+snippet post "make jekyll post" b
+---
+layout: post
+title: ${1:TITLE}
+---
+
+${0}
+endsnippet

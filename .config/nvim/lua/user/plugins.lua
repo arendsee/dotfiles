@@ -81,7 +81,9 @@ return packer.startup(function(use)
     use({"neovim/nvim-lspconfig"}) -- enable LSP
 
 	use({ "nvim-telescope/telescope.nvim"})
-	use({ "lewis6991/gitsigns.nvim"})
+	-- use({ "lewis6991/gitsigns.nvim"})
+    use({'airblade/vim-gitgutter'})
+    use({'tpope/vim-fugitive'})
 
     use({'simrat39/rust-tools.nvim'})
 

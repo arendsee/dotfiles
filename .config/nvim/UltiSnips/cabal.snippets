@@ -1,0 +1,50 @@
+snippet init "Build the template for a cabal file"
+name:     ${1:NAME}
+version:  0.0.0
+homepage: https://github.com/arendsee/$1
+synopsis: $1 does some neat stuff
+description:
+
+    This is all the stuff it can do
+
+author:             Zebulun Arendsee 
+maintainer:         arendsee@iastate.edu
+cabal-version:      >= 1.10
+bug-reports:        https://github.com/arendsee/$1/issues
+build-type:         Simple
+
+flag documentation
+    default: False
+
+library
+    default-language: Haskell2010
+    hs-source-dirs: src
+    exposed-modules:  $1
+
+    build-depends: base
+
+    ghc-options: -Wall
+
+    if flag(documentation)
+        build-depends: hscolour
+
+executable $1
+    default-language: Haskell2010
+    main-is: Main.hs
+    hs-source-dirs: .
+    build-depends: base,
+                   $1
+
+    ghc-options: -Wall
+endsnippet
+
+snippet executable "executable yay!"
+executable ${1:NAME}
+    default-language: Haskell2010
+    main-is: Main.hs
+    hs-source-dirs: executable
+    build-depends: base,
+                   $1
+
+    ghc-options: -Wall
+endsnippet

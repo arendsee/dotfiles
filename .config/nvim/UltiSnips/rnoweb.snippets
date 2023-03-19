@@ -1,0 +1,57 @@
+extends r, plaintex, tex
+
+priority 5
+
+snippet wrap "wrap a code block in a figure"
+\begin{figure}[!ht]
+  \centering
+${VISUAL}
+  \caption{}
+\end{figure}
+endsnippet
+	
+
+snippet report "build template for default report" b
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{longtable}
+
+% Prevent floats from crossing section or subsection boundaries
+\usepackage[section]{placeins}
+% Credit for this voodoo goes to Heiko Oberdiek
+\makeatletter
+\AtBeginDocument{%
+	\expandafter\renewcommand\expandafter\subsection\expandafter{%
+		\expandafter\@fb@secFB\subsection
+	}%
+}
+
+\makeatother
+\title{${1:TITLE}}
+\author{Zebulun Arendsee}
+\begin{document}
+
+<<require>>=
+	require(ggplot2)
+	require(plyr)
+@
+
+\end{document}
+endsnippet
+
+snippet figchunk "build template figure chunk" b
+\begin{figure}[!hbpt]
+\centering
+<<fig.width=${1:4}, fig.height=${2:4}, echo=F>>=
+	${0}
+@
+\caption{${3:Some figure}}
+\label{fig:${4:label}}
+\end{figure}
+endsnippet
+
+snippet source "Source a child Rnw document" b
+<<${1:base}, child='${2:sections/}$1.Rnw'>>=
+@${0}
+endsnippet

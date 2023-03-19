@@ -1,0 +1,88 @@
+priority 0
+
+snippet lorem5 "5 paragraphs of lorem" b
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nibh tortor id aliquet lectus proin nibh nisl. Ut etiam sit amet nisl purus. Cras adipiscing enim eu turpis egestas pretium aenean pharetra magna. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar. Elementum curabitur vitae nunc sed velit. Enim eu turpis egestas pretium aenean pharetra magna ac placerat. Mauris vitae ultricies leo integer malesuada nunc. Pellentesque elit eget gravida cum sociis natoque. Eu sem integer vitae justo eget magna fermentum.
+
+Fermentum posuere urna nec tincidunt praesent semper feugiat. Nec feugiat in fermentum posuere urna nec tincidunt praesent semper. Aliquam ultrices sagittis orci a scelerisque. Adipiscing at in tellus integer feugiat scelerisque varius morbi enim. Varius quam quisque id diam vel quam elementum pulvinar etiam. Risus pretium quam vulputate dignissim. Et pharetra pharetra massa massa ultricies mi quis. Convallis convallis tellus id interdum velit. Etiam erat velit scelerisque in dictum non consectetur. Sem et tortor consequat id. Sagittis purus sit amet volutpat consequat. Malesuada fames ac turpis egestas integer. In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Sapien nec sagittis aliquam malesuada bibendum. Donec adipiscing tristique risus nec feugiat in fermentum posuere urna. Neque vitae tempus quam pellentesque nec. Leo in vitae turpis massa sed elementum tempus egestas sed. Eu ultrices vitae auctor eu augue ut lectus arcu bibendum.
+
+Et malesuada fames ac turpis egestas sed. Ac auctor augue mauris augue neque gravida in fermentum et. Lorem ipsum dolor sit amet consectetur adipiscing elit duis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque. Dictum at tempor commodo ullamcorper a lacus. Sit amet porttitor eget dolor morbi non arcu risus. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Eget mauris pharetra et ultrices neque. Et ligula ullamcorper malesuada proin libero nunc. Magna sit amet purus gravida quis blandit turpis cursus in. Massa tincidunt dui ut ornare lectus sit. Enim nec dui nunc mattis enim ut. Feugiat nisl pretium fusce id velit. Pulvinar mattis nunc sed blandit libero. Nibh ipsum consequat nisl vel pretium lectus quam id. Ultricies leo integer malesuada nunc vel risus commodo. Aliquet nibh praesent tristique magna. Sollicitudin aliquam ultrices sagittis orci. Velit euismod in pellentesque massa placerat duis.
+
+Dictum non consectetur a erat nam at. Gravida arcu ac tortor dignissim convallis aenean et. Urna duis convallis convallis tellus id interdum. Quisque sagittis purus sit amet volutpat. Viverra nibh cras pulvinar mattis nunc sed. Eu scelerisque felis imperdiet proin fermentum. Potenti nullam ac tortor vitae purus faucibus ornare. Eget nunc lobortis mattis aliquam faucibus purus in. Mi bibendum neque egestas congue quisque egestas diam. Libero id faucibus nisl tincidunt eget nullam non nisi. Sed elementum tempus egestas sed.
+
+Arcu vitae elementum curabitur vitae nunc sed. Enim nunc faucibus a pellentesque sit amet porttitor. Urna molestie at elementum eu facilisis sed odio. Nisi scelerisque eu ultrices vitae auctor eu augue ut lectus. Gravida neque convallis a cras semper auctor neque vitae tempus. Tristique risus nec feugiat in fermentum. Rhoncus dolor purus non enim praesent elementum. Laoreet sit amet cursus sit amet dictum sit amet. Aliquet eget sit amet tellus cras. Id interdum velit laoreet id donec ultrices tincidunt. Dis parturient montes nascetur ridiculus mus. Et pharetra pharetra massa massa ultricies mi quis hendrerit dolor. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. In eu mi bibendum neque egestas congue quisque. Maecenas sed enim ut sem viverra aliquet eget. Viverra adipiscing at in tellus integer feugiat scelerisque varius morbi. Est ullamcorper eget nulla facilisi etiam dignissim diam quis enim. Pellentesque sit amet porttitor eget dolor morbi. Mi ipsum faucibus vitae aliquet nec ullamcorper sit amet. In aliquam sem fringilla ut morbi tincidunt augue interdum velit.
+endsnippet
+
+snippet href "Wrap a selection in a url" w
+<a href=${1:URL}>${VISUAL}</a>
+endsnippet
+
+snippet default "Make header and body" b
+<!DOCTYPE HTML>
+<html lang=en-US>
+	<head>
+		<title>${1:web title}</title>
+		<meta name="description" content="${2:short description}">
+		<meta charset=UTF-8>
+	</head>
+	<body>
+		${0}
+	</body>
+</html>
+endsnippet
+
+snippet teximport "In the header, import the scripts needed to interpet Tex equations" b
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		extensions: ["tex2jax.js"],
+		jax: ["input/TeX","output/HTML-CSS"],
+		tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+	});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML"></script>
+endsnippet
+
+snippet td "expand td tag" b
+<td>
+	${VISUAL}
+</td>
+endsnippet
+
+snippet p "expand paragraph" b
+<p> ${VISUAL} </p>
+endsnippet
+
+# specialized snippet, deprecated
+snippet "new week" "make new week entry" b
+<!--New Week-->
+<tr>
+	<tr>
+		<td rowspan=3>
+		wk3
+		</td>
+		<td>
+		M
+		</td>
+		<td>
+			${0}
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+		W
+		</td>
+		<td>
+
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+		F
+		</td>
+		<td>
+
+		</td>
+	</tr>
+</td>
+endsnippet

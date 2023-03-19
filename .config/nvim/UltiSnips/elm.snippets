@@ -1,0 +1,52 @@
+snippet main "click example" b
+module Main exposing (..)
+
+import Browser
+import Html exposing (Html, button, div, text)
+import Html.Events exposing (onClick)
+
+main =
+  Browser.sandbox { init = 0, update = update, view = view }
+
+type Msg = Increment | Decrement
+
+update msg model =
+  case msg of
+    Increment ->
+      model + 1
+
+    Decrement ->
+      model - 1
+
+view model =
+  div []
+    [ button [ onClick Decrement ] [ text "-" ]
+    , div [] [ text (String.fromInt model) ]
+    , button [ onClick Increment ] [ text "+" ]
+    ]
+endsnippet
+
+snippet form "make a template HTML form" b
+div []
+    [ h1 [] [ text "Sign up" ]
+    , Html.form []
+        [ div []
+            [ text "Name"
+            , input [ id "name", type_ "text" ] []
+            ]
+        , div []
+            [ text "Email"
+            , input [ id "email", type_ "email" ] []
+            ]
+        , div []
+            [ text "Password"
+            , input [ id "password", type_ "password" ] []
+            ]
+        , div []
+            [ button [ type_ "submit" ]
+                [ text "Create my account" ]
+            ]
+        ]
+    ]
+endsnippet
+	

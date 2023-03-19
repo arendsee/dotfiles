@@ -1,0 +1,135 @@
+priority 0
+
+snippet addview "Add new flask view" b
+@app.route('/${1:${VISUAL}}')
+def `!p snip.rv = t[1].replace("-", "_").replace("/", "__")`():
+	user = {'nickname': 'a_turtle'}
+	return render_template(
+		'$1.html',
+		title="${2:TITLE}",
+		user=user
+	)
+${0}
+endsnippet
+
+snippet argparse "argparse with subcommand decorator template"
+#!/usr/bin/env python3
+
+import textwrap
+import argparse
+
+cli = argparse.ArgumentParser(
+    prog="pgraphdb",
+    usage="pgraphdb <subcommand> <options>",
+    formatter_class=argparse.RawDescriptionHelpFormatter,
+    description="Top-level description",
+    epilog=textwrap.dedent("ladida back end stuff"),
+)
+subparsers = cli.add_subparsers(
+    metavar="[ for help on each: pgraphdb <subcommand> -h ]", title="subcommands"
+)
+
+# subcommand decorator idea adapted from Mike Depalatis blog
+def subcommand(args=[], parent=subparsers):
+    def decorator(func):
+        if func.__doc__:
+            help_str = func.__doc__.strip().split("\n")[0]
+            desc_str = textwrap.dedent(func.__doc__)
+        else:
+            help_str = "DOCUMENT ME PLEASE!!!"
+            desc_str = None
+        parser = parent.add_parser(
+            func.__name__, description=desc_str, help=help_str,
+            formatter_class=argparse.RawDescriptionHelpFormatter
+        )
+        for arg in args:
+            parser.add_argument(*arg[0], **arg[1])
+        parser.set_defaults(func=func)
+    return decorator
+
+
+def argument(*name_or_flags, **kwargs):
+    return (list(name_or_flags), kwargs)
+
+
+@subcommand(
+    [argument("--voodoo", help="some voodoo", action="store_true", default=False)]
+)
+def foo(args):
+    print(args.voodoo)
+
+
+@subcommand(
+    [argument("--voodoo", help="some voodoo", action="store_true", default=False)]
+)
+def bar(args):
+    """
+    This is bar
+
+    bar is an awesome function bar is an awesome function bar is an awesome
+    function bar is an awesome functionbar is an awesome function
+
+    so important
+    """
+    print(args.voodoo)
+
+
+if __name__ == "__main__":
+    args = cli.parse_args()
+    if len(vars(args)) == 0:
+        cli.print_help()
+    else:
+        args.func(args)
+endsnippet
+	
+
+snippet class "template class" b
+class ${1:NAME}:
+	def __init__(self):
+		${0}
+endsnippet
+
+snippet main "template of do-if-main" b
+if __name__ == '__main__':
+	${0}
+endsnippet
+
+snippet defaultdict "template and import for defaultdict" b
+from collections import defaultdict
+${1:dd} = defaultdict(${2:list})
+endsnippet
+
+snippet namedtuple "template declaration and import for named tuple" b
+from collections import namedtuple
+${1:Point} = namedtuple('$1', [${2:'x', 'y'}])
+${3:p = Point(1, y=2)}
+endsnippet
+
+snippet open "open file template" b
+with open(${1:filename}, ${2:'r'}) as f:
+	${0}
+endsnippet
+
+snippet addarg "Add an argparse argument" b
+parser.add_argument(
+	'-${1:x}', '--${2:long}',
+	help="${3:help}"
+)
+endsnippet
+
+snippet addargf "Add an argparse argument for file input" b
+parser.add_argument(
+	'${1:file}',
+	help="${2:help}",
+	type=argparse.FileType('r')
+)
+endsnippet
+
+snippet addargb "Add an argparse argument for boolean input" b
+parser.add_argument(
+	'-${1:x}', '--${2:long}',
+	help="${3:help}",
+	action='store_true',
+	default=False
+)
+endsnippet

@@ -1,0 +1,80 @@
+priority 0
+
+snippet	script "make an executable shell script" b
+#!/usr/bin/env runhaskell
+
+main :: IO ()
+main = putStrLn "Hello, World!"
+endsnippet
+
+snippet mdoc "module documentation" b
+{-|
+Module      : `!p snip.rv = "{}".format(snip.basename)`
+Description : Short description
+Copyright   : (c) Zebulun Arendsee, 2020
+License     : GPL-3
+Maintainer  : zbwrnz@gmail.com
+Stability   : experimental
+
+Here is a longer description of this module, containing some
+commentary with @some markup@.
+-}
+endsnippet
+
+snippet lang "add a language extension"
+{-# LANGUAGE $0 #-}
+endsnippet
+	
+
+snippet io "An ugly IO template, from Real World Haskell" b
+interactWith function inputFile outputFile = do
+	input <- readFile inputFile
+	writeFile outputFile (function input)
+
+main = mainWith $ foo
+	where mainWith function = do
+			args <- getArgs
+			case args of
+			[a,b,c] -> interactWith (function a b c) "/dev/stdin" "/dev/stdout"
+			_ -> putStrLn "error: incorrect number of arguments"
+endsnippet
+
+snippet turtle "make turtle shell template" b
+#!/usr/bin/env runhaskell
+
+{-# LANGUAGE OverloadedStrings #-}
+
+import Turtle
+
+main = do
+	echo "Hello Turtle!"
+endsnippet
+
+snippet module "Default header" b
+module `!p snip.rv = "{}".format(snip.basename)`
+(
+	`!p snip.rv = "{}".format(snip.basename)`(..)${0}
+) where
+endsnippet
+
+snippet class "Class template" b
+class ${1:Name} a where
+	${2:`!p snip.rv = t[1][0].lower() + t[1][1::]`} :: ${3:def}${0}
+endsnippet
+
+snippet instance "Instance template" b
+instance ${1:Name} ${2:`!p snip.rv = "%s" % snip.basename`} where
+	${3:`!p snip.rv = t[1][0].lower() + t[1][1::]`} ($2 ${4:_}) = ${5:_}${0}
+endsnippet
+
+snippet lookup "lookup type"
+	lookup :: a -> Map a b -> Maybe b
+endsnippet
+
+snippet foldl "foldl type"
+	foldl :: (b -> a -> b) -> b -> t a -> b
+endsnippet
+
+snippet foldr "foldr type"
+	foldr :: (a -> b -> b) -> b -> t a -> b
+endsnippet

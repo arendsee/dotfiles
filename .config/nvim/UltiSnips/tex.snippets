@@ -1,0 +1,503 @@
+extends plaintex
+
+priority 1
+
+snippet default "Default LaTeX template" b
+\documentclass[12pt]{article} 
+
+\usepackage{amsmath}
+\date{\today}
+
+\title{foo}
+\author{Zebulun Arendsee}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+  This is the abstract
+\end{abstract}
+
+\end{document}
+endsnippet
+
+snippet macro "Macro template" b
+\newcommand{\\${1:VARIABLE_NAME}}[${2:NARGS}]{
+${3:xxx #1 xxx #2}
+}
+endsnippet
+
+snippet beamer "beamer template" b
+\documentclass[t]{beamer}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usetheme{Pittsburgh}
+\usecolortheme{dolphin}
+\usepackage{lipsum}
+
+\newcommand\blfootnote[1]{%
+	\begingroup
+	\renewcommand\thefootnote{}\footnote{#1}%
+	\addtocounter{footnote}{-1}%
+	\endgroup
+}
+
+\graphicspath{ {images/} }
+
+\author{Zebulun Arendsee}
+\date{\today}
+\title{${1:TITLE}}
+\subtitle{${2:SUBTITLE}}
+\institute{Iowa State University}
+
+\begin{document}
+
+${0}
+
+\end{document}
+endsnippet
+
+snippet cfig "Expansion of cfig macro (see orphan-notes)" b
+\cfig{${1:width=\textwidth}}{${2:image-filename}}{${3:caption}}
+endsnippet
+
+snippet algorithm "Make algorithm2e template" b
+\begin{algorithm}
+  \DontPrintSemicolon
+  \SetKwFunction{Fmain}{main}
+  \SetKw{Kbreak}{break}
+  \SetKwProg{Fn}{function}{:}{}
+  \Fn{\Fmain{\vec{x}}}{
+    \ForEach{ $x$ in $\vec{x}$ }{%
+      $x$ + 1
+    }
+    \Return{$x$} \;
+  }
+  \caption{This is a caption}
+  \label{alg:this}
+\end{algorithm}
+endsnippet
+
+snippet tikz "Make tikz figure template" b
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \def\x{1} % definition 
+    draw (0,0) -- (1,0) -- (2,1) -- (3,1) -- (4,0) -- (5,0)
+  \end{tikzpicture}
+  \caption{This is a caption}
+  \label{dia:this}
+\end{figure}
+endsnippet
+
+snippet fr "Build beamer frame" b
+\begin{frame}
+	\frametitle{${1:title}}
+	${0}
+\end{frame}
+endsnippet
+
+snippet ffr "Full Beamer frame template" b
+{
+	\setbeamertemplate{navigation symbols}{}
+	\setbeamercolor{background canvas}{bg=white}
+	\begin{frame}[plain]
+		\includegraphics[width=\textwidth]{${1:title}}
+	\end{frame}
+}
+endsnippet
+
+snippet stack "stack relative template" w
+\stackrel{${1:top}}{${2:bottom}}${0}
+endsnippet
+
+snippet under "add text underneath" w
+\underset{${1:below}}{${2:above}}${0}
+endsnippet
+
+snippet bfig "beamer figure" b
+\begin{center}
+	\includegraphics[width=\textwidth]{${2:NAME}}
+\end{center}
+endsnippet
+
+snippet sum "sum template" w
+\sum_{${1:i=1}}^${2:n} ${0}
+endsnippet
+
+snippet abs "absolute value template" w
+\left\lvert ${1:x} \right\lvert ${0}
+endsnippet
+
+snippet exp "exponential expresssion" w
+\exp \left( ${0} \right)
+endsnippet
+
+snippet sqrt "square root" w
+\sqrt{${1:x}}${0}
+endsnippet
+
+snippet ( "\left parentheses" i
+\left(${0}
+endsnippet
+
+snippet ) "\right parentheses" i
+\right)${0}
+endsnippet
+
+snippet [ "\left parentheses" i
+\left[${0}
+endsnippet
+
+snippet ] "\right parentheses" i
+\right]${0}
+endsnippet
+
+snippet { "\left parentheses" i
+\left{${0}
+endsnippet
+
+snippet } "\right parentheses" i
+\right}${0}
+endsnippet
+
+snippet figure "load a figure" b
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=${1:\textwidth}]{${2:NAME}}
+  \caption{
+  	${0}
+  }
+\end{figure}
+endsnippet
+
+snippet img "Create an image using graphicx library" b
+\begin{figure}[!ht] \centering
+  \includegraphics[${1:width=0.9\textwidth}]{${2:FILE_BASENAME}}
+  \caption{${3:CAPTION}}
+\end{figure}
+${0}
+endsnippet
+
+snippet placein "Add code to precent floats from crossing section and subsection bounds" b
+% Prevent floats from crossing section or subsection boundaries
+\usepackage[section]{placeins}
+% Credit for this voodoo goes to Heiko Oberdiek
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\subsection\expandafter{%
+    \expandafter\@fb@secFB\subsection
+  }%
+}
+\makeatother
+endsnippet
+
+snippet url "add url" w
+\href{${1:URL}}{${2:NAME}}
+endsnippet
+
+snippet norm "insert normal pdf" w
+\frac{1}{${1:\sigma} \sqrt{2\pi}} \exp \left( - \frac{(${2:x} - \mu_$2)^2}{2$1^2} \right)${0}
+endsnippet
+
+snippet notes "build template for notes" b
+\documentclass[12pt]{article}
+
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.3ex plus 0.5ex minus 0.3ex}
+
+\usepackage[cm]{fullpage}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{color}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=blue,
+	filecolor=blue,
+	linkcolor=blue,
+	urlcolor=blue
+}
+
+\title{${1:TITLE}}
+\author{Zebulun Arendsee}
+\date{\today}
+\begin{document}
+
+\newcommand*{\secpath}{sections}
+\graphicspath{{images/}}
+
+\maketitle
+%\tableofcontents
+%\listoffigures
+
+${0}
+
+%\input{\secpath/section1}
+
+%\addcontentsline{toc}{section}{References}
+%\bibliographystyle{plain}
+\bibliography{${4:BIBFILE}}
+
+\end{document}
+endsnippet
+
+snippet homework "Build general homework template" b
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{placeins}
+\setlength{\parskip}{3mm}
+\pagestyle{fancy}
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\lhead{${1:NAME} \hspace{3mm}  ${2:CLASS}  \hspace{3mm} ${3:TERM} \hspace{3mm} Due ${4:DUE_DATE}}
+\rhead{Zebulun Arendsee}
+
+\begin{document}
+${0}
+\end{document}
+endsnippet
+
+snippet equ "Make equation template" b
+\begin{equation}
+  ${0}
+\end{equation}
+endsnippet
+
+snippet case "Add cases" b
+\begin{cases}
+	${1:lhs} & ${2:rhs} \\\\
+	${3:lhs} & ${4:rhs}
+\end{cases}
+endsnippet
+
+snippet aln "Make align template" b
+\begin{align}
+  ${0}
+\end{align}
+endsnippet
+
+snippet itemize "Itemize template" b
+\begin{itemize}
+  \item ${0}
+\end{itemize}
+endsnippet
+
+snippet desc "Description template" b
+\begin{description}
+  \item[${0}]
+\end{description}
+endsnippet
+
+snippet enum "Enumerate template" b
+\begin{enumerate}
+  \item ${0}
+\end{enumerate}
+endsnippet
+
+snippet framed "Framed template" b
+\begin{framed}
+	${0}
+\end{framed}
+endsnippet
+
+snippet verbatim "verbatim template" b
+\begin{verbatim}
+	${0}
+\end{verbatim}
+endsnippet
+
+snippet sec "Make section" b
+\section{${1:NAME}}
+\label{sec:$1}
+${0}
+endsnippet
+
+snippet sub "Make subsection" b
+\subsection{${1:NAME}}
+\label{subsec:$1}
+${0}
+endsnippet
+
+snippet subsub "Make subsubsection" b
+\subsubsection{${1:NAME}}
+\label{subsubsec:$1}
+${0}
+endsnippet
+
+# Greek lower case
+snippet a "alpha" w
+\alpha
+endsnippet
+
+snippet b "beta" w
+\beta
+endsnippet
+
+snippet g "gamma" w
+\gamma
+endsnippet
+
+snippet d "delta" w
+\delta
+endsnippet
+
+snippet e "epsilon" w
+\epsilon
+endsnippet
+
+snippet z "zeta" w
+\zeta
+endsnippet
+
+snippet i "iota" w
+\iota
+endsnippet
+
+snippet k "kappa" w
+\kappa
+endsnippet
+
+snippet l "lambda" w
+\lambda
+endsnippet
+
+snippet m "mu" w
+\mu
+endsnippet
+
+snippet n "nu" w
+\nu
+endsnippet
+
+snippet x "xi" w
+\xi
+endsnippet
+
+snippet p "pi" w
+\pi
+endsnippet
+
+snippet r "rho" w
+\rho
+endsnippet
+
+snippet s "sigma" w
+\sigma
+endsnippet
+
+snippet t "tau" w
+\tau
+endsnippet
+
+snippet c "chi" w
+\chi
+endsnippet
+
+snippet f "phi" w
+\phi
+endsnippet
+
+snippet w "omega" w
+\omega
+endsnippet
+
+# Greak upper case
+snippet G "Gamma" w
+\Gamma
+endsnippet
+
+snippet D "Delta" w
+\Delta
+endsnippet
+
+snippet T "Theta" w
+\Theta
+endsnippet
+
+snippet S "Sigma" w
+\Sigma
+endsnippet
+
+snippet S "Xsi" w
+\Xsi
+endsnippet
+
+# Greek hats
+snippet ha "hat alpha" w
+\hat{\alpha}
+endsnippet
+
+snippet hb "hat beta" w
+\hat{\beta}
+endsnippet
+
+snippet hg "hat gamma" w
+\hat{\gamma}
+endsnippet
+
+snippet hd "hat delta" w
+\hat{\delta}
+endsnippet
+
+snippet he "hat epsilon" w
+\hat{\epsilon}
+endsnippet
+
+snippet hz "hat zeta" w
+\hat{\zeta}
+endsnippet
+
+snippet hi "hat iota" w
+\hat{\iota}
+endsnippet
+
+snippet hk "hat kappa" w
+\hat{\kappa}
+endsnippet
+
+snippet hl "hat lambda" w
+\hat{\lambda}
+endsnippet
+
+snippet hm "hat mu" w
+\hat{\mu}
+endsnippet
+
+snippet hn "hat nu" w
+\hat{\nu}
+endsnippet
+
+snippet hx "hat xi" w
+\hat{\xi}
+endsnippet
+
+snippet hp "hat pi" w
+\hat{\pi}
+endsnippet
+
+snippet hr "hat rho" w
+\hat{\rho}
+endsnippet
+
+snippet hs "hat sigma" w
+\hat{\sigma}
+endsnippet
+
+snippet ht "hat tau" w
+\hat{\tau}
+endsnippet
+
+snippet hf "hat phi" w
+\hat{\phi}
+endsnippet
+
+snippet hw "hat omega" w
+\hat{\omega}
+endsnippet
