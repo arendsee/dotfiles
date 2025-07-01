@@ -1,3 +1,25 @@
 snippet source "source" b
-source Cpp from "foo.h" ("thingy" as thing)
+source ${1:Cpp} from "${2:foo.h}" ("${4:thingy}" as ${5:$4})
+endsnippet
+
+snippet pack "pack" b
+pack${1:Map}   ${2:Py }:: pack   => ${3:[(a,b)]} -> ${4:Map a b}
+unpack$1 $2:: unpack => $4 -> $3
+endsnippet
+
+snippet type "type" b
+type Cpp => Int = "int"
+type Py => Map a b = "dict" a b
+endsnippet
+
+snippet module "module" b
+module m (foo)
+endsnippet
+
+snippet class "class" b
+class Show a where
+	show a :: a -> Str
+
+instance Show Int where
+	source Cpp from "foo.hpp" ("show")
 endsnippet

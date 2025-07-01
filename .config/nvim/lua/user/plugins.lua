@@ -46,9 +46,10 @@ return packer.startup(function(use)
 	use({ "nvim-lua/plenary.nvim"})
 
     -- my personal stuffs
+    -- use({'madox2/vim-ai'})
     use({'Lokaltog/vim-distinguished'})
     use({'Shougo/vinarise'})
-    use({'SirVer/ultisnips'})
+    -- use({'SirVer/ultisnips'})
     use({'ap/vim-buftabline'})
     use({'easymotion/vim-easymotion'})
     use({'foosoft/vim-argwrap'})
@@ -62,6 +63,7 @@ return packer.startup(function(use)
     use({'ryanoasis/vim-devicons'})
     use({'terryma/vim-expand-region'})
     use({'christoomey/vim-tmux-navigator'})
+    use({'habamax/vim-asciidoctor'})
 
 	-- cmp plugins
 	-- use({"hrsh7th/nvim-cmp"}) -- The completion plugin
@@ -75,10 +77,10 @@ return packer.startup(function(use)
 	-- use({"L3MON4D3/LuaSnip"}) --snippet engine
 	-- use({"rafamadriz/friendly-snippets"}) -- a bunch of snippets to use -- and some are VERY annoying, I'll make my own Goddamn snippets
 
-    -- LSP
-    use({"williamboman/mason.nvim"}) -- simple to use language server installer
-    use({'williamboman/mason-lspconfig.nvim'})
-    use({"neovim/nvim-lspconfig"}) -- enable LSP
+    -- -- LSP
+    -- use({"williamboman/mason.nvim"}) -- simple to use language server installer
+    -- use({'williamboman/mason-lspconfig.nvim'})
+    -- use({"neovim/nvim-lspconfig"}) -- enable LSP
 
 	use({ "nvim-telescope/telescope.nvim"})
 	-- use({ "lewis6991/gitsigns.nvim"})

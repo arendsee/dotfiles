@@ -38,12 +38,9 @@ function zf () {
 
 # =============================================================================
 # Haskell functions
-function stack-new (){
-   stack new $1
-}
-
-function pinstall (){
-    stack build --fast --profile --ghc-options="-fprof-auto-top -Wall" && stack install
+function hbuild (){
+    # stack build --fast --profile --ghc-options="-fprof-auto-top -Wall" && stack install
+    stack build --fast --ghc-options="-Wall" && stack install
 }
 
 function prun (){
@@ -125,6 +122,11 @@ function xgrep() {
 
 
 alias vi=nvim
+
+# binary vim
+alias bi="vi -c Vinarise"
+
+alias htop="htop -t -u z -H"
 
 # get external IP address
 alias ipe='curl ipinfo.io/ip'
@@ -310,7 +312,8 @@ function gotoGit {
     fi
 }
 alias ,,="gotoGit $HOME/src/git"
-alias ,,,="gotoGit $HOME/.morloc/lib"
+alias ,,,="gotoGit $HOME/.morloc/src/morloc/plane/morloclib"
+alias ,,,,="gotoGit $HOME/src/git/morloc/library/Morloc"
 
 # colorfully pipe tree to less
 function ltree {
@@ -393,7 +396,7 @@ function o {
             elif [[ "$j" =~ \.(doc|docx|odt|ppt|pptx|xlsx)$ ]]; then
                 libreoffice "$j" &
             elif [[ "$j" =~ \.(mp3|wav|flac|mp4|mkv)$ ]]; then
-                mplayer "$j"
+                mplayer -softvol -softvol-max 200 "$j"
             elif [[ "$j" =~ \.(html)$ ]]; then
                 chromium "$j" || firefox $j &
             elif [[ "$j" =~ \.(svg)$ ]]; then
@@ -440,9 +443,9 @@ function vih() {
 # for cd
 # $ mplayer -cdrom-device /dev/sr0 cdda:// # or wherever the socket is
 function ma {
-    for j in `ls *mp3 *wav *flac`
+    for j in *mp3 *wav *flac
     do
-        mplayer "$j"
+        mplayer -vo null -softvol -softvol-max 200 "$j"
     done
 }
 

@@ -2,12 +2,6 @@
 " Language: morloc
 " Maintainer: Zebulun Arendsee
 " -----------------------------------------------------------------------------
-" INSTALLATION
-" Run the following in your UNIX terminal
-" $ mkdir -p ~/.vim/syntax/
-" $ mkdir -p ~/.vim/ftdetect/
-" $ cp loc.vim ~/.vim/syntax/
-" $ echo 'au BufRead,BufNewFile *.loc set filetype=loc' > ~/.vim/ftdetect/loc.vim
 
 
 
@@ -35,6 +29,7 @@ syn keyword reserved source
 syn keyword reserved export
 syn keyword reserved True
 syn keyword reserved False
+syn keyword reserved forall
 
 " -----------------------------------------------------------------------------
 hi def link reserved Keyword
@@ -124,11 +119,13 @@ syn region s_comment start="{-" end="-}" contains=s_todo,s_tag
 " -----------------------------------------------------------------------------
 syn match s_error '^#'
 
-syn match reserved '^table'
-syn match reserved '^import'
-syn match reserved '^type'
-syn match reserved '^object'
-syn match reserved '^record'
+syn match reserved '\<table\>'
+syn match reserved '\<import\>'
+syn match reserved '\<type\>'
+syn match reserved '\<instance\>'
+syn match reserved '\<class\>'
+syn match reserved '\<object\>'
+syn match reserved '\<record\>'
 
 " -----------------------------------------------------------------------------
 hi def link s_comment  Comment

@@ -1,0 +1,48 @@
+2024-10-17 18:23:29 fork_util.cpp:239() INFO:Invoking program:
+
+2024-10-17 18:23:29 fork_util.cpp:241() INFO:  argv[0]=gdb 
+
+2024-10-17 18:23:29 fork_util.cpp:241() INFO:  argv[1]=--nw 
+
+2024-10-17 18:23:29 fork_util.cpp:241() INFO:  argv[2]=-ex 
+
+2024-10-17 18:23:29 fork_util.cpp:241() INFO:  argv[3]=new-ui mi /dev/pts/4 
+
+2024-10-17 18:23:29 fork_util.cpp:241() INFO:  argv[4]=./a.out 
+
+2024-10-17 18:23:29 tgdb.cpp:1113() DEBUG:(\033)[35;1mGNU gdb (GDB) 15.1(\033)[m(\r)(\n)Copyright (C) 2024 Free Software Foundation, Inc.(\r)(\n)License GPLv3+: GNU GPL version 3 or later <(\033)[32mhttp://gnu.org/licenses/gpl.html(\033)[m>(\r)(\n)This is free software: you are free to change and redistribute it.(\r)(\n)There is NO WARRANTY, to the extent permitted by law.(\r)(\n)Type "show copying" and "show warranty" for details.(\r)(\n)This GDB was configured as "x86_64-pc-linux-gnu".(\r)(\n)Type "show configuration" for configuration details.(\r)(\n)For bug reporting instructions, please see:(\r)(\n)(\033)[32m<https://www.gnu.org/software/gdb/bugs/>(\033)[m.(\r)(\n)Find the GDB manual and other documentation resources online at:(\r)(\n)    <(\033)[32mhttp://www.gnu.org/software/gdb/documentation/(\033)[m>.(\r)(\n)(\r)(\n)For help, type "help".(\r)(\n)Type "apropos word" to search for commands related to "word"...(\r)(\n)
+
+2024-10-17 18:23:29 tgdb.cpp:1113() DEBUG:Reading symbols from (\033)[32m./a.out(\033)[m...(\r)(\n)
+
+2024-10-17 18:23:29 tgdb.cpp:1113() DEBUG:(\r)(\n)This GDB supports auto-downloading debuginfo from the following URLs:(\r)(\n)  <(\033)[32mhttps://debuginfod.archlinux.org(\033)[m>(\r)(\n)(\033)[?2004hEnable debuginfod for this session? (y or [n]) 
+
+2024-10-17 18:23:32 tgdb.cpp:1113() DEBUG:y
+
+2024-10-17 18:23:33 tgdb.cpp:1113() DEBUG:(\r)(\n)(\033)[?2004l(\r)Debuginfod has been enabled.(\r)(\n)To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.(\r)(\n)
+
+2024-10-17 18:23:33 tgdb.cpp:1113() DEBUG:Downloading separate debug info for (\033)[32m/home/z/scratch/loc/msgpck-cpp/src/parser/a.out(\033)[m(\r)(\n)
+
+2024-10-17 18:23:33 tgdb.cpp:1113() DEBUG:(\r)[###                                                                                                                                    ]
+
+2024-10-17 18:23:33 tgdb.cpp:1113() DEBUG:(\r)[ ###                                                                                                                                   ]
+
+2024-10-17 18:23:33 tgdb.cpp:1113() DEBUG:(\r)                                                                                                                                           (\r)(No debugging symbols found in (\033)[32m./a.out(\033)[m)(\r)(\n)
+
+2024-10-17 18:23:33 tgdb.cpp:1113() DEBUG:New UI allocated(\r)(\n)(\033)[?2004h(gdb) 
+
+2024-10-17 18:23:34 tgdb.cpp:1113() DEBUG:(\r)(\033)[K(\r)(gdb) 
+
+2024-10-17 18:23:35 tgdb.cpp:1113() DEBUG:(\r)(\033)[K(\r)(gdb) 
+
+2024-10-17 18:23:36 tgdb.cpp:1113() DEBUG:(\r)(\033)[K(\r)(gdb) 
+
+2024-10-17 18:23:39 tgdb.cpp:1113() DEBUG:(\r)(\n)(\033)[?2004l(\r)(\033)[?2004h
+
+2024-10-17 18:23:39 tgdb.cpp:1113() DEBUG:(gdb) 
+
+2024-10-17 18:23:43 tgdb.cpp:1113() DEBUG:quit(\r)(\n)(\033)[?2004l(\r)
+
+2024-10-17 18:23:43 tgdb.cpp:1107() INFO:read EOF from GDB, closing down
+
+2024-10-17 18:23:43 tgdb.cpp:814() INFO:Closing logfile.
+

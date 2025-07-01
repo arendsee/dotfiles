@@ -21,8 +21,8 @@ local options = {
   updatetime = 300,                        -- faster completion (4000ms default)
   writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   expandtab = true,                        -- convert tabs to spaces
-  shiftwidth = 2,                          -- the number of spaces inserted for each indentation
-  tabstop = 2,                             -- insert 2 spaces for a tab
+  shiftwidth = 4,                          -- the number of spaces inserted for each indentation
+  tabstop = 4,                             -- insert 2 spaces for a tab
   cursorline = true,                       -- highlight the current line
   number = true,                           -- set numbered lines
   relativenumber = false,                  -- set relative numbered lines
@@ -39,11 +39,14 @@ local options = {
                                           -- * p  - don't break on weird periods
                                           -- * n  - recognize numbered lists
                                           -- * a  - automatic formatting
+  foldmethod = "marker", -- use {{{ and }}} to mark folds
   -- keep the indentation from the prior line (generally nice)
   autoindent = true,
   -- smart indenting is specific to C-like programs, it will mess up wrapping of
   -- text by indenting after the word "for" or "if".
-  smartindent = false, }
+  smartindent = false,
+}
+
 
 vim.opt.shortmess:append "c"
 
@@ -61,6 +64,14 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 " -----------------------------------------------------------------------------
+
+let g:python3_host_prog = '/usr/bin/python'
+
+let g:loaded_ruby_provider = 0
+let g:loaded_node_provider = 0
+let g:loaded_perl_provider = 0
+
+" let g:markdown_folding = 1
 
 " ------------------------------- begin subsection ----------------------------
 " --- NERDCommenter settings

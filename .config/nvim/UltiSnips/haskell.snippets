@@ -1,5 +1,27 @@
 priority 0
 
+snippet exprm "insert exprm type description" b
+-- ManifoldM Int Lang TypeM (ManifoldForm TypeM) (ExprM f)
+-- SerializeM TypeF (SerialAST f) (ExprM f)
+-- DeserializeM TypeF (SerialAST f) (ExprM f)
+-- TransAppM TypeM Int [MDoc] [Arg TypeM]
+-- ReturnM TypeM (ExprM f)
+-- LetM Int TypeM (ExprM f) (ExprM f)
+-- LetVarM TypeM Int
+-- CisAppM TypeM (ExprM f) [ExprM f]
+-- BndVarM TypeM Int
+-- AccM    TypeF NamType FVar (ExprM f) Text
+-- SrcM    TypeF Source
+-- ListM   TypeF [ExprM f]
+-- TupleM  TypeF [ExprM f]
+-- RecordM TypeF [(Text, ExprM f)]
+-- LogM    TypeF Bool
+-- RealM   TypeF Scientific
+-- IntM    TypeF Integer
+-- StrM    TypeF Text
+-- NullM   TypeF
+endsnippet
+
 snippet	script "make an executable shell script" b
 #!/usr/bin/env runhaskell
 
@@ -25,7 +47,6 @@ snippet lang "add a language extension"
 {-# LANGUAGE $0 #-}
 endsnippet
 	
-
 snippet io "An ugly IO template, from Real World Haskell" b
 interactWith function inputFile outputFile = do
 	input <- readFile inputFile

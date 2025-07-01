@@ -1,21 +1,21 @@
 [user]
-    name=Zebulun Arendsee
-    email=zbwrnz@gmail.com
+    name = Zebulun Arendsee
+    email = zbwrnz@gmail.com
 [color]
     status=auto
     branch=auto
     interactive=auto
     diff=auto
 [core]
-    editor = vim -o
+    editor = vim
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [github]
     user=arendsee
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
-[credential]
-	helper = store
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    required = true
 [pull]
-	rebase = true
+    rebase = true
+[init]
+    defaultBranch = main

@@ -1,0 +1,30 @@
+2024-10-17 18:23:33 tgdb.cpp:1129() DEBUG:=thread-group-added,id="i1"
+(gdb) 
+
+
+2024-10-17 18:23:33 tgdb.cpp:950() DEBUG:-data-disassemble -s 0 -e 0 -- 4(\n)
+
+2024-10-17 18:23:33 tgdb.cpp:1129() DEBUG:^done,asm_insns=[]
+(gdb) 
+
+
+2024-10-17 18:23:33 tgdb.cpp:950() DEBUG:-break-info(\n)
+
+2024-10-17 18:23:33 tgdb.cpp:1129() DEBUG:^done,BreakpointTable={nr_rows="0",nr_cols="6",hdr=[{width="7",alignment="-1",col_name="number",colhdr="Num"},{width="14",alignment="-1",col_name="type",colhdr="Type"},{width="4",alignment="-1",col_name="disp",colhdr="Disp"},{width="3",alignment="-1",col_name="enabled",colhdr="Enb"},{width="10",alignment="-1",col_name="addr",colhdr="Address"},{width="40",alignment="2",col_name="what",colhdr="What"}],body=[]}
+(gdb) 
+
+
+2024-10-17 18:23:33 tgdb.cpp:950() DEBUG:-stack-info-frame(\n)
+
+2024-10-17 18:23:33 tgdb.cpp:1129() DEBUG:^error,msg="No registers."
+(gdb) 
+
+
+2024-10-17 18:23:33 tgdb.cpp:950() DEBUG:-file-list-exec-source-file(\n)
+
+2024-10-17 18:23:33 tgdb.cpp:1129() DEBUG:^error,msg="No symbol table is loaded.  Use the \"file\" command."
+(gdb) 
+
+
+2024-10-17 18:23:43 tgdb.cpp:817() INFO:Closing logfile.
+

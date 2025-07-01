@@ -3,7 +3,7 @@
 # EDITOR=vim
 
 # set editing-mode vi
-set show-mode-in-prompt on
+# set show-mode-in-prompt on
 
 PATH="$HOME/bin:$PATH"
 PATH="$PATH:$HOME/.cabal/bin"
@@ -195,24 +195,40 @@ fi
 # added by travis gem
 [ ! -s /home/z/.travis/travis.sh ] || source /home/z/.travis/travis.sh
 
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/z/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/z/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/z/anaconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/z/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
-
-
 PATH="/home/z/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/z/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/z/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/z/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/z/perl5"; export PERL_MM_OPT;
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE="/home/z/.local/bin/micromamba";
+export MAMBA_ROOT_PREFIX="/home/z/micromamba";
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    if [ -f "/home/z/micromamba/etc/profile.d/micromamba.sh" ]; then
+        . "/home/z/micromamba/etc/profile.d/micromamba.sh"
+    else
+        export  PATH="/home/z/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
+    fi
+fi
+unset __mamba_setup
+
+# !! Contents within this block are managed by 'mamba init' !!
+export MAMBA_EXE="/home/z/.local/bin/micromamba";
+export MAMBA_ROOT_PREFIX="/home/z/micromamba";
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    if [ -f "/home/z/micromamba/etc/profile.d/micromamba.sh" ]; then
+        . "/home/z/micromamba/etc/profile.d/micromamba.sh"
+    else
+        export  PATH="/home/z/micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
+    fi
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
